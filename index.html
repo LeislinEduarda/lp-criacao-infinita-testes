@@ -2240,6 +2240,25 @@ img, .scroll-row{ max-width: 100%; }
     line-height: 1.35 !important;
   }
 }
+    .marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #5a50ff; /* ajusta cor conforme design */
+  margin-top: 1rem;
+}
+
+.marquee span {
+  margin-right: 3rem;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
   </style>
 <header class="section theme-1" id="sec-hero">
   <div class="container hero-grid">
@@ -2279,18 +2298,38 @@ img, .scroll-row{ max-width: 100%; }
     <li>aulas novas todo mês</li>
   </ul>
 </div>
-  </div>
-</header>
+     <!-- 7.1 — Galeria: O que a gente cria de verdade -->  
+<section class="section section-galeria" id="sec-galeria">
+  <div class="container">
+    <h2 class="section-title-heroish gallery-title">
+      O QUE A GENTE<br>
+      <span class="no-break">CRIA DE VERDADE</span>
+    </h2>
 
-  <main id="conteudo" tabindex="-1">
-    <!-- 2 -->
-    <section class="section theme-2" id="sec-destaques">
-      <div class="container grid grid--3">
-        <div class="card stack reveal"><h3>⚡️ 10 MIL POSTS</h3><p class="muted">entregues pela minha equipe de social media não humana</p></div>
-        <div class="card stack reveal"><h3>♾️ A PRIMEIRA</h3><p class="muted">comunidade focada em criação de conteúdo com IA</p></div>
-        <div class="card stack reveal"><h3>🤬 PARA QUEM</h3><p class="muted">cansou de calendários e templates de conteúdo </p></div>
+    <ul class="gallery-pills">
+      <li>Designs com IA</li>
+      <li>Gêmea Digital</li>
+    </ul>
+
+    <div class="scroll-row" id="row-galeria">
+      <div class="g-card reveal">
+        <img src="gemea01.webp" alt="Design criado na comunidade">
       </div>
-    </section>
+      <div class="g-card reveal">
+        <img src="gemea02.webp" alt="Gêmea digital aplicada em post">
+      </div>
+      <div class="g-card reveal">
+        <img src="gemea03.webp" alt="Reels com estética original">
+      </div>
+      <div class="g-card reveal">
+        <img src="gemea04.webp" alt="Carrossel com IA sem cara de IA">
+      </div>
+      <div class="g-card reveal">
+        <img src="gemea05.webp" alt="Design da comunidade">
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- 3 -->
     <section class="section theme-3" id="sec-conteudo">
@@ -2383,26 +2422,6 @@ img, .scroll-row{ max-width: 100%; }
       </div>
     </section>
 
-    <!-- 5 — Sistema -->
-    <section class="section theme-8" id="sec-sistema">
-      <div class="container" style="max-width: 1280px;">
-        <h2 class="grid-title">
-  COMO<br>
-  FUNCIONA NA PRÁTICA <span class="no-wrap">👇</span>
-</h2>
-
-        <picture class="reveal">
-          <source srcset="https://leislineduarda.github.io/gemini-teste/assets/30.webp?v=1" type="image/webp">
-          <img
-            src="https://leislineduarda.github.io/gemini-teste/assets/30.webp?v=1"
-            width="1200" height="1900"
-            alt="Fluxo do sistema de conteúdo com funcionários não humanos"
-            class="flow-img" loading="lazy" decoding="async"
-          />
-        </picture>
-      </div>
-    </section>
-
     <!-- 6 — Aulas -->
 <section class="section theme-6" id="sec-aulas">
   <div class="container">
@@ -2429,75 +2448,6 @@ img, .scroll-row{ max-width: 100%; }
       <div class="plain reveal"><img src="25.webp" alt="Aula 25" loading="lazy" decoding="async"></div>
       <div class="plain reveal"><img src="26.webp" alt="Aula 26" loading="lazy" decoding="async"></div>
       <div class="plain reveal"><img src="27.webp" alt="Aula 27" loading="lazy" decoding="async"></div>
-    </div>
-  </div>
-</section>
-<!-- 7.1 — Galeria: O que a gente cria de verdade -->  
-<section class="section section-galeria" id="sec-galeria">
-  <div class="container">
-    <h2 class="section-title-heroish gallery-title">
-      O QUE A GENTE<br>
-      <span class="no-break">CRIA DE VERDADE</span>
-    </h2>
-
-    <ul class="gallery-pills">
-      <li>Designs com IA</li>
-      <li>Gêmea Digital</li>
-    </ul>
-
-    <div class="scroll-row" id="row-galeria">
-      <div class="g-card reveal">
-        <img src="gemea01.webp" alt="Design criado na comunidade">
-      </div>
-      <div class="g-card reveal">
-        <img src="gemea02.webp" alt="Gêmea digital aplicada em post">
-      </div>
-      <div class="g-card reveal">
-        <img src="gemea03.webp" alt="Reels com estética original">
-      </div>
-      <div class="g-card reveal">
-        <img src="gemea04.webp" alt="Carrossel com IA sem cara de IA">
-      </div>
-      <div class="g-card reveal">
-        <img src="gemea05.webp" alt="Design da comunidade">
-      </div>
-    </div>
-  </div>
-</section>
-    <!-- 7 — Prints -->
-    <section class="section theme-7" id="sec-depoimentos">
-  <div class="container">
-    <h2 class="grid-title section-title-heroish">
-  O QUE ESTÃO FALANDO<br>
-  <span class="no-break">DA COMUNIDADE</span>
-</h2>
-</h2>
-
-    <div class="scroll-row" id="row-depoimentos">
-      <div class="plain reveal">
-        <img src="assets/depoimento1.webp" alt="Depoimento 1" loading="lazy">
-      </div>
-      <div class="plain reveal">
-        <img src="assets/depoimento2.webp" alt="Depoimento 2" loading="lazy">
-      </div>
-      <div class="plain reveal">
-        <img src="assets/depoimento3.webp" alt="Depoimento 3" loading="lazy">
-      </div>
-      <div class="plain reveal">
-        <img src="assets/depoimento4.webp" alt="Depoimento 4" loading="lazy">
-      </div>
-      <div class="plain reveal">
-        <img src="assets/depoimento5.webp" alt="Depoimento 5" loading="lazy">
-      </div>
-      <div class="plain reveal">
-        <img src="assets/depoimento6.webp" alt="Depoimento 6" loading="lazy">
-      </div>
-      <div class="plain reveal">
-        <img src="assets/depoimento7.webp" alt="Depoimento 7" loading="lazy">
-      </div>
-      <div class="plain reveal">
-        <img src="assets/depoimento8.webp" alt="Depoimento 8" loading="lazy">
-      </div>
     </div>
   </div>
 </section>
@@ -2611,6 +2561,44 @@ img, .scroll-row{ max-width: 100%; }
     <p class="cta-notes">
       * sem burocracia&nbsp;&nbsp;* funciona no ChatGPT gratuito&nbsp;&nbsp;* aulas novas todo mês
     </p>
+  </div>
+</section>
+
+     <!-- 7 — Prints -->
+    <section class="section theme-7" id="sec-depoimentos">
+  <div class="container">
+    <h2 class="grid-title section-title-heroish">
+  O QUE ESTÃO FALANDO<br>
+  <span class="no-break">DA COMUNIDADE</span>
+</h2>
+</h2>
+
+    <div class="scroll-row" id="row-depoimentos">
+      <div class="plain reveal">
+        <img src="assets/depoimento1.webp" alt="Depoimento 1" loading="lazy">
+      </div>
+      <div class="plain reveal">
+        <img src="assets/depoimento2.webp" alt="Depoimento 2" loading="lazy">
+      </div>
+      <div class="plain reveal">
+        <img src="assets/depoimento3.webp" alt="Depoimento 3" loading="lazy">
+      </div>
+      <div class="plain reveal">
+        <img src="assets/depoimento4.webp" alt="Depoimento 4" loading="lazy">
+      </div>
+      <div class="plain reveal">
+        <img src="assets/depoimento5.webp" alt="Depoimento 5" loading="lazy">
+      </div>
+      <div class="plain reveal">
+        <img src="assets/depoimento6.webp" alt="Depoimento 6" loading="lazy">
+      </div>
+      <div class="plain reveal">
+        <img src="assets/depoimento7.webp" alt="Depoimento 7" loading="lazy">
+      </div>
+      <div class="plain reveal">
+        <img src="assets/depoimento8.webp" alt="Depoimento 8" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>
     <!-- 9 — FAQ + rodapé (LIMPO/SEM CARTÃO) -->
