@@ -2277,35 +2277,57 @@ img, .scroll-row{ max-width: 100%; }
     margin-top: 10px !important;
   }
 }
-.hero-ticker-wrap {
+    /* ===== Faixa de Destaque no Topo (Ticker) ===== */
+.top-ticker{
   width: 100%;
   overflow: hidden;
-  background: transparent; /* mantém o fundo igual ao da seção */
-  padding: 10px 0;
+  background: linear-gradient(90deg,
+              color-mix(in srgb, var(--brand-primary) 10%, #fff) 0%,
+              color-mix(in srgb, var(--brand-accent) 18%, #fff) 100%);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  z-index: 9999;
 }
 
-.hero-ticker {
-  display: inline-block;
+.top-ticker__track{
+  display: flex;
+  width: max-content;              /* só o que precisa para as duas metades */
+  animation: tickerMarquee var(--ticker-speed, 26s) linear infinite;
+  will-change: transform;
+}
+
+.top-ticker__content{
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 16px;
   white-space: nowrap;
-  animation: ticker 20s linear infinite; /* controla a velocidade */
+  flex: 0 0 auto;                  /* não quebra */
 }
 
-.hero-ticker span {
-  display: inline-block;
-  margin: 0 2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #4a4a4a; /* pode ajustar a cor para combinar com o design */
+.top-ticker__content span{
+  font-size: clamp(13px, 1.1vw + 10px, 15px);
+  font-weight: 600;
+  color: #2A2A2A;
+  letter-spacing: .1px;
 }
 
-@keyframes ticker {
-  0% {
-    transform: translateX(100%); /* começa fora da tela à direita */
-  }
-  100% {
-    transform: translateX(-100%); /* vai até fora da tela à esquerda */
-  }
+.top-ticker__content i{
+  font-style: normal;
+  opacity: .45;
+  color: #333;
 }
+
+/* Animação: com 2 blocos idênticos, mover -50% dá loop contínuo */
+@keyframes tickerMarquee{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Acessibilidade: usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce){
+  .top-ticker__track{ animation: none !important; }
+}
+
   </style>
 <header class="section theme-1" id="sec-hero">
   <div class="container hero-grid">
@@ -2338,21 +2360,7 @@ img, .scroll-row{ max-width: 100%; }
   <div class="offer-price">
     apenas <strong>R$38,80/mês</strong> <span>(plano anual)</span>
   </div>
-<!-- PALAVRAS CRUZANDO A TELA (infos da antiga 2ª seção) -->
-<div class="hero-ticker-wrap">
-  <div class="hero-ticker" aria-hidden="true">
-    <span>⚡️ 10 mil posts entregues pela equipe não humana</span>
-    <span>•</span>
-    <span>♾️ a primeira comunidade focada em conteúdo com IA</span>
-    <span>•</span>
-    <span>🤬 chega de calendários e templates engessados</span>
-    <span>•</span>
-    <span>⚡️ 10 mil posts entregues pela equipe não humana</span>
-    <span>•</span>
-    <span>♾️ a primeira comunidade focada em conteúdo com IA</span>
-    <span>•</span>
-    <span>🤬 chega de calendários e templates engessados</span>
-  </div>
+  
   <ul class="offer-notes">
     <li>sem burocracia</li>
     <li>funciona no ChatGPT gratuito</li>
@@ -2911,5 +2919,29 @@ document.addEventListener('DOMContentLoaded', () => {
   io.observe(hero);
 });
 </script>
+    <!-- TOP TICKER (faixa de destaque) -->
+<div class="top-ticker" role="region" aria-label="Destaques da Comunidade">
+  <div class="top-ticker__track">
+    <!-- Bloco 1 -->
+    <div class="top-ticker__content">
+      <span>⚡️ 10 mil posts entregues pela equipe não humana</span><i>•</i>
+      <span>♾️ a primeira comunidade focada em conteúdo com IA</span><i>•</i>
+      <span>🤬 chega de calendários e templates engessados</span><i>•</i>
+      <span>⚡️ 10 mil posts entregues pela equipe não humana</span><i>•</i>
+      <span>♾️ a primeira comunidade focada em conteúdo com IA</span><i>•</i>
+      <span>🤬 chega de calendários e templates engessados</span>
+    </div>
+
+    <!-- Bloco 2 (idêntico) para loop perfeito -->
+    <div class="top-ticker__content" aria-hidden="true">
+      <span>⚡️ 10 mil posts entregues pela equipe não humana</span><i>•</i>
+      <span>♾️ a primeira comunidade focada em conteúdo com IA</span><i>•</i>
+      <span>🤬 chega de calendários e templates engessados</span><i>•</i>
+      <span>⚡️ 10 mil posts entregues pela equipe não humana</span><i>•</i>
+      <span>♾️ a primeira comunidade focada em conteúdo com IA</span><i>•</i>
+      <span>🤬 chega de calendários e templates engessados</span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
