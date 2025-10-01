@@ -2327,7 +2327,15 @@ img, .scroll-row{ max-width: 100%; }
 @media (prefers-reduced-motion: reduce){
   .top-ticker__track{ animation: none !important; }
 }
+/* PASSO 2 — esconder a seção COMO FUNCIONA e o ponto do menu */
+#sec-sistema{ 
+  display: none !important; 
+}
 
+/* Esconde o ponto lateral que leva para o #sec-sistema */
+.scroll-dots button[data-target="#sec-sistema"]{
+  display: none !important;
+}
   </style>
    <!-- TOP TICKER (faixa de destaque) -->
 <div class="top-ticker" role="region" aria-label="Destaques da Comunidade">
