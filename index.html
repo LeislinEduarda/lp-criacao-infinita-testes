@@ -1,7 +1,3 @@
-sim, sim!
-
-Eu quero que envie atualizado no html inteiro sem MODIFICAR NADA além dos ajustes acordados aqui
-
 <!doctype html>
 <html lang="pt-BR">
   <!-- Vercel Speed Insights (coleta de Core Web Vitals) -->
@@ -2244,6 +2240,30 @@ img, .scroll-row{ max-width: 100%; }
     line-height: 1.35 !important;
   }
 }
+    /* ====== TICKER (palavras cruzando a tela) ====== */
+.hero-ticker-wrap{
+  margin: 10px auto 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  background: #fff;
+}
+.hero-ticker{
+  --speed: 26s;
+  display: flex;
+  gap: 32px;
+  white-space: nowrap;
+  padding: 10px 0;
+  animation: ticker var(--speed) linear infinite;
+  font-weight: 800;
+  color: #6a40f7;
+  letter-spacing: .2px;
+}
+.hero-ticker span{ opacity:.9 }
+@keyframes ticker{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
   </style>
 <header class="section theme-1" id="sec-hero">
   <div class="container hero-grid">
@@ -2284,18 +2304,26 @@ img, .scroll-row{ max-width: 100%; }
   </ul>
 </div>
   </div>
+  <!-- PALAVRAS CRUZANDO A TELA (infos da antiga 2ª seção) -->
+<div class="hero-ticker-wrap">
+  <div class="hero-ticker" aria-hidden="true">
+    <span>⚡️ 10 mil posts entregues pela equipe não humana</span>
+    <span>•</span>
+    <span>♾️ a primeira comunidade focada em conteúdo com IA</span>
+    <span>•</span>
+    <span>🤬 chega de calendários e templates engessados</span>
+    <span>•</span>
+    <span>⚡️ 10 mil posts entregues pela equipe não humana</span>
+    <span>•</span>
+    <span>♾️ a primeira comunidade focada em conteúdo com IA</span>
+    <span>•</span>
+    <span>🤬 chega de calendários e templates engessados</span>
+  </div>
+</div>
 </header>
 
   <main id="conteudo" tabindex="-1">
     <!-- 2 -->
-    <section class="section theme-2" id="sec-destaques">
-      <div class="container grid grid--3">
-        <div class="card stack reveal"><h3>⚡️ 10 MIL POSTS</h3><p class="muted">entregues pela minha equipe de social media não humana</p></div>
-        <div class="card stack reveal"><h3>♾️ A PRIMEIRA</h3><p class="muted">comunidade focada em criação de conteúdo com IA</p></div>
-        <div class="card stack reveal"><h3>🤬 PARA QUEM</h3><p class="muted">cansou de calendários e templates de conteúdo </p></div>
-      </div>
-    </section>
-
     <!-- 3 -->
     <section class="section theme-3" id="sec-conteudo">
       <div class="container grid grid--2">
