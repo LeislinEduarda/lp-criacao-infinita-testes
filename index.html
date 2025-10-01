@@ -2277,36 +2277,33 @@ img, .scroll-row{ max-width: 100%; }
     margin-top: 10px !important;
   }
 }
-/* ====== TICKER (palavras cruzando a tela) ====== */
-.hero-ticker-wrap{
-  margin: 10px auto 0;
+.hero-ticker-wrap {
+  width: 100%;
   overflow: hidden;
-  border-top: 1px solid rgba(0,0,0,.06);
-  border-bottom: 1px solid rgba(0,0,0,.06);
-  background: #fff;
-}
-.hero-ticker{
-  --speed: 26s;
-  display: flex;
-  gap: 32px;
-  white-space: nowrap;
+  background: transparent; /* mantém o fundo igual ao da seção */
   padding: 10px 0;
-  animation: ticker var(--speed) linear infinite;
-  font-weight: 800;
-  color: #6a40f7;
-  letter-spacing: .2px;
 }
-.hero-ticker span{ opacity:.9 }
-@keyframes ticker{
-  0%{ transform: translateX(0); }
-  100%{ transform: translateX(-50%); }
+
+.hero-ticker {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker 20s linear infinite; /* controla a velocidade */
 }
-    @keyframes ticker {
+
+.hero-ticker span {
+  display: inline-block;
+  margin: 0 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a4a4a; /* pode ajustar a cor para combinar com o design */
+}
+
+@keyframes ticker {
   0% {
-    transform: translateX(100%);
+    transform: translateX(100%); /* começa fora da tela à direita */
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* vai até fora da tela à esquerda */
   }
 }
   </style>
