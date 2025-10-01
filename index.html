@@ -2336,7 +2336,81 @@ img, .scroll-row{ max-width: 100%; }
   #sec-hero .hero-ticker-wrap{ height: 20px; margin: 6px auto 8px !important; }
   #sec-hero .hero-ticker{ font-size: 13px !important; gap: 16px !important; --speed: 18s !important; }
   #sec-hero .hero-offer{ margin-top: 10px !important; }
-}  
+}
+    /* 1) Keyframes do ticker (faz a linha andar) */
+@keyframes heroTicker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* reassegura a animação no ticker */
+#sec-hero .hero-ticker{
+  animation: heroTicker var(--speed, 24s) linear infinite !important;
+}
+
+/* 2) Oferta: largura total no grid + card sutil atrás */
+#sec-hero .hero-offer{
+  grid-column: 1 / -1;                     /* ocupa a largura toda */
+  position: relative;
+  z-index: 2;                               /* acima do ticker */
+  display: block;
+  max-width: 900px;                         /* limite visual */
+  margin: 12px auto 0 !important;           /* respiro do ticker */
+  padding: 12px 14px 14px;                  /* card compacto */
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffffcc, #ffffffee);
+  box-shadow: 0 12px 32px rgba(0,0,0,.10);
+}
+
+/* botão sempre clicável e acima de qualquer overlay */
+#sec-hero .hero-offer .btn-offer{
+  position: relative;
+  z-index: 3;
+}
+
+/* 3) Ticker: garante que fique 1 linha, sem roubar clique do CTA */
+#sec-hero .hero-ticker-wrap{
+  position: relative;
+  height: 22px;                             /* 1 linha */
+  margin: 6px auto 10px !important;
+  overflow: hidden;
+  background: transparent !important;
+  border: 0 !important;
+  grid-column: 1 / -1;
+  pointer-events: none;                     /* não intercepta clique do CTA */
+  z-index: 1;                               /* abaixo da oferta */
+}
+#sec-hero .hero-ticker{
+  display: inline-flex;
+  align-items: center;
+  gap: 28px !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  color: #6a40f7 !important;
+  padding: 0 !important;
+}
+
+/* fades laterais (ornamentais) */
+#sec-hero .hero-ticker-wrap::before,
+#sec-hero .hero-ticker-wrap::after{
+  content: "";
+  position: absolute; top: 0; bottom: 0; width: 26px;
+  pointer-events: none;
+}
+#sec-hero .hero-ticker-wrap::before{
+  left: 0;  background: linear-gradient(to right, #fff, #fff0);
+}
+#sec-hero .hero-ticker-wrap::after{
+  right: 0; background: linear-gradient(to left, #fff, #fff0);
+}
+
+@media (max-width: 480px){
+  #sec-hero .hero-ticker-wrap{ height: 20px; margin: 6px auto 8px !important; }
+  #sec-hero .hero-ticker{ font-size: 13px !important; gap: 16px !important; --speed: 18s !important; }
+  #sec-hero .hero-offer{ max-width: 92vw; padding: 10px 12px; }
+}
   </style>
 <header class="section theme-1" id="sec-hero">
   <div class="container hero-grid">
