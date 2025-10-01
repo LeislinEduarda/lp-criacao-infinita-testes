@@ -2240,46 +2240,41 @@ img, .scroll-row{ max-width: 100%; }
     line-height: 1.35 !important;
   }
 }
- /* ===== TICKER (logo abaixo da imagem do hero) ===== */
+/* ===== CORREÇÃO: Ticker só como linha de palavras (sem bloco) ===== */
 #sec-hero .hero-ticker-wrap{
-  grid-column: 1 / -1;          /* ocupa as duas colunas do grid */
-  margin: 8px 0 0;              /* gruda na imagem */
-  overflow: hidden;
-  border-top: 1px solid rgba(0,0,0,.06);
-  border-bottom: 1px solid rgba(0,0,0,.06);
-  background: #fff;
+  background: transparent !important;  /* remove aparência de card */
+  border: 0 !important;                /* sem bordas */
+  margin-top: 6px !important;          /* fica colado na imagem */
+  padding: 0 !important;               /* altura mínima (só o texto) */
+  grid-column: 1 / -1;                 /* mantém ocupando a largura toda */
+  overflow: hidden; 
 }
 
 #sec-hero .hero-ticker{
-  --speed: 24s;
-  display: flex;
-  gap: 28px;
-  white-space: nowrap;
-  padding: 10px 0;
-  animation: heroTicker var(--speed) linear infinite;
-  font-weight: 800;
-  color: #6a40f7;
-  letter-spacing: .2px;
-  will-change: transform;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 14.5px !important;
+  gap: 24px !important;
+  color: #6a40f7 !important;
+  font-weight: 800 !important;
+  animation: heroTicker var(--speed, 24s) linear infinite !important;
 }
 
-#sec-hero .hero-ticker span{ opacity: .95; }
-
-@keyframes heroTicker{
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* separa o ticker da oferta para não “virar um bloco só” */
+#sec-hero .hero-offer{
+  grid-column: 1 / -1;
+  margin-top: 12px !important;        /* dá respiro abaixo do ticker */
 }
 
-/* garante que o bloco de oferta também ocupe a linha toda */
-#sec-hero .hero-offer{ grid-column: 1 / -1; }
-
-/* mobile: fonte e gaps menores, mais rápido para caber na dobra */
+/* Mobile: um tiquinho menor e com respiro controlado */
 @media (max-width: 480px){
-  #sec-hero .hero-ticker{ 
-    gap: 18px; 
-    padding: 8px 0; 
-    font-size: 13.5px; 
-    --speed: 18s; 
+  #sec-hero .hero-ticker{
+    font-size: 13px !important;
+    gap: 16px !important;
+    --speed: 18s !important;
+  }
+  #sec-hero .hero-offer{
+    margin-top: 10px !important;
   }
 }
     
