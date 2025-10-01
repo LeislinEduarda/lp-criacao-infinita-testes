@@ -2277,7 +2277,66 @@ img, .scroll-row{ max-width: 100%; }
     margin-top: 10px !important;
   }
 }
-    
+  /* ===== TICKER: uma linha só, sem virar bloco, sem sobrepor CTA ===== */
+#sec-hero .hero-ticker-wrap{
+  position: relative;
+  height: 22px;                 /* altura exata para 1 linha */
+  margin: 6px auto 10px !important; /* respiro antes da oferta */
+  padding: 0 !important;
+  overflow: hidden;             /* corta qualquer “segunda linha” */
+  background: transparent !important;
+  border: 0 !important;
+  grid-column: 1 / -1;          /* ocupa a largura toda */
+  pointer-events: none;         /* não intercepta o clique do CTA */
+  z-index: 1;                   /* fica abaixo da oferta */
+}
+
+/* linha contínua (sem quebra), central e compacta */
+#sec-hero .hero-ticker{
+  display: inline-flex;
+  align-items: center;
+  gap: 28px !important;
+  white-space: nowrap !important;   /* não quebra */
+  line-height: 1 !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  color: #6a40f7 !important;
+  padding: 0 !important;
+  will-change: transform;
+  animation: heroTicker var(--speed, 24s) linear infinite !important;
+}
+#sec-hero .hero-ticker > *{
+  flex: 0 0 auto;  /* cada frase é “bloco” fixo, não quebra */
+}
+
+/* bordas com fade sutil (opcional, dá eixo sem virar card) */
+#sec-hero .hero-ticker-wrap::before,
+#sec-hero .hero-ticker-wrap::after{
+  content: "";
+  position: absolute; top: 0; bottom: 0; width: 26px;
+  pointer-events: none;
+}
+#sec-hero .hero-ticker-wrap::before{
+  left: 0;
+  background: linear-gradient(to right, #fff, #fff0);
+}
+#sec-hero .hero-ticker-wrap::after{
+  right: 0;
+  background: linear-gradient(to left, #fff, #fff0);
+}
+
+/* Oferta separada visualmente e acima do ticker */
+#sec-hero .hero-offer{
+  position: relative;
+  z-index: 2;               /* CTA sempre acima */
+  margin-top: 10px !important;
+}
+
+@media (max-width: 480px){
+  #sec-hero .hero-ticker-wrap{ height: 20px; margin: 6px auto 8px !important; }
+  #sec-hero .hero-ticker{ font-size: 13px !important; gap: 16px !important; --speed: 18s !important; }
+  #sec-hero .hero-offer{ margin-top: 10px !important; }
+}  
   </style>
 <header class="section theme-1" id="sec-hero">
   <div class="container hero-grid">
