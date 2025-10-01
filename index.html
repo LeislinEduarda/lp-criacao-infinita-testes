@@ -2240,30 +2240,49 @@ img, .scroll-row{ max-width: 100%; }
     line-height: 1.35 !important;
   }
 }
-    /* ====== TICKER (palavras cruzando a tela) ====== */
-.hero-ticker-wrap{
-  margin: 10px auto 0;
+ /* ===== TICKER (logo abaixo da imagem do hero) ===== */
+#sec-hero .hero-ticker-wrap{
+  grid-column: 1 / -1;          /* ocupa as duas colunas do grid */
+  margin: 8px 0 0;              /* gruda na imagem */
   overflow: hidden;
   border-top: 1px solid rgba(0,0,0,.06);
   border-bottom: 1px solid rgba(0,0,0,.06);
   background: #fff;
 }
-.hero-ticker{
-  --speed: 26s;
+
+#sec-hero .hero-ticker{
+  --speed: 24s;
   display: flex;
-  gap: 32px;
+  gap: 28px;
   white-space: nowrap;
   padding: 10px 0;
-  animation: ticker var(--speed) linear infinite;
+  animation: heroTicker var(--speed) linear infinite;
   font-weight: 800;
   color: #6a40f7;
   letter-spacing: .2px;
+  will-change: transform;
 }
-.hero-ticker span{ opacity:.9 }
-@keyframes ticker{
-  0%{ transform: translateX(0); }
-  100%{ transform: translateX(-50%); }
+
+#sec-hero .hero-ticker span{ opacity: .95; }
+
+@keyframes heroTicker{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
+
+/* garante que o bloco de oferta também ocupe a linha toda */
+#sec-hero .hero-offer{ grid-column: 1 / -1; }
+
+/* mobile: fonte e gaps menores, mais rápido para caber na dobra */
+@media (max-width: 480px){
+  #sec-hero .hero-ticker{ 
+    gap: 18px; 
+    padding: 8px 0; 
+    font-size: 13.5px; 
+    --speed: 18s; 
+  }
+}
+    
   </style>
 <header class="section theme-1" id="sec-hero">
   <div class="container hero-grid">
@@ -2286,7 +2305,7 @@ img, .scroll-row{ max-width: 100%; }
         class="hero-img"
       >
     </div>
-    <!-- PALAVRAS CRUZANDO A TELA (infos da antiga 2ª seção) -->
+     <!-- PALAVRAS CRUZANDO A TELA (infos da antiga 2ª seção) -->
 <div class="hero-ticker-wrap">
   <div class="hero-ticker" aria-hidden="true">
     <span>⚡️ 10 mil posts entregues pela equipe não humana</span>
