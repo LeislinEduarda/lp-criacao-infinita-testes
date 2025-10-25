@@ -1,439 +1,152 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ESTÚDIO INFINITO™ — crie 1 post por dia só com o celular</title>
-
-  <!-- Vercel Speed Insights / Analytics + Clarity -->
-  <script defer src="/_vercel/speed-insights/script.js"></script>
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "tctxip36f8");
-  </script>
-
-  <style>
-    /* ===== NOVA PALETA ===== */
-:root {
-  --color-bg: #FFFFFF;
-  --color-text-main: #1A1A1A;
-  --color-text-secondary: #555555;
-  --color-text-muted: #777777;
-  --color-primary: #E6007E; /* magenta */
-  --color-accent: #F9F9F9;
-  --color-border: #EEEEEE;
-  --radius: 16px;
-  --container: 1080px;
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ESTÚDIO INFINITO™ — crie 1 post por dia só com o celular</title>
+<style>
+:root{
+  --color-bg:#F9F9F9;
+  --color-text-main:#1A1A1A;
+  --color-text-secondary:#555;
+  --color-border:#EDEDED;
+  --color-green:#00A878;
+  --color-strong-1:#6769FF;
+  --color-strong-2:#FEF700;
+  --color-accent:#E6007E;
+  --radius:16px;
+  --container:1080px;
 }
-
-/* ===== TIPOGRAFIA ===== */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
-
-body {
-  font-family: 'Inter', sans-serif;
-  color: var(--color-text-main);
-  background: var(--color-bg);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+body{
+  margin:0;
+  background:var(--color-bg);
+  color:var(--color-text-main);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
 }
-
-h1, h2, h3, h4 {
-  font-family: 'Montserrat', sans-serif;
-  color: var(--color-text-main);
-  line-height: 1.2;
+.container{max-width:var(--container);margin:auto;padding:22px;}
+.section{padding:48px 0;border-bottom:1px solid var(--color-border);}
+h1,h2,h3{color:var(--color-green);font-weight:800;line-height:1.2;margin:0 0 12px;}
+p{margin:0 0 12px;}ul{margin:0;padding-left:18px;}li{margin-bottom:8px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;
+  min-height:50px;padding:0 24px;border-radius:999px;font-weight:900;
+  letter-spacing:.02em;border:2px solid transparent;cursor:pointer;
+  transition:all .2s ease;}
+.btn-primary{
+  background:linear-gradient(90deg,var(--color-strong-1),var(--color-strong-2));
+  color:#000;box-shadow:0 8px 20px rgba(103,105,255,.25);}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-2px);}
+.btn-ghost{
+  background:transparent;border-color:var(--color-strong-1);
+  color:var(--color-strong-1);}
+.btn-ghost:hover{background:var(--color-strong-1);color:#fff;}
+.hero-line{
+  background:linear-gradient(90deg,var(--color-accent),transparent 70%);
+  height:3px;border-radius:999px;width:120px;margin:8px auto;
 }
-
-h1 {
-  font-weight: 800;
-  font-size: clamp(2rem, 4vw, 3rem);
-}
-
-h2 {
-  font-weight: 700;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-}
-
-p {
-  color: var(--color-text-main);
-  font-weight: 400;
-  font-size: 1rem;
-}
-
-/* ===== BOTÕES ===== */
-.btn-primary {
-  background-color: var(--color-primary);
-  color: #fff;
-  border: none;
-  box-shadow: 0 6px 16px rgba(230, 0, 126, 0.25);
-}
-
-.btn-primary:hover {
-  background-color: #c00068;
-  transform: translateY(-2px);
-}
-
-.btn-ghost {
-  background: #fff;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-}
-
-.btn-ghost:hover {
-  background: var(--color-primary);
-  color: #fff;
-}
-
-/* ===== SEÇÕES ===== */
-.section {
-  background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.section:nth-of-type(2n) {
-  background: var(--color-accent);
-}
-
-/* ===== FAQ ===== */
-details {
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-}
-
-summary {
-  color: var(--color-text-main);
-}
-
-details p {
-  color: var(--color-text-secondary);
-}
-
-/* ===== CTA STICKY ===== */
-.sticky-cta {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid var(--color-border);
-}
-
-    body{
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial;
-      color:var(--ink); background:#fff; line-height:1.5;
-    }
-    .container{ max-width:var(--container); margin-inline:auto; padding:22px; }
-    .section{ padding:48px 0; }
-
-    /* ===== Cabeça enxuta ===== */
-    header.section{
-      background:
-        linear-gradient(180deg, rgba(103,105,255,.12), rgba(254,247,0,.10)),
-        #fff;
-      border-bottom:1px solid rgba(0,0,0,.06);
-      position:relative;
-      z-index:1;
-    }
-    .hero-wrap{ display:grid; gap:16px; justify-items:center; text-align:center; }
-
-    .eyebrow{ font-weight:800; font-size:var(--step-0); color:#555; text-transform:uppercase; letter-spacing:.06em; }
-    .title{ font-size:var(--step-3); font-weight:900; color:var(--brand-primary); line-height:1.07; letter-spacing:-.01em; }
-    .lead{ font-size:calc(var(--step-0)*1.15); color:var(--ink-strong); text-wrap:balance; max-width:60ch; }
-
-    .hero-price{ font-weight:900; color:#5c4033; font-size:var(--step-0); margin-top:8px; }
-    .hero-line{ width:140px; height:3px; border-radius:999px; margin:8px auto 6px; background:linear-gradient(90deg,#7B2FFF,#B266FF,#7B2FFF); background-size:200% 100%; animation:lineMove 2.8s linear infinite; }
-    @keyframes lineMove{ 0%{background-position:0 50%} 100%{background-position:200% 50%} }
-
-    .cta-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center; margin-top:14px; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      min-height:52px; padding:0 24px; border-radius:999px; font-weight:900;
-      letter-spacing:.02em; border:2px solid transparent; cursor:pointer;
-      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
-    }
-    .btn-primary{
-      background:var(--brand-primary); color:#fff;
-      box-shadow:0 12px 28px rgba(103,105,255,.28);
-    }
-    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 16px 34px rgba(103,105,255,.34); }
-    .btn-ghost{
-      background:#fff; color:var(--brand-primary); border-color: color-mix(in srgb, var(--brand-primary) 40%, #fff);
-    }
-    .btn-ghost:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.08); }
-
-    .trust{
-      display:grid; gap:8px; justify-items:center; margin-top:14px;
-      font-size:var(--step--1); color:#333;
-    }
-    .trust b{ color:#1a1a1a }
-
-    /* ===== DOBRA 2 ===== */
-    .band{ height:8px; border-radius:999px; width:min(620px, 86vw); margin:0 auto 22px auto;
-      background:linear-gradient(90deg, var(--brand-primary), var(--brand-accent)); box-shadow:0 10px 26px rgba(0,0,0,.08); }
-    .d-title{ font-size:var(--step-2); font-weight:900; color:var(--brand-primary); text-align:center; line-height:1.05; }
-    .sub{ text-align:center; color:#222; max-width:64ch; margin:8px auto 18px; }
-
-    .block{
-      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:18px; padding:18px;
-      box-shadow:0 12px 28px rgba(0,0,0,.08);
-    }
-    .grid{ display:grid; gap:16px; }
-    @media(min-width:860px){ .grid--2{ grid-template-columns:1fr 1fr; } }
-
-    h3{ font-size:var(--step-1); font-weight:800; color:#222; margin:4px 0 8px; }
-    p{ margin:0 0 10px 0 }
-    ul{ margin:0; padding-left:18px; }
-    li{ margin-bottom:8px }
-
-    .price-inline{ text-align:center; margin-top:8px; font-weight:800; color:#222; }
-    .price-inline strong{ color:var(--brand-primary); }
-    .mini-notes{ font-size:var(--step--1); color:#555; text-align:center; margin-top:4px; }
-
-    /* ===== DOBRA 3 — FAQ ===== */
-    .faq{ display:grid; gap:12px; grid-template-columns:1fr; }
-    details{
-      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:16px; overflow:hidden;
-      box-shadow:0 10px 26px rgba(0,0,0,.08);
-    }
-    summary{
-      list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
-      padding:14px 16px; font-weight:800; color:#222;
-    }
-    summary::-webkit-details-marker{ display:none }
-    details[open] summary .chev{ transform:rotate(90deg) }
-    .chev{ margin-left:auto; color:var(--brand-primary); font-weight:900; transition:transform .22s ease }
-    details p{ padding:0 16px 14px 16px; color:#333; }
-
-    /* ===== Sticky CTA (mobile) ===== */
-    .sticky-cta{
-      position:fixed; left:16px; right:16px;
-      bottom: calc(16px + env(safe-area-inset-bottom));
-      z-index:9999; display:none; justify-content:center;
-      background:#FFFFFFE6; border:1px solid rgba(0,0,0,.06);
-      padding:10px; border-radius:999px; box-shadow:0 14px 34px rgba(0,0,0,.18); backdrop-filter: blur(8px);
-    }
-    .sticky-cta .cta{ width:100%; }
-    @media(max-width:768px){ .sticky-cta{ display:flex } }
-    .sticky-cta.is-hidden{ opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity .22s ease, transform .22s ease; }
-
-    /* ===== Helpers ===== */
-    .center{ text-align:center }
-    .mt-14{ margin-top:14px }
-    .mt-18{ margin-top:18px }
-    .mt-24{ margin-top:24px }
-    .mb-0{ margin-bottom:0 }
-
-    /* ===== Acessibilidade ===== */
-    .skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
-    .skip-link:focus{
-      position:fixed; left:16px; top:16px; width:auto; height:auto;
-      background:var(--brand-accent); color:#000; padding:10px 14px; border-radius:10px; outline:3px solid #000;
-      z-index:1000;
-    }
-
-    /* ===== Core da página ===== */
-    .theme-soft{
-      background:linear-gradient(180deg, rgba(115,116,241,.12), rgba(115,116,241,.12));
-    }
-  </style>
+details{
+  background:#fff;border:1px solid var(--color-border);
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);}
+summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;
+  padding:14px 16px;font-weight:800;color:var(--color-text-main);}
+summary::-webkit-details-marker{display:none;}
+.chev{margin-left:auto;color:var(--color-accent);font-weight:900;transition:transform .2s;}
+details[open] summary .chev{transform:rotate(90deg);}
+details p{padding:0 16px 14px;color:var(--color-text-secondary);}
+.sticky-cta{
+  position:fixed;left:16px;right:16px;
+  bottom:calc(16px + env(safe-area-inset-bottom));
+  z-index:9999;display:none;justify-content:center;
+  background:#ffffffe6;border:1px solid var(--color-border);
+  padding:10px;border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.18);
+  backdrop-filter:blur(8px);}
+.sticky-cta .cta{width:100%;}
+@media(max-width:768px){.sticky-cta{display:flex}}
+.sticky-cta.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:opacity .22s ease,transform .22s ease;}
+</style>
 </head>
+
 <body>
-
-<a class="skip-link" href="#conteudo">Ir direto ao conteúdo</a>
-
 <header class="section" id="sec-hero">
-  <div class="container">
-    <div class="hero-wrap">
-      <div class="eyebrow">Esse site é curto. Foi de propósito.</div>
-      <h1 class="title">Eu vou <b>direto ao ponto</b> e deixo você criar.</h1>
-      <p class="lead"><b>ESTÚDIO INFINITO™</b><br>Entre no meu estúdio. Veja como eu crio no meu perfil, use a minha Equipe Não-Humana e publique <b>1 post por dia</b> — só com o celular, como eu faço há mais de dois anos.</p>
-
-      <p class="hero-price">Assinatura que pode sair de graça pra sempre</p>
-      <div class="hero-line" aria-hidden="true"></div>
-      <p class="lead">Você paga <b>só o 1º ano</b>. Se <b>não parar de postar</b>, <b>seus posts pagam todas as renovações</b>.<br>
-      <i>(<b>Post que Paga</b>: cada post = <b>+1 dia</b> de desconto.)</i></p>
-
-      <div class="trust">
-        <div><b>Selo de confiança:</b> seu <b>1º post no ar em 24h</b> — <b>ou eu devolvo 100%</b>.</div>
-        <div><b>Seu celular vira o Estúdio Infinito:</b> ideia, peça, texto e tom — <b>no bolso</b>.</div>
-      </div>
-
-      <div class="cta-row mt-14">
-        <a class="btn btn-primary cta" href="#" aria-label="Ir para o checkout">Entrar e deixar o Estúdio criar meu 1º post agora →</a>
-        <a class="btn btn-ghost" href="#sec-faq" aria-label="Ir para o FAQ">Quero ir direto pro FAQ</a>
-      </div>
-    </div>
-  </div>
+<div class="container" style="text-align:center">
+<h1>Eu vou <b>direto ao ponto</b> e deixo você criar.</h1>
+<p><b>ESTÚDIO INFINITO™</b><br>
+Entre no meu estúdio. Veja como eu crio no meu perfil, use a minha Equipe Não-Humana e publique <b>1 post por dia</b> — só com o celular, como eu faço há mais de dois anos.</p>
+<p><b>Assinatura que pode sair de graça pra sempre</b></p>
+<div class="hero-line"></div>
+<p>Você paga <b>só o 1º ano</b>. Se <b>não parar de postar</b>, seus posts pagam todas as renovações.</p>
+<p><i>(Post que Paga : cada post = +1 dia de desconto.)</i></p>
+<p><b>Selo de confiança:</b> seu <b>1º post no ar em 24h</b> — <b>ou eu devolvo 100%</b>.</p>
+<div style="margin-top:16px">
+  <a class="btn btn-primary cta" href="#">Entrar e deixar o Estúdio criar meu 1º post agora →</a>
+  <a class="btn btn-ghost" href="#sec-faq">Quero ir direto pro FAQ</a>
+</div>
+</div>
 </header>
 
 <main id="conteudo">
-  <!-- DOBRA 2 -->
-  <section class="section theme-soft" id="sec-entrega">
-    <div class="container">
-      <div class="band" aria-hidden="true"></div>
-      <h2 class="d-title">🫶 Dobra 2 — A ENTREGA (o que é, como acontece e por que funciona)</h2>
-      <p class="sub">Nada de partes separadas. É o estúdio inteiro trabalhando com você — ideia → peça → post.</p>
+<section class="section" id="sec-entrega">
+<div class="container">
+<h2>🫶 Dobra 2 — A ENTREGA (o que é, como acontece e por que funciona)</h2>
+<p>Pensa num ambiente onde tudo o que tu precisa pra criar conteúdo de verdade já tá pronto.</p>
+<ul>
+<li>Você entra e cai nos bastidores do estúdio</li>
+<li>Equipe Não-Humana monta as peças do seu post</li>
+<li>Comunidade te ajuda em tempo real</li>
+<li>Em 20–40 min você publica hoje — e cada post paga 1 dia da assinatura</li>
+</ul>
+<p><b>Plano do Estúdio:</b> R$ 388/ano • Preço de fundador travado • 24h ou 100%</p>
+<div style="text-align:center;margin-top:16px">
+  <a class="btn btn-primary cta" href="#">Quero fazer meu 1º post hoje</a>
+</div>
+</div>
+</section>
 
-      <div class="grid grid--2 mt-18">
-        <div class="block">
-          <h3>Como é por dentro (sem separar nada)</h3>
-          <p>Pensa num ambiente onde tudo o que tu precisa pra criar conteúdo de verdade já tá pronto.</p>
-          <p>Você <b>entra</b> e cai nos <b>bastidores do meu estúdio</b>.</p>
-          <p>Eu abro <b>o que faço no meu perfil</b> (roteiros, gravação, edição no celular, por que eu posto do jeito que posto).</p>
-          <p>Enquanto você assiste, responde <b>perguntas simples</b> e a <b>minha Equipe Não-Humana</b> já vai <b>montando as peças do SEU post</b>:</p>
-          <ul>
-            <li><b>ideia</b>, <b>abertura</b>, <b>formato</b> (Story/Reel/Carrossel), <b>roteiro</b>, <b>carrossel</b>, <b>legenda</b> e <b>tom</b>.</li>
-          </ul>
-          <p>A <b>comunidade</b> está ali do lado pra <b>tirar dúvida e ajustar comigo</b>.</p>
-          <p><b>Tudo ao mesmo tempo:</b> ver eu fazendo + equipe fazendo com você + gente de verdade te ajudando.</p>
-          <p>Em <b>20–40 min</b>, você <b>publica hoje</b> — e <b>cada post</b> ainda <b>paga 1 dia</b> da sua assinatura.</p>
-        </div>
+<section class="section" id="sec-faq">
+<div class="container">
+<h2>💬 Dobra 3 — FAQ</h2>
 
-        <div class="block">
-          <h3>O meu jeito de fazer (passo a passo simples)</h3>
-          <ol>
-            <li><b>Eu te mostro</b> em vídeo curto como faço <b>hoje</b>.</li>
-            <li><b>Você responde</b> 2–3 perguntas diretas.</li>
-            <li><b>Minha Equipe Não-Humana</b> entrega as partes do seu post.</li>
-            <li>A gente dá <b>um último ajuste</b> juntos.</li>
-            <li><b>Publica</b> em 2 toques. → <b>+1 dia</b> na renovação.</li>
-          </ol>
+<details><summary>Consigo mesmo com pouco tempo?<span class="chev">›</span></summary>
+<p>Consegue. Tudo pensado pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e publica.</p></details>
 
-          <blockquote style="margin:12px 0 0; padding:12px 14px; border-left:6px solid var(--brand-primary); background:#fff; border-radius:12px;">
-            <p class="mb-0"><i>É isso:</i><br>
-            <b>você entra e cria comigo</b><br>
-            <b>pensa com você</b><br>
-            <b>executa com você</b></p>
-          </blockquote>
-        </div>
-      </div>
+<details><summary>Preciso de computador ou app pago?<span class="chev">›</span></summary>
+<p>Não. Faço tudo no celular e te mostro como. Nada obrigatório pago.</p></details>
 
-      <div class="block mt-18">
-        <h3>Por que dá certo</h3>
-        <ul>
-          <li><b>Só o necessário:</b> <b>Aula vista = post no ar</b>.</li>
-          <li><b>Só com o celular:</b> estúdio inteiro <b>na sua mão</b>.</li>
-          <li><b>Sem câmera, se quiser:</b> <b>Gêmea Digital</b> pra postar sem aparecer.</li>
-          <li><b>Hábito que paga a assinatura:</b> <b>1 post/dia = +1 dia</b> de desconto.</li>
-          <li><b>Gente do seu lado:</b> eu, minha equipe e a comunidade te <b>puxando pro “publicar”</b>.</li>
-        </ul>
+<details><summary>Não quero aparecer em vídeo.<span class="chev">›</span></summary>
+<p>Use a Gêmea Digital ou fique nos carrosséis. Dá pra crescer sem ligar a câmera.</p></details>
 
-        <p class="price-inline mt-14"><b>Plano do Estúdio:</b> <strong>R$ 388/ano</strong> • <b>Preço de fundador travado</b> • <b>24h ou 100%</b></p>
-        <div class="center mt-14">
-          <a class="btn btn-primary cta" href="#" aria-label="Ir para o checkout">Quero fazer meu 1º post hoje</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<details><summary>Como funciona o Post que Paga?<span class="chev">›</span></summary>
+<p>Cada post feito com a Equipe Não-Humana vale +1 dia de desconto na próxima renovação.</p></details>
 
-  <!-- DOBRA 3 — FAQ -->
-  <section class="section" id="sec-faq">
-    <div class="container">
-      <h2 class="d-title">💬 Dobra 3 — FAQ (respostas rápidas, do jeito que eu falaria com você)</h2>
-      <div class="faq mt-18">
-
-        <details>
-          <summary>“Consigo mesmo com pouco tempo?”<span class="chev">›</span></summary>
-          <p>Consegue. Pensei tudo pra <b>20–40 min/dia</b>. Se hoje só tiver <b>15</b>, faz <b>Gancho + Legenda</b> e um carrossel curto — e publica.</p>
-        </details>
-
-        <details>
-          <summary>“Preciso de computador ou app pago?”<span class="chev">›</span></summary>
-          <p>Não. Eu faço <b>tudo no celular</b> e te mostro como. <b>Nada obrigatório pago</b>.</p>
-        </details>
-
-        <details>
-          <summary>“Não sou ‘do digital’. É pra mim?”<span class="chev">›</span></summary>
-          <p>É. Você <b>vê eu fazendo</b>, responde <b>perguntas simples</b> e a <b>minha Equipe Não-Humana</b> <b>faz junto</b> com você.</p>
-        </details>
-
-        <details>
-          <summary>“Não quero aparecer em vídeo. E agora?”<span class="chev">›</span></summary>
-          <p>Use a <b>Gêmea Digital</b> ou foque em <b>carrosséis</b>. Dá pra crescer <b>sem ligar a câmera</b>.</p>
-        </details>
-
-        <details>
-          <summary>“Como funciona o ‘Post que Paga’?”<span class="chev">›</span></summary>
-          <p>Cada <b>post</b> feito com a <b>minha Equipe Não-Humana</b> vale <b>+1 dia</b> de desconto na <b>próxima renovação</b>.</p>
-          <p><b>Regras simples:</b> <b>1 post por dia</b>; vale <b>Feed/Carrossel/Reel</b> (<b>Stories não</b>); mantenha <b>48h no ar</b>; marque <b>#PostQuePaga</b> + <b>#FeitoComEquipeNaoHumana</b> <b>ou</b> envie o <b>link no mural</b>.</p>
-          <p><b>Painel</b> mostra <b>Dias pagos: X/365</b> e a <b>próxima renovação estimada</b>. Se bater <b>365</b>, o próximo ano <b>pode sair de graça</b>.</p>
-          <p><b>Perfil privado?</b> Manda <b>print/link no mural</b> que eu <b>conto manualmente</b>.</p>
-        </details>
-
-        <details>
-          <summary>“E se eu travar?”<span class="chev">›</span></summary>
-          <p>Me chama no <b>chat</b>, usa as <b>análises</b> e entra nas <b>oficinas (2×/mês)</b>. A ideia é <b>ninguém ficar parado</b>.</p>
-        </details>
-
-        <details>
-          <summary>“Quando sai meu primeiro post?”<span class="chev">›</span></summary>
-          <p>Em até <b>24h</b>. Se não sair, <b>eu devolvo 100%</b>.</p>
-        </details>
-
-        <details>
-          <summary>“Qual é o preço? Posso cancelar?”<span class="chev">›</span></summary>
-          <p><b>R$ 388/ano</b>. Renovação anual automática. <b>Pode cancelar quando quiser</b>; o acesso fica até o fim do ciclo. Quem entra agora <b>trava o preço de fundador</b>.</p>
-        </details>
-      </div>
-
-      <div class="center mt-24">
-        <a class="btn btn-primary cta" href="#" aria-label="Ir para o checkout">Entrar e ativar minha Equipe Não-Humana agora →</a>
-        <p class="mini-notes">* funciona com ChatGPT gratuito • aulas novas todo mês • sem burocracia</p>
-      </div>
-
-      <div class="center mt-24" style="opacity:.8; font-size:var(--step--1)">
-        © 2025 @leislineduarda — Comunidade Conteúdo Infinito com IA
-      </div>
-    </div>
-  </section>
+<div style="text-align:center;margin-top:24px">
+  <a class="btn btn-primary cta" href="#">Entrar e ativar minha Equipe Não-Humana agora →</a>
+</div>
+</div>
+</section>
 </main>
 
-<!-- Sticky CTA (Mobile) -->
-<div class="sticky-cta" id="stickyCta" role="region" aria-label="Ação rápida">
-  <a class="btn btn-primary cta" href="#" aria-label="Ir para o checkout">Quero fazer parte</a>
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-primary cta" href="#">Quero fazer parte</a>
 </div>
 
 <script>
-  // 1) Unificar os CTAs com o checkout
-  (function(){
-    const CHECKOUT = 'https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275&utm=PRINCIPAL';
-    document.querySelectorAll('a.cta').forEach(a => {
-      a.setAttribute('href', CHECKOUT);
-      a.setAttribute('rel','noopener');
-    });
-
-    // Pré-conexão para abrir mais rápido
-    const link1 = document.createElement('link');
-    link1.rel = 'preconnect'; link1.href = 'https://payfast.greenn.com.br'; link1.crossOrigin = '';
-
-    const link2 = document.createElement('link');
-    link2.rel = 'dns-prefetch'; link2.href = 'https://payfast.greenn.com.br';
-
-    const link3 = document.createElement('link');
-    link3.rel = 'prefetch'; link3.href = CHECKOUT; link3.as = 'document';
-
-    document.head.append(link1, link2, link3);
-  })();
-
-  // 2) Mostrar o CTA flutuante apenas quando sair do HERO
-  (function(){
-    const hero  = document.getElementById('sec-hero');
-    const sticky = document.getElementById('stickyCta');
-    if (!hero || !sticky) return;
-    sticky.classList.add('is-hidden');
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting){
-          sticky.classList.add('is-hidden'); // HERO na tela → esconde
-        } else {
-          sticky.classList.remove('is-hidden'); // saiu do HERO → mostra
-        }
-      });
-    }, { rootMargin: '-10% 0px 0px 0px', threshold: 0 });
-
-    io.observe(hero);
-  })();
+(function(){
+ const CHECKOUT='https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275&utm=PRINCIPAL';
+ document.querySelectorAll('a.cta').forEach(a=>a.href=CHECKOUT);
+ const hero=document.getElementById('sec-hero'),sticky=document.getElementById('stickyCta');
+ if(!hero||!sticky)return;sticky.classList.add('is-hidden');
+ const io=new IntersectionObserver(e=>{
+   e.forEach(x=>{
+     if(x.isIntersecting)sticky.classList.add('is-hidden');
+     else sticky.classList.remove('is-hidden');
+   });
+ },{rootMargin:'-10% 0px 0px 0px'});
+ io.observe(hero);
+})();
 </script>
 </body>
 </html>
