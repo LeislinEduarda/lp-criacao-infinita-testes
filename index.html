@@ -5,18 +5,69 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>ESTÚDIO INFINITO™ — crie 1 post por dia só com o celular</title>
 <style>
+<style>
 :root{
   --color-bg:#F9F9F9;
   --color-text-main:#1A1A1A;
   --color-text-secondary:#555;
   --color-border:#EDEDED;
-  --color-green:#00A878;
-  --color-strong-1:#6769FF;
-  --color-strong-2:#FEF700;
+  --color-green:#3C8D73;         /* novo verde */
+  --color-strong-1:#7A1C32;      /* vinho */
+  --color-strong-2:#7A1C32;      /* mantém sólido */
   --color-accent:#E6007E;
   --radius:16px;
   --container:1080px;
 }
+body{
+  margin:0;
+  background:var(--color-bg);
+  color:var(--color-text-main);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;
+}
+.container{max-width:var(--container);margin:auto;padding:22px;}
+.section{padding:48px 0;border-bottom:1px solid var(--color-border);}
+h1,h2,h3{color:var(--color-green);font-weight:800;line-height:1.2;margin:0 0 12px;}
+p{margin:0 0 12px;}ul{margin:0;padding-left:18px;}li{margin-bottom:8px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;
+  min-height:50px;padding:0 24px;border-radius:999px;font-weight:900;
+  letter-spacing:.02em;border:2px solid transparent;cursor:pointer;
+  transition:all .2s ease;}
+.btn-primary{
+  background:var(--color-strong-1);
+  color:#fff;box-shadow:0 8px 20px rgba(122,28,50,.25);}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-2px);}
+.btn-ghost{
+  background:transparent;border-color:var(--color-strong-1);
+  color:var(--color-strong-1);}
+.btn-ghost:hover{background:var(--color-strong-1);color:#fff;}
+.hero-line{
+  background:linear-gradient(90deg,var(--color-accent),transparent 70%);
+  height:3px;border-radius:999px;width:120px;margin:8px auto;
+}
+details{
+  background:#fff;border:1px solid var(--color-border);
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);}
+summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;
+  padding:14px 16px;font-weight:800;color:var(--color-text-main);}
+summary::-webkit-details-marker{display:none;}
+.chev{margin-left:auto;color:var(--color-accent);font-weight:900;transition:transform .2s;}
+details[open] summary .chev{transform:rotate(90deg);}
+details p{padding:0 16px 14px;color:var(--color-text-secondary);}
+.sticky-cta{
+  position:fixed;left:16px;right:16px;
+  bottom:calc(16px + env(safe-area-inset-bottom));
+  z-index:9999;display:none;justify-content:center;
+  background:#ffffffe6;border:1px solid var(--color-border);
+  padding:10px;border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.18);
+  backdrop-filter:blur(8px);}
+.sticky-cta .cta{width:100%;}
+@media(max-width:768px){.sticky-cta{display:flex}}
+.sticky-cta.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:opacity .22s ease,transform .22s ease;}
+</style>
 body{
   margin:0;
   background:var(--color-bg);
