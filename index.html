@@ -4,131 +4,249 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Comunidade — Reabertura | Estúdio Infinito™</title>
-  <meta name="description" content="A comunidade está de portas fechadas por transformação. Reabre dia 1º de novembro com um novo nome, novo formato e uma nova forma de criar: o Estúdio Infinito™.">
+  <meta name="description" content="A comunidade está de portas fechadas por transformação. Reabre dia 1º de novembro com novo nome, novo formato e uma nova forma de criar: o Estúdio Infinito™.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    /* ==== Identidade Visual ==== */
     :root{
       --bg-offwhite:#F7F7F3;
       --text-main:#1A1A1A;
-      --green-title:#0E5B3F;
-      --wine:#7B0036;
-      --pink:#E6007E;
+      --text-sec:#555555;
+      --green-title:#0B4A34;   /* verde mais escuro */
+      --wine:#7B0036;          /* vinho para destaques */
+      --pink:#E6007E;          /* rosa apenas em detalhes */
+      --card:#FFFFFF;
+      --line:#E8E8E3;
+      --shadow:0 8px 30px rgba(0,0,0,.06);
+      --radius:16px;
+
+      /* Escala tipográfica (clamp = responsivo) */
+      --h1: clamp(32px, 5vw, 56px);
+      --h2: clamp(18px, 2.4vw, 22px);
+      --lead: clamp(17px, 1.8vw, 20px);
+      --body: clamp(16px, 1.6vw, 18px);
+      --small: clamp(12px, 1.2vw, 13px);
+      --letter-tight: -0.015em;
     }
+
+    /* ==== Reset/Setup ==== */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       background:var(--bg-offwhite);
       color:var(--text-main);
-      font-family:"Inter",sans-serif;
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ==== Layout raiz: uma dobra só ==== */
+    .page{
+      min-height:100dvh;
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .hero{
+      width:100%;
+      max-width:880px;                 /* largura de leitura confortável */
       display:flex;
       flex-direction:column;
-      justify-content:center;
       align-items:center;
       text-align:center;
-      padding:1rem;
-      -webkit-font-smoothing:antialiased;
+      gap:20px;
     }
-    h1{
-      color:var(--green-title);
-      font-size:clamp(28px,5vw,44px);
-      font-weight:800;
-      margin-top:1rem;
-    }
-    h2{
-      color:var(--green-title);
-      font-size:clamp(18px,2.2vw,22px);
-      font-weight:600;
-      margin-bottom:1rem;
+
+    /* ==== Countdown (1ª informação visual) ==== */
+    .countdown-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
     }
     .countdown{
       display:flex;
-      justify-content:center;
-      gap:0.8rem;
-      margin-bottom:1.2rem;
+      gap:10px;
       flex-wrap:wrap;
+      justify-content:center;
     }
     .time{
-      background:#fff;
-      border:1px solid #E8E8E8;
+      background:var(--card);
+      border:1px solid var(--line);
       border-radius:12px;
-      padding:0.5rem 0.8rem;
-      width:70px;
-      box-shadow:0 5px 12px rgba(0,0,0,0.05);
+      padding:10px 12px;
+      width:76px;
+      box-shadow:var(--shadow);
     }
     .time .value{
-      font-size:1.2rem;
-      font-weight:700;
+      font-size:18px;
+      font-weight:800;
       color:var(--wine);
+      letter-spacing:var(--letter-tight);
+      line-height:1.1;
     }
     .time .label{
-      font-size:0.7rem;
-      color:#666;
+      font-size:11px;
+      color:#6B6B6B;
       text-transform:uppercase;
-      margin-top:0.2rem;
+      margin-top:3px;
+      letter-spacing:.04em;
     }
-    p{
-      font-size:clamp(16px,1.5vw,18px);
-      margin:0.4rem 0;
-      line-height:1.5;
+    .when{
+      font-size:var(--small);
+      color:#6B6B6B;
     }
-    .cta{
-      display:inline-block;
-      margin-top:1rem;
+
+    /* ==== Cabeçalho textual com hierarquia clara ==== */
+    .kicker{
+      font-size:12px;
       font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:#6B6B6B;
+    }
+    h1{
+      font-size:var(--h1);
+      font-weight:800;
+      color:var(--green-title);
+      letter-spacing:var(--letter-tight);
+      line-height:1.12;
+    }
+    .subtitle{
+      font-size:var(--h2);
+      font-weight:600;
+      color:var(--green-title);
+      letter-spacing:.01em;
+      line-height:1.25;
+      margin-top:2px;
+    }
+
+    /* ==== Corpo do texto (blocos com ritmo vertical) ==== */
+    .copy{
+      display:flex;
+      flex-direction:column;
+      gap:10px;                      /* ritmo consistente entre linhas curtas */
+      margin-top:8px;
+    }
+    .copy p{
+      font-size:var(--body);
+      line-height:1.55;
+      letter-spacing:.005em;
+    }
+    .lead{
+      font-size:var(--lead);
+      color:var(--text-main);
+      line-height:1.55;
+      margin-top:4px;
+    }
+
+    /* ==== CTA de texto (sem botão) ==== */
+    .cta-text{
+      display:inline;
+      font-weight:800;
       color:var(--wine);
       text-decoration:underline;
-      text-decoration-color:var(--pink);
+      text-decoration-color:var(--pink);   /* rosa só em detalhe de sublinhado */
       text-underline-offset:4px;
-      transition:color 0.2s ease;
+      text-decoration-thickness:2px;
     }
-    .cta:hover{
-      color:var(--pink);
+    .cta-row{
+      margin-top:12px;
     }
+
+    /* ==== Rodapé minimal ==== */
     footer{
-      margin-top:2rem;
-      font-size:0.9rem;
+      margin-top:18px;
+      font-size:12.5px;
       color:#777;
     }
+
+    /* ==== Acessibilidade/Selection ==== */
+    ::selection{background:rgba(230,0,126,.18)}
   </style>
 </head>
 <body>
-  <div class="countdown" id="countdown">
-    <div class="time"><div class="value" id="days">--</div><div class="label">dias</div></div>
-    <div class="time"><div class="value" id="hours">--</div><div class="label">horas</div></div>
-    <div class="time"><div class="value" id="mins">--</div><div class="label">min</div></div>
-    <div class="time"><div class="value" id="secs">--</div><div class="label">seg</div></div>
-  </div>
+  <main class="page">
+    <section class="hero" aria-label="Reabertura da Comunidade">
+      <!-- Countdown primeiro -->
+      <div class="countdown-wrap" aria-live="polite">
+        <div class="countdown" id="countdown">
+          <div class="time" aria-label="dias restantes">
+            <div class="value" id="days">--</div>
+            <div class="label">dias</div>
+          </div>
+          <div class="time" aria-label="horas restantes">
+            <div class="value" id="hours">--</div>
+            <div class="label">horas</div>
+          </div>
+          <div class="time" aria-label="minutos restantes">
+            <div class="value" id="mins">--</div>
+            <div class="label">min</div>
+          </div>
+          <div class="time" aria-label="segundos restantes">
+            <div class="value" id="secs">--</div>
+            <div class="label">seg</div>
+          </div>
+        </div>
+        <div class="when">Reabertura em: 1º de novembro</div>
+      </div>
 
-  <h1>Comunidade</h1>
-  <h2>Reabertura</h2>
+      <!-- Hierarquia textual -->
+      <div class="kicker" aria-hidden="true">Comunidade</div>
+      <h1>Reabertura</h1>
+      <p class="subtitle">Estúdio Infinito™</p>
 
-  <p>Ela não acabou.</p>
-  <p>Ela está se transformando.</p>
-  <p>O que vem aí é muito maior —</p>
-  <p>e vai mudar completamente o jeito de criar.</p>
-  <p>🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato<br>e uma nova forma de criar.</p>
+      <!-- Corpo com ritmo -->
+      <div class="copy" role="doc-introduction">
+        <p>Ela não acabou.</p>
+        <p>Ela está se transformando.</p>
+        <p>O que vem aí é muito maior —</p>
+        <p>e vai mudar completamente o jeito de criar.</p>
+        <p class="lead">🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato<br>e uma nova forma de criar.</p>
+      </div>
 
-  <p class="cta">Entra nos meus stories nesse dia — é lá que o novo Estúdio vai aparecer primeiro.</p>
+      <!-- CTA em texto (sem botão) -->
+      <div class="cta-row">
+        <p class="lead">
+          <span class="cta-text">Entra nos meus stories nesse dia</span> — é lá que o novo Estúdio vai aparecer primeiro.
+        </p>
+      </div>
 
-  <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
+      <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
+    </section>
+  </main>
 
   <script>
+    // Contagem regressiva fixa para 1º/11 (horário de Brasília -03:00)
     const target = new Date("2025-11-01T00:00:00-03:00").getTime();
-    const d=document.getElementById("days"),h=document.getElementById("hours"),m=document.getElementById("mins"),s=document.getElementById("secs");
+    const d = document.getElementById("days");
+    const h = document.getElementById("hours");
+    const m = document.getElementById("mins");
+    const s = document.getElementById("secs");
+
     function pad(n){return n.toString().padStart(2,"0")}
     function tick(){
-      const now=Date.now();let diff=target-now;
-      if(diff<=0){d.textContent=h.textContent=m.textContent=s.textContent="00";return}
-      const days=Math.floor(diff/(1000*60*60*24));
-      diff-=days*1000*60*60*24;
-      const hours=Math.floor(diff/(1000*60*60));
-      diff-=hours*1000*60*60;
-      const mins=Math.floor(diff/(1000*60));
-      diff-=mins*1000*60;
-      const secs=Math.floor(diff/1000);
-      d.textContent=pad(days);h.textContent=pad(hours);m.textContent=pad(mins);s.textContent=pad(secs);
+      const now = Date.now();
+      let diff = target - now;
+      if(diff <= 0){
+        d.textContent = h.textContent = m.textContent = s.textContent = "00";
+        return;
+      }
+      const days = Math.floor(diff/(1000*60*60*24));
+      diff -= days*24*60*60*1000;
+      const hours = Math.floor(diff/(1000*60*60));
+      diff -= hours*60*60*1000;
+      const mins = Math.floor(diff/(1000*60));
+      diff -= mins*60*1000;
+      const secs = Math.floor(diff/1000);
+
+      d.textContent = pad(days);
+      h.textContent = pad(hours);
+      m.textContent = pad(mins);
+      s.textContent = pad(secs);
     }
-    tick();setInterval(tick,1000);
+    tick();
+    setInterval(tick,1000);
   </script>
 </body>
 </html>
