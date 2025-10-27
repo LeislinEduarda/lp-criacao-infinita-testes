@@ -1,27 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<style>
-  html, body {
-    height: 100%;
-    overflow: hidden;
-    overscroll-behavior: none;
-  }
-
-  body, .wrapper, .container, .hero {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-
-  .wrapper {
-    min-height: 100dvh;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-    box-sizing: border-box;
-  }
-
-  ::-webkit-scrollbar { display: none; }
-</style>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -184,6 +162,113 @@
       .countdown{ gap:12px; }
       .cd-card{ padding: 12px 8px 10px; }
     }
+    /* RESET mínimo e contenção de largura */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;                 /* evita empurrar pro lado por margem padrão */
+  overflow: hidden;          /* trava rolagem vertical e horizontal */
+  overscroll-behavior: none; /* remove bounce */
+  scrollbar-gutter: stable both-edges; /* evita “pulo” por desaparecimento da barra */
+}
+
+/* Body vira o centro do palco */
+body {
+  display: grid;
+  place-items: center;       /* centraliza tudo no meio da tela */
+  background: var(--bg, #F7F7F5); /* off-white que você definiu */
+}
+
+/* Contêiner principal da sua dobra (ajuste o seletor se o seu for outro) */
+.hero, .wrapper, .container, main {
+  width: min(960px, 92vw);   /* impede estourar a largura */
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Garante que imagens e mídias não “estourem” lateralmente */
+img, video, svg, canvas {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Espaçamentos agradáveis no hero */
+.hero {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+  padding: clamp(16px, 3vw, 32px);
+}
+
+/* Títulos e parágrafos — mantém sua tipografia */
+h1, h2, h3, p {
+  margin: 0;
+}
+
+h1 {
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Countdown: garante bloco compacto e sem quebrar linha inesperadamente */
+.countdown {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Blocos do contador (se você usa) */
+.count-item {
+  display: grid;
+  place-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  min-width: 70px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+
+/* Linha rosa sob o contador, se existir */
+.count-sep {
+  width: min(560px, 80%);
+  height: 3px;
+  background: var(--accent, #E6007E); /* seu rosa-detalhe */
+  border-radius: 999px;
+}
+
+/* CTA em destaque sem ser “botão” (bloco colorido inline) */
+.inline-cta {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+/* Evita qualquer “scroll fantasmas” dentro de elementos */
+[style*="overflow"] {
+  overscroll-behavior: contain;
+}
+
+/* iOS: usa unidade segura de viewport pra não cortar nada com a barra */
+@supports (-webkit-touch-callout: none) {
+  body { min-height: 100svh; }
+}
   </style>
 </head>
 <body>
@@ -284,6 +369,7 @@
     const timer = setInterval(tick, 1000);
   </script>
   <script>
+  // Bloqueia rolagem por mouse/touch/teclado sem “empurrar” layout
   const stopWheel = (e) => e.preventDefault();
   const stopTouch = (e) => e.preventDefault();
   const stopKeys = (e) => {
@@ -295,6 +381,7 @@
     if (keys.includes(e.code)) e.preventDefault();
   };
 
+  // Aplica no documento todo
   document.addEventListener('wheel', stopWheel, { passive: false });
   document.addEventListener('touchmove', stopTouch, { passive: false });
   document.addEventListener('keydown', stopKeys, { passive: false });
