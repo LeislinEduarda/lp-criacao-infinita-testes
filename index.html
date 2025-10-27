@@ -2,260 +2,133 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Comunidade — Reabertura | Estúdio Infinito™</title>
   <meta name="description" content="A comunidade está de portas fechadas por transformação. Reabre dia 1º de novembro com um novo nome, novo formato e uma nova forma de criar: o Estúdio Infinito™.">
-  <!-- Mantém sua tipografia atual; troque os links abaixo se já carrega localmente -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Paleta pedida */
-      --bg-offwhite: #F7F7F3;
-      --text-main: #1A1A1A;
-      --text-muted: #555555;
-      --green-title: #0E5B3F;   /* verde escuro (como referência da imagem) */
-      --wine-strong: #7B0036;   /* botões/acentos fortes */
-      --pink-accent: #E6007E;   /* detalhes leves apenas */
-      --divider: #F1E8EF;       /* um rosa bem claro derivado para separadores quase invisíveis */
-      --card-bg: #FFFFFF;
-      --radius: 14px;
-      --shadow: 0 6px 30px rgba(0,0,0,0.06);
+      --bg-offwhite:#F7F7F3;
+      --text-main:#1A1A1A;
+      --green-title:#0E5B3F;
+      --wine:#7B0036;
+      --pink:#E6007E;
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
-      margin:0;
-      background: var(--bg-offwhite);
-      color: var(--text-main);
-      font: 16px/1.5 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      background:var(--bg-offwhite);
+      color:var(--text-main);
+      font-family:"Inter",sans-serif;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:1rem;
+      -webkit-font-smoothing:antialiased;
     }
-    .wrap{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 20px 24px;
+    h1{
+      color:var(--green-title);
+      font-size:clamp(28px,5vw,44px);
+      font-weight:800;
+      margin-top:1rem;
     }
-    /* HERO: grid colunas — countdown (esq) + títulos/texto (dir) */
-    .hero{
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 28px;
-      align-items: center;
-      padding: 26px 0 18px;
-      border-bottom: 1px solid var(--divider);
+    h2{
+      color:var(--green-title);
+      font-size:clamp(18px,2.2vw,22px);
+      font-weight:600;
+      margin-bottom:1rem;
     }
-    /* Countdown compacto */
     .countdown{
-      display: grid;
-      grid-template-columns: repeat(4, minmax(88px, 1fr));
-      gap: 12px;
-      align-items: start;
+      display:flex;
+      justify-content:center;
+      gap:0.8rem;
+      margin-bottom:1.2rem;
+      flex-wrap:wrap;
     }
-    .cd-item{
-      background: var(--card-bg);
-      border: 1px solid #EEE9ED;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 14px 12px 12px;
-      text-align: center;
-      min-width: 88px;
+    .time{
+      background:#fff;
+      border:1px solid #E8E8E8;
+      border-radius:12px;
+      padding:0.5rem 0.8rem;
+      width:70px;
+      box-shadow:0 5px 12px rgba(0,0,0,0.05);
     }
-    .cd-value{
-      font-size: clamp(28px, 4vw, 36px);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: var(--wine-strong);
+    .time .value{
+      font-size:1.2rem;
+      font-weight:700;
+      color:var(--wine);
     }
-    .cd-label{
-      margin-top: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
+    .time .label{
+      font-size:0.7rem;
+      color:#666;
+      text-transform:uppercase;
+      margin-top:0.2rem;
     }
-    /* Bloco títulos */
-    .title-block h1{
-      margin: 0 0 4px 0;
-      font-size: clamp(28px, 3.8vw, 44px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--green-title); /* títulos no verde escuro */
-      font-weight: 800;
+    p{
+      font-size:clamp(16px,1.5vw,18px);
+      margin:0.4rem 0;
+      line-height:1.5;
     }
-    .title-block h2{
-      margin: 0 0 14px 0;
-      font-size: clamp(18px, 2.2vw, 22px);
-      font-weight: 600;
-      color: var(--green-title);
-      opacity: .95;
-      letter-spacing: 0.01em;
+    .cta{
+      display:inline-block;
+      margin-top:1rem;
+      font-weight:700;
+      color:var(--wine);
+      text-decoration:underline;
+      text-decoration-color:var(--pink);
+      text-underline-offset:4px;
+      transition:color 0.2s ease;
     }
-    .lead{
-      margin-top: 2px;
-      font-size: clamp(16px, 1.5vw, 18px);
+    .cta:hover{
+      color:var(--pink);
     }
-    .lead strong{font-weight: 800}
-    .lead .when{
-      color: var(--text-main);
-      background: linear-gradient(to bottom, transparent 60%, rgba(230,0,126,0.20) 60%); /* detalhe rosa leve */
-      padding: 0 2px;
-      border-radius: 2px;
-    }
-    .cta-row{
-      display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;
-    }
-    .btn{
-      appearance: none;
-      border: none;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.01em;
-      box-shadow: var(--shadow);
-      transition: transform .06s ease, filter .2s ease;
-    }
-    .btn:active{ transform: translateY(1px) scale(0.99); }
-    .btn-primary{
-      background: var(--wine-strong);  /* botão vinho (pedido) */
-      color: #fff;
-    }
-    .btn-primary:hover{ filter: brightness(1.06); }
-    .btn-ghost{
-      background: transparent;
-      color: var(--wine-strong);
-      border: 1px solid rgba(123,0,54,0.22);
-    }
-    /* Nota (rosa em detalhes, não dominante) */
-    .note{
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--text-muted);
-      border-left: 3px solid var(--pink-accent);
-      padding-left: 10px;
-    }
-    /* Rodapé enxuto */
     footer{
-      border-top: 1px solid var(--divider);
-      padding: 14px 0 24px;
-      margin-top: 22px;
-      font-size: 13px;
-      color: #777;
-      text-align: center;
-    }
-    /* Responsivo */
-    @media (max-width: 960px){
-      .hero{ grid-template-columns: 1fr; gap: 18px; }
-      .countdown{ grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (max-width: 420px){
-      .cd-item{ min-width: auto; padding: 12px 10px 10px; }
-      .cd-value{ font-size: 26px; }
-      .title-block h1{ font-size: 26px; }
-    }
-    /* Acessibilidade motion */
-    @media (prefers-reduced-motion: reduce){
-      .btn, .cd-value{ transition: none !important; }
+      margin-top:2rem;
+      font-size:0.9rem;
+      color:#777;
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <!-- Countdown primeiro (na DOM), com aria-live -->
-      <div class="countdown" id="countdown" aria-live="polite" data-deadline="2025-11-01T00:00:00-03:00">
-        <div class="cd-item">
-          <div class="cd-value" id="dd">--</div>
-          <div class="cd-label">dias</div>
-        </div>
-        <div class="cd-item">
-          <div class="cd-value" id="hh">--</div>
-          <div class="cd-label">horas</div>
-        </div>
-        <div class="cd-item">
-          <div class="cd-value" id="mm">--</div>
-          <div class="cd-label">min</div>
-        </div>
-        <div class="cd-item">
-          <div class="cd-value" id="ss">--</div>
-          <div class="cd-label">seg</div>
-        </div>
-      </div>
+  <div class="countdown" id="countdown">
+    <div class="time"><div class="value" id="days">--</div><div class="label">dias</div></div>
+    <div class="time"><div class="value" id="hours">--</div><div class="label">horas</div></div>
+    <div class="time"><div class="value" id="mins">--</div><div class="label">min</div></div>
+    <div class="time"><div class="value" id="secs">--</div><div class="label">seg</div></div>
+  </div>
 
-      <!-- Títulos à direita (desktop), verde escuro -->
-      <div class="title-block">
-        <h1>Comunidade</h1>
-        <h2>Reabertura</h2>
+  <h1>Comunidade</h1>
+  <h2>Reabertura</h2>
 
-        <p class="lead">
-          Ela não acabou.<br>
-          Ela está se transformando.<br><br>
-          O que vem aí é muito maior —<br>
-          e vai mudar completamente o jeito de criar.<br><br>
-          <span class="when"><strong>Dia 1º de novembro</strong></span>, ela reabre com um novo nome, um novo formato<br>
-          e uma nova forma de criar.<br><br>
-          <strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.
-        </p>
+  <p>Ela não acabou.</p>
+  <p>Ela está se transformando.</p>
+  <p>O que vem aí é muito maior —</p>
+  <p>e vai mudar completamente o jeito de criar.</p>
+  <p>🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato<br>e uma nova forma de criar.</p>
 
-        <div class="cta-row">
-          <!-- CTA opcional para Stories/IG; troque href -->
-          <a class="btn btn-primary" href="https://instagram.com/leislineduarda" target="_blank" rel="noopener">Abrir meu Instagram</a>
-          <a class="btn btn-ghost" href="#" aria-disabled="true">Saiba mais dia 01/11</a>
-        </div>
-        <p class="note">Detalhes em rosa só como acento visual — o foco continua no anúncio da data.</p>
-      </div>
-    </section>
+  <p class="cta">Entra nos meus stories nesse dia — é lá que o novo Estúdio vai aparecer primeiro.</p>
 
-    <footer>
-      © 2025 — Estúdio Infinito™. Todos os direitos reservados.
-    </footer>
-  </main>
+  <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
 
   <script>
-    (function(){
-      const root  = document.getElementById('countdown');
-      if(!root) return;
-      const ddEl = document.getElementById('dd');
-      const hhEl = document.getElementById('hh');
-      const mmEl = document.getElementById('mm');
-      const ssEl = document.getElementById('ss');
-
-      // Deadline em timezone de São Paulo (UTC-3), como pedido
-      const deadlineAttr = root.getAttribute('data-deadline');
-      const deadline = deadlineAttr ? new Date(deadlineAttr) : new Date('2025-11-01T00:00:00-03:00');
-
-      function pad(n){ return String(n).padStart(2,'0'); }
-
-      function tick(){
-        const now = new Date();
-        const diff = deadline - now;
-        if(diff <= 0){
-          ddEl.textContent = '00';
-          hhEl.textContent = '00';
-          mmEl.textContent = '00';
-          ssEl.textContent = '00';
-          clearInterval(timer);
-          return;
-        }
-        const s = Math.floor(diff/1000);
-        const d = Math.floor(s/86400);
-        const h = Math.floor((s%86400)/3600);
-        const m = Math.floor((s%3600)/60);
-        const sec = s%60;
-
-        ddEl.textContent = pad(d);
-        hhEl.textContent = pad(h);
-        mmEl.textContent = pad(m);
-        ssEl.textContent = pad(sec);
-      }
-      tick();
-      const timer = setInterval(tick, 1000);
-    })();
+    const target = new Date("2025-11-01T00:00:00-03:00").getTime();
+    const d=document.getElementById("days"),h=document.getElementById("hours"),m=document.getElementById("mins"),s=document.getElementById("secs");
+    function pad(n){return n.toString().padStart(2,"0")}
+    function tick(){
+      const now=Date.now();let diff=target-now;
+      if(diff<=0){d.textContent=h.textContent=m.textContent=s.textContent="00";return}
+      const days=Math.floor(diff/(1000*60*60*24));
+      diff-=days*1000*60*60*24;
+      const hours=Math.floor(diff/(1000*60*60));
+      diff-=hours*1000*60*60;
+      const mins=Math.floor(diff/(1000*60));
+      diff-=mins*1000*60;
+      const secs=Math.floor(diff/1000);
+      d.textContent=pad(days);h.textContent=pad(hours);m.textContent=pad(mins);s.textContent=pad(secs);
+    }
+    tick();setInterval(tick,1000);
   </script>
 </body>
 </html>
