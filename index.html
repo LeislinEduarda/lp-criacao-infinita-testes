@@ -2,195 +2,202 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estúdio Infinito™</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portas Fechadas — Comunidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --color-bg: #F7F6F3;              /* off-white */
-      --color-text-main: #1A1A1A;
-      --color-text-secondary: #555;
-      --color-border: #EDEDED;
-      --color-green: #1E392A;           /* verde escuro */
-      --color-wine: #7A1C32;            /* vinho */
-      --color-wine-strong: #671427;     /* hover */
-      --color-accent: #E6007E;          /* rosa detalhes */
-      --radius: 16px;
-      --container: 1080px;
-      --font-primary: "Poppins", sans-serif;
+    :root{
+      --color-bg: #F7F6F3;          /* off-white */
+      --color-text-main:#1A1A1A;
+      --color-text-secondary:#555;
+      --color-green:#143021;        /* verde escuro (mais fechado) */
+      --color-wine:#7A1C32;         /* vinho (CTA) */
+      --color-wine-strong:#671427;  /* hover CTA */
+      --color-accent:#E6007E;       /* rosa em detalhes */
+      --radius:16px;
+      --container: 900px;
     }
 
-    body {
-      margin: 0;
-      font-family: var(--font-primary);
-      background-color: var(--color-bg);
-      color: var(--color-text-main);
-      line-height: 1.6;
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",sans-serif;
+      background:var(--color-bg);
+      color:var(--color-text-main);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    h1, h2, h3 {
-      color: var(--color-green);
-      font-weight: 700;
-      margin-bottom: 0.5em;
+    .wrap{
+      min-height:100dvh;
+      display:flex;
+      flex-direction:column;
     }
 
-    p {
-      margin-bottom: 1em;
-      color: var(--color-text-main);
+    header{
+      width:100%;
+      border-bottom:2px solid var(--color-accent);
+      background:rgba(230,0,126,0.04); /* leve respiro rosa */
+    }
+    .container{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:1.25rem 1.25rem;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.6rem;
+      font-weight:700; color:var(--color-green);
+      letter-spacing:.3px;
+    }
+    .brand .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--color-accent);
+      display:inline-block;
     }
 
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
+    .hero{
+      text-align:center;
+      padding:4.5rem 1.25rem 3.5rem;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      font-weight:600;
+      color:var(--color-green);
+      background:#fff;
+      border:1px solid #EEE0E7;
+      padding:.4rem .75rem;
+      border-radius:999px;
+      box-shadow:0 2px 10px rgba(0,0,0,.04);
+    }
+    .eyebrow .door{
+      font-size:1.1rem;
     }
 
-    .hero {
-      text-align: center;
-      padding: 5rem 1.5rem 4rem;
+    h1{
+      margin:1rem auto .75rem;
+      font-size:2.05rem;
+      line-height:1.2;
+      color:var(--color-green);
+      max-width:800px;
+    }
+    .lead{
+      margin:0 auto 1.25rem;
+      font-size:1.05rem;
+      color:var(--color-text-secondary);
+      max-width:760px;
     }
 
-    .hero h1 {
-      font-size: 2.2rem;
+    .card{
+      background:#fff;
+      border-radius:var(--radius);
+      padding:1.5rem;
+      margin:1.25rem auto 0;
+      max-width:760px;
+      box-shadow:0 6px 28px rgba(0,0,0,.06);
+      border:1px solid #EFEFEF;
+    }
+    .card p{
+      margin:.7rem 0;
+    }
+    .divider{
+      width:96px;height:2px;background:var(--color-accent);
+      margin:2rem auto 1.5rem;border-radius:2px;
     }
 
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--color-text-secondary);
+    .date-tag{
+      display:inline-block;
+      padding:.35rem .7rem;
+      border:1px solid var(--color-accent);
+      color:var(--color-green);
+      background:rgba(230,0,126,.06);
+      border-radius:8px;
+      font-weight:600;
+      font-size:.95rem;
     }
 
-    .btn {
-      background-color: var(--color-wine);
-      color: #fff;
-      padding: 1rem 2rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 1rem;
-      transition: all 0.2s ease;
+    .cta-group{
+      display:flex; flex-wrap:wrap; gap:.75rem;
+      align-items:center; justify-content:center;
+      margin-top:1.25rem;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      text-decoration:none; display:inline-block;
+      padding:1rem 1.4rem; border-radius:14px;
+      font-weight:600; transition:.2s ease;
+    }
+    .btn-primary{
+      background:var(--color-wine); color:#fff;
+    }
+    .btn-primary:hover{ background:var(--color-wine-strong); transform:translateY(-1px) }
+    .btn-outline{
+      background:#fff; color:var(--color-green);
+      border:1.5px solid var(--color-green);
+    }
+    .btn-outline:hover{ transform:translateY(-1px) }
+
+    .note{
+      font-size:.95rem; color:#444; margin-top:.75rem;
     }
 
-    .btn:hover {
-      background-color: var(--color-wine-strong);
-      transform: scale(1.02);
+    footer{
+      margin-top:auto;
+      border-top:2px solid var(--color-accent);
+      text-align:center; padding:1.25rem;
+      color:#777; font-size:.9rem;
     }
 
-    hr {
-      border: none;
-      border-top: 2px solid var(--color-accent);
-      width: 80px;
-      margin: 3rem auto;
-    }
-
-    .section {
-      padding: 4rem 1.5rem;
-    }
-
-    .faq {
-      background-color: #F9F7F6;
-      border-top: 3px solid var(--color-accent);
-      padding: 4rem 1.5rem;
-    }
-
-    .faq h2 {
-      text-align: center;
-      color: var(--color-green);
-    }
-
-    .faq-item {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 1rem 1.5rem;
-      margin: 1rem auto;
-      max-width: 700px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .faq-item h3 {
-      margin-bottom: 0.5rem;
-      color: var(--color-green);
-      font-size: 1.1rem;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--color-text-secondary);
-      font-size: 0.9rem;
-      padding: 2rem 1rem;
-      border-top: 2px solid var(--color-accent);
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-
-      .btn {
-        width: 100%;
-      }
+    @media (max-width:680px){
+      h1{font-size:1.6rem}
+      .card{padding:1.15rem}
     }
   </style>
 </head>
 <body>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <p><strong>Esse site é curto. Foi de propósito.</strong></p>
-      <h1>ESTÚDIO INFINITO™</h1>
-      <p>Entre no meu estúdio. Veja como eu crio, use a minha Equipe Não-Humana e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</p>
-      <p><strong>Assinatura que pode sair de graça pra sempre.</strong><br>
-      Você paga só o 1º ano. Se não parar de postar, seus posts pagam todas as renovações.</p>
-      <p><strong>Selo de confiança:</strong> seu 1º post no ar em 24h — ou eu devolvo 100%.</p>
-      <a href="#" class="btn">Entrar e deixar o Estúdio criar meu 1º post agora →</a>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- ENTREGA -->
-  <section class="section">
-    <div class="container">
-      <h2>🫶 Dobra 2 — A ENTREGA</h2>
-      <p>Pensa num ambiente onde tudo o que tu precisa pra criar conteúdo de verdade já tá pronto.</p>
-      <ul>
-        <li>Você entra e cai nos bastidores do meu estúdio.</li>
-        <li>Minha Equipe Não-Humana monta seu post em minutos.</li>
-        <li>A comunidade ajuda e puxa pro publicar.</li>
-      </ul>
-      <a href="#" class="btn">Quero fazer meu 1º post hoje</a>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="container">
-      <h2>💬 Dobra 3 — FAQ</h2>
-
-      <div class="faq-item">
-        <h3>Consigo mesmo com pouco tempo?</h3>
-        <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
+  <div class="wrap">
+    <header>
+      <div class="container">
+        <div class="brand">
+          <span class="dot"></span>
+          <span>Estúdio Infinito™</span>
+        </div>
       </div>
+    </header>
 
-      <div class="faq-item">
-        <h3>Preciso de computador ou app pago?</h3>
-        <p>Não. Eu faço tudo no celular e te mostro como. Nada obrigatório pago.</p>
+    <main class="hero">
+      <div class="container">
+        <span class="eyebrow"><span class="door">🚪</span> Comunidade temporariamente fechada</span>
+        <h1>A comunidade está de portas fechadas.</h1>
+
+        <div class="card">
+          <p>Ela não acabou. <strong>Ela está se transformando.</strong></p>
+          <p>O que vem aí é muito maior — e vai <strong>mudar completamente o jeito de criar</strong>.</p>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <p><span class="date-tag">🕒 Reabertura: 1º de novembro</span></p>
+          <p>Ela reabre com um <strong>novo nome</strong>, um <strong>novo formato</strong> e uma <strong>nova forma de criar</strong>: <strong style="color:var(--color-green)">Estúdio Infinito™</strong>.</p>
+
+          <p class="note">Entre nos meus <strong>stories</strong> nesse dia — é lá que o novo Estúdio vai aparecer primeiro.</p>
+
+          <div class="cta-group">
+            <!-- Substitua os links abaixo pelos seus destinos reais -->
+            <a class="btn btn-primary" href="https://instagram.com/seuusuario" target="_blank" rel="noopener">Abrir meus Stories no dia 1º →</a>
+            <a class="btn btn-outline" href="https://seulinkdecheckout.com" target="_blank" rel="noopener">Quero ser avisado(a)</a>
+          </div>
+        </div>
       </div>
+    </main>
 
-      <div class="faq-item">
-        <h3>Como funciona o “Post que Paga”?</h3>
-        <p>Cada post feito com a Equipe Não-Humana vale +1 dia de desconto na próxima renovação.</p>
-      </div>
-
-      <a href="#" class="btn">Entrar e ativar minha Equipe Não-Humana agora →</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Estúdio Infinito™ — Todos os direitos reservados.</p>
-  </footer>
-
+    <footer>
+      © 2025 — Estúdio Infinito™. Todos os direitos reservados.
+    </footer>
+  </div>
 </body>
 </html>
