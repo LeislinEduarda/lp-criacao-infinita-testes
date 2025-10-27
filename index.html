@@ -14,10 +14,13 @@
     :root{
       --bg-offwhite:#F8F7F3;     /* fundo off-white */
       --text-main:#1A1A1A;       /* texto principal */
-      --text-muted:#666666;      /* texto secundário/labels */
+      --text-muted:#666666;      /* texto secundário */
       --green-title:#0B7D5E;     /* títulos */
-      --wine:#7A003C;            /* CTA sublinhado / ênfases */
-      --pink:#E6007E;            /* detalhes muito sutis */
+      --wine:#7A003C;            /* blocos/CTA */
+      --pink:#E6007E;            /* detalhes sutis (linha) */
+      --card-bg:#FFFFFF;         /* fundo dos cards do contador */
+      --card-border:#E9E6E0;     /* borda suave dos cards */
+      --shadow:0 6px 22px rgba(0,0,0,.06);
     }
 
     html,body{
@@ -28,39 +31,66 @@
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      height: 100%;
+    }
+
+    /* ===== Dobra única, centralizada verticalmente ===== */
+    .viewport{
+      min-height: 100svh; /* melhor em mobile */
+      display: flex;
+      align-items: center; /* centraliza verticalmente */
+      justify-content: center;
+      padding: 48px 20px 28px;
     }
 
     .wrapper{
-      max-width: 900px;
+      width: 100%;
+      max-width: 940px;
       margin: 0 auto;
-      padding: 48px 20px 28px;
       text-align:center;
     }
 
-    /* ===== Countdown ===== */
+    /* ===== Countdown em blocos ===== */
     .countdown{
       display:grid;
-      grid-template-columns: repeat(4, minmax(70px, 1fr));
+      grid-template-columns: repeat(4, minmax(84px, 1fr));
       gap: 16px;
       justify-items:center;
-      align-items:end;
-      margin: 4px auto 24px;
-      max-width: 680px;
+      align-items:stretch;
+      margin: 0 auto 14px;
+      max-width: 720px;
     }
-    .cd-item{
-      display:flex; flex-direction:column; gap:6px; min-width:72px;
+    .cd-card{
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      border-radius: 14px;
+      padding: 14px 10px 12px;
+      width: 100%;
+      max-width: 160px;
+      display:flex; flex-direction:column; align-items:center; gap:6px;
     }
     .cd-number{
-      font-size: clamp(26px, 4vw, 40px);
-      line-height:1;
+      font-size: clamp(28px, 4.6vw, 42px);
+      line-height:1.05;
       font-weight:800;
       color:#111;
+      letter-spacing:-.02em;
     }
     .cd-label{
       font-size:12px;
       text-transform:uppercase;
       letter-spacing:.08em;
       color:var(--text-muted);
+    }
+
+    /* ===== Linha rosa sob o contador ===== */
+    .pink-line{
+      width: min(720px, 90%);
+      height: 3px;
+      margin: 10px auto 22px;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+      border-radius: 999px;
     }
 
     /* ===== Eyebrow + Títulos ===== */
@@ -70,7 +100,7 @@
       letter-spacing:.08em; 
       text-transform:uppercase; 
       color:var(--text-muted);
-      margin: 6px 0 10px 0;
+      margin: 0 0 10px 0;
     }
     h1{
       color:var(--green-title);
@@ -91,97 +121,98 @@
       font-size: 16px;
       line-height:1.5;
       color:var(--text-muted);
-      margin: 14px 0 10px 0;
+      margin: 14px 0 18px 0;
     }
 
-    /* ===== CTA sem botão ===== */
-    .cta-inline{
-      display:inline;
-      font-weight:600;
-      font-size: clamp(18px, 2.2vw, 20px);
-      color: var(--text-main);
+    /* ===== CTA em bloco colorido (vinho) ===== */
+    .cta-block{
+      display:inline-block;
+      background: var(--wine);
+      color: #fff;
+      font-weight:700;
+      font-size: clamp(16px, 2vw, 18px);
+      line-height:1.3;
       text-decoration:none;
-      background-image: linear-gradient(var(--wine), var(--wine));
-      background-position: 0 100%;
-      background-repeat: no-repeat;
-      background-size: 100% 3px;  /* sublinhado sólido */
-      padding-bottom: 2px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
-    .cta-inline:hover{
-      background-size: 100% 6px;  /* interação sutil */
-      transition: background-size .18s ease;
+    .cta-block:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 8px 28px rgba(0,0,0,.10);
+    }
+    .cta-block:active{
+      transform: translateY(0);
+      box-shadow: var(--shadow);
     }
 
-    /* ===== Rodapé ===== */
+    /* ===== Rodapé minimalista ===== */
     footer{
-      margin-top: 40px;
-      padding: 20px 0 14px;
+      margin-top: 26px;
+      padding: 10px 0 6px;
       font-size:12.5px;
       color:#777;
-      position: relative;
-    }
-    footer::before{
-      content:"";
-      position:absolute;
-      top:0; left:50%;
-      transform:translateX(-50%);
-      width: 120px; height:2px;
-      background: linear-gradient(to right, transparent, rgba(230,0,126,.35), transparent);
     }
 
     /* ===== Responsivo ===== */
-    @media (max-width: 480px){
-      .wrapper{ padding: 36px 16px 24px; }
+    @media (max-width: 640px){
+      .viewport{ padding: 36px 16px 20px; }
       .countdown{ gap:12px; }
+      .cd-card{ padding: 12px 8px 10px; }
     }
   </style>
 </head>
 <body>
-  <main class="wrapper">
-    <!-- Countdown no topo -->
-    <section class="countdown" aria-label="Contagem regressiva para a reabertura">
-      <div class="cd-item">
-        <div class="cd-number" id="cd-days">00</div>
-        <div class="cd-label">dias</div>
-      </div>
-      <div class="cd-item">
-        <div class="cd-number" id="cd-hours">00</div>
-        <div class="cd-label">horas</div>
-      </div>
-      <div class="cd-item">
-        <div class="cd-number" id="cd-min">00</div>
-        <div class="cd-label">min</div>
-      </div>
-      <div class="cd-item">
-        <div class="cd-number" id="cd-sec">00</div>
-        <div class="cd-label">seg</div>
-      </div>
-    </section>
+  <main class="viewport">
+    <div class="wrapper">
+      <!-- Countdown em blocos -->
+      <section class="countdown" aria-label="Contagem regressiva para a reabertura">
+        <div class="cd-card" aria-label="Dias restantes">
+          <div class="cd-number" id="cd-days">00</div>
+          <div class="cd-label">dias</div>
+        </div>
+        <div class="cd-card" aria-label="Horas restantes">
+          <div class="cd-number" id="cd-hours">00</div>
+          <div class="cd-label">horas</div>
+        </div>
+        <div class="cd-card" aria-label="Minutos restantes">
+          <div class="cd-number" id="cd-min">00</div>
+          <div class="cd-label">min</div>
+        </div>
+        <div class="cd-card" aria-label="Segundos restantes">
+          <div class="cd-number" id="cd-sec">00</div>
+          <div class="cd-label">seg</div>
+        </div>
+      </section>
 
-    <!-- Hierarquia textual -->
-    <div class="eyebrow" id="eyebrow">Comunidade — Portas Fechadas</div>
-    <h1 id="headline">Reabertura dia 1º de novembro</h1>
+      <!-- Linha rosa sob o contador -->
+      <div class="pink-line" role="presentation"></div>
 
-    <p class="lead">Ela não acabou.</p>
-    <p class="lead">Ela está se transformando.</p>
-    <p class="lead">O que vem aí é muito maior — e vai mudar completamente o jeito de criar.</p>
+      <!-- Hierarquia textual -->
+      <div class="eyebrow" id="eyebrow">Comunidade — Portas Fechadas</div>
+      <h1 id="headline">Reabertura dia 1º de novembro</h1>
 
-    <p class="subtime" id="dateLine">
-      🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato e uma nova forma de criar.
-    </p>
+      <p class="lead">Ela não acabou.</p>
+      <p class="lead">Ela está se transformando.</p>
+      <p class="lead">O que vem aí é muito maior — e vai mudar completamente o jeito de criar.</p>
 
-    <p class="lead">
-      <a class="cta-inline" href="#" aria-label="Acompanhe meus stories no dia da reabertura">
+      <p class="subtime" id="dateLine">
+        🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato e uma nova forma de criar.
+      </p>
+
+      <!-- CTA em bloco colorido (sem “botão” tradicional) -->
+      <a class="cta-block" href="#" aria-label="Acompanhe meus stories no dia da reabertura">
         Entra nos meus stories nesse dia — é lá que o novo Estúdio vai aparecer primeiro.
       </a>
-    </p>
 
-    <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
+      <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
+    </div>
   </main>
 
   <script>
     // ===== Countdown para 01/11/2025 00:00:00 America/Sao_Paulo (UTC-03:00) =====
-    // Se preferir outro horário, ajuste a string abaixo.
     const target = new Date('2025-11-01T00:00:00-03:00').getTime();
 
     const elDays  = document.getElementById('cd-days');
@@ -200,7 +231,6 @@
       let diff = target - now;
 
       if (diff <= 0){
-        // Chegou o dia
         elDays.textContent  = '00';
         elHours.textContent = '00';
         elMin.textContent   = '00';
