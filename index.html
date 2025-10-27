@@ -3,254 +3,141 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Comunidade — Reabertura</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-
+  <title>Comunidade — Portas Fechadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Paleta */
-      --color-bg: #F7F6F3;         /* off-white */
-      --color-text-main:#1A1A1A;
-      --color-text-secondary:#555555;
-      --color-green:#143021;       /* títulos */
-      --color-accent:#E6007E;      /* detalhes sutis (rosa) */
-
-      /* CTA vinho (mantido caso precise inserir depois) */
-      --wine-1:#8B2140;
-      --wine-2:#7A1C32;
-      --wine-3:#671427;
-
-      --container: 980px;
+      --color-bg:#F7F6F3; 
+      --color-green:#143021; 
+      --color-accent:#E6007E;
+      --color-wine:#7A1C32;
+      --color-wine-dark:#671427;
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       font-family:"Poppins",sans-serif;
       background:var(--color-bg);
-      color:var(--color-text-main);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      color:var(--color-green);
       line-height:1.6;
-    }
-
-    .container{
-      max-width:var(--container);
-      margin:0 auto;
-      padding:1.25rem 1.25rem 0; /* topo pequeno pra o countdown aparecer primeiro */
-    }
-
-    /* HERO ÚNICO */
-    .hero{
-      padding:1rem 0 2.2rem;
-    }
-
-    /* Linha topo: countdown + título ao lado */
-    .top-row{
+      -webkit-font-smoothing:antialiased;
+      text-align:center;
+      padding:1.25rem;
       display:flex;
-      gap:1rem;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom:1.2rem;
+      flex-direction:column;
+      min-height:100vh;
+      justify-content:center;
     }
-
-    /* COUNTDOWN PRIMEIRO */
+    h1{
+      font-size:1.8rem;
+      margin:.5rem 0;
+      color:var(--color-green);
+      font-weight:700;
+    }
+    h2{
+      font-size:1.1rem;
+      font-weight:600;
+      color:var(--color-accent);
+      margin:.2rem 0 1rem;
+    }
+    p{
+      margin:.5rem auto;
+      color:#333;
+      max-width:750px;
+    }
     .countdown{
-      order:1; /* garantia visual de ser o primeiro na linha */
-      display:flex; gap:.5rem; flex-wrap:nowrap;
+      display:flex;
+      justify-content:center;
+      gap:.5rem;
+      flex-wrap:wrap;
+      margin-bottom:.8rem;
     }
     .time-box{
-      min-width:72px; /* menor para caber lado a lado */
       background:#fff;
-      border:1px solid #E8E1E5;
+      border:1px solid rgba(230,0,126,.2);
       border-radius:10px;
-      padding:.55rem .5rem;
-      text-align:center;
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
+      box-shadow:0 5px 18px rgba(0,0,0,.05);
+      width:70px;
+      padding:.4rem .2rem;
     }
     .time-value{
-      font-size:1.35rem;
+      font-size:1.2rem;
       font-weight:700;
       color:var(--color-green);
-      line-height:1.05;
     }
     .time-label{
-      font-size:.72rem; color:#666; letter-spacing:.25px; text-transform:uppercase;
+      font-size:.7rem;
+      color:#666;
+      text-transform:uppercase;
       margin-top:.2rem;
+      letter-spacing:.2px;
     }
-
-    /* TÍTULO AO LADO */
-    .side-title{
-      order:2;
-      display:flex; gap:.75rem; align-items:baseline; flex-wrap:wrap;
-    }
-    .side-title h1{
-      margin:0;
-      font-size:1.6rem;
-      line-height:1.15;
-      color:var(--color-green);
-      font-weight:700;
-    }
-    .slash{
-      color:var(--color-accent);
-      font-weight:700;
-      margin:0 .25rem;
-    }
-    .side-title h2{
-      margin:0;
-      font-size:1.15rem;
-      line-height:1.15;
-      color:var(--color-green);
-      font-weight:600;
-      opacity:.95;
-    }
-
-    /* TEXTO PRINCIPAL */
-    .content{
-      margin-top:.5rem;
-      max-width:800px;
-    }
-    .content p{
-      margin:.55rem 0;
-      font-size:1.02rem;
-      color:var(--color-text-main);
-    }
-    .content p strong{ color:var(--color-text-main) }
-
-    .highlight{
-      font-weight:700; color:var(--color-text-main);
-    }
-    .date-line{
-      margin-top:.8rem;
-    }
-    .stories{
-      margin-top:.6rem;
-      font-weight:600;
-    }
-
-    /* Toque sutil rosa nos links (se houver) */
-    a{ color:var(--color-text-main); text-decoration:none; border-bottom:1px solid rgba(230,0,126,.28) }
-    a:hover{ border-bottom-color:var(--color-accent) }
-
     footer{
-      margin-top:2.2rem;
-      text-align:center;
-      padding:1.1rem 1.25rem 1.6rem;
-      color:#777; font-size:.9rem;
-    }
-
-    @media (max-width:760px){
-      .top-row{ gap:.85rem }
-      .countdown{ flex-wrap:wrap }
-      .time-box{ min-width:70px }
-      .side-title h1{ font-size:1.42rem }
-      .side-title h2{ font-size:1rem }
-      .content p{ font-size:1rem }
+      margin-top:auto;
+      color:#777;
+      font-size:.85rem;
+      border-top:2px solid var(--color-accent);
+      padding:1rem 0 0;
     }
   </style>
 </head>
 <body>
-
-  <main class="hero">
-    <div class="container">
-
-      <!-- TOPO: Countdown (primeiro) + Título ao lado -->
-      <div class="top-row" aria-label="Topo com contagem e título">
-        <!-- COUNTDOWN -->
-        <div class="countdown" id="countdown" aria-label="Contagem regressiva para 1º de novembro">
-          <div class="time-box">
-            <div class="time-value" id="cd-days">--</div>
-            <div class="time-label">dias</div>
-          </div>
-          <div class="time-box">
-            <div class="time-value" id="cd-hours">--</div>
-            <div class="time-label">horas</div>
-          </div>
-          <div class="time-box">
-            <div class="time-value" id="cd-mins">--</div>
-            <div class="time-label">min</div>
-          </div>
-          <div class="time-box">
-            <div class="time-value" id="cd-secs">--</div>
-            <div class="time-label">seg</div>
-          </div>
-        </div>
-
-        <!-- TÍTULO AO LADO -->
-        <div class="side-title">
-          <h1>Comunidade</h1>
-          <span class="slash">/</span>
-          <h2>Reabertura</h2>
-        </div>
-      </div>
-
-      <!-- TEXTO PRINCIPAL -->
-      <section class="content" aria-labelledby="texto">
-        <p id="texto">Ela não acabou.</p>
-        <p>Ela está se transformando.</p>
-        <p>O que vem aí é muito maior —</p>
-        <p>e vai mudar completamente o jeito de criar.</p>
-
-        <p class="date-line">🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato</p>
-        <p>e uma nova forma de criar</p>
-
-        <p class="stories"><strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.</p>
-      </section>
-
+  <div class="countdown" id="countdown">
+    <div class="time-box">
+      <div class="time-value" id="cd-days">--</div>
+      <div class="time-label">dias</div>
     </div>
-  </main>
+    <div class="time-box">
+      <div class="time-value" id="cd-hours">--</div>
+      <div class="time-label">horas</div>
+    </div>
+    <div class="time-box">
+      <div class="time-value" id="cd-mins">--</div>
+      <div class="time-label">min</div>
+    </div>
+    <div class="time-box">
+      <div class="time-value" id="cd-secs">--</div>
+      <div class="time-label">seg</div>
+    </div>
+  </div>
 
-  <footer>
-    © 2025 — Estúdio Infinito™. Todos os direitos reservados.
-  </footer>
+  <h1>Comunidade</h1>
+  <h2>Reabertura</h2>
 
-  <!-- Countdown: 1º de novembro (America/Sao_Paulo) -->
+  <p>Ela não acabou.</p>
+  <p>Ela está se transformando.</p>
+  <p>O que vem aí é muito maior —</p>
+  <p>e vai mudar completamente o jeito de criar.</p>
+  <p>🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato<br>e uma nova forma de criar.</p>
+  <p><strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.</p>
+
+  <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
+
   <script>
     (function(){
-      // 1º de novembro às 00:00:00 no fuso de São Paulo
       const target = new Date("2025-11-01T00:00:00-03:00").getTime();
-
-      const elDays  = document.getElementById("cd-days");
-      const elHours = document.getElementById("cd-hours");
-      const elMins  = document.getElementById("cd-mins");
-      const elSecs  = document.getElementById("cd-secs");
-      const container = document.getElementById("countdown");
-
-      function pad(n){ return n.toString().padStart(2,"0"); }
-
+      const elDays=document.getElementById("cd-days"),
+            elHours=document.getElementById("cd-hours"),
+            elMins=document.getElementById("cd-mins"),
+            elSecs=document.getElementById("cd-secs");
+      function pad(n){return n.toString().padStart(2,"0");}
       function tick(){
-        const now = Date.now();
-        let diff = target - now;
-
-        if (diff <= 0){
-          elDays.textContent  = "00";
-          elHours.textContent = "00";
-          elMins.textContent  = "00";
-          elSecs.textContent  = "00";
-          container.setAttribute("aria-live","polite");
-          return;
-        }
-
-        const d = Math.floor(diff / (1000*60*60*24));
-        diff -= d * (1000*60*60*24);
-        const h = Math.floor(diff / (1000*60*60));
-        diff -= h * (1000*60*60);
-        const m = Math.floor(diff / (1000*60));
-        diff -= m * (1000*60);
-        const s = Math.floor(diff / 1000);
-
-        elDays.textContent  = pad(d);
-        elHours.textContent = pad(h);
-        elMins.textContent  = pad(m);
-        elSecs.textContent  = pad(s);
+        const now=Date.now();let diff=target-now;
+        if(diff<=0){elDays.textContent=elHours.textContent=elMins.textContent=elSecs.textContent="00";return;}
+        const d=Math.floor(diff/(1000*60*60*24));
+        diff-=d*1000*60*60*24;
+        const h=Math.floor(diff/(1000*60*60));
+        diff-=h*1000*60*60;
+        const m=Math.floor(diff/(1000*60));
+        diff-=m*1000*60;
+        const s=Math.floor(diff/1000);
+        elDays.textContent=pad(d);
+        elHours.textContent=pad(h);
+        elMins.textContent=pad(m);
+        elSecs.textContent=pad(s);
       }
-
       tick();
-      setInterval(tick, 1000);
+      setInterval(tick,1000);
     })();
   </script>
 </body>
