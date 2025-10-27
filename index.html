@@ -1,143 +1,196 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Comunidade — Portas Fechadas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comunidade — Portas Fechadas | Reabertura em 1º de novembro</title>
+  <meta name="description" content="A comunidade não acabou. Ela está se transformando. Reabre no dia 1º de novembro com um novo nome, um novo formato e uma nova forma de criar: o Estúdio Infinito™." />
+  <meta property="og:title" content="Comunidade — Reabertura em 1º de novembro" />
+  <meta property="og:description" content="Ela não acabou. Ela está se transformando. O Estúdio Infinito™ chega para mudar o jeito de criar." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#F7F6F2" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Ex.: Montserrat + Inter (ou as fontes que você já definiu) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" />
   <style>
     :root{
-      --color-bg:#F7F6F3; 
-      --color-green:#143021; 
-      --color-accent:#E6007E;
-      --color-wine:#7A1C32;
-      --color-wine-dark:#671427;
+      /* Substitua abaixo pelos seus hex EXATOS */
+      --offwhite: #F7F6F2;        /* fundo */
+      --text: #1A1A1A;            /* texto principal */
+      --muted: #555555;           /* apoio */
+      --green: #0E3F2C;           /* títulos (verde mais escuro, inspirado no print) */
+      --wine: #7A003C;            /* botões/CTA */
+      --pink: #E6007E;            /* detalhes sutis */
+      --ring: rgba(0,0,0,.06);    /* bordas brand */
     }
-    *{box-sizing:border-box}
+
+    html,body{height:100%}
     body{
-      margin:0;
-      font-family:"Poppins",sans-serif;
-      background:var(--color-bg);
-      color:var(--color-green);
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
+      margin:0; background:var(--offwhite);
+      color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .hero{
+      min-height:100svh;
+      display:grid; place-items:center;
+      padding:32px 20px;
+    }
+    .container{
+      width:min(1200px, 100%);
+      display:grid;
+      grid-template-columns: 1fr 1.2fr; /* countdown | textos */
+      gap:40px; align-items:center;
+    }
+    @media (max-width: 860px){
+      .container{ grid-template-columns:1fr; gap:28px }
+    }
+
+    /* COUNTDOWN */
+    .timer{
+      display:grid; grid-template-columns:repeat(4, minmax(80px, 1fr));
+      gap:14px; align-items:stretch;
+      user-select:none;
+      role: timer;
+    }
+    @media (max-width: 420px){
+      .timer{ grid-template-columns:repeat(4, 1fr); gap:8px }
+    }
+    .cell{
+      background:#fff; border:1px solid var(--ring);
+      border-radius:14px; padding:16px 12px;
       text-align:center;
-      padding:1.25rem;
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-      justify-content:center;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .num{
+      font-family:Montserrat, Inter, sans-serif;
+      font-weight:800; font-size:clamp(28px, 4.8vw, 44px); line-height:1;
+      color:var(--text);
+      letter-spacing:-0.02em;
+    }
+    .lab{
+      margin-top:8px; font-size:12px; text-transform:uppercase; letter-spacing:.12em;
+      font-weight:600; color:var(--muted);
+    }
+
+    /* BLOCO TÍTULOS/COPY */
+    .eyebrow{
+      display:inline-block; margin-bottom:10px;
+      font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;
+      color:var(--pink); /* detalhe sutil em rosa */
     }
     h1{
-      font-size:1.8rem;
-      margin:.5rem 0;
-      color:var(--color-green);
-      font-weight:700;
+      margin:0 0 8px 0; font-family:Montserrat, Inter, sans-serif;
+      font-weight:800; font-size:clamp(28px, 4.8vw, 44px); line-height:1.1;
+      color:var(--green);
+      letter-spacing:-0.01em;
     }
     h2{
-      font-size:1.1rem;
-      font-weight:600;
-      color:var(--color-accent);
-      margin:.2rem 0 1rem;
+      margin:0 0 18px 0; font-size:clamp(16px, 2.2vw, 20px); font-weight:600; color:var(--text);
     }
-    p{
-      margin:.5rem auto;
-      color:#333;
-      max-width:750px;
+    .copy{
+      font-size:clamp(14px, 1.9vw, 18px); line-height:1.55; color:var(--text);
     }
-    .countdown{
-      display:flex;
-      justify-content:center;
-      gap:.5rem;
-      flex-wrap:wrap;
-      margin-bottom:.8rem;
+    .copy p{ margin:8px 0 }
+
+    .cta-row{ margin-top:20px; display:flex; gap:12px; flex-wrap:wrap }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding:14px 18px; border-radius:12px; font-weight:700; font-size:15px;
+      transition:.2s transform ease, .2s box-shadow ease;
     }
-    .time-box{
-      background:#fff;
-      border:1px solid rgba(230,0,126,.2);
-      border-radius:10px;
-      box-shadow:0 5px 18px rgba(0,0,0,.05);
-      width:70px;
-      padding:.4rem .2rem;
+    .btn:focus-visible{ outline:2px solid var(--pink); outline-offset:2px }
+
+    .btn-primary{
+      background:var(--wine); color:#fff;
+      box-shadow:0 10px 24px rgba(122,0,60,.22);
     }
-    .time-value{
-      font-size:1.2rem;
-      font-weight:700;
-      color:var(--color-green);
+    .btn-primary:hover{ transform:translateY(-1px) }
+    .btn-ghost{
+      background:transparent; color:var(--wine);
+      border:1.5px solid var(--wine);
     }
-    .time-label{
-      font-size:.7rem;
-      color:#666;
-      text-transform:uppercase;
-      margin-top:.2rem;
-      letter-spacing:.2px;
-    }
+
+    /* Rodapé enxuto */
     footer{
-      margin-top:auto;
-      color:#777;
-      font-size:.85rem;
-      border-top:2px solid var(--color-accent);
-      padding:1rem 0 0;
+      border-top:1px solid var(--ring);
+      padding:16px 20px; font-size:13px; color:#777; text-align:center;
     }
   </style>
 </head>
 <body>
-  <div class="countdown" id="countdown">
-    <div class="time-box">
-      <div class="time-value" id="cd-days">--</div>
-      <div class="time-label">dias</div>
-    </div>
-    <div class="time-box">
-      <div class="time-value" id="cd-hours">--</div>
-      <div class="time-label">horas</div>
-    </div>
-    <div class="time-box">
-      <div class="time-value" id="cd-mins">--</div>
-      <div class="time-label">min</div>
-    </div>
-    <div class="time-box">
-      <div class="time-value" id="cd-secs">--</div>
-      <div class="time-label">seg</div>
-    </div>
-  </div>
+  <header class="sr-only">Contagem regressiva para a reabertura da comunidade</header>
 
-  <h1>Comunidade</h1>
-  <h2>Reabertura</h2>
+  <main class="hero" aria-label="Hero — Comunidade Portas Fechadas">
+    <div class="container">
+      <!-- COUNTDOWN -->
+      <section class="count" aria-label="Contagem regressiva">
+        <div class="timer" id="timer" aria-live="polite">
+          <div class="cell"><div class="num" id="d">--</div><div class="lab">dias</div></div>
+          <div class="cell"><div class="num" id="h">--</div><div class="lab">horas</div></div>
+          <div class="cell"><div class="num" id="m">--</div><div class="lab">min</div></div>
+          <div class="cell"><div class="num" id="s">--</div><div class="lab">seg</div></div>
+        </div>
+      </section>
 
-  <p>Ela não acabou.</p>
-  <p>Ela está se transformando.</p>
-  <p>O que vem aí é muito maior —</p>
-  <p>e vai mudar completamente o jeito de criar.</p>
-  <p>🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato<br>e uma nova forma de criar.</p>
-  <p><strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.</p>
+      <!-- TÍTULO + COPY + CTAs -->
+      <section class="text" aria-label="Mensagem principal">
+        <span class="eyebrow">Comunidade • Reabertura</span>
+        <h1>Portas Fechadas. Transformação em andamento.</h1>
+        <h2>Dia <strong>1º de novembro</strong> a comunidade reabre com um novo nome, um novo formato e uma nova forma de criar: <strong>Estúdio Infinito™</strong>.</h2>
 
-  <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
+        <div class="copy">
+          <p>Ela não acabou.</p>
+          <p>Ela está se transformando.</p>
+          <p>O que vem aí é muito maior — e vai mudar completamente o jeito de criar.</p>
+          <p><strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.</p>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#stories" aria-label="Ser lembrado nos stories no dia da reabertura">Quero ser lembrado nos stories</a>
+          <a class="btn btn-ghost" href="#faq" aria-label="Saiba mais">Saiba mais</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 — Estúdio Infinito™. Todos os direitos reservados.
+  </footer>
 
   <script>
+    // COUNTDOWN: alvo = 1º de novembro, 00:00 (America/Sao_Paulo)
     (function(){
-      const target = new Date("2025-11-01T00:00:00-03:00").getTime();
-      const elDays=document.getElementById("cd-days"),
-            elHours=document.getElementById("cd-hours"),
-            elMins=document.getElementById("cd-mins"),
-            elSecs=document.getElementById("cd-secs");
-      function pad(n){return n.toString().padStart(2,"0");}
+      const target = new Date('2025-11-01T00:00:00-03:00').getTime();
+      const d = document.getElementById('d');
+      const h = document.getElementById('h');
+      const m = document.getElementById('m');
+      const s = document.getElementById('s');
+
       function tick(){
-        const now=Date.now();let diff=target-now;
-        if(diff<=0){elDays.textContent=elHours.textContent=elMins.textContent=elSecs.textContent="00";return;}
-        const d=Math.floor(diff/(1000*60*60*24));
-        diff-=d*1000*60*60*24;
-        const h=Math.floor(diff/(1000*60*60));
-        diff-=h*1000*60*60;
-        const m=Math.floor(diff/(1000*60));
-        diff-=m*1000*60;
-        const s=Math.floor(diff/1000);
-        elDays.textContent=pad(d);
-        elHours.textContent=pad(h);
-        elMins.textContent=pad(m);
-        elSecs.textContent=pad(s);
+        const now = Date.now();
+        let diff = Math.max(0, target - now);
+
+        const days = Math.floor(diff / (1000*60*60*24));
+        diff -= days * (1000*60*60*24);
+
+        const hours = Math.floor(diff / (1000*60*60));
+        diff -= hours * (1000*60*60);
+
+        const mins = Math.floor(diff / (1000*60));
+        diff -= mins * (1000*60);
+
+        const secs = Math.floor(diff / 1000);
+
+        d.textContent = String(days).padStart(2,'0');
+        h.textContent = String(hours).padStart(2,'0');
+        m.textContent = String(mins).padStart(2,'0');
+        s.textContent = String(secs).padStart(2,'0');
       }
       tick();
-      setInterval(tick,1000);
+      setInterval(tick, 1000);
     })();
   </script>
 </body>
