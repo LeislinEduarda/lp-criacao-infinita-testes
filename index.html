@@ -2,195 +2,259 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Comunidade — Portas Fechadas | Reabertura em 1º de novembro</title>
-  <meta name="description" content="A comunidade não acabou. Ela está se transformando. Reabre no dia 1º de novembro com um novo nome, um novo formato e uma nova forma de criar: o Estúdio Infinito™." />
-  <meta property="og:title" content="Comunidade — Reabertura em 1º de novembro" />
-  <meta property="og:description" content="Ela não acabou. Ela está se transformando. O Estúdio Infinito™ chega para mudar o jeito de criar." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-cover.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#F7F6F2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comunidade — Reabertura | Estúdio Infinito™</title>
+  <meta name="description" content="A comunidade está de portas fechadas por transformação. Reabre dia 1º de novembro com um novo nome, novo formato e uma nova forma de criar: o Estúdio Infinito™.">
+  <!-- Mantém sua tipografia atual; troque os links abaixo se já carrega localmente -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Ex.: Montserrat + Inter (ou as fontes que você já definiu) -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Substitua abaixo pelos seus hex EXATOS */
-      --offwhite: #F7F6F2;        /* fundo */
-      --text: #1A1A1A;            /* texto principal */
-      --muted: #555555;           /* apoio */
-      --green: #0E3F2C;           /* títulos (verde mais escuro, inspirado no print) */
-      --wine: #7A003C;            /* botões/CTA */
-      --pink: #E6007E;            /* detalhes sutis */
-      --ring: rgba(0,0,0,.06);    /* bordas brand */
+      /* Paleta pedida */
+      --bg-offwhite: #F7F7F3;
+      --text-main: #1A1A1A;
+      --text-muted: #555555;
+      --green-title: #0E5B3F;   /* verde escuro (como referência da imagem) */
+      --wine-strong: #7B0036;   /* botões/acentos fortes */
+      --pink-accent: #E6007E;   /* detalhes leves apenas */
+      --divider: #F1E8EF;       /* um rosa bem claro derivado para separadores quase invisíveis */
+      --card-bg: #FFFFFF;
+      --radius: 14px;
+      --shadow: 0 6px 30px rgba(0,0,0,0.06);
     }
-
+    *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; background:var(--offwhite);
-      color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0;
+      background: var(--bg-offwhite);
+      color: var(--text-main);
+      font: 16px/1.5 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 24px;
+    }
+    /* HERO: grid colunas — countdown (esq) + títulos/texto (dir) */
     .hero{
-      min-height:100svh;
-      display:grid; place-items:center;
-      padding:32px 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 28px;
+      align-items: center;
+      padding: 26px 0 18px;
+      border-bottom: 1px solid var(--divider);
     }
-    .container{
-      width:min(1200px, 100%);
-      display:grid;
-      grid-template-columns: 1fr 1.2fr; /* countdown | textos */
-      gap:40px; align-items:center;
+    /* Countdown compacto */
+    .countdown{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(88px, 1fr));
+      gap: 12px;
+      align-items: start;
     }
-    @media (max-width: 860px){
-      .container{ grid-template-columns:1fr; gap:28px }
+    .cd-item{
+      background: var(--card-bg);
+      border: 1px solid #EEE9ED;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px 12px 12px;
+      text-align: center;
+      min-width: 88px;
     }
-
-    /* COUNTDOWN */
-    .timer{
-      display:grid; grid-template-columns:repeat(4, minmax(80px, 1fr));
-      gap:14px; align-items:stretch;
-      user-select:none;
-      role: timer;
+    .cd-value{
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--wine-strong);
     }
-    @media (max-width: 420px){
-      .timer{ grid-template-columns:repeat(4, 1fr); gap:8px }
+    .cd-label{
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
     }
-    .cell{
-      background:#fff; border:1px solid var(--ring);
-      border-radius:14px; padding:16px 12px;
-      text-align:center;
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    /* Bloco títulos */
+    .title-block h1{
+      margin: 0 0 4px 0;
+      font-size: clamp(28px, 3.8vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--green-title); /* títulos no verde escuro */
+      font-weight: 800;
     }
-    .num{
-      font-family:Montserrat, Inter, sans-serif;
-      font-weight:800; font-size:clamp(28px, 4.8vw, 44px); line-height:1;
-      color:var(--text);
-      letter-spacing:-0.02em;
+    .title-block h2{
+      margin: 0 0 14px 0;
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-weight: 600;
+      color: var(--green-title);
+      opacity: .95;
+      letter-spacing: 0.01em;
     }
-    .lab{
-      margin-top:8px; font-size:12px; text-transform:uppercase; letter-spacing:.12em;
-      font-weight:600; color:var(--muted);
+    .lead{
+      margin-top: 2px;
+      font-size: clamp(16px, 1.5vw, 18px);
     }
-
-    /* BLOCO TÍTULOS/COPY */
-    .eyebrow{
-      display:inline-block; margin-bottom:10px;
-      font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;
-      color:var(--pink); /* detalhe sutil em rosa */
+    .lead strong{font-weight: 800}
+    .lead .when{
+      color: var(--text-main);
+      background: linear-gradient(to bottom, transparent 60%, rgba(230,0,126,0.20) 60%); /* detalhe rosa leve */
+      padding: 0 2px;
+      border-radius: 2px;
     }
-    h1{
-      margin:0 0 8px 0; font-family:Montserrat, Inter, sans-serif;
-      font-weight:800; font-size:clamp(28px, 4.8vw, 44px); line-height:1.1;
-      color:var(--green);
-      letter-spacing:-0.01em;
+    .cta-row{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;
     }
-    h2{
-      margin:0 0 18px 0; font-size:clamp(16px, 2.2vw, 20px); font-weight:600; color:var(--text);
-    }
-    .copy{
-      font-size:clamp(14px, 1.9vw, 18px); line-height:1.55; color:var(--text);
-    }
-    .copy p{ margin:8px 0 }
-
-    .cta-row{ margin-top:20px; display:flex; gap:12px; flex-wrap:wrap }
     .btn{
-      appearance:none; border:none; cursor:pointer;
-      padding:14px 18px; border-radius:12px; font-weight:700; font-size:15px;
-      transition:.2s transform ease, .2s box-shadow ease;
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      box-shadow: var(--shadow);
+      transition: transform .06s ease, filter .2s ease;
     }
-    .btn:focus-visible{ outline:2px solid var(--pink); outline-offset:2px }
-
+    .btn:active{ transform: translateY(1px) scale(0.99); }
     .btn-primary{
-      background:var(--wine); color:#fff;
-      box-shadow:0 10px 24px rgba(122,0,60,.22);
+      background: var(--wine-strong);  /* botão vinho (pedido) */
+      color: #fff;
     }
-    .btn-primary:hover{ transform:translateY(-1px) }
+    .btn-primary:hover{ filter: brightness(1.06); }
     .btn-ghost{
-      background:transparent; color:var(--wine);
-      border:1.5px solid var(--wine);
+      background: transparent;
+      color: var(--wine-strong);
+      border: 1px solid rgba(123,0,54,0.22);
     }
-
+    /* Nota (rosa em detalhes, não dominante) */
+    .note{
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-left: 3px solid var(--pink-accent);
+      padding-left: 10px;
+    }
     /* Rodapé enxuto */
     footer{
-      border-top:1px solid var(--ring);
-      padding:16px 20px; font-size:13px; color:#777; text-align:center;
+      border-top: 1px solid var(--divider);
+      padding: 14px 0 24px;
+      margin-top: 22px;
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+    }
+    /* Responsivo */
+    @media (max-width: 960px){
+      .hero{ grid-template-columns: 1fr; gap: 18px; }
+      .countdown{ grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 420px){
+      .cd-item{ min-width: auto; padding: 12px 10px 10px; }
+      .cd-value{ font-size: 26px; }
+      .title-block h1{ font-size: 26px; }
+    }
+    /* Acessibilidade motion */
+    @media (prefers-reduced-motion: reduce){
+      .btn, .cd-value{ transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <header class="sr-only">Contagem regressiva para a reabertura da comunidade</header>
-
-  <main class="hero" aria-label="Hero — Comunidade Portas Fechadas">
-    <div class="container">
-      <!-- COUNTDOWN -->
-      <section class="count" aria-label="Contagem regressiva">
-        <div class="timer" id="timer" aria-live="polite">
-          <div class="cell"><div class="num" id="d">--</div><div class="lab">dias</div></div>
-          <div class="cell"><div class="num" id="h">--</div><div class="lab">horas</div></div>
-          <div class="cell"><div class="num" id="m">--</div><div class="lab">min</div></div>
-          <div class="cell"><div class="num" id="s">--</div><div class="lab">seg</div></div>
+  <main class="wrap">
+    <section class="hero">
+      <!-- Countdown primeiro (na DOM), com aria-live -->
+      <div class="countdown" id="countdown" aria-live="polite" data-deadline="2025-11-01T00:00:00-03:00">
+        <div class="cd-item">
+          <div class="cd-value" id="dd">--</div>
+          <div class="cd-label">dias</div>
         </div>
-      </section>
-
-      <!-- TÍTULO + COPY + CTAs -->
-      <section class="text" aria-label="Mensagem principal">
-        <span class="eyebrow">Comunidade • Reabertura</span>
-        <h1>Portas Fechadas. Transformação em andamento.</h1>
-        <h2>Dia <strong>1º de novembro</strong> a comunidade reabre com um novo nome, um novo formato e uma nova forma de criar: <strong>Estúdio Infinito™</strong>.</h2>
-
-        <div class="copy">
-          <p>Ela não acabou.</p>
-          <p>Ela está se transformando.</p>
-          <p>O que vem aí é muito maior — e vai mudar completamente o jeito de criar.</p>
-          <p><strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.</p>
+        <div class="cd-item">
+          <div class="cd-value" id="hh">--</div>
+          <div class="cd-label">horas</div>
         </div>
+        <div class="cd-item">
+          <div class="cd-value" id="mm">--</div>
+          <div class="cd-label">min</div>
+        </div>
+        <div class="cd-item">
+          <div class="cd-value" id="ss">--</div>
+          <div class="cd-label">seg</div>
+        </div>
+      </div>
+
+      <!-- Títulos à direita (desktop), verde escuro -->
+      <div class="title-block">
+        <h1>Comunidade</h1>
+        <h2>Reabertura</h2>
+
+        <p class="lead">
+          Ela não acabou.<br>
+          Ela está se transformando.<br><br>
+          O que vem aí é muito maior —<br>
+          e vai mudar completamente o jeito de criar.<br><br>
+          <span class="when"><strong>Dia 1º de novembro</strong></span>, ela reabre com um novo nome, um novo formato<br>
+          e uma nova forma de criar.<br><br>
+          <strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.
+        </p>
 
         <div class="cta-row">
-          <a class="btn btn-primary" href="#stories" aria-label="Ser lembrado nos stories no dia da reabertura">Quero ser lembrado nos stories</a>
-          <a class="btn btn-ghost" href="#faq" aria-label="Saiba mais">Saiba mais</a>
+          <!-- CTA opcional para Stories/IG; troque href -->
+          <a class="btn btn-primary" href="https://instagram.com/leislineduarda" target="_blank" rel="noopener">Abrir meu Instagram</a>
+          <a class="btn btn-ghost" href="#" aria-disabled="true">Saiba mais dia 01/11</a>
         </div>
-      </section>
-    </div>
+        <p class="note">Detalhes em rosa só como acento visual — o foco continua no anúncio da data.</p>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 — Estúdio Infinito™. Todos os direitos reservados.
+    </footer>
   </main>
 
-  <footer>
-    © 2025 — Estúdio Infinito™. Todos os direitos reservados.
-  </footer>
-
   <script>
-    // COUNTDOWN: alvo = 1º de novembro, 00:00 (America/Sao_Paulo)
     (function(){
-      const target = new Date('2025-11-01T00:00:00-03:00').getTime();
-      const d = document.getElementById('d');
-      const h = document.getElementById('h');
-      const m = document.getElementById('m');
-      const s = document.getElementById('s');
+      const root  = document.getElementById('countdown');
+      if(!root) return;
+      const ddEl = document.getElementById('dd');
+      const hhEl = document.getElementById('hh');
+      const mmEl = document.getElementById('mm');
+      const ssEl = document.getElementById('ss');
+
+      // Deadline em timezone de São Paulo (UTC-3), como pedido
+      const deadlineAttr = root.getAttribute('data-deadline');
+      const deadline = deadlineAttr ? new Date(deadlineAttr) : new Date('2025-11-01T00:00:00-03:00');
+
+      function pad(n){ return String(n).padStart(2,'0'); }
 
       function tick(){
-        const now = Date.now();
-        let diff = Math.max(0, target - now);
+        const now = new Date();
+        const diff = deadline - now;
+        if(diff <= 0){
+          ddEl.textContent = '00';
+          hhEl.textContent = '00';
+          mmEl.textContent = '00';
+          ssEl.textContent = '00';
+          clearInterval(timer);
+          return;
+        }
+        const s = Math.floor(diff/1000);
+        const d = Math.floor(s/86400);
+        const h = Math.floor((s%86400)/3600);
+        const m = Math.floor((s%3600)/60);
+        const sec = s%60;
 
-        const days = Math.floor(diff / (1000*60*60*24));
-        diff -= days * (1000*60*60*24);
-
-        const hours = Math.floor(diff / (1000*60*60));
-        diff -= hours * (1000*60*60);
-
-        const mins = Math.floor(diff / (1000*60));
-        diff -= mins * (1000*60);
-
-        const secs = Math.floor(diff / 1000);
-
-        d.textContent = String(days).padStart(2,'0');
-        h.textContent = String(hours).padStart(2,'0');
-        m.textContent = String(mins).padStart(2,'0');
-        s.textContent = String(secs).padStart(2,'0');
+        ddEl.textContent = pad(d);
+        hhEl.textContent = pad(h);
+        mmEl.textContent = pad(m);
+        ssEl.textContent = pad(sec);
       }
       tick();
-      setInterval(tick, 1000);
+      const timer = setInterval(tick, 1000);
     })();
   </script>
 </body>
