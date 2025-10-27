@@ -1,252 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Comunidade — Reabertura | Estúdio Infinito™</title>
-  <meta name="description" content="A comunidade está de portas fechadas por transformação. Reabre dia 1º de novembro com novo nome, novo formato e uma nova forma de criar: o Estúdio Infinito™.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    /* ==== Identidade Visual ==== */
-    :root{
-      --bg-offwhite:#F7F7F3;
-      --text-main:#1A1A1A;
-      --text-sec:#555555;
-      --green-title:#0B4A34;   /* verde mais escuro */
-      --wine:#7B0036;          /* vinho para destaques */
-      --pink:#E6007E;          /* rosa apenas em detalhes */
-      --card:#FFFFFF;
-      --line:#E8E8E3;
-      --shadow:0 8px 30px rgba(0,0,0,.06);
-      --radius:16px;
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reabertura — Estúdio Infinito™</title>
+  <meta name="description" content="A comunidade está de portas fechadas. Ela não acabou. Ela está se transformando. Reabre dia 1º de novembro com uma nova forma de criar: Estúdio Infinito™." />
 
-      /* Escala tipográfica (clamp = responsivo) */
-      --h1: clamp(32px, 5vw, 56px);
-      --h2: clamp(18px, 2.4vw, 22px);
-      --lead: clamp(17px, 1.8vw, 20px);
-      --body: clamp(16px, 1.6vw, 18px);
-      --small: clamp(12px, 1.2vw, 13px);
-      --letter-tight: -0.015em;
+  <!-- Tipografia (mantendo a identidade) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg-offwhite:#F8F7F3;     /* fundo off-white */
+      --text-main:#1A1A1A;       /* texto principal */
+      --text-muted:#666666;      /* texto secundário/labels */
+      --green-title:#0B7D5E;     /* títulos */
+      --wine:#7A003C;            /* CTA sublinhado / ênfases */
+      --pink:#E6007E;            /* detalhes muito sutis */
     }
 
-    /* ==== Reset/Setup ==== */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
+    html,body{
       background:var(--bg-offwhite);
       color:var(--text-main);
-      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      margin:0; padding:0;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ==== Layout raiz: uma dobra só ==== */
-    .page{
-      min-height:100dvh;
-      display:grid;
-      place-items:center;
-      padding:24px;
-    }
-    .hero{
-      width:100%;
-      max-width:880px;                 /* largura de leitura confortável */
-      display:flex;
-      flex-direction:column;
-      align-items:center;
+    .wrapper{
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 20px 28px;
       text-align:center;
-      gap:20px;
     }
 
-    /* ==== Countdown (1ª informação visual) ==== */
-    .countdown-wrap{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:10px;
-    }
+    /* ===== Countdown ===== */
     .countdown{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(70px, 1fr));
+      gap: 16px;
+      justify-items:center;
+      align-items:end;
+      margin: 4px auto 24px;
+      max-width: 680px;
     }
-    .time{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:10px 12px;
-      width:76px;
-      box-shadow:var(--shadow);
+    .cd-item{
+      display:flex; flex-direction:column; gap:6px; min-width:72px;
     }
-    .time .value{
-      font-size:18px;
+    .cd-number{
+      font-size: clamp(26px, 4vw, 40px);
+      line-height:1;
       font-weight:800;
-      color:var(--wine);
-      letter-spacing:var(--letter-tight);
-      line-height:1.1;
+      color:#111;
     }
-    .time .label{
-      font-size:11px;
-      color:#6B6B6B;
+    .cd-label{
+      font-size:12px;
       text-transform:uppercase;
-      margin-top:3px;
-      letter-spacing:.04em;
-    }
-    .when{
-      font-size:var(--small);
-      color:#6B6B6B;
+      letter-spacing:.08em;
+      color:var(--text-muted);
     }
 
-    /* ==== Cabeçalho textual com hierarquia clara ==== */
-    .kicker{
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:#6B6B6B;
+    /* ===== Eyebrow + Títulos ===== */
+    .eyebrow{
+      font-size:12.5px; 
+      font-weight:700; 
+      letter-spacing:.08em; 
+      text-transform:uppercase; 
+      color:var(--text-muted);
+      margin: 6px 0 10px 0;
     }
     h1{
-      font-size:var(--h1);
+      color:var(--green-title);
+      font-size: clamp(32px, 4.2vw, 48px);
+      line-height:1.15;
       font-weight:800;
-      color:var(--green-title);
-      letter-spacing:var(--letter-tight);
-      line-height:1.12;
-    }
-    .subtitle{
-      font-size:var(--h2);
-      font-weight:600;
-      color:var(--green-title);
-      letter-spacing:.01em;
-      line-height:1.25;
-      margin-top:2px;
+      margin: 0 0 12px 0;
     }
 
-    /* ==== Corpo do texto (blocos com ritmo vertical) ==== */
-    .copy{
-      display:flex;
-      flex-direction:column;
-      gap:10px;                      /* ritmo consistente entre linhas curtas */
-      margin-top:8px;
-    }
-    .copy p{
-      font-size:var(--body);
-      line-height:1.55;
-      letter-spacing:.005em;
-    }
+    /* ===== Texto ===== */
     .lead{
-      font-size:var(--lead);
-      color:var(--text-main);
-      line-height:1.55;
-      margin-top:4px;
+      font-size: clamp(18px, 2.2vw, 20px);
+      line-height:1.6;
+      font-weight: 450;
+      margin: 0 0 8px 0;
+    }
+    .subtime{
+      font-size: 16px;
+      line-height:1.5;
+      color:var(--text-muted);
+      margin: 14px 0 10px 0;
     }
 
-    /* ==== CTA de texto (sem botão) ==== */
-    .cta-text{
+    /* ===== CTA sem botão ===== */
+    .cta-inline{
       display:inline;
-      font-weight:800;
-      color:var(--wine);
-      text-decoration:underline;
-      text-decoration-color:var(--pink);   /* rosa só em detalhe de sublinhado */
-      text-underline-offset:4px;
-      text-decoration-thickness:2px;
+      font-weight:600;
+      font-size: clamp(18px, 2.2vw, 20px);
+      color: var(--text-main);
+      text-decoration:none;
+      background-image: linear-gradient(var(--wine), var(--wine));
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 3px;  /* sublinhado sólido */
+      padding-bottom: 2px;
     }
-    .cta-row{
-      margin-top:12px;
+    .cta-inline:hover{
+      background-size: 100% 6px;  /* interação sutil */
+      transition: background-size .18s ease;
     }
 
-    /* ==== Rodapé minimal ==== */
+    /* ===== Rodapé ===== */
     footer{
-      margin-top:18px;
+      margin-top: 40px;
+      padding: 20px 0 14px;
       font-size:12.5px;
       color:#777;
+      position: relative;
+    }
+    footer::before{
+      content:"";
+      position:absolute;
+      top:0; left:50%;
+      transform:translateX(-50%);
+      width: 120px; height:2px;
+      background: linear-gradient(to right, transparent, rgba(230,0,126,.35), transparent);
     }
 
-    /* ==== Acessibilidade/Selection ==== */
-    ::selection{background:rgba(230,0,126,.18)}
+    /* ===== Responsivo ===== */
+    @media (max-width: 480px){
+      .wrapper{ padding: 36px 16px 24px; }
+      .countdown{ gap:12px; }
+    }
   </style>
 </head>
 <body>
-  <main class="page">
-    <section class="hero" aria-label="Reabertura da Comunidade">
-      <!-- Countdown primeiro -->
-      <div class="countdown-wrap" aria-live="polite">
-        <div class="countdown" id="countdown">
-          <div class="time" aria-label="dias restantes">
-            <div class="value" id="days">--</div>
-            <div class="label">dias</div>
-          </div>
-          <div class="time" aria-label="horas restantes">
-            <div class="value" id="hours">--</div>
-            <div class="label">horas</div>
-          </div>
-          <div class="time" aria-label="minutos restantes">
-            <div class="value" id="mins">--</div>
-            <div class="label">min</div>
-          </div>
-          <div class="time" aria-label="segundos restantes">
-            <div class="value" id="secs">--</div>
-            <div class="label">seg</div>
-          </div>
-        </div>
-        <div class="when">Reabertura em: 1º de novembro</div>
+  <main class="wrapper">
+    <!-- Countdown no topo -->
+    <section class="countdown" aria-label="Contagem regressiva para a reabertura">
+      <div class="cd-item">
+        <div class="cd-number" id="cd-days">00</div>
+        <div class="cd-label">dias</div>
       </div>
-
-      <!-- Hierarquia textual -->
-      <div class="kicker" aria-hidden="true">Comunidade</div>
-      <h1>Reabertura</h1>
-      <p class="subtitle">Estúdio Infinito™</p>
-
-      <!-- Corpo com ritmo -->
-      <div class="copy" role="doc-introduction">
-        <p>Ela não acabou.</p>
-        <p>Ela está se transformando.</p>
-        <p>O que vem aí é muito maior —</p>
-        <p>e vai mudar completamente o jeito de criar.</p>
-        <p class="lead">🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato<br>e uma nova forma de criar.</p>
+      <div class="cd-item">
+        <div class="cd-number" id="cd-hours">00</div>
+        <div class="cd-label">horas</div>
       </div>
-
-      <!-- CTA em texto (sem botão) -->
-      <div class="cta-row">
-        <p class="lead">
-          <span class="cta-text">Entra nos meus stories nesse dia</span> — é lá que o novo Estúdio vai aparecer primeiro.
-        </p>
+      <div class="cd-item">
+        <div class="cd-number" id="cd-min">00</div>
+        <div class="cd-label">min</div>
       </div>
-
-      <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
+      <div class="cd-item">
+        <div class="cd-number" id="cd-sec">00</div>
+        <div class="cd-label">seg</div>
+      </div>
     </section>
+
+    <!-- Hierarquia textual -->
+    <div class="eyebrow" id="eyebrow">Comunidade — Portas Fechadas</div>
+    <h1 id="headline">Reabertura dia 1º de novembro</h1>
+
+    <p class="lead">Ela não acabou.</p>
+    <p class="lead">Ela está se transformando.</p>
+    <p class="lead">O que vem aí é muito maior — e vai mudar completamente o jeito de criar.</p>
+
+    <p class="subtime" id="dateLine">
+      🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato e uma nova forma de criar.
+    </p>
+
+    <p class="lead">
+      <a class="cta-inline" href="#" aria-label="Acompanhe meus stories no dia da reabertura">
+        Entra nos meus stories nesse dia — é lá que o novo Estúdio vai aparecer primeiro.
+      </a>
+    </p>
+
+    <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
   </main>
 
   <script>
-    // Contagem regressiva fixa para 1º/11 (horário de Brasília -03:00)
-    const target = new Date("2025-11-01T00:00:00-03:00").getTime();
-    const d = document.getElementById("days");
-    const h = document.getElementById("hours");
-    const m = document.getElementById("mins");
-    const s = document.getElementById("secs");
+    // ===== Countdown para 01/11/2025 00:00:00 America/Sao_Paulo (UTC-03:00) =====
+    // Se preferir outro horário, ajuste a string abaixo.
+    const target = new Date('2025-11-01T00:00:00-03:00').getTime();
 
-    function pad(n){return n.toString().padStart(2,"0")}
+    const elDays  = document.getElementById('cd-days');
+    const elHours = document.getElementById('cd-hours');
+    const elMin   = document.getElementById('cd-min');
+    const elSec   = document.getElementById('cd-sec');
+
+    const eyebrow  = document.getElementById('eyebrow');
+    const headline = document.getElementById('headline');
+    const dateLine = document.getElementById('dateLine');
+
+    function pad2(n){ return String(n).padStart(2,'0'); }
+
     function tick(){
       const now = Date.now();
       let diff = target - now;
-      if(diff <= 0){
-        d.textContent = h.textContent = m.textContent = s.textContent = "00";
+
+      if (diff <= 0){
+        // Chegou o dia
+        elDays.textContent  = '00';
+        elHours.textContent = '00';
+        elMin.textContent   = '00';
+        elSec.textContent   = '00';
+
+        eyebrow.textContent  = 'Comunidade — Reaberta';
+        headline.textContent = 'Hoje: o novo Estúdio Infinito™';
+        dateLine.innerHTML   = '🕒 Já está no ar — entra nos stories para ver primeiro.';
+
+        clearInterval(timer);
         return;
       }
-      const days = Math.floor(diff/(1000*60*60*24));
-      diff -= days*24*60*60*1000;
-      const hours = Math.floor(diff/(1000*60*60));
-      diff -= hours*60*60*1000;
-      const mins = Math.floor(diff/(1000*60));
-      diff -= mins*60*1000;
-      const secs = Math.floor(diff/1000);
 
-      d.textContent = pad(days);
-      h.textContent = pad(hours);
-      m.textContent = pad(mins);
-      s.textContent = pad(secs);
+      const d = Math.floor(diff / (1000*60*60*24));
+      diff -= d*(1000*60*60*24);
+      const h = Math.floor(diff / (1000*60*60));
+      diff -= h*(1000*60*60);
+      const m = Math.floor(diff / (1000*60));
+      diff -= m*(1000*60);
+      const s = Math.floor(diff / 1000);
+
+      elDays.textContent  = pad2(d);
+      elHours.textContent = pad2(h);
+      elMin.textContent   = pad2(m);
+      elSec.textContent   = pad2(s);
     }
+
     tick();
-    setInterval(tick,1000);
+    const timer = setInterval(tick, 1000);
   </script>
 </body>
 </html>
