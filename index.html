@@ -3,29 +3,26 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Comunidade — Portas Fechadas</title>
-
-  <!-- Fonte -->
+  <title>Comunidade — Reabertura</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      /* Paleta validada */
-      --color-bg: #F7F6F3;       /* off-white */
+      /* Paleta */
+      --color-bg: #F7F6F3;         /* off-white */
       --color-text-main:#1A1A1A;
       --color-text-secondary:#555555;
+      --color-green:#143021;       /* títulos */
+      --color-accent:#E6007E;      /* detalhes sutis (rosa) */
 
-      --color-green:#143021;     /* títulos */
-      --color-accent:#E6007E;    /* detalhes leves em rosa */
-
-      /* CTA vinho (se quiser usar depois) */
+      /* CTA vinho (mantido caso precise inserir depois) */
       --wine-1:#8B2140;
       --wine-2:#7A1C32;
       --wine-3:#671427;
 
-      --container: 1040px;
+      --container: 980px;
     }
 
     *{box-sizing:border-box}
@@ -35,170 +32,186 @@
       font-family:"Poppins",sans-serif;
       background:var(--color-bg);
       color:var(--color-text-main);
-      line-height:1.6;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
     }
 
-    /* Fita superior sutil em rosa */
-    .top{
-      width:100%;
-      background: linear-gradient(90deg, rgba(230,0,126,.10) 0%, rgba(230,0,126,.04) 100%);
-      border-bottom:2px solid var(--color-accent);
-    }
     .container{
       max-width:var(--container);
       margin:0 auto;
-      padding:1rem 1.25rem;
-    }
-    .brand{
-      display:flex;align-items:center;gap:.6rem;
-      font-weight:700;color:var(--color-green);
-      letter-spacing:.2px;
-    }
-    .dot{
-      width:9px;height:9px;border-radius:50%;
-      background:var(--color-accent);
-      box-shadow:0 0 0 4px rgba(230,0,126,.12);
+      padding:1.25rem 1.25rem 0; /* topo pequeno pra o countdown aparecer primeiro */
     }
 
-    /* Única dobra */
-    .fold{
-      padding:2.25rem 1.25rem 2.75rem;
+    /* HERO ÚNICO */
+    .hero{
+      padding:1rem 0 2.2rem;
     }
 
-    /* Header da dobra: Countdown (esquerda) + Títulos (direita) */
-    .header-row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:1.25rem;
-      align-items:center;
+    /* Linha topo: countdown + título ao lado */
+    .top-row{
+      display:flex;
+      gap:1rem;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:1.2rem;
     }
 
-    /* COUNTDOWN compacto */
+    /* COUNTDOWN PRIMEIRO */
     .countdown{
-      display:flex;gap:.55rem;flex-wrap:nowrap;justify-content:flex-start;
+      order:1; /* garantia visual de ser o primeiro na linha */
+      display:flex; gap:.5rem; flex-wrap:nowrap;
     }
     .time-box{
-      min-width:72px;
+      min-width:72px; /* menor para caber lado a lado */
       background:#fff;
-      border:1px solid #EADCE2;
+      border:1px solid #E8E1E5;
       border-radius:10px;
-      padding:.5rem .55rem;
+      padding:.55rem .5rem;
       text-align:center;
-      box-shadow:0 6px 18px rgba(0,0,0,.05);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
     }
     .time-value{
-      font-size:1.35rem;font-weight:700;color:var(--color-green);line-height:1;
+      font-size:1.35rem;
+      font-weight:700;
+      color:var(--color-green);
+      line-height:1.05;
     }
     .time-label{
-      margin-top:.2rem;font-size:.72rem;color:#666;letter-spacing:.25px;text-transform:uppercase;
+      font-size:.72rem; color:#666; letter-spacing:.25px; text-transform:uppercase;
+      margin-top:.2rem;
     }
 
-    /* TITULOS ao lado do contador */
-    .titles{
-      text-align:left;
+    /* TÍTULO AO LADO */
+    .side-title{
+      order:2;
+      display:flex; gap:.75rem; align-items:baseline; flex-wrap:wrap;
     }
-    .titles .kicker{
-      display:inline-flex;align-items:center;gap:.5rem;
-      font-weight:700;color:var(--color-green);
-      background:#fff;border:1px solid #F1DFE8;
-      padding:.35rem .65rem;border-radius:999px;
-    }
-    h1{
-      margin:.65rem 0 0;
-      font-size:2rem;line-height:1.18;color:var(--color-green);
-      letter-spacing:.1px;
-    }
-    h2{
-      margin:.2rem 0 0;
-      font-size:1.35rem;line-height:1.25;color:var(--color-green);
+    .side-title h1{
+      margin:0;
+      font-size:1.6rem;
+      line-height:1.15;
+      color:var(--color-green);
       font-weight:700;
     }
+    .slash{
+      color:var(--color-accent);
+      font-weight:700;
+      margin:0 .25rem;
+    }
+    .side-title h2{
+      margin:0;
+      font-size:1.15rem;
+      line-height:1.15;
+      color:var(--color-green);
+      font-weight:600;
+      opacity:.95;
+    }
 
-    /* Texto principal abaixo */
+    /* TEXTO PRINCIPAL */
     .content{
-      margin-top:1.35rem;
-      font-size:1.06rem;
+      margin-top:.5rem;
+      max-width:800px;
     }
     .content p{
-      margin:.45rem 0;color:var(--color-text-main);
+      margin:.55rem 0;
+      font-size:1.02rem;
+      color:var(--color-text-main);
     }
-    .content strong{color:var(--color-green)}
-    .line{
-      height:2px;background:rgba(230,0,126,.45);
-      width:110px;border-radius:2px;margin:.8rem 0 1rem;
+    .content p strong{ color:var(--color-text-main) }
+
+    .highlight{
+      font-weight:700; color:var(--color-text-main);
+    }
+    .date-line{
+      margin-top:.8rem;
+    }
+    .stories{
+      margin-top:.6rem;
+      font-weight:600;
     }
 
-    /* Responsivo */
-    @media (max-width:840px){
-      .header-row{grid-template-columns:1fr;gap:1rem}
-      .titles{text-align:left}
-      .countdown{justify-content:flex-start}
-      h1{font-size:1.7rem}
-      h2{font-size:1.15rem}
-      .time-box{min-width:68px}
-      .time-value{font-size:1.22rem}
+    /* Toque sutil rosa nos links (se houver) */
+    a{ color:var(--color-text-main); text-decoration:none; border-bottom:1px solid rgba(230,0,126,.28) }
+    a:hover{ border-bottom-color:var(--color-accent) }
+
+    footer{
+      margin-top:2.2rem;
+      text-align:center;
+      padding:1.1rem 1.25rem 1.6rem;
+      color:#777; font-size:.9rem;
+    }
+
+    @media (max-width:760px){
+      .top-row{ gap:.85rem }
+      .countdown{ flex-wrap:wrap }
+      .time-box{ min-width:70px }
+      .side-title h1{ font-size:1.42rem }
+      .side-title h2{ font-size:1rem }
+      .content p{ font-size:1rem }
     }
   </style>
 </head>
 <body>
-  <div class="top">
+
+  <main class="hero">
     <div class="container">
-      <div class="brand"><span class="dot"></span><span>Estúdio Infinito™</span></div>
+
+      <!-- TOPO: Countdown (primeiro) + Título ao lado -->
+      <div class="top-row" aria-label="Topo com contagem e título">
+        <!-- COUNTDOWN -->
+        <div class="countdown" id="countdown" aria-label="Contagem regressiva para 1º de novembro">
+          <div class="time-box">
+            <div class="time-value" id="cd-days">--</div>
+            <div class="time-label">dias</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value" id="cd-hours">--</div>
+            <div class="time-label">horas</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value" id="cd-mins">--</div>
+            <div class="time-label">min</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value" id="cd-secs">--</div>
+            <div class="time-label">seg</div>
+          </div>
+        </div>
+
+        <!-- TÍTULO AO LADO -->
+        <div class="side-title">
+          <h1>Comunidade</h1>
+          <span class="slash">/</span>
+          <h2>Reabertura</h2>
+        </div>
+      </div>
+
+      <!-- TEXTO PRINCIPAL -->
+      <section class="content" aria-labelledby="texto">
+        <p id="texto">Ela não acabou.</p>
+        <p>Ela está se transformando.</p>
+        <p>O que vem aí é muito maior —</p>
+        <p>e vai mudar completamente o jeito de criar.</p>
+
+        <p class="date-line">🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato</p>
+        <p>e uma nova forma de criar</p>
+
+        <p class="stories"><strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.</p>
+      </section>
+
     </div>
-  </div>
-
-  <main class="container fold">
-    <!-- Cabeçalho: Countdown à esquerda, Títulos à direita -->
-    <section class="header-row" aria-label="Reabertura e contagem regressiva">
-      <!-- COUNTDOWN (primeiro elemento do site) -->
-      <div class="countdown" id="countdown" aria-label="Contagem regressiva para 1º de novembro">
-        <div class="time-box">
-          <div class="time-value" id="cd-days">--</div>
-          <div class="time-label">dias</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="cd-hours">--</div>
-          <div class="time-label">horas</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="cd-mins">--</div>
-          <div class="time-label">min</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="cd-secs">--</div>
-          <div class="time-label">seg</div>
-        </div>
-      </div>
-
-      <!-- TÍTULOS ao lado -->
-      <div class="titles">
-        <span class="kicker">Comunidade</span>
-        <h1>Reabertura</h1>
-        <h2>1º de novembro</h2>
-      </div>
-    </section>
-
-    <!-- Texto principal em uma única dobra, sem blocos/separadores extras -->
-    <section class="content" aria-labelledby="texto-principal">
-      <div class="line" aria-hidden="true"></div>
-      <p>Ela não acabou.</p>
-      <p>Ela está se transformando.</p>
-      <p>O que vem aí é muito maior —</p>
-      <p>e vai mudar completamente o jeito de criar.</p>
-
-      <p>🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato</p>
-      <p>e uma nova forma de criar: <strong>o Estúdio Infinito™.</strong></p>
-
-      <p><strong>Entra nos meus stories nesse dia</strong> — é lá que o novo Estúdio vai aparecer primeiro.</p>
-    </section>
   </main>
 
-  <!-- Countdown: 1º de novembro (fuso America/Sao_Paulo) -->
+  <footer>
+    © 2025 — Estúdio Infinito™. Todos os direitos reservados.
+  </footer>
+
+  <!-- Countdown: 1º de novembro (America/Sao_Paulo) -->
   <script>
     (function(){
-      // Ajuste a data se necessário (00:00 de 1º/11 no fuso -03:00)
+      // 1º de novembro às 00:00:00 no fuso de São Paulo
       const target = new Date("2025-11-01T00:00:00-03:00").getTime();
 
       const elDays  = document.getElementById("cd-days");
