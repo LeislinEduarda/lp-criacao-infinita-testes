@@ -1,579 +1,353 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Estúdio Infinito™ — 3 IAs certas para publicar 1 post por dia</title>
-  <meta name="description" content="Entre no meu estúdio e publique 1 post por dia só com o celular. ChatGPT, Higgsfield e Equipe Não-Humana™ trabalhando com você. 1º post em 24h ou 100% de volta." />
-
-  <!-- Inter (Google Fonts) -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Estúdio Infinito™ — Mobile</title>
+  <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular. As 3 IAs que eu realmente uso, mini-cursos e comunidade Sobre-Humano.">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Canela não está no Google Fonts.
-       Substituição temporária elegante: "Cormorant Garamond" (ou troque pelo seu @font-face da Canela).
-       Para produção, substitua a linha abaixo pelo @font-face oficial da Canela. -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
-
+  <!-- Inter para textos / Cormorant Garamond como fallback serifado no lugar de Canela -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
   <style>
-    /* ===== TOKENS ===== */
     :root{
-      --bg: #F5D7E2;        /* off-white / bege rosado (fundo) */
-      --text: #1A1A1A;      /* corpo */
-      --title: #1D4D3A;     /* verde escuro (títulos) */
-      --cta: #7C1E28;       /* vinho (CTAs, pílulas, marcadores) */
-      --line: #F9C8D2;      /* rosa claro (linhas, respiros) */
-      --muted:#555555;      /* texto secundário */
-      --radius:16px;
-      --container: 720px;   /* largura máx do conteúdo mesmo no desktop */
+      --bg-offwhite: #F5D7E2;
+      --green: #1D4D3A;
+      --wine: #7C1E28;
+      --pink: #F9C8D2;
+      --text: #1A1A1A;
     }
 
-    /* ===== RESET ESSENCIAL (mobile-first) ===== */
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    html{ -webkit-text-size-adjust:100%; }
+    /* Reset básico e travas de scroll lateral */
+    *{ box-sizing: border-box; }
+    html, body{
+      margin:0; padding:0;
+      background: var(--bg-offwhite);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
     body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.6;
-      overflow-x:hidden;           /* trava scroll lateral */
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      line-height: 1.45;
     }
-    img{ max-width:100%; display:block; height:auto; }
-    a{ color:inherit; text-decoration:none; }
-    button{ font:inherit; }
 
-    /* ===== TIPOGRAFIA ===== */
-    .canela{
-      /* Coloque a família Canela aqui quando você tiver o @font-face oficial */
-      font-family: "Canela","Cormorant Garamond","Times New Roman",serif;
-      letter-spacing:-0.01em;
-      line-height:1.18;
-      color:var(--title);
-    }
-    h1,h2,h3{ margin:0 0 10px; }
-    h1{
-      font-size: clamp(2rem, 5.8vw, 2.6rem);
-      font-weight:600;
-    }
-    h2{
-      font-size: clamp(1.6rem, 4.8vw, 2rem);
-      font-weight:600;
-    }
-    .subtle{ color:var(--muted); }
-
-    /* ===== LAYOUT BASE ===== */
+    /* Contêiner responsivo single-column focado em mobile */
     .wrap{
-      width:100%;
-      max-width:var(--container);
-      margin-inline:auto;
-      padding: 20px 18px 28px;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px 16px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-height: 100svh; /* ocupa altura segura em mobile */
     }
+
+    /* Moldura sutil e coesa por dobra */
     .section{
-      padding: 28px 0;
-      position:relative;
-    }
-    .divider{
-      height:3px;
-      background:var(--line);
-      width:100%;
-      border-radius:3px;
-      margin: 18px 0 8px;
-    }
-
-    /* ===== HERO (Dobra 1) ===== */
-    .hero{
-      min-height: 100svh; /* ocupa a dobra inteira em mobile */
-      display:flex;
-      flex-direction:column;
-      justify-content:center; /* centraliza verticalmente */
-      gap:18px;
-    }
-    .hero .kicker{
-      display:inline-block;
-      font-weight:600;
-      color:var(--cta);
-      background:rgba(124,30,40,0.06);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:.95rem;
-    }
-    .hero p{
-      margin:0;
-      font-size:1.05rem;
-    }
-    .hero .badge-row{
-      display:flex;
-      gap:10px;
-      margin-top:8px;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border:1.5px solid var(--line);
-      border-radius: 12px;
-      background:#fff7; /* leve translúcido */
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      font-size:.95rem;
-    }
-    .badge svg{ flex:0 0 auto; }
-
-    .cta{
-      margin-top: 8px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 16px;
-      background:var(--cta);
-      color:#fff;
-      border-radius: var(--radius);
-      font-weight:600;
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: 0 8px 18px rgba(124,30,40,.18);
-      transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .cta:active{ transform: translateY(1px); }
-    .cta:focus-visible{
-      outline: 3px solid var(--title);
-      outline-offset: 2px;
-    }
-    .trustline{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size:.97rem;
-      color:#2a2a2a;
-    }
-    .trustline .dot{
-      width:8px; height:8px; border-radius:999px; background:var(--cta);
-    }
-
-    /* ===== Dobra 2 (O que é) ===== */
-    .what{
-      padding-top: 36px;
-    }
-    .what p{ margin:12px 0; }
-
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin:18px 0 8px;
-    }
-    .card{
-      background:#fff;
-      border:1.5px solid var(--line);
+      background: #fff7;
+      backdrop-filter: blur(2px);
+      border: 1px solid color-mix(in oklab, var(--green) 22%, white);
       border-radius: 14px;
-      padding:14px;
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
+      padding: 18px 14px;
+      position: relative;
     }
-    .card h3{
-      font-size:1.05rem;
-      margin:0 0 4px;
-      color:var(--title);
-    }
-    .card p{
-      margin:0;
-      font-size:.98rem;
-      color:var(--text);
-    }
-    .pill{
-      display:inline-block;
-      background:var(--cta);
-      color:#fff;
-      border-radius:999px;
-      padding:4px 10px;
-      font-size:.85rem;
-      font-weight:600;
-      margin: 4px 0 0;
-    }
-
-    /* Stepper / Mapa do Estúdio */
-    .stepper{
-      margin-top: 18px;
-      border-left: 3px solid var(--line);
-      padding-left: 16px;
-    }
-    .step{
-      position:relative;
-      margin-bottom:16px;
-    }
-    .step::before{
+    .section::before{
       content:"";
-      position:absolute;
-      left:-23px; top:4px;
-      width:12px; height:12px;
-      border-radius:50%;
-      background:var(--cta);
-      box-shadow: 0 0 0 4px #ffffff, 0 0 0 6px var(--line);
-    }
-    .step .title{
-      font-weight:600;
-      color:var(--title);
-      margin-bottom:2px;
-    }
-    .step .meta{
-      font-size:.95rem;
-      color:var(--muted);
-    }
-    .ou{
-      display:inline-block;
-      margin: 6px 0 2px;
-      background:var(--cta);
-      color:#fff;
-      border-radius:999px;
-      font-size:.75rem;
-      padding:3px 8px;
-      font-weight:700;
-      letter-spacing:.02em;
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      pointer-events: none;
+      outline: 2px solid color-mix(in oklab, var(--green) 16%, transparent);
+      outline-offset: -4px;
     }
 
-    .callout{
-      margin-top:12px;
-      border:1.5px dashed var(--line);
-      border-radius: 12px;
-      padding:12px;
-      background: #fff6;
-      backdrop-filter: blur(4px);
+    /* Linha rosa sutil no topo de cada dobra */
+    .section .topline{
+      height: 4px;
+      width: 100%;
+      background: var(--pink);
+      border-radius: 999px;
+      margin-bottom: 12px;
     }
 
-    /* Recompensas */
-    .rewards{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top: 6px;
-    }
-    .reward{
-      display:flex; gap:10px; align-items:flex-start;
-      font-size:.98rem;
-    }
-    .reward .dot{ width:10px; height:10px; border-radius:50%; background:var(--cta); margin-top:6px; }
-
-    /* ===== Dobra 3 (FAQ + CTA Final) ===== */
-    .faq .item{
-      border-bottom: 2px solid var(--line);
-    }
-    .faq button{
-      width:100%;
-      text-align:left;
-      background:transparent;
-      border:0;
-      padding:14px 0;
-      font-weight:600;
-      color:var(--title);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-size:1.05rem;
-    }
-    .faq button:focus-visible{
-      outline:3px solid var(--title);
-      outline-offset:2px;
-      border-radius:8px;
-    }
-    .faq .content{
-      display:grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows .25s ease;
-    }
-    .faq .content > div{
-      overflow:hidden;
-    }
-    .faq .item[aria-expanded="true"] .content{
-      grid-template-rows: 1fr;
-    }
-    .faq .icon{
-      width:22px; height:22px;
-      border-radius:6px;
-      background:rgba(29,77,58,.08); /* verde suave */
-      display:grid; place-items:center;
-      color:var(--cta); font-weight:900;
-      transform: rotate(0);
-      transition: transform .2s ease;
-    }
-    .faq .item[aria-expanded="true"] .icon{
-      transform: rotate(45deg);
-    }
-    .cta-final{
-      margin-top:18px;
-      display:block;
-      text-align:center;
-      padding:16px 16px;
-      border-radius: var(--radius);
-      background:var(--cta);
-      color:#fff;
-      font-weight:700;
-      box-shadow: 0 10px 22px rgba(124,30,40,.22);
-    }
-    .seal{
-      text-align:center;
-      font-size:.95rem;
-      margin-top:10px;
-      color:#2a2a2a;
+    /* Título visual (sem alterar a copy do <pre>) */
+    .visu-title{
+      font-family: "Cormorant Garamond", serif; /* fallback para a família Canela */
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 10px 0;
+      letter-spacing: 0.2px;
     }
 
-    /* ===== RODAPÉ ===== */
-    .footer{
-      text-align:center;
-      font-size:.9rem;
-      color:#6a6a6a;
-      padding: 22px 0 28px;
+    /* Bloco que preserva literalmente a copy (sem alterar nada) */
+    .copy{
+      margin: 0;
+      white-space: pre-wrap;     /* preserva quebras */
+      word-break: break-word;    /* evita overflow em mobile */
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .copy.emphasis{
+      font-family: "Cormorant Garamond", serif;
     }
 
-    /* ===== MELHORIAS PARA TABLET/ DESKTOP (opcional) ===== */
-    @media (min-width: 720px){
-      .wrap{ padding: 28px 24px 40px; }
-      .hero{ min-height: 92vh; }
-      .cards{ grid-template-columns: repeat(3,1fr); }
-      .cta, .cta-final{ width: fit-content; }
+    /* Divisórias sutis */
+    .divider{
+      height: 1px;
+      width: 100%;
+      background: color-mix(in oklab, var(--wine) 16%, white);
+      margin: 8px 0 2px;
+    }
+
+    /* Rodapé simples */
+    footer{
+      text-align: center;
+      font-size: 12px;
+      color: color-mix(in oklab, var(--text) 60%, white);
+      padding: 10px 0 20px;
+    }
+
+    /* Afastamentos responsivos */
+    @media (min-width: 420px){
+      .wrap{ padding: 24px 18px 40px; gap: 22px; }
+      .visu-title{ font-size: 24px; }
+      .copy{ font-size: 17px; }
+    }
+
+    /* Acessibilidade foco */
+    :focus-visible{
+      outline: 2px dashed var(--wine);
+      outline-offset: 3px;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
+  <main class="wrap">
 
-  <!-- ===== Dobra 1 — HERO ===== -->
-  <main class="wrap hero section" id="hero">
-    <span class="kicker">As 3 IAs que eu realmente uso</span>
+    <!-- Dobra 1 — Hero (copy literal, não alterada) -->
+    <section class="section" aria-label="Dobra 1 — A Promessa">
+      <div class="topline" aria-hidden="true"></div>
+      <h2 class="visu-title">Dobra 1 — A PROMESSA</h2>
+      <pre class="copy emphasis"><aside>
+🔥
 
-    <h1 class="canela">ESTÚDIO INFINITO™</h1>
+# **Dobra 1 — A PROMESSA (tese: “As 3 IAs que eu realmente uso”)**
 
-    <p class="canela" style="font-weight:600;">
-      Entre no meu estúdio e publique <strong>1 post por dia</strong> — só com o celular.
-    </p>
+## **ESTÚDIO INFINITO™**
 
-    <p>
-      Aqui, você cria como eu crio: com as <strong>3 IAs</strong> que uso todos os dias.
-    </p>
+**Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.** 
 
-    <div class="badge-row" aria-label="Ferramentas do Estúdio">
-      <span class="badge" title="Ideias, roteiros, legendas e designs direto da conversa com IA.">
-        <!-- ícone ChatGPT (placeholder minimal) -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#7C1E28" stroke-width="2"/></svg>
-        <strong>ChatGPT</strong>
-      </span>
-      <span class="badge" title="Gêmea Digital pra postar sem aparecer.">
-        <!-- ícone Higgsfield (placeholder minimal) -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#7C1E28" stroke-width="2"/></svg>
-        <strong>Higgsfield</strong>
-      </span>
-      <span class="badge" title="Funcionários não-humanos que montam seu post completo.">
-        <!-- ícone Equipe (placeholder minimal) -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18c2-3 14-3 16 0" stroke="#7C1E28" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="9" r="2.5" stroke="#7C1E28" stroke-width="2"/><circle cx="16" cy="9" r="2.5" stroke="#7C1E28" stroke-width="2"/></svg>
-        <strong>Equipe Não-Humana™</strong>
-      </span>
-    </div>
+Aqui, você cria como eu crio: **com as 3 IAs que eu uso todos os dias.**
 
-    <a class="cta" href="#faq" aria-label="Entrar e criar o seu primeiro post agora">
-      Entrar e criar o seu primeiro post agora →
-    </a>
+*logotipo das ias + gemea + fraseVocê vai criar presença nas redes sociais de forma mais leve, rápida e fácil* 
 
-    <div class="trustline" role="note" aria-label="Selo de confiança">
-      <span class="dot" aria-hidden="true"></span>
-      <span><strong>1º post no ar em 24h</strong> — ou eu devolvo 100%.</span>
-    </div>
+Você paga só o 1º ano.
 
-    <div class="divider" aria-hidden="true"></div>
-    <p class="subtle"><strong>Post que Paga:</strong> cada post = <strong>+1 dia</strong> de desconto na renovação.</p>
+Se não parar de postar, seus posts pagam todas as renovações.
+
+(*Post que Paga: cada post = +1 dia de desconto.*)
+
+**Selo de confiança:** seu 1º post no ar em 24h — ou eu devolvo 100%.
+
+[ **Entrar e criar o seu primeiro post agora →** ]
+
+**✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.**</aside></pre>
+    </section>
+
+    <!-- Dobra 2 — O que é (copy literal, não alterada) -->
+    <section class="section" aria-label="Dobra 2 — O que é o Estúdio">
+      <div class="topline" aria-hidden="true"></div>
+      <h2 class="visu-title">🧠 Dobra 2 — O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+      <pre class="copy"># **🧠 Dobra 2 - O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)**
+
+A internet te vendeu que, pra criar, você precisa de **30 IAs, 10 apps, 5 cursos** e uma ideia genial por dia.
+
+Isso só te deixa **travado**.
+
+O **Estúdio Infinito™** nasceu como o **contrário** disso.
+
+É o **meu estúdio real de criação — aberto pra você**:
+
+Um lugar único que vai unir **as 3 IAs certas +** **mini-cursos rápidos** + comunidade sobre humano = G**ente de verdade** te puxando pro **post no ar**.
+
+**AS 3 IAS QUE EU USO SÃO:** 
+
+🧠 **ChatGPT** — pra criar ideias, roteiros, legendas e designs direto da conversa.
+
+🎨 **Higgsfield** — pra gerar sua **Gêmea Digital** e postar sem precisar aparecer.
+
+E a mais importante, eu vou te dar a IA, a minha equipe de social media não humana:
+
+🤖 **Equipe Não-Humana™** — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.
+
+**Colocar quais sao os funcionarios e funcoes**
+
+### ✳️ **Quando você entra, é assim que acontece:**
+
+Você vai assistir um mini-curso express que vai mostrar como dominar uma das 3 IAS que formam o coração do Estúdio:
+
+### 🗺️ **Mapa do Estúdio Infinito — mini curso + IA**
+
+1
+
+**AULA:** Crie sua Gêmea Digital pelo Celular
+
+→ **IA:** Higgsfield
+
+OU 
+
+1
+
+**AULA:** Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)
+
+→ **IA:** ChatGPT
+
+**2** 
+
+**AULA:** Estratégia de Público — Como Vender para as Pessoas Certas
+
+→ **IA:** Bia do Público - Equipe Não-Humana™
+
+**3** 
+
+**AULA:** Ideias que Nunca Acabam (mesmo falando do mesmo produto)
+
+→ **IA:** Maria das ideias - Equipe Não-Humana™
+
+4 
+
+**AULA:** Domine os Primeiros 3 Segundos do Seu Post
+
+→ **IA:** João dos ganchos - Equipe Não-Humana™
+
+DECIDE DE VAI FAZER: 
+
+**5** 
+
+**AULA:** Carrosséis Inteligentes Criados com IA
+
+→ **IA:** Carlos dos Carrosséis (Equipe Não-Humana™)
+
+OU
+
+**6** 
+
+**AULA:** Como Criar Stories com IA que as Pessoas Realmente Querem Ver
+
+→ **IA:** José dos Stories (Equipe Não-Humana™)
+
+**7**
+
+**AULA:** Como Criar Roteiros com IA que as Pessoas Querem Ouvir
+
+→ **IA:** Larissa dos Roteiros (Equipe Não-Humana™)
+
+O que vai te dar um boom ainda maior
+
+**AULA:** Como Crescer no TikTok em 2026
+
+→ **IA:** ChatGPT
+
+**AULA:** Como Crescer no Instagram em 2026
+
+→ **IA:** ChatGPT
+
+**AULA:** Dominando o ChatGPT — Meus Hacks Secretos
+
+→ **IA:** ChatGPT
+
+E o melhor?
+
+Com essa ordem voce vai gastar 2 horas de mini-curso + IA, você já entende o processo e pode criar seu primeiro post no mesmo dia.
+
+Depois disso, **você publica.**
+
+Em menos de 24h, seu primeiro post está no ar — feito com IA, do seu jeito.
+
+**⚡️ TERCEIRA PORTA DO ESTÚDIO: COMUNIDADE SOBRE-HUMANO:** 
+
+E aí você entra na **Comunidade Sobre-Humano™**,
+
+Imagem da aba comunidade sobre humano 
+
+a parte humana do Estúdio: um espaço pra mostrar o seu post, receber feedback, pedir ajuda e trocar ideias com quem também está criando.
+
+Ali dentro, ninguém cria sozinho.
+
+Você vai ver outras pessoas postando, testando, acertando — e isso te puxa pra continuar.
+
+**💰 RECOMPENSAS INFINITAS:**
+
+**E o Estúdio ainda te recompensa**
+
+- **Post que Paga:** **1 post = +1 dia** de desconto na renovação (bateu **365**, o próximo ano pode sair **de graça**).
+- **Campeonato Infinito:** pontos por **constância** e **palco** nos meus canais.
+
+Aqui, **tecnologia trabalha com você** — e **pessoas te empurram pra frente**.
+
+Você não precisa de mais ferramentas. **Precisa do lugar certo pra criar.**
+
+[ **Entrar e ver o Estúdio por dentro →** ]
+
+Eu quero que tu compre pra fazer e nao apra me dar dinheiro</pre>
+    </section>
+
+    <!-- Dobra 3 — FAQ (copy literal, não alterada) -->
+    <section class="section" aria-label="Dobra 3 — FAQ">
+      <div class="topline" aria-hidden="true"></div>
+      <h2 class="visu-title">💬 Dobra 3 — FAQ</h2>
+      <pre class="copy">## 💬 **Dobra 3 — FAQ (com reforço da tese das 3 IAs)**
+
+Consigo mesmo com pouco tempo?
+
+Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.
+
+Preciso de computador ou app pago?
+
+Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.
+
+Não sou “do digital”. É pra mim?
+
+É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.
+
+Não quero aparecer em vídeo. E agora?
+
+Usa o **Higgsfield** pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.
+
+Como funciona o “Post que Paga”?
+
+Cada post feito com a minha Equipe Não-Humana vale +1 dia de desconto na próxima renovação.
+
+Regras simples: 1 post por dia; vale Feed/Carrossel/Reel (Stories não); mantenha 48h no ar; marque #PostQuePaga + #FeitoComEquipeNaoHumana ou envie o link no mural.
+
+Painel mostra Dias pagos: X/365 e a próxima renovação estimada. Se bater 365, o próximo ano pode sair de graça.
+
+Perfil privado? Manda print/link no mural que eu conto manualmente.
+
+E se eu travar?
+
+Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.
+
+Quando sai meu primeiro post?
+
+Em até 24h. Se não sair, eu devolvo 100%.
+
+Qual é o preço? Posso cancelar?
+
+R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo.
+
+Quem entra agora trava o preço de fundador.</pre>
+    </section>
+
+    <footer>
+      © Estúdio Infinito™ — todos os direitos reservados.
+    </footer>
   </main>
-
-  <!-- ===== Dobra 2 — O QUE É (E POR QUE EXISTE) ===== -->
-  <section class="wrap section what" id="o-que-e">
-    <h2 class="canela">O que é o Estúdio (e por que ele existe)</h2>
-    <p>
-      A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>. O <strong>Estúdio Infinito™</strong> é o contrário: <em>meu estúdio real de criação — aberto pra você</em>.
-    </p>
-    <p>
-      Um lugar único que une as <strong>3 IAs certas</strong> + <strong>mini-cursos rápidos</strong> + <strong>comunidade sobre-humano</strong> = gente de verdade te puxando pro <strong>post no ar</strong>.
-    </p>
-
-    <div class="cards" role="list">
-      <article class="card" role="listitem">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#7C1E28" stroke-width="2"/></svg>
-        <div>
-          <h3>ChatGPT</h3>
-          <p>Ideias, roteiros, legendas e <strong>designs direto da conversa</strong> — sem abrir o Canva.</p>
-          <span class="pill">IA #1</span>
-        </div>
-      </article>
-
-      <article class="card" role="listitem">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#7C1E28" stroke-width="2"/></svg>
-        <div>
-          <h3>Higgsfield</h3>
-          <p>Sua <strong>Gêmea Digital</strong> pra <strong>postar sem aparecer</strong> — visual coerente e rápido.</p>
-          <span class="pill">IA #2</span>
-        </div>
-      </article>
-
-      <article class="card" role="listitem">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18c2-3 14-3 16 0" stroke="#7C1E28" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="9" r="2.5" stroke="#7C1E28" stroke-width="2"/><circle cx="16" cy="9" r="2.5" stroke="#7C1E28" stroke-width="2"/></svg>
-        <div>
-          <h3>Equipe Não-Humana™</h3>
-          <p>“Funcionários” que montam o post completo: <strong>ideia, abertura, formato, carrossel/story/roteiro</strong> e legenda.</p>
-          <span class="pill">IA #3</span>
-        </div>
-      </article>
-    </div>
-
-    <!-- Mapa do Estúdio -->
-    <div class="stepper" aria-label="Mapa do Estúdio Infinito — mini-cursos + IA">
-      <div class="step">
-        <div class="title">AULA: Crie sua Gêmea Digital pelo Celular <span class="ou">ou</span> Crie todos os seus designs conversando com o ChatGPT</div>
-        <div class="meta">Higgsfield <span class="ou">OU</span> ChatGPT</div>
-      </div>
-      <div class="step">
-        <div class="title">AULA: Estratégia de Público — vender pras pessoas certas</div>
-        <div class="meta">Bia do Público — Equipe Não-Humana™</div>
-      </div>
-      <div class="step">
-        <div class="title">AULA: Ideias que nunca acabam (mesmo falando do mesmo produto)</div>
-        <div class="meta">Maria das Ideias — Equipe Não-Humana™</div>
-      </div>
-      <div class="step">
-        <div class="title">AULA: Domine os primeiros 3 segundos do seu post</div>
-        <div class="meta">João dos Ganchos — Equipe Não-Humana™</div>
-      </div>
-      <div class="step">
-        <div class="title">AULA: Carrosséis Inteligentes com IA <span class="ou">ou</span> Stories que as pessoas querem ver</div>
-        <div class="meta">Carlos dos Carrosséis <span class="ou">OU</span> José dos Stories — Equipe Não-Humana™</div>
-      </div>
-      <div class="step">
-        <div class="title">AULA: Roteiros com IA que as pessoas querem ouvir</div>
-        <div class="meta">Larissa dos Roteiros — Equipe Não-Humana™</div>
-      </div>
-      <div class="callout">
-        Com <strong>~2h</strong> de mini-curso + IA você já entende o processo e pode criar seu <strong>primeiro post hoje</strong>. Depois disso: <strong>publica</strong>.
-      </div>
-    </div>
-
-    <!-- Recompensas -->
-    <div class="rewards" aria-label="Recompensas do Estúdio">
-      <div class="reward"><span class="dot" aria-hidden="true"></span><div><strong>Post que Paga:</strong> 1 post = <strong>+1 dia</strong> de desconto. Bateu 365? Próximo ano pode sair de graça.</div></div>
-      <div class="reward"><span class="dot" aria-hidden="true"></span><div><strong>Campeonato Infinito:</strong> pontos por constância e <strong>palco</strong> nos meus canais.</div></div>
-    </div>
-  </section>
-
-  <!-- ===== Dobra 3 — FAQ + CTA FINAL ===== -->
-  <section class="wrap section" id="faq" aria-labelledby="faq-title">
-    <h2 id="faq-title" class="canela">Respostas rápidas (do jeito que eu falaria com você)</h2>
-
-    <div class="faq" role="list">
-      <!-- item -->
-      <div class="item" role="listitem" aria-expanded="false">
-        <button type="button" aria-controls="faq1">
-          Consigo mesmo com pouco tempo?
-          <span class="icon">+</span>
-        </button>
-        <div id="faq1" class="content"><div>
-          <p>Sim. Pensei tudo pra <strong>20–40 min/dia</strong>. Se hoje só tiver <strong>15</strong>, faz <em>Gancho + Legenda</em> e um carrossel curto — e <strong>publica</strong>.</p>
-        </div></div>
-      </div>
-
-      <!-- item -->
-      <div class="item" role="listitem" aria-expanded="false">
-        <button type="button" aria-controls="faq2">
-          Preciso de computador ou app pago?
-          <span class="icon">+</span>
-        </button>
-        <div id="faq2" class="content"><div>
-          <p>Não. Eu faço <strong>tudo no celular</strong> e te mostro como. As 3 IAs têm versões gratuitas ou planos acessíveis.</p>
-        </div></div>
-      </div>
-
-      <!-- item -->
-      <div class="item" role="listitem" aria-expanded="false">
-        <button type="button" aria-controls="faq3">
-          Não quero aparecer em vídeo. E agora?
-          <span class="icon">+</span>
-        </button>
-        <div id="faq3" class="content"><div>
-          <p>Use o <strong>Higgsfield</strong> pra criar sua <strong>Gêmea Digital</strong> ou foque em <strong>carrosséis</strong>. Dá pra crescer sem ligar a câmera.</p>
-        </div></div>
-      </div>
-
-      <!-- item -->
-      <div class="item" role="listitem" aria-expanded="false">
-        <button type="button" aria-controls="faq4">
-          Como funciona o “Post que Paga”?
-          <span class="icon">+</span>
-        </button>
-        <div id="faq4" class="content"><div>
-          <p>Cada <strong>post</strong> feito com a <strong>Equipe Não-Humana™</strong> vale <strong>+1 dia</strong> de desconto na próxima renovação.</p>
-          <p><strong>Regras:</strong> 1 post/dia; vale Feed/Carrossel/Reel (<em>Stories não</em>); mantenha <strong>48h</strong> no ar; marque <code>#PostQuePaga</code> + <code>#FeitoComEquipeNaoHumana</code> <strong>ou</strong> envie o link no mural.</p>
-          <p><strong>Painel:</strong> “Dias pagos: X/365” e a próxima renovação estimada. Se bater 365, o próximo ano pode sair de graça. Perfil privado? Manda print/link no mural que eu conto manualmente.</p>
-        </div></div>
-      </div>
-
-      <!-- item -->
-      <div class="item" role="listitem" aria-expanded="false">
-        <button type="button" aria-controls="faq5">
-          E se eu travar?
-          <span class="icon">+</span>
-        </button>
-        <div id="faq5" class="content"><div>
-          <p>Me chama no <strong>chat</strong>, usa as <strong>análises</strong> e entra nas <strong>oficinas (2×/mês)</strong>. A ideia é <strong>ninguém ficar parado</strong>.</p>
-        </div></div>
-      </div>
-
-      <!-- item -->
-      <div class="item" role="listitem" aria-expanded="false">
-        <button type="button" aria-controls="faq6">
-          Quando sai meu primeiro post?
-          <span class="icon">+</span>
-        </button>
-        <div id="faq6" class="content"><div>
-          <p>Em até <strong>24h</strong>. Se não sair, <strong>eu devolvo 100%</strong>.</p>
-        </div></div>
-      </div>
-
-      <!-- item -->
-      <div class="item" role="listitem" aria-expanded="false">
-        <button type="button" aria-controls="faq7">
-          Qual é o preço? Posso cancelar?
-          <span class="icon">+</span>
-        </button>
-        <div id="faq7" class="content"><div>
-          <p><strong>R$ 388/ano</strong>. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora <strong>trava o preço de fundador</strong>.</p>
-        </div></div>
-      </div>
-    </div>
-
-    <a href="https://seu-checkout-aqui.com" class="cta-final" aria-label="Entrar e ver o Estúdio por dentro">
-      Entrar e ver o Estúdio por dentro →
-    </a>
-    <p class="seal"><strong>1º post em 24h</strong> — ou 100% de volta.</p>
-  </section>
-
-  <!-- ===== RODAPÉ ===== -->
-  <footer class="wrap footer" role="contentinfo">
-    © Estúdio Infinito™ — feito com ChatGPT e inteligência artificial. Todos os direitos reservados.
-  </footer>
-
-  <script>
-    // Acordeão acessível (mobile-first, vanilla)
-    document.querySelectorAll('.faq .item').forEach((it, idx) => {
-      const btn = it.querySelector('button');
-      const panel = it.querySelector('.content');
-      btn.addEventListener('click', () => {
-        const expanded = it.getAttribute('aria-expanded') === 'true';
-        // fecha os outros
-        document.querySelectorAll('.faq .item[aria-expanded="true"]').forEach(o => {
-          if(o !== it){ o.setAttribute('aria-expanded','false'); }
-        });
-        // alterna este
-        it.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      });
-      // acessibilidade: fecha com Esc
-      btn.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape'){ it.setAttribute('aria-expanded','false'); btn.blur(); }
-      });
-    });
-  </script>
 </body>
 </html>
