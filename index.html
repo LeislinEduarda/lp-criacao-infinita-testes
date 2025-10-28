@@ -1,353 +1,475 @@
-<!doctype html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Estúdio Infinito™ — Mobile</title>
-  <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular. As 3 IAs que eu realmente uso, mini-cursos e comunidade Sobre-Humano.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estúdio Infinito™ — As 3 IAs que eu realmente uso</title>
+  <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular. As 3 IAs certas + mini-cursos rápidos + comunidade sobre-humano.">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Inter para textos / Cormorant Garamond como fallback serifado no lugar de Canela -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <!-- Inter (Google) para textos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Fallback serif para títulos (substitui Canela quando não disponível) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg-offwhite: #F5D7E2;
-      --green: #1D4D3A;
-      --wine: #7C1E28;
-      --pink: #F9C8D2;
-      --text: #1A1A1A;
+      /* Paleta oficial */
+      --vinho:#7C1E28;
+      --verde:#1D4D3A;
+      --rosa:#F9C8D2;
+      --off:#F5D7E2;
+
+      --texto:#1A1A1A;
+      --texto-escuro:#111;
+      --texto-claro:#FFFFFF;
+
+      --radius-xl:22px;
+      --radius-lg:16px;
+      --radius-md:12px;
+
+      --shadow-soft:0 10px 30px rgba(0,0,0,.06);
+      --shadow-card:0 12px 24px rgba(0,0,0,.08);
+      --shadow-cta:0 10px 20px rgba(124,30,40,.25);
     }
 
-    /* Reset básico e travas de scroll lateral */
-    *{ box-sizing: border-box; }
-    html, body{
-      margin:0; padding:0;
-      background: var(--bg-offwhite);
-      color: var(--text);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
+    /* Reset essencial */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%;scroll-behavior:smooth}
+    html,body{overflow-x:hidden}
     body{
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-      line-height: 1.45;
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--texto);
+      background:var(--off); /* off-white rosado definido na paleta */
+      letter-spacing:.01em;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    .serif{
+      /* Canela não é web-safe; mantemos fallback editorial */
+      font-family:"Canela", "Playfair Display", Georgia, "Times New Roman", serif;
     }
 
-    /* Contêiner responsivo single-column focado em mobile */
-    .wrap{
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 20px 16px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      min-height: 100svh; /* ocupa altura segura em mobile */
+    /* Grid & espaçamento */
+    .container{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+    .hero{padding:72px 0 56px}
+    @media (min-width:980px){
+      .hero{padding:96px 0 72px}
     }
 
-    /* Moldura sutil e coesa por dobra */
-    .section{
-      background: #fff7;
-      backdrop-filter: blur(2px);
-      border: 1px solid color-mix(in oklab, var(--green) 22%, white);
-      border-radius: 14px;
-      padding: 18px 14px;
-      position: relative;
+    /* Cabeçalho mínimo (logo + CTA âncora) */
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter:saturate(140%) blur(6px);
+      background:color-mix(in oklab, var(--off) 86%, white);
+      border-bottom:1px solid color-mix(in oklab, var(--rosa) 50%, #0000);
     }
-    .section::before{
-      content:"";
-      position: absolute;
-      inset: 0;
-      border-radius: 14px;
-      pointer-events: none;
-      outline: 2px solid color-mix(in oklab, var(--green) 16%, transparent);
-      outline-offset: -4px;
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
     }
-
-    /* Linha rosa sutil no topo de cada dobra */
-    .section .topline{
-      height: 4px;
-      width: 100%;
-      background: var(--pink);
-      border-radius: 999px;
-      margin-bottom: 12px;
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
     }
-
-    /* Título visual (sem alterar a copy do <pre>) */
-    .visu-title{
-      font-family: "Cormorant Garamond", serif; /* fallback para a família Canela */
-      color: var(--green);
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin: 0 0 10px 0;
-      letter-spacing: 0.2px;
+    .brand-mark{
+      width:32px; height:32px; border-radius:9px;
+      background:linear-gradient(135deg, var(--verde), color-mix(in oklab, var(--verde) 70%, black));
+      display:grid; place-items:center; color:var(--rosa); font-weight:800; letter-spacing:.02em;
+      box-shadow: var(--shadow-soft);
+    }
+    .brand-name{
+      color:var(--verde); font-weight:800; letter-spacing:.02em;
+    }
+    .nav-cta{
+      text-decoration:none; color:var(--vinho); font-weight:700; display:inline-flex; gap:6px; align-items:center
     }
 
-    /* Bloco que preserva literalmente a copy (sem alterar nada) */
-    .copy{
-      margin: 0;
-      white-space: pre-wrap;     /* preserva quebras */
-      word-break: break-word;    /* evita overflow em mobile */
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text);
+    /* DOBRA 1 — HERO */
+    .hero-wrap{
+      display:grid; gap:28px;
     }
-    .copy.emphasis{
-      font-family: "Cormorant Garamond", serif;
+    .kicker{
+      color:var(--vinho); font-weight:800; letter-spacing:.12em; text-transform:uppercase; font-size:.82rem;
+    }
+    .title{
+      font-size:clamp(42px, 6vw, 68px);
+      line-height:1.05;
+      color:var(--verde);
+      margin:6px 0 6px;
+      letter-spacing: .01em;
+    }
+    .subtitle{
+      max-width:920px;
+      font-size:clamp(18px, 2.2vw, 22px);
+      line-height:1.5;
+      color:var(--texto-escuro);
+    }
+    .sub-italic{
+      font-style:italic; font-weight:600;
     }
 
-    /* Divisórias sutis */
+    .hero-badges{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:8px
+    }
+    .badge{
+      padding:8px 12px; border-radius:999px; font-size:.88rem; font-weight:700;
+      border:1px solid color-mix(in oklab, var(--verde) 40%, #0000);
+      color:var(--verde); background:color-mix(in oklab, var(--off) 80%, white);
+    }
+
+    .hero-stack{
+      display:grid; gap:14px; margin-top:6px; max-width:920px;
+    }
+    .hero-card{
+      background: #fff; border:1px solid color-mix(in oklab, var(--rosa) 28%, #000);
+      border-radius: var(--radius-xl);
+      padding:18px 18px;
+      box-shadow: var(--shadow-card);
+    }
+    .hero-card strong{color:var(--vinho)}
+    .hero-card .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+
+    .cta-row{
+      display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-top:8px
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer; text-decoration:none;
+      padding:16px 22px; border-radius:16px; font-weight:800; letter-spacing:.02em;
+      transition:transform .08s ease, filter .08s ease, box-shadow .08s ease;
+      display:inline-flex; gap:10px; align-items:center; justify-content:center
+    }
+    .btn-primary{
+      background:var(--vinho); color:var(--texto-claro);
+      box-shadow: var(--shadow-cta);
+    }
+    .btn-primary:hover{transform:translateY(-1px); filter:saturate(112%)}
+    .btn-ghost{
+      color:var(--vinho); background:transparent; border:2px solid color-mix(in oklab, var(--vinho) 70%, #0000)
+    }
+
+    .helpline{
+      font-size:.95rem; color:var(--verde); font-weight:700
+    }
+
+    /* divisor rosa editorial */
     .divider{
-      height: 1px;
-      width: 100%;
-      background: color-mix(in oklab, var(--wine) 16%, white);
-      margin: 8px 0 2px;
+      height:2px;
+      background:linear-gradient(90deg, #0000, var(--rosa), #0000);
+      margin:28px 0 8px;
     }
 
-    /* Rodapé simples */
+    /* DOBRA 2 — O QUE É / 3 IAs / MAPA */
+    .section{
+      padding:56px 0;
+    }
+    .section h2{
+      font-size:clamp(28px, 4.5vw, 42px);
+      color:var(--verde); margin:0 0 12px;
+    }
+    .section p.lead{
+      font-size:clamp(18px, 2.2vw, 20px); line-height:1.55; margin:0 0 18px;
+    }
+    .block-note{
+      background:var(--rosa); border:1px solid color-mix(in oklab, var(--vinho) 25%, #0000);
+      border-radius: var(--radius-lg); padding:18px;
+    }
+
+    .ias-grid{
+      display:grid; gap:14px; margin-top:18px;
+    }
+    @media (min-width:860px){
+      .ias-grid{grid-template-columns: repeat(3, 1fr)}
+    }
+    .ia-card{
+      background:#fff; border-radius:var(--radius-lg);
+      border:1px solid color-mix(in oklab, var(--vinho) 22%, #000);
+      padding:18px;
+      box-shadow: var(--shadow-card);
+    }
+    .ia-title{font-weight:800; color:var(--vinho); margin-bottom:6px}
+    .ia-desc{color:#333; line-height:1.5}
+
+    .mapa{
+      margin-top:22px;
+      display:grid; gap:14px;
+    }
+    @media (min-width:980px){
+      .mapa{grid-template-columns: 1fr 1fr}
+    }
+    .step{
+      background:#fff; border:1px solid color-mix(in oklab, var(--rosa) 30%, #000);
+      border-radius: var(--radius-md); padding:16px 16px;
+    }
+    .step .num{
+      font-weight:900; color:var(--verde); margin-right:10px
+    }
+    .step .ia-tag{
+      display:inline-block; margin-top:6px; padding:4px 8px; border-radius:999px;
+      background:color-mix(in oklab, var(--off) 75%, #fff); color:var(--vinho); border:1px solid color-mix(in oklab, var(--vinho) 50%, #0000);
+      font-size:.85rem; font-weight:700
+    }
+
+    .sobre-humano{
+      margin-top:22px; padding:18px;
+      background:linear-gradient(180deg, #fff, color-mix(in oklab, var(--rosa) 50%, #fff));
+      border:1px solid color-mix(in oklab, var(--vinho) 18%, #000);
+      border-radius:var(--radius-xl)
+    }
+
+    .recompensas{
+      margin-top:18px; display:grid; gap:12px
+    }
+    .reward{
+      display:flex; gap:10px; align-items:flex-start;
+      background:#fff; border-radius:var(--radius-md);
+      border:1px solid color-mix(in oklab, var(--vinho) 22%, #000);
+      padding:14px 14px;
+    }
+    .reward b{color:var(--vinho)}
+
+    /* DOBRA 3 — FAQ */
+    .faq{
+      background:var(--vinho); color:var(--texto-claro);
+      border-top:1px solid color-mix(in oklab, var(--rosa) 45%, #0000);
+      padding:56px 0;
+    }
+    .faq h2{color:var(--off)}
+    .faq-list{max-width:980px; margin:16px auto 0; display:grid; gap:10px}
+    details{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:12px; padding:14px 16px
+    }
+    summary{
+      cursor:pointer; font-weight:800; color:var(--rosa);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details[open]{background:rgba(255,255,255,.1)}
+    details p{margin:10px 0 0; color:#fff}
+
+    /* Rodapé */
     footer{
-      text-align: center;
-      font-size: 12px;
-      color: color-mix(in oklab, var(--text) 60%, white);
-      padding: 10px 0 20px;
+      padding:26px 0; border-top:1px solid color-mix(in oklab, var(--rosa) 40%, #0000);
+      text-align:center; color:#4b4b4b; font-size:.95rem
     }
 
-    /* Afastamentos responsivos */
-    @media (min-width: 420px){
-      .wrap{ padding: 24px 18px 40px; gap: 22px; }
-      .visu-title{ font-size: 24px; }
-      .copy{ font-size: 17px; }
-    }
-
-    /* Acessibilidade foco */
-    :focus-visible{
-      outline: 2px dashed var(--wine);
-      outline-offset: 3px;
-      border-radius: 6px;
-    }
+    /* Utilidades */
+    .muted{opacity:.8}
+    .center{text-align:center}
+    .mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}
+    .mb-0{margin-bottom:0}
   </style>
 </head>
 <body>
-  <main class="wrap">
-
-    <!-- Dobra 1 — Hero (copy literal, não alterada) -->
-    <section class="section" aria-label="Dobra 1 — A Promessa">
-      <div class="topline" aria-hidden="true"></div>
-      <h2 class="visu-title">Dobra 1 — A PROMESSA</h2>
-      <pre class="copy emphasis"><aside>
-🔥
-
-# **Dobra 1 — A PROMESSA (tese: “As 3 IAs que eu realmente uso”)**
-
-## **ESTÚDIO INFINITO™**
-
-**Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.** 
-
-Aqui, você cria como eu crio: **com as 3 IAs que eu uso todos os dias.**
-
-*logotipo das ias + gemea + fraseVocê vai criar presença nas redes sociais de forma mais leve, rápida e fácil* 
-
-Você paga só o 1º ano.
-
-Se não parar de postar, seus posts pagam todas as renovações.
-
-(*Post que Paga: cada post = +1 dia de desconto.*)
-
-**Selo de confiança:** seu 1º post no ar em 24h — ou eu devolvo 100%.
-
-[ **Entrar e criar o seu primeiro post agora →** ]
-
-**✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.**</aside></pre>
-    </section>
-
-    <!-- Dobra 2 — O que é (copy literal, não alterada) -->
-    <section class="section" aria-label="Dobra 2 — O que é o Estúdio">
-      <div class="topline" aria-hidden="true"></div>
-      <h2 class="visu-title">🧠 Dobra 2 — O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
-      <pre class="copy"># **🧠 Dobra 2 - O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)**
-
-A internet te vendeu que, pra criar, você precisa de **30 IAs, 10 apps, 5 cursos** e uma ideia genial por dia.
-
-Isso só te deixa **travado**.
-
-O **Estúdio Infinito™** nasceu como o **contrário** disso.
-
-É o **meu estúdio real de criação — aberto pra você**:
-
-Um lugar único que vai unir **as 3 IAs certas +** **mini-cursos rápidos** + comunidade sobre humano = G**ente de verdade** te puxando pro **post no ar**.
-
-**AS 3 IAS QUE EU USO SÃO:** 
-
-🧠 **ChatGPT** — pra criar ideias, roteiros, legendas e designs direto da conversa.
-
-🎨 **Higgsfield** — pra gerar sua **Gêmea Digital** e postar sem precisar aparecer.
-
-E a mais importante, eu vou te dar a IA, a minha equipe de social media não humana:
-
-🤖 **Equipe Não-Humana™** — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.
-
-**Colocar quais sao os funcionarios e funcoes**
-
-### ✳️ **Quando você entra, é assim que acontece:**
-
-Você vai assistir um mini-curso express que vai mostrar como dominar uma das 3 IAS que formam o coração do Estúdio:
-
-### 🗺️ **Mapa do Estúdio Infinito — mini curso + IA**
-
-1
-
-**AULA:** Crie sua Gêmea Digital pelo Celular
-
-→ **IA:** Higgsfield
-
-OU 
-
-1
-
-**AULA:** Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)
-
-→ **IA:** ChatGPT
-
-**2** 
-
-**AULA:** Estratégia de Público — Como Vender para as Pessoas Certas
-
-→ **IA:** Bia do Público - Equipe Não-Humana™
-
-**3** 
-
-**AULA:** Ideias que Nunca Acabam (mesmo falando do mesmo produto)
-
-→ **IA:** Maria das ideias - Equipe Não-Humana™
-
-4 
-
-**AULA:** Domine os Primeiros 3 Segundos do Seu Post
-
-→ **IA:** João dos ganchos - Equipe Não-Humana™
-
-DECIDE DE VAI FAZER: 
-
-**5** 
-
-**AULA:** Carrosséis Inteligentes Criados com IA
-
-→ **IA:** Carlos dos Carrosséis (Equipe Não-Humana™)
-
-OU
-
-**6** 
-
-**AULA:** Como Criar Stories com IA que as Pessoas Realmente Querem Ver
-
-→ **IA:** José dos Stories (Equipe Não-Humana™)
-
-**7**
-
-**AULA:** Como Criar Roteiros com IA que as Pessoas Querem Ouvir
-
-→ **IA:** Larissa dos Roteiros (Equipe Não-Humana™)
-
-O que vai te dar um boom ainda maior
-
-**AULA:** Como Crescer no TikTok em 2026
-
-→ **IA:** ChatGPT
-
-**AULA:** Como Crescer no Instagram em 2026
-
-→ **IA:** ChatGPT
-
-**AULA:** Dominando o ChatGPT — Meus Hacks Secretos
-
-→ **IA:** ChatGPT
-
-E o melhor?
-
-Com essa ordem voce vai gastar 2 horas de mini-curso + IA, você já entende o processo e pode criar seu primeiro post no mesmo dia.
-
-Depois disso, **você publica.**
-
-Em menos de 24h, seu primeiro post está no ar — feito com IA, do seu jeito.
-
-**⚡️ TERCEIRA PORTA DO ESTÚDIO: COMUNIDADE SOBRE-HUMANO:** 
-
-E aí você entra na **Comunidade Sobre-Humano™**,
-
-Imagem da aba comunidade sobre humano 
-
-a parte humana do Estúdio: um espaço pra mostrar o seu post, receber feedback, pedir ajuda e trocar ideias com quem também está criando.
-
-Ali dentro, ninguém cria sozinho.
-
-Você vai ver outras pessoas postando, testando, acertando — e isso te puxa pra continuar.
-
-**💰 RECOMPENSAS INFINITAS:**
-
-**E o Estúdio ainda te recompensa**
-
-- **Post que Paga:** **1 post = +1 dia** de desconto na renovação (bateu **365**, o próximo ano pode sair **de graça**).
-- **Campeonato Infinito:** pontos por **constância** e **palco** nos meus canais.
-
-Aqui, **tecnologia trabalha com você** — e **pessoas te empurram pra frente**.
-
-Você não precisa de mais ferramentas. **Precisa do lugar certo pra criar.**
-
-[ **Entrar e ver o Estúdio por dentro →** ]
-
-Eu quero que tu compre pra fazer e nao apra me dar dinheiro</pre>
-    </section>
-
-    <!-- Dobra 3 — FAQ (copy literal, não alterada) -->
-    <section class="section" aria-label="Dobra 3 — FAQ">
-      <div class="topline" aria-hidden="true"></div>
-      <h2 class="visu-title">💬 Dobra 3 — FAQ</h2>
-      <pre class="copy">## 💬 **Dobra 3 — FAQ (com reforço da tese das 3 IAs)**
-
-Consigo mesmo com pouco tempo?
-
-Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.
-
-Preciso de computador ou app pago?
-
-Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.
-
-Não sou “do digital”. É pra mim?
-
-É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.
-
-Não quero aparecer em vídeo. E agora?
-
-Usa o **Higgsfield** pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.
-
-Como funciona o “Post que Paga”?
-
-Cada post feito com a minha Equipe Não-Humana vale +1 dia de desconto na próxima renovação.
-
-Regras simples: 1 post por dia; vale Feed/Carrossel/Reel (Stories não); mantenha 48h no ar; marque #PostQuePaga + #FeitoComEquipeNaoHumana ou envie o link no mural.
-
-Painel mostra Dias pagos: X/365 e a próxima renovação estimada. Se bater 365, o próximo ano pode sair de graça.
-
-Perfil privado? Manda print/link no mural que eu conto manualmente.
-
-E se eu travar?
-
-Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.
-
-Quando sai meu primeiro post?
-
-Em até 24h. Se não sair, eu devolvo 100%.
-
-Qual é o preço? Posso cancelar?
-
-R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo.
-
-Quem entra agora trava o preço de fundador.</pre>
-    </section>
-
-    <footer>
-      © Estúdio Infinito™ — todos os direitos reservados.
-    </footer>
+  <!-- NAV -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#topo" aria-label="Estúdio Infinito">
+        <div class="brand-mark">∞</div>
+        <strong class="brand-name">Estúdio Infinito™</strong>
+      </a>
+      <a class="nav-cta" href="#entrar">Ver por dentro →</a>
+    </div>
+  </header>
+
+  <!-- DOBRA 1 — HERO -->
+  <main id="topo" class="hero">
+    <div class="container hero-wrap">
+      <div class="kicker">As 3 IAs que eu realmente uso</div>
+      <h1 class="title serif">ESTÚDIO INFINITO™</h1>
+
+      <p class="subtitle">
+        <strong>Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</strong>
+        Aqui, você cria como eu crio: <span class="sub-italic serif">com as 3 IAs que eu uso todos os dias.</span>
+      </p>
+
+      <div class="hero-badges">
+        <span class="badge">🧠 ChatGPT</span>
+        <span class="badge">🎨 Higgsfield (Gêmea Digital)</span>
+        <span class="badge">🤖 Equipe Não-Humana™</span>
+      </div>
+
+      <div class="hero-stack">
+        <div class="hero-card">
+          Você paga <strong>só o 1º ano</strong>. Se <strong>não parar de postar</strong>, <strong>seus posts pagam</strong> todas as renovações. <span class="mono">#PostQuePaga</span>
+          <div class="mt-8 muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></div>
+        </div>
+        <div class="hero-card">
+          <strong>Selo de confiança:</strong> seu <strong>1º post</strong> no ar em <strong>24h</strong> — <strong>ou eu devolvo 100%</strong>.
+        </div>
+      </div>
+
+      <div class="cta-row" id="entrar">
+        <a class="btn btn-primary" href="#o-que-e">Entrar e criar o seu primeiro post agora →</a>
+        <a class="btn btn-ghost" href="#faq">Tirar uma dúvida</a>
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+      <div class="helpline">✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</div>
+    </div>
   </main>
+
+  <!-- DOBRA 2 — O QUE É / POR QUÊ -->
+  <section id="o-que-e" class="section">
+    <div class="container">
+      <h2 class="serif">🧠 O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+      <p class="lead">
+        A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.
+        O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso: é o <strong>meu estúdio real de criação — aberto pra você</strong>.
+      </p>
+
+      <div class="block-note">
+        Um lugar único que vai unir <strong>as 3 IAs certas</strong> + <strong>mini-cursos rápidos</strong> + <strong>comunidade sobre-humano</strong> = <strong>gente de verdade</strong> te puxando pro <strong>post no ar</strong>.
+      </div>
+
+      <!-- 3 IAs -->
+      <div class="ias-grid">
+        <article class="ia-card">
+          <div class="ia-title">🧠 ChatGPT</div>
+          <div class="ia-desc">Ideias, roteiros, legendas e até designs direto da conversa. Rápido, natural e estratégico.</div>
+        </article>
+        <article class="ia-card">
+          <div class="ia-title">🎨 Higgsfield — Gêmea Digital</div>
+          <div class="ia-desc">Gere sua <strong>Gêmea Digital</strong> e poste sem precisar aparecer. Estilo, coerência e liberdade criativa.</div>
+        </article>
+        <article class="ia-card">
+          <div class="ia-title">🤖 Equipe Não-Humana™</div>
+          <div class="ia-desc">
+            Meus <strong>funcionários não humanos</strong> treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro — <strong>pronto para publicar</strong>.
+          </div>
+        </article>
+      </div>
+
+      <!-- Mapa do Estúdio -->
+      <h3 class="mt-20 serif" style="color:var(--verde)">✳️ Quando você entra, é assim que acontece</h3>
+      <p class="mb-0">Você vai assistir um mini-curso express que mostra como dominar uma das 3 IAs do coração do Estúdio:</p>
+
+      <div class="mapa">
+        <!-- 1 -->
+        <div class="step">
+          <strong><span class="num">1.</span> AULA:</strong> Crie sua Gêmea Digital pelo Celular
+          <div class="ia-tag">IA: Higgsfield</div>
+        </div>
+        <div class="step">
+          <strong><span class="num">1.</span> AULA:</strong> Crie Todos os Seus Designs conversando com o ChatGPT (sem abrir o Canva)
+          <div class="ia-tag">IA: ChatGPT</div>
+        </div>
+        <!-- 2 -->
+        <div class="step">
+          <strong><span class="num">2.</span> AULA:</strong> Estratégia de Público — Como Vender para as Pessoas Certas
+          <div class="ia-tag">IA: Bia do Público — Equipe Não-Humana™</div>
+        </div>
+        <!-- 3 -->
+        <div class="step">
+          <strong><span class="num">3.</span> AULA:</strong> Ideias que Nunca Acabam (mesmo falando do mesmo produto)
+          <div class="ia-tag">IA: Maria das Ideias — Equipe Não-Humana™</div>
+        </div>
+        <!-- 4 -->
+        <div class="step">
+          <strong><span class="num">4.</span> AULA:</strong> Domine os Primeiros 3 Segundos do Seu Post
+          <div class="ia-tag">IA: João dos Ganchos — Equipe Não-Humana™</div>
+        </div>
+        <!-- Decide -->
+        <div class="step">
+          <strong><span class="num">5.</span> AULA (escolha):</strong> Carrosséis Inteligentes Criados com IA
+          <div class="ia-tag">IA: Carlos dos Carrosséis — Equipe Não-Humana™</div>
+        </div>
+        <div class="step">
+          <strong><span class="num">6.</span> AULA (escolha):</strong> Stories com IA que as Pessoas Querem Ver
+          <div class="ia-tag">IA: José dos Stories — Equipe Não-Humana™</div>
+        </div>
+        <div class="step">
+          <strong><span class="num">7.</span> AULA:</strong> Roteiros com IA que as Pessoas Querem Ouvir
+          <div class="ia-tag">IA: Larissa dos Roteiros — Equipe Não-Humana™</div>
+        </div>
+        <!-- Bônus -->
+        <div class="step">
+          <strong>AULA bônus:</strong> Como Crescer no TikTok em 2026 — <span class="ia-tag">IA: ChatGPT</span>
+        </div>
+        <div class="step">
+          <strong>AULA bônus:</strong> Como Crescer no Instagram em 2026 — <span class="ia-tag">IA: ChatGPT</span>
+        </div>
+        <div class="step">
+          <strong>AULA bônus:</strong> Dominando o ChatGPT — Meus Hacks Secretos — <span class="ia-tag">IA: ChatGPT</span>
+        </div>
+      </div>
+
+      <div class="block-note mt-16">
+        Com essa ordem, você gasta ~ <strong>2 horas</strong> (mini-curso + IA), entende o processo e cria seu <strong>primeiro post no mesmo dia</strong>.
+        Em <strong>menos de 24h</strong>, seu post está no ar — feito com IA, do seu jeito. Depois disso, <strong>você publica</strong>.
+      </div>
+
+      <div class="sobre-humano">
+        <h3 class="serif" style="margin:0 0 8px;color:var(--verde)">⚡️ Terceira porta do Estúdio: Comunidade Sobre-Humano™</h3>
+        <p class="mb-0">A parte humana do Estúdio: um espaço pra mostrar o seu post, receber feedback, pedir ajuda e trocar ideias com quem também está criando. Ali dentro, ninguém cria sozinho.</p>
+      </div>
+
+      <div class="recompensas">
+        <div class="reward">
+          <div>💰</div>
+          <div><b>Post que Paga:</b> <b>1 post = +1 dia</b> de desconto na renovação. Bateu <b>365</b>, o próximo ano pode sair <b>de graça</b>.</div>
+        </div>
+        <div class="reward">
+          <div>🏆</div>
+          <div><b>Campeonato Infinito:</b> pontos por <b>constância</b> e <b>palco</b> nos meus canais.</div>
+        </div>
+      </div>
+
+      <div class="cta-row mt-20">
+        <a class="btn btn-primary" href="#faq">Entrar e ver o Estúdio por dentro →</a>
+      </div>
+      <p class="muted mt-8">Eu quero que tu compre pra <strong>fazer</strong> — não pra me dar dinheiro.</p>
+    </div>
+  </section>
+
+  <!-- DOBRA 3 — FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="serif center">💬 FAQ — com reforço da tese das 3 IAs</h2>
+
+      <div class="faq-list">
+        <details>
+          <summary>Consigo mesmo com pouco tempo?</summary>
+          <p>Consegue. Pensei tudo pra <b>20–40 min/dia</b>. Se hoje só tiver <b>15</b>, faz <b>Gancho + Legenda</b> e um carrossel curto — e publica.</p>
+        </details>
+        <details>
+          <summary>Preciso de computador ou app pago?</summary>
+          <p>Não. Eu faço <b>tudo no celular</b> e te mostro como. As <b>3 IAs</b> que uso têm versões gratuitas ou planos acessíveis.</p>
+        </details>
+        <details>
+          <summary>Não sou “do digital”. É pra mim?</summary>
+          <p>É. Você <b>vê eu fazendo</b>, responde <b>perguntas simples</b> e as <b>IAs fazem junto</b> com você.</p>
+        </details>
+        <details>
+          <summary>Não quero aparecer em vídeo. E agora?</summary>
+          <p>Usa o <b>Higgsfield</b> pra criar sua <b>Gêmea Digital</b>. Dá pra crescer <b>sem mostrar o rosto</b>.</p>
+        </details>
+        <details>
+          <summary>Como funciona o “Post que Paga”?</summary>
+          <p>Cada post feito com a <b>Minha Equipe Não-Humana</b> vale <b>+1 dia</b> de desconto na próxima renovação. Regras: <b>1 post/dia</b>; vale <b>Feed/Carrossel/Reel</b> (Stories não); manter <b>48h no ar</b>; marcar <b>#PostQuePaga</b> + <b>#FeitoComEquipeNaoHumana</b> ou enviar o link no mural. Painel mostra <b>Dias pagos: X/365</b> e a próxima renovação. Bateu <b>365</b>, o próximo ano pode sair <b>de graça</b>. Perfil privado? Manda print/link no mural que eu conto manualmente.</p>
+        </details>
+        <details>
+          <summary>E se eu travar?</summary>
+          <p>Me chama no <b>chat</b>, usa as <b>análises</b> e entra nas <b>oficinas (2×/mês)</b>. A ideia é <b>ninguém ficar parado</b>.</p>
+        </details>
+        <details>
+          <summary>Quando sai meu primeiro post?</summary>
+          <p>Em até <b>24h</b>. Se não sair, <b>eu devolvo 100%</b>.</p>
+        </details>
+        <details>
+          <summary>Qual é o preço? Posso cancelar?</summary>
+          <p><b>R$ 388/ano</b>. Renovação anual automática. Pode <b>cancelar quando quiser</b>; o acesso fica até o fim do ciclo. Quem entra agora <b>trava o preço de fundador</b>.</p>
+        </details>
+      </div>
+
+      <div class="center" style="margin-top:22px">
+        <a class="btn btn-primary" href="#entrar">Quero meu 1º post em 24h →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© 2025 Estúdio Infinito™ — Todos os direitos reservados.</div>
+  </footer>
 </body>
 </html>
