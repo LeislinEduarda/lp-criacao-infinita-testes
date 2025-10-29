@@ -6,17 +6,17 @@
 <title>ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)</title>
 <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos. As 3 IAs certas, mini-cursos rápidos e gente de verdade te puxando pro post no ar." />
 
-<!-- Tipografia: Canela (fallback editorial) + Inter -->
+<!-- Tipografia: Canela (fallbacks editoriais) + Inter -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-  /* ================= TOKENS DE TEMA ================= */
+  /* ==== TOKENS DE TEMA ===================================================== */
   :root{
     --wine: #7C1E28;          /* destaque/CTA */
     --green: #1D4D3A;         /* títulos e traços */
     --pink: #F9C8D2;          /* respiro/separadores */
     --beige: #F5D7E2;         /* base neutra */
-    --off: #FBF7F0;           /* fundo off-white suave */
+    --off: #FBF7F8;           /* fundo off-white */
     --text: #222222;          /* corpo */
     --muted: #555555;         /* apoio */
     --shadow: 0 10px 30px rgba(29,77,58,.12);
@@ -24,7 +24,7 @@
     --maxw: 1120px;
   }
 
-  /* ================= RESET SUAVE ==================== */
+  /* ==== RESET (suave) ====================================================== */
   *,*::before,*::after{box-sizing:border-box}
   html,body{height:100%}
   body{
@@ -33,14 +33,14 @@
     line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
   h1,h2,h3{ margin:0 0 .6rem 0; line-height:1.15; color:var(--green); }
-  h1{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
-  h2{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
+  h1{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
+  h2{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
   h3{ font-weight:700; font-size:clamp(1.1rem,2vw,1.4rem); }
   p{ margin:.7rem 0; }
   a{ color:var(--wine); text-decoration:none }
   .container{ width:min(100%, var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px); }
 
-  /* =============== SOCIAL PROOF (faixa) ============== */
+  /* ==== SOCIAL PROOF (faixa superior) ===================================== */
   .band{
     border-bottom: 2px solid var(--pink);
     background: linear-gradient(180deg,#FFFFFF 0%, var(--off) 100%);
@@ -50,7 +50,7 @@
     justify-content:center; flex-wrap:wrap;
   }
   .band .title{
-    font-family:"Playfair Display",serif; color:var(--green);
+    font-family:"Canela","Playfair Display",serif; color:var(--green);
     font-size:clamp(1rem,2vw,1.3rem); font-weight:700; white-space:nowrap;
   }
   .avatars{ display:flex; gap:10px; overflow:auto; padding-bottom:6px }
@@ -61,74 +61,147 @@
     background-size:cover; background-position:center;
   }
 
-  /* ===================== HERO (pinned bg) ===================== */
+  /* ==== HERO PINNED ======================================================== */
   .hero{ position:relative; height:300vh; isolation:isolate; }
   .hero-bg{
     position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(60% 60% at 70% 20%, rgba(124,30,40,.10) 0%, rgba(124,30,40,0) 60%),
-      radial-gradient(50% 50% at 20% 70%, rgba(29,77,58,.16) 0%, rgba(29,77,58,0) 60%),
-      #FBF7F0;
+      radial-gradient(60% 60% at 70% 20%, rgba(124,30,40,.12) 0%, rgba(124,30,40,0) 60%),
+      radial-gradient(50% 50% at 20% 70%, rgba(29,77,58,.18) 0%, rgba(29,77,58,0) 60%),
+      url('data:image/svg+xml;utf8,\
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox=\'0 0 1200 800\'>\
+      <defs><radialGradient id=\'g\' cx=\'50%\' cy=\'50%\' r=\'70%\'><stop offset=\'0%\' stop-color=\'#ffffff\'/><stop offset=\'100%\' stop-color=\'#FBF7F8\'/></radialGradient></defs>\
+      <rect width=\'1200\' height=\'800\' fill=\'url(#g)\'/>\
+      <!-- Placeholder da Expert + 13 asas -->\
+      <g opacity=\'.18\' fill=\'#1D4D3A\'>\
+        <path d=\'M620 120c-30 80-60 160-90 240 120-30 200-20 240 30-40-140-90-220-150-270z\'/>\
+        <circle cx=\'820\' cy=\'260\' r=\'12\'/>\
+        <circle cx=\'860\' cy=\'280\' r=\'10\'/>\
+        <circle cx=\'890\' cy=\'310\' r=\'9\'/>\
+        <circle cx=\'910\' cy=\'350\' r=\'8\'/>\
+        <circle cx=\'920\' cy=\'390\' r=\'7\'/>\
+        <circle cx=\'910\' cy=\'430\' r=\'8\'/>\
+        <circle cx=\'890\' cy=\'470\' r=\'9\'/>\
+        <circle cx=\'860\' cy=\'500\' r=\'10\'/>\
+        <circle cx=\'820\' cy=\'520\' r=\'12\'/>\
+        <circle cx=\'780\' cy=\'525\' r=\'11\'/>\
+        <circle cx=\'740\' cy=\'515\' r=\'9\'/>\
+        <circle cx=\'705\' cy=\'490\' r=\'8\'/>\
+        <circle cx=\'680\' cy=\'455\' r=\'7\'/>\
+      </g></svg>') center/cover no-repeat;
   }
   .hero-copy{ position:relative; }
   .hero-block{ min-height:100vh; display:grid; place-items:center; padding-block:10vh; }
   .hero-card{
-    background:rgba(255,255,255,.78); backdrop-filter:saturate(140%) blur(6px);
+    background:rgba(255,255,255,.75); backdrop-filter:saturate(140%) blur(6px);
     border:1px solid rgba(29,77,58,.15);
     border-radius:var(--radius); box-shadow:var(--shadow);
     padding:clamp(16px,3vw,32px); width:min(100%,840px);
   }
+  .tag{ display:inline-block; padding:6px 10px; border-radius:999px; background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem; letter-spacing:.2px; margin-bottom:10px; }
   .lead{ font-size:clamp(1.1rem,2.2vw,1.4rem); }
   .cta{
     display:inline-block; margin-top:12px; font-weight:700;
-    color:var(--wine); border-bottom:2px solid var(--wine);
-    padding-bottom:2px;
+    color:var(--wine); border-bottom:2px solid var(--wine); padding-bottom:2px;
   }
-  .muted{ color:var(--muted) }
 
-  /* ===================== DOBRA 2: INFINITY (VERTICAL) ===================== */
+  /* ==== DOBRA 2: INFINITY (vertical + universo) ============================ */
   .infinity{
-    background:var(--beige);
-    padding-block:clamp(48px,7vw,96px);
-    border-top:4px solid var(--pink);
-    border-bottom:4px solid var(--pink);
+    background: var(--beige);
+    padding-block: clamp(40px,6vw,90px);
+    border-top: 4px solid var(--pink);
+    border-bottom: 4px solid var(--pink);
   }
-  .infinity .wrap{ position:relative; }
-  .svg-box{ position:relative; width:100%; max-width:900px; margin-inline:auto; aspect-ratio:3/4; }
-  /* símbolo editorial (vertical, traço grosso, neutral) */
+  .infinity .wrap{ position: relative; display: grid; place-items: center; }
+  .svg-box{
+    position: relative;
+    width: min(100%, 860px);
+    aspect-ratio: 9 / 16;              /* vertical */
+    margin-inline: auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    /* Universo dentro da caixa (sem escurecer a seção toda) */
+    background:
+      radial-gradient(120% 100% at 50% 0%, rgba(124,30,40,.22) 0%, rgba(124,30,40,0) 55%),
+      radial-gradient(100% 120% at 50% 100%, rgba(29,77,58,.28) 0%, rgba(29,77,58,0) 60%),
+      #0F1A17; /* “céu” escuro, puxando pro verde */
+  }
+  /* estrelas simples (baixa densidade, barato) */
+  .svg-box::before{
+    content:"";
+    position:absolute; inset:0; pointer-events:none; opacity:.55;
+    background-image:
+      radial-gradient(2px 2px at 10% 15%, #fff 60%, transparent 61%),
+      radial-gradient(1.5px 1.5px at 28% 32%, #fff 60%, transparent 61%),
+      radial-gradient(1.5px 1.5px at 72% 24%, #fff 60%, transparent 61%),
+      radial-gradient(2px 2px at 85% 56%, #fff 60%, transparent 61%),
+      radial-gradient(1.5px 1.5px at 40% 70%, #fff 60%, transparent 61%),
+      radial-gradient(2px 2px at 65% 82%, #fff 60%, transparent 61%);
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,.35));
+  }
+  /* Caminho ∞ mais grosso, com brilho sutil “neon” vinho→verde */
   #infinityPath{
-    stroke: #111;            /* editorial, menos “feminino” */
-    stroke-width: 20;        /* traço mais grosso */
+    stroke: url(#gradInfinity);
+    stroke-width: 8;                   /* mais grosso */
     fill: none;
     stroke-linecap: round;
-    filter: drop-shadow(0 10px 26px rgba(0,0,0,.14));
+    filter: drop-shadow(0 6px 18px rgba(29,77,58,.28));
   }
-  /* pontos/aulas */
+  /* Dots mais “tech”: menos rosa, borda dupla vinho/verde e brilho */
   .dot{
-    position:absolute; width:36px; height:36px; border-radius:50%;
-    background:radial-gradient(circle at 32% 30%, #fff, #fff 50%, #FCE9EE 100%);
-    border:2px solid var(--wine); box-shadow:var(--shadow);
+    position:absolute; width:38px; height:38px; border-radius:50%;
+    background: radial-gradient(circle at 32% 30%, #ffffff, #e9eef0 55%, #ced7d1 100%);
+    border: 2px solid var(--green);
+    box-shadow: 0 0 0 2px rgba(124,30,40,.25), 0 10px 22px rgba(0,0,0,.20);
     display:grid; place-items:center; transform:translate(-50%,-50%) scale(.92);
-    transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s;
-    cursor:pointer;
+    transition: transform .28s cubic-bezier(.2,.6,.2,1), box-shadow .28s, border-color .28s;
+    cursor: pointer;
   }
-  .dot.open{ transform:translate(-50%,-50%) scale(1.12); box-shadow:0 14px 34px rgba(17,17,17,.22); z-index:3 }
   .dot::after{
-    content:""; position:absolute; inset:-6px; border-radius:50%;
-    box-shadow:0 0 0 2px var(--pink) inset; opacity:.9;
+    content:""; position:absolute; inset:-5px; border-radius:50%;
+    box-shadow:
+      0 0 0 1px rgba(29,77,58,.45) inset,
+      0 0 12px rgba(124,30,40,.35);
+    opacity:.9;
   }
+  .dot.open{
+    transform:translate(-50%,-50%) scale(1.12);
+    box-shadow:
+      0 0 0 2px rgba(124,30,40,.45),
+      0 18px 34px rgba(29,77,58,.35);
+    z-index:3;
+  }
+  .dot span{ font-size:.9rem; color:var(--wine); font-weight:700 }
   .dot-label{
     position:absolute; top:110%; left:50%; transform:translateX(-50%);
-    background:#fff; border:1px solid rgba(17,17,17,.18); border-radius:12px;
-    padding:10px 12px; width:max(220px,22ch); max-width:280px;
-    box-shadow:var(--shadow); display:none;
+    background:#111; color:#EDEDED;
+    border:1px solid rgba(245,215,226,.18);
+    border-radius:12px; padding:10px 12px; width:max(220px,22ch); max-width:260px;
+    box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    display:none;
   }
   .dot.open .dot-label{ display:block; }
-  .dot-label h4{ margin:0 0 4px 0; font-size:1rem; color:var(--green); font-family:"Playfair Display",serif; }
-  .legend{ margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; color:var(--muted) }
-  .badge{ padding:6px 10px; border-radius:999px; background:#fff; border:1px solid rgba(17,17,17,.18) }
+  .dot-label h4{
+    margin:0 0 4px 0; font-size:1rem;
+    color:#F4F4F4;
+    font-family:"Canela","Playfair Display",serif;
+  }
+  .dot-label small{ color:#B8C2BE }
+  .legend{
+    margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; color:var(--muted)
+  }
+  .badge{ padding:6px 10px; border-radius:999px; background:#fff; border:1px solid rgba(29,77,58,.18) }
+  @media (max-width: 800px){
+    .svg-box{ width:min(100%, 92vw); aspect-ratio: 9 / 16; }
+    .dot-label{ top:118%; left:50%; transform:translateX(-50%); }
+  }
+  @media (min-width: 1100px){
+    .svg-box{ width: 920px; }
+  }
 
-  /* ===================== RECOMPENSA ===================== */
+  /* ==== RECOMPENSA ======================================================== */
   .reward{ padding-block:clamp(40px,6vw,80px); }
   .reward-card{
     background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:var(--radius);
@@ -138,7 +211,7 @@
   .progress{ height:12px; background:rgba(29,77,58,.12); border-radius:999px; overflow:hidden }
   .progress > span{ display:block; height:100%; width:42%; background:var(--wine); }
 
-  /* ===================== STORIES ENH ===================== */
+  /* ==== STORIES ENH ======================================================= */
   .stories{ padding-block:clamp(40px,6vw,80px); background:linear-gradient(180deg, var(--off), #fff); }
   .stories-grid{
     display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
@@ -156,7 +229,7 @@
   .story h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green); }
   .story small{ color:var(--muted) }
 
-  /* ===================== MODAL ===================== */
+  /* Modal */
   dialog{ border:none; border-radius:16px; width:min(92vw,720px); padding:0; box-shadow:0 30px 80px rgba(0,0,0,.25); }
   dialog::backdrop{ background:rgba(0,0,0,.35); }
   .modal{ padding:22px; background:#fff; border-radius:16px; }
@@ -164,29 +237,34 @@
   .modal h3{ margin:0; }
   .modal .close{ background:transparent; border:none; font-weight:700; color:var(--wine); cursor:pointer; }
 
-  /* ===================== FAQ ===================== */
+  /* ==== FAQ =============================================================== */
   .faq{ padding-block:clamp(40px,6vw,80px); border-top:4px solid var(--pink); }
   .accordion{ display:grid; gap:10px; }
-  .acc{ background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:12px; overflow:hidden; }
-  .acc summary{ list-style:none; padding:14px 16px; cursor:pointer; position:relative; font-weight:700; color:var(--green); }
+  .acc{
+    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:12px; overflow:hidden;
+  }
+  .acc summary{
+    list-style:none; padding:14px 16px; cursor:pointer; position:relative;
+    font-weight:700; color:var(--green);
+  }
   .acc summary::-webkit-details-marker{ display:none }
-  .acc summary::after{ content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700; }
+  .acc summary::after{
+    content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700;
+  }
   .acc[open] summary::after{ content:"–" }
   .acc .content{ padding:0 16px 16px 16px; color:var(--text) }
 
-  /* ===================== FOOTER ===================== */
+  /* ==== FOOTER ============================================================ */
   footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:24px 0; text-align:center }
 
-  /* ===================== UTIL ===================== */
+  /* ==== UTIL ============================================================== */
   .center{ text-align:center }
   .mt-8{ margin-top:8px } .mt-16{ margin-top:16px } .mt-24{ margin-top:24px }
   .mb-0{ margin-bottom:0 }
+  .caps{ text-transform:uppercase; letter-spacing:.06em; font-weight:700 }
+  .muted{ color:var(--muted) }
 
-  /* ===================== RESPONSIVO ===================== */
-  @media (max-width: 880px){
-    .svg-box{ max-width:640px; aspect-ratio: 3/5; }
-    .dot-label{ left:50%; transform:translateX(-50%); top:118%; }
-  }
+  /* ==== PREFERS REDUCED MOTION =========================================== */
   @media (prefers-reduced-motion: reduce){
     .dot, .dot-label, .hero-card{ transition: none !important; }
   }
@@ -194,7 +272,7 @@
 </head>
 <body>
 
-<!-- ========================= HERO (pinned) ========================= -->
+<!-- ========================= HERO PINNED ================================ -->
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true"></div>
 
@@ -205,15 +283,14 @@
         <p class="lead"><strong>Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</strong></p>
         <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
         <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil.</em></p>
-        <p>Você paga <strong>só o 1º ano</strong>.<br>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
-          <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
+        <p>Você paga <strong>só o 1º ano</strong>.<br>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br><small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
         <p><strong>Selo de confiança:</strong> seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
         <a href="#infinity" class="cta">Entrar e criar o seu primeiro post agora →</a>
         <p class="mt-8"><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
       </div>
 
-      <!-- ======= SOCIAL PROOF ======= -->
-      <section class="band" aria-label="Prova Social">
+      <!-- ========================= SOCIAL PROOF =========================== -->
+      <section class="band">
         <div class="container inner">
           <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
           <div class="avatars" aria-label="Alunos que já participam">
@@ -226,12 +303,14 @@
           </div>
         </div>
       </section>
+      <!-- ================================================================== -->
+
     </div>
 
     <div class="hero-block">
       <div class="hero-card center">
         <h2 class="mb-0">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
-        <p class="mt-16">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
+        <p class="mt-8">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
         <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
         <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos + comunidade sobre humano</strong> = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
         <p><strong>AS 3 IAS QUE EU USO SÃO:</strong><br>
@@ -253,34 +332,42 @@
   </div>
 </section>
 
-<!-- ========================= DOBRA 2 — INFINITY (VERTICAL) ========================= -->
+<!-- ========================= DOBRA 2 — INFINITY MAP ===================== -->
 <section class="infinity" id="infinity">
   <div class="container wrap">
     <div class="svg-box" aria-hidden="true">
-      <!-- Novo símbolo ∞ vertical, editorial, inspirado na imagem enviada -->
-      <svg id="infinitySVG" viewBox="0 0 600 1000" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-        <!-- path simétrico vertical (8 contínuo) -->
+      <svg id="infinitySVG" viewBox="0 0 560 1000" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+        <!-- Gradiente para o traço do ∞ (vinho → verde) -->
+        <defs>
+          <linearGradient id="gradInfinity" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"  stop-color="#7C1E28"/>
+            <stop offset="50%" stop-color="#9C2A35"/>
+            <stop offset="100%" stop-color="#1D4D3A"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ∞ VERTICAL, mais espesso (stroke dado no CSS) -->
         <path id="infinityPath"
           d="
-            M 300 80
-            C 200 80, 140 220, 300 500
-            C 460 780, 400 920, 300 920
-            C 200 920, 140 780, 300 500
-            C 460 220, 400 80, 300 80
+            M 280 100
+            C 180 100, 150 260, 260 380
+            C 320 445, 360 470, 280 500
+            C 200 530, 240 555, 300 620
+            C 410 740, 380 900, 280 900
+            C 180 900, 150 740, 260 620
+            C 320 555, 360 530, 280 500
+            C 200 470, 240 445, 300 380
+            C 410 260, 380 100, 280 100
           " />
       </svg>
-      <!-- Dots gerados via JS -->
+      <!-- Dots posicionados via JS -->
     </div>
 
-    <div class="legend" aria-label="Legenda">
-      <span class="badge">● Aulas essenciais</span>
-      <span class="badge">● Equipe Não-Humana™</span>
-      <span class="badge">● ChatGPT & Higgsfield</span>
-    </div>
+    <div class="legend"></div>
   </div>
 </section>
 
-<!-- ========================= RECOMPENSA ========================= -->
+<!-- ========================= RECOMPENSA ================================= -->
 <section class="reward">
   <div class="container">
     <div class="reward-card">
@@ -292,7 +379,7 @@
   </div>
 </section>
 
-<!-- ========================= STORIES ENH ========================= -->
+<!-- ========================= STORIES ENH ================================ -->
 <section class="stories">
   <div class="container">
     <h2 class="center">Equipe Não-Humana™ — perfis</h2>
@@ -301,7 +388,7 @@
   </div>
 </section>
 
-<!-- ========================= FAQ ========================= -->
+<!-- ========================= FAQ ======================================= -->
 <section class="faq">
   <div class="container">
     <h2 class="center">FAQ (com reforço da tese das 3 IAs)</h2>
@@ -367,9 +454,9 @@
   </div>
 </footer>
 
-<!-- ========================= SCRIPTS ========================= -->
+<!-- ========================= SCRIPTS ==================================== -->
 <script>
-/* ====== AULAS (dots no ∞) ====== */
+/* ====== DADOS (Aulas no ∞) ================================================= */
 const aulas = [
   { id:'higgsfield-gemea', titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
   { id:'chatgpt-designs', titulo:'Designs conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
@@ -384,26 +471,29 @@ const aulas = [
   { id:'hacks-chatgpt', titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
 ];
 
-/* ====== HERO: revelar cartões ao rolar ====== */
-document.querySelectorAll('.hero-card').forEach(card=>{
-  card.style.opacity = 0; card.style.transform = 'translateY(20px)';
-});
+/* ====== HERO: revelação suave dos cards =================================== */
+const heroBlocks = document.querySelectorAll('.hero-card');
 const ioHero = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     e.target.style.opacity = e.isIntersecting ? 1 : .35;
     e.target.style.transform = e.isIntersecting ? 'translateY(0)' : 'translateY(20px)';
   });
 },{ threshold:.45 });
-document.querySelectorAll('.hero-card').forEach(c => ioHero.observe(c));
+heroBlocks.forEach(card=>{
+  card.style.opacity = 0; card.style.transform = 'translateY(20px)';
+  ioHero.observe(card);
+});
 
-/* ====== INFINITY: posicionar dots ao longo do novo path vertical ====== */
+/* ====== INFINITY: posicionar dots ao longo do path ======================== */
 const svg = document.getElementById('infinitySVG');
 const path = document.getElementById('infinityPath');
 const box = document.querySelector('.svg-box');
 const totalLen = path.getTotalLength();
 
 function placeDots(){
+  // limpa dots antigos
   box.querySelectorAll('.dot').forEach(d => d.remove());
+  const rect = box.getBoundingClientRect();
   aulas.forEach((item, i)=>{
     const t = (i+1)/(aulas.length+1);
     const p = path.getPointAtLength(totalLen * t);
@@ -412,11 +502,11 @@ function placeDots(){
     dot.style.left = (p.x / svg.viewBox.baseVal.width * 100) + '%';
     dot.style.top  = (p.y / svg.viewBox.baseVal.height * 100) + '%';
     dot.setAttribute('aria-expanded','false');
-    dot.innerHTML = `<span style="font-size:.9rem;color:var(--wine);font-weight:700">●</span>
-      <div class="dot-label" role="region" aria-live="polite">
-        <h4>${item.titulo}</h4>
-        <small><strong>IA:</strong> ${item.ia} — ${item.detalhe || ''}</small>
-      </div>`;
+    dot.innerHTML = `<span>●</span>
+        <div class="dot-label" role="region" aria-live="polite">
+          <h4>${item.titulo}</h4>
+          <small><strong>IA:</strong> ${item.ia} — ${item.detalhe || ''}</small>
+        </div>`;
     dot.addEventListener('click', ()=>{
       document.querySelectorAll('.dot').forEach(d=>{ d.classList.remove('open'); d.setAttribute('aria-expanded','false'); });
       dot.classList.add('open'); dot.setAttribute('aria-expanded','true');
@@ -425,9 +515,9 @@ function placeDots(){
   });
 }
 placeDots();
-addEventListener('resize', placeDots);
+window.addEventListener('resize', placeDots);
 
-/* Abrir dots em sequência conforme scroll */
+/* Auto-abrir próximo dot ao rolar (efeito “sequência”) */
 const ioDots = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -436,9 +526,11 @@ const ioDots = new IntersectionObserver((entries)=>{
     }
   })
 },{root:null, threshold:.95});
-setTimeout(()=> box.querySelectorAll('.dot').forEach(d=> ioDots.observe(d)), 400);
+setTimeout(()=>{
+  box.querySelectorAll('.dot').forEach(d=> ioDots.observe(d));
+}, 400);
 
-/* ====== STORIES ENH (modais) ====== */
+/* ====== STORIES ENH (modais) ============================================= */
 const ENH = [
   { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”' },
   { nome:'Larissa dos Roteiros', func:'Roteiros práticos', exemplo:'Estrutura 3A: Atenção, Âncora, Ação.' },
@@ -452,6 +544,7 @@ const ENH = [
   { nome:'Leonardo da Viralização', func:'Ajustes de alcance', exemplo:'Tensão + contraste + repetição útil.' }
 ];
 const grid = document.getElementById('storiesGrid');
+
 function cardENH(p){
   const el = document.createElement('div');
   el.className = 'story';
@@ -464,6 +557,7 @@ function cardENH(p){
   return el;
 }
 ENH.forEach(p => grid.appendChild(cardENH(p)));
+
 function openModal(p){
   const dlg = document.createElement('dialog');
   dlg.innerHTML = `
@@ -485,9 +579,8 @@ function openModal(p){
   dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
 }
 
-/* ====== FADES SUAVES ====== */
+/* ====== SUAVIZAÇÃO DE ENTRADA NO SCROLL ================================== */
 const fadeEls = document.querySelectorAll('.reward-card, .stories .container, .faq .container');
-fadeEls.forEach(el => { el.style.opacity=.001; el.style.transform='translateY(12px)'; });
 const ioFade = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -496,7 +589,7 @@ const ioFade = new IntersectionObserver((entries)=>{
     }
   })
 },{ threshold:.25 });
-fadeEls.forEach(el => ioFade.observe(el));
+fadeEls.forEach(el => { el.style.opacity=.001; el.style.transform='translateY(12px)'; ioFade.observe(el); });
 </script>
 </body>
 </html>
