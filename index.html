@@ -190,6 +190,82 @@
   /* Entradas animadas */
   .reveal{ opacity:.001; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease; }
   .reveal.visible{ opacity:1; transform:translateY(0); }
+  /* ===================== TRILHA EM CARTAS (estilos) ======================= */
+.deck{ background:var(--beige); padding-block:clamp(48px,6vw,80px); }
+.deck-head .chip{
+  display:inline-block; padding:6px 12px; border-radius:999px;
+  background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem;
+  letter-spacing:.2px; margin-bottom:10px;
+}
+.deck h2{ color:var(--green); font-family:"Canela","Playfair Display",serif; }
+
+.deck-wrap{
+  position:relative; display:grid; place-items:center; margin-top:28px;
+  /* modo carrossel no mobile */
+  overflow-x:auto; padding:12px; gap:0; scroll-snap-type:x mandatory;
+}
+.card{
+  width:min(64vw, 260px); height:min(90vw, 380px);
+  background: #ddd; border-radius:28px; position:relative;
+  transform: translateX(calc(var(--x,0) * 1%)) rotate(calc(var(--deg,0) * 1deg));
+  box-shadow: 0 20px 50px rgba(29,77,58,.18);
+  transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s;
+  background-image: var(--bg); background-size:cover; background-position:center;
+  border: 2px solid rgba(29,77,58,.25);
+  margin-inline:clamp(6px, 2vw, 14px);
+  scroll-snap-align:center;
+}
+.card::before{
+  /* fio verde sutil ao redor (sinal técnico) */
+  content:""; position:absolute; inset:0; border-radius:28px;
+  box-shadow: inset 0 0 0 2px rgba(29,77,58,.12);
+  pointer-events:none;
+}
+.card .card-glow{
+  position:absolute; inset:auto -20% -12% -20%; height:40%;
+  background: radial-gradient(60% 50% at 50% 0%, rgba(124,30,40,.12), transparent 70%);
+  filter: blur(14px);
+}
+.card .card-meta{
+  position:absolute; left:14px; right:14px; bottom:14px;
+  background:rgba(255,255,255,.82); backdrop-filter: blur(6px) saturate(130%);
+  border:1px solid rgba(29,77,58,.15); border-radius:16px; padding:10px 12px;
+  color:var(--text);
+}
+.card .card-meta strong{ color:var(--wine); font-size:.8rem; }
+.card .card-meta h3{
+  margin:4px 0 4px; font-size:1.05rem; color:var(--green);
+  font-family:"Canela","Playfair Display",serif;
+}
+.card:hover{ transform: translateX(calc(var(--x,0) * 1%)) rotate(0deg) scale(1.02); box-shadow:0 28px 70px rgba(29,77,58,.26); }
+.card:focus-visible{ outline:3px solid var(--pink); }
+
+.deck-legend{
+  display:flex; flex-wrap:wrap; gap:14px 20px; margin-top:24px; color:var(--muted);
+}
+.dot{ display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; transform:translateY(1px); }
+.dot--chatgpt{ background:var(--wine); }
+.dot--higgs{ background:var(--green); }
+.dot--enh{ background:linear-gradient(135deg, var(--pink), var(--wine)); }
+
+.deck-divider{
+  height:4px; border:0; background: var(--pink); width:100%;
+  margin-top:clamp(36px,5vw,60px);
+}
+
+/* Desktop: leque central com cartas maiores */
+@media (min-width: 900px){
+  .deck-wrap{
+    display:flex; justify-content:center; align-items:flex-end; overflow:visible;
+    padding:24px 0 8px;
+  }
+  .card{ width:260px; height:380px; }
+}
+
+/* Reduz motion para acessibilidade */
+@media (prefers-reduced-motion: reduce){
+  .card{ transition:none; }
+}
 </style>
 </head>
 <body>
@@ -252,101 +328,94 @@
   </div>
 </section>
 
-<!-- ========================= DOBRA 2 — MAPA DO ESTÚDIO ===================== -->
-<section class="studio-map" id="mapa">
+<!-- ========================= DOBRA 2 — TRILHA EM CARTAS ================== -->
+<section class="deck" id="mapa">
   <div class="container">
-    <h2 class="center" style="margin-bottom:16px">Mapa do Estúdio (guia de navegação)</h2>
-    <div class="map-grid">
-      <!-- MAPA (SVG + PINS ABSOLUTOS) -->
-      <div class="map-card">
-        <div class="map-box" id="mapBox" aria-label="Mapa do Estúdio (como shopping)">
-          <!-- SVG do “shopping” -->
-          <svg id="studioSVG" viewBox="0 0 1000 700" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="mapTitle">
-            <title id="mapTitle">Mapa do Estúdio Infinito — Zonas e Conexões</title>
+    <header class="deck-head center">
+      <span class="chip">MAPA DO ESTÚDIO — mini-curso + IA</span>
+      <h2>Você entra, escolhe a rota e publica em 24h.</h2>
+      <p class="muted">Passe o mouse (ou toque) nas cartas para ver o foco de cada etapa.</p>
+    </header>
 
-            <!-- Corredores -->
-            <path class="corridor" d="M80 350 H920" />
-            <path class="corridor" d="M500 80 V620" />
-
-            <!-- Zonas / Alas -->
-            <!-- Praça das 3 IAs -->
-            <rect class="zone" id="zona-ias" x="90" y="90" rx="18" ry="18" width="340" height="220" fill="#fff"/>
-            <text class="zone-label" x="260" y="120" text-anchor="middle" font-size="20">Praça das 3 IAs</text>
-
-            <!-- Estúdios (Carrossel, Stories, Roteiros) -->
-            <rect class="zone" id="zona-estudios" x="570" y="90" rx="18" ry="18" width="340" height="220" fill="#fff"/>
-            <text class="zone-label" x="740" y="120" text-anchor="middle" font-size="20">Estúdios de Formatos</text>
-
-            <!-- Estratégia & Público -->
-            <rect class="zone" id="zona-estrategia" x="90" y="390" rx="18" ry="18" width="340" height="220" fill="#fff"/>
-            <text class="zone-label" x="260" y="420" text-anchor="middle" font-size="20">Estratégia & Público</text>
-
-            <!-- Comunidade Sobre-Humano -->
-            <rect class="zone" id="zona-comunidade" x="570" y="390" rx="18" ry="18" width="340" height="220" fill="#fff"/>
-            <text class="zone-label" x="740" y="420" text-anchor="middle" font-size="20">Comunidade Sobre-Humano</text>
-          </svg>
-
-          <!-- Pinos (aulas) posicionados de forma absoluta (percentual sobre viewBox) -->
-          <!-- Praça das 3 IAs -->
-          <button class="store-pin" data-id="higgsfield-gemea" style="left:22%; top:26%;" aria-label="Crie sua Gêmea Digital pelo Celular"></button>
-          <div class="store-tooltip"><strong>Crie sua Gêmea Digital pelo Celular</strong><br><small>IA: Higgsfield — Poste sem aparecer.</small></div>
-
-          <button class="store-pin" data-id="chatgpt-designs" style="left:34%; top:30%;" aria-label="Designs conversando com o ChatGPT (sem abrir o Canva)"></button>
-          <div class="store-tooltip"><strong>Designs conversando com o ChatGPT</strong><br><small>IA: ChatGPT — Criação direta pela conversa.</small></div>
-
-          <!-- Estúdios -->
-          <button class="store-pin" data-id="carlos-carrosseis" style="left:76%; top:26%;" aria-label="Carrosséis Inteligentes Criados com IA"></button>
-          <div class="store-tooltip"><strong>Carrosséis Inteligentes Criados com IA</strong><br><small>IA: Carlos dos Carrosséis — Do 1º slide ao CTA.</small></div>
-
-          <button class="store-pin" data-id="jose-stories" style="left:86%; top:34%;" aria-label="Stories que as Pessoas Realmente Querem Ver"></button>
-          <div class="store-tooltip"><strong>Stories que as Pessoas Realmente Querem Ver</strong><br><small>IA: José dos Stories — Sequência, ritmo, pergunta.</small></div>
-
-          <button class="store-pin" data-id="larissa-roteiros" style="left:70%; top:34%;" aria-label="Roteiros com IA que as Pessoas Querem Ouvir"></button>
-          <div class="store-tooltip"><strong>Roteiros com IA que as Pessoas Querem Ouvir</strong><br><small>IA: Larissa dos Roteiros — Estrutura e tensão.</small></div>
-
-          <!-- Estratégia & Público -->
-          <button class="store-pin" data-id="bia-publico" style="left:28%; top:70%;" aria-label="Estratégia de Público — Como Vender para as Pessoas Certas"></button>
-          <div class="store-tooltip"><strong>Estratégia de Público</strong><br><small>IA: Bia do Público — Direção, mensagem, oferta.</small></div>
-
-          <button class="store-pin" data-id="maria-ideias" style="left:18%; top:62%;" aria-label="Ideias que Nunca Acabam (mesmo produto)"></button>
-          <div class="store-tooltip"><strong>Ideias que Nunca Acabam</strong><br><small>IA: Maria das Ideias — Mapa infinito de temas.</small></div>
-
-          <button class="store-pin" data-id="joao-ganchos" style="left:36%; top:62%;" aria-label="Domine os Primeiros 3 Segundos do Seu Post"></button>
-          <div class="store-tooltip"><strong>Domine os Primeiros 3 Segundos</strong><br><small>IA: João dos Ganchos — Começos que fazem parar.</small></div>
-
-          <!-- Comunidade -->
-          <button class="store-pin" data-id="comunidade" style="left:70%; top:72%;" aria-label="Comunidade Sobre-Humano — feedback e oficinas"></button>
-          <div class="store-tooltip"><strong>Comunidade Sobre-Humano™</strong><br><small>Feedback, oficinas (2×/mês) e suporte.</small></div>
-
-          <!-- Extras (crescimento e hacks) -->
-          <button class="store-pin" data-id="tiktok-2026" style="left:62%; top:56%;" aria-label="Como Crescer no TikTok em 2026"></button>
-          <div class="store-tooltip"><strong>Como Crescer no TikTok em 2026</strong><br><small>IA: ChatGPT — Estratégias atualizadas.</small></div>
-
-          <button class="store-pin" data-id="instagram-2026" style="left:80%; top:56%;" aria-label="Como Crescer no Instagram em 2026"></button>
-          <div class="store-tooltip"><strong>Como Crescer no Instagram em 2026</strong><br><small>IA: ChatGPT — Série, constância e loops.</small></div>
-
-          <button class="store-pin" data-id="hacks-chatgpt" style="left:50%; top:46%;" aria-label="Dominando o ChatGPT — Meus Hacks Secretos"></button>
-          <div class="store-tooltip"><strong>Dominando o ChatGPT — Meus Hacks Secretos</strong><br><small>IA: ChatGPT — Prompts e atalhos práticos.</small></div>
-
-          <!-- Legenda -->
-          <div class="legend" style="position:absolute; left:10px; bottom:10px;">
-            <span class="badge">🧠 ChatGPT</span>
-            <span class="badge">🎨 Higgsfield</span>
-            <span class="badge">🤖 Equipe Não-Humana™</span>
-          </div>
+    <!-- Leque de cartas (desktop) + carrossel horizontal (mobile) -->
+    <div class="deck-wrap" role="list">
+      <!-- Cada carta representa uma aula/IA -->
+      <article class="card" role="listitem"
+        style="--deg:-14; --x:-14; --bg:url('https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200');"
+        data-titulo="Crie sua Gêmea Digital pelo Celular"
+        data-ia="Higgsfield"
+        data-desc="Poste sem aparecer — consistência com avatar fiel.">
+        <div class="card-glow"></div>
+        <div class="card-meta">
+          <strong>Higgsfield</strong>
+          <h3>Gêmea Digital no Celular</h3>
+          <small>Poste sem aparecer.</small>
         </div>
-      </div>
+      </article>
 
-      <!-- PAINEL LATERAL (lista navegável) -->
-      <aside class="panel-card">
-        <h3>Diretório do Estúdio</h3>
-        <p class="muted" style="margin-top:-4px">Navegue como num shopping: escolha a ala e toque na “loja”.</p>
-        <div class="panel-list" id="panelList">
-          <!-- Itens preenchidos via JS (mantendo a mesma copy / aulas) -->
+      <article class="card" role="listitem"
+        style="--deg:-7; --x:-7; --bg:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200');"
+        data-titulo="Designs conversando com o ChatGPT"
+        data-ia="ChatGPT"
+        data-desc="Peças e variações direto da conversa, sem abrir o Canva.">
+        <div class="card-glow"></div>
+        <div class="card-meta">
+          <strong>ChatGPT</strong>
+          <h3>Designs por Conversa</h3>
+          <small>Sem abrir o Canva.</small>
         </div>
-      </aside>
+      </article>
+
+      <article class="card" role="listitem"
+        style="--deg:0; --x:0; --bg:url('https://images.unsplash.com/photo-1551281044-8d8e1421a9a1?q=80&w=1200');"
+        data-titulo="Estratégia de Público — Como Vender para as Pessoas Certas"
+        data-ia="Bia do Público (ENH)"
+        data-desc="Direção, mensagem e promessa que convertem.">
+        <div class="card-glow"></div>
+        <div class="card-meta">
+          <strong>ENH · Bia do Público</strong>
+          <h3>Estratégia de Público</h3>
+          <small>Falar com quem compra.</small>
+        </div>
+      </article>
+
+      <article class="card" role="listitem"
+        style="--deg:7; --x:7; --bg:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200');"
+        data-titulo="Ideias que Nunca Acabam"
+        data-ia="Maria das Ideias (ENH)"
+        data-desc="Estoque infinito sem soar repetitivo.">
+        <div class="card-glow"></div>
+        <div class="card-meta">
+          <strong>ENH · Maria das Ideias</strong>
+          <h3>Ideias Infindas</h3>
+          <small>Sem repetir de verdade.</small>
+        </div>
+      </article>
+
+      <article class="card" role="listitem"
+        style="--deg:14; --x:14; --bg:url('https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200');"
+        data-titulo="Domine os Primeiros 3 Segundos"
+        data-ia="João dos Ganchos (ENH)"
+        data-desc="Começos que fazem a pessoa parar.">
+        <div class="card-glow"></div>
+        <div class="card-meta">
+          <strong>ENH · João dos Ganchos</strong>
+          <h3>Primeiros 3s</h3>
+          <small>Prende e conduz.</small>
+        </div>
+      </article>
     </div>
+
+    <!-- Legenda de trilhas (mantém a tese das 3 IAs) -->
+    <ul class="deck-legend">
+      <li><span class="dot dot--chatgpt"></span> ChatGPT: ideias, roteiros, legendas e designs.</li>
+      <li><span class="dot dot--higgs"></span> Higgsfield: sua Gêmea Digital (poste sem aparecer).</li>
+      <li><span class="dot dot--enh"></span> Equipe Não-Humana™: peças completas, prontas pra publicar.</li>
+    </ul>
   </div>
+
+  <!-- Divisória rosa sutil, alinhada ao branding -->
+  <hr class="deck-divider" />
 </section>
 
 <!-- ========================= RECOMPENSA ================================= -->
@@ -465,86 +534,6 @@ const aulas = [
   { id:'hacks-chatgpt', zona:'zona-ias', titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
 ];
 
-/* ====== PAINEL LATERAL (diretório) ====== */
-const panel = document.getElementById('panelList');
-const zonasLabels = {
-  'zona-ias': 'Praça das 3 IAs',
-  'zona-estudios': 'Estúdios de Formatos',
-  'zona-estrategia': 'Estratégia & Público',
-  'zona-comunidade': 'Comunidade Sobre-Humano'
-};
-
-function renderPanel(){
-  // Agrupa por zona
-  const groups = aulas.reduce((acc,a)=>{
-    (acc[a.zona] = acc[a.zona] || []).push(a);
-    return acc;
-  },{});
-
-  panel.innerHTML = '';
-  Object.keys(groups).forEach(z=>{
-    const title = document.createElement('h4');
-    title.textContent = zonasLabels[z] || 'Zona';
-    title.style.color = 'var(--green)';
-    title.style.margin = '12px 0 8px 0';
-    title.style.fontFamily = '"Canela","Playfair Display",serif';
-    panel.appendChild(title);
-
-    groups[z].forEach(a=>{
-      const item = document.createElement('button');
-      item.className = 'pill';
-      item.setAttribute('data-go', a.id);
-      item.innerHTML = `<span class="dot"></span><div><strong>${a.titulo}</strong><br><small>${a.ia} — ${a.detalhe}</small></div>`;
-      item.addEventListener('click', ()=> focusStore(a.id));
-      panel.appendChild(item);
-    });
-  });
-}
-renderPanel();
-
-/* ====== MAPA — PINs/Tooltips ====== */
-// Conecta cada .store-pin ao seu .store-tooltip adjacente
-const mapBox = document.getElementById('mapBox');
-const pins = Array.from(mapBox.querySelectorAll('.store-pin'));
-const tips = Array.from(mapBox.querySelectorAll('.store-tooltip'));
-
-// Auxiliar: desativa tudo
-function clearActive(){
-  pins.forEach(p=> p.classList.remove('active'));
-  tips.forEach(t=> t.style.display='none');
-}
-
-// Ativa um pin por id
-function focusStore(id){
-  clearActive();
-  const pin = pins.find(p=> p.dataset.id === id);
-  if(!pin) return;
-  const tip = pin.nextElementSibling;
-  pin.classList.add('active');
-  tip.style.display='block';
-  // Scroll suave até o mapa, se estiver fora de vista
-  mapBox.scrollIntoView({behavior:'smooth', block:'center'});
-}
-
-// Click nos pins
-pins.forEach(p=>{
-  p.addEventListener('click', ()=>{
-    const isActive = p.classList.contains('active');
-    clearActive();
-    if(!isActive){
-      p.classList.add('active');
-      const tip = p.nextElementSibling; tip.style.display='block';
-    }
-  });
-});
-
-// Fecha tooltip ao clicar fora
-document.addEventListener('click', (e)=>{
-  if(!mapBox.contains(e.target) && !panel.contains(e.target)){
-    clearActive();
-  }
-});
-
 /* ====== STORIES ENH (cards + modais) ====== */
 const ENH = [
   { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”' },
@@ -593,6 +582,67 @@ function openModal(p){
   dlg.addEventListener('close', ()=> dlg.remove());
   dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
 }
+<!-- ===================== JS (efeitos das cartas) =================== -->
+<script>
+(function(){
+  const cards = document.querySelectorAll('.deck .card');
+
+  // Tilt suave
+  cards.forEach(card=>{
+    card.addEventListener('mousemove', (e)=>{
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - .5;
+      const y = (e.clientY - r.top)/r.height - .5;
+      card.style.transform =
+        `translateX(calc(var(--x,0)*1%)) rotate(calc(var(--deg,0)*1deg)) 
+         rotateY(${x*6}deg) rotateX(${ -y*6 }deg)`;
+    });
+    card.addEventListener('mouseleave', ()=>{
+      card.style.transform =
+        `translateX(calc(var(--x,0)*1%)) rotate(calc(var(--deg,0)*1deg))`;
+    });
+  });
+
+  // Entrando na viewport
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity = 1;
+        e.target.style.transform += ' translateY(0)';
+      } else {
+        e.target.style.opacity = .92;
+        e.target.style.transform += ' translateY(8px)';
+      }
+    });
+  },{threshold:.35});
+  cards.forEach(c=>{ c.style.opacity=.92; c.style.transform += ' translateY(8px)'; io.observe(c); });
+
+  // Clique abre detalhe (modal nativo)
+  document.addEventListener('click', (ev)=>{
+    const card = ev.target.closest('.deck .card');
+    if(!card) return;
+    const titulo = card.dataset.titulo || '';
+    const ia = card.dataset.ia || '';
+    const desc = card.dataset.desc || '';
+    const dlg = document.createElement('dialog');
+    dlg.innerHTML = `
+      <div style="padding:22px;background:#fff;border-radius:16px;min-width:min(92vw,640px)">
+        <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--pink);padding-bottom:10px">
+          <h3 style="margin:0;color:var(--green);font-family: 'Canela','Playfair Display',serif;">${titulo}</h3>
+          <button style="background:transparent;border:none;color:var(--wine);font-weight:700;cursor:pointer">fechar ✕</button>
+        </header>
+        <div style="margin-top:14px;color:var(--text)">
+          <p><strong>IA:</strong> ${ia}</p>
+          <p>${desc}</p>
+          <p class="muted">Aula vista = post no ar.</p>
+        </div>
+      </div>`;
+    document.body.appendChild(dlg);
+    dlg.showModal();
+    dlg.querySelector('button').addEventListener('click', ()=> dlg.close());
+    dlg.addEventListener('close', ()=> dlg.remove());
+  });
+})();
 </script>
 </body>
 </html>
