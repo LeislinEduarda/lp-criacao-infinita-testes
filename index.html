@@ -258,6 +258,150 @@
     .center{text-align:center}
     .mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}
     .mb-0{margin-bottom:0}
+    /* 1) Travar viewport e remover rolagem */
+html, body {
+  height: 100%;
+  overflow: hidden;              /* sem scroll vertical/lateral */
+}
+
+/* 2) Hero ocupa a tela toda e centraliza o conteúdo */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2.5rem 1.25rem;       /* padding mais contido */
+  box-sizing: border-box;
+}
+
+/* 3) Largura máxima e grid interno enxuto */
+.hero-inner {
+  width: 100%;
+  max-width: 1080px;             /* ajustável */
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;  /* texto | contador/apoio */
+  align-items: center;
+  gap: 1.5rem;                   /* menos espaço entre colunas */
+}
+
+/* 4) Pilha vertical com espaçamento curto */
+.stack > * + * {
+  margin-top: .75rem;            /* antes: 1.25–2rem, reduzimos */
+}
+
+/* 5) Títulos & subtítulos com CLAMP
+   - Pedidos: título um pouco menor, subtítulo um pouco maior */
+.hero h1 {
+  /* título menor, mais compacto */
+  font-size: clamp(2.0rem, 2.6vw, 2.6rem);
+  line-height: 1.08;
+  margin: 0 0 .4rem;
+}
+
+.hero .subtitle {
+  /* subtítulo maior (ganha leitura/presença) */
+  font-size: clamp(1.05rem, 1.2vw, 1.25rem);
+  line-height: 1.35;
+  color: var(--color-text-secondary, #3a3a3a);
+}
+
+/* 6) Parágrafos e listas com linha curta */
+.hero p,
+.hero li {
+  font-size: clamp(.95rem, 1vw, 1.05rem);
+  line-height: 1.35;
+  margin: 0;                     /* zera margem vertical padrão */
+}
+
+/* 7) Contador mais compacto (4 blocos lado a lado) */
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;                     /* menos respiro */
+}
+
+.countdown .box {
+  padding: .6rem .5rem;           /* menos padding */
+  border-radius: 10px;
+}
+
+.countdown .time {
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  line-height: 1.0;
+  font-weight: 700;
+}
+
+.countdown .label {
+  font-size: clamp(.7rem, .8vw, .8rem);
+  line-height: 1.0;
+  opacity: .85;
+}
+
+/* 8) Linha rosa sob o contador mais fina e próxima */
+.countdown-divider {
+  height: 2px;
+  margin-top: .5rem;              /* aproxima do contador */
+  background: var(--color-accent, #E6007E);
+  border-radius: 2px;
+}
+
+/* 9) CTA em bloco (sem parecer "botão") e compacto */
+.cta-block {
+  display: inline-block;
+  padding: .6rem .8rem;
+  border-radius: 10px;
+  font-size: clamp(.95rem, 1vw, 1.05rem);
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+/* 10) Ajustes finos de margens internas da coluna de texto */
+.hero .lead-block {
+  margin-top: .4rem;
+}
+
+.hero .bullets {
+  margin-top: .5rem;
+}
+
+/* 11) Micro-responsivo para telas pequenas (<= 420px)
+   - reduzimos ainda mais para garantir “sem scroll” */
+@media (max-width: 420px) {
+  .hero {
+    padding: 1.25rem .9rem;
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;     /* empilha */
+    gap: 1rem;
+  }
+  .countdown {
+    gap: .4rem;
+  }
+  .countdown .box {
+    padding: .5rem .45rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.7rem, 6vw, 2.2rem);
+  }
+  .hero .subtitle {
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
+  }
+  .hero p, .hero li {
+    font-size: clamp(.9rem, 3vw, 1rem);
+  }
+}
+
+/* 12) Segurança contra “pulos”
+   - Evita que algum bloco extra crie rolagem */
+main, .page {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* 13) Se houver header/footer: compacta e evita rolagem */
+.header, header,
+.footer, footer {
+  padding: .5rem 0;
+}
   </style>
 </head>
 <body>
