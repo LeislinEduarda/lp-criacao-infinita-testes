@@ -488,6 +488,96 @@ main, .page {
   line-height: 1.4;
   color: #333;
 }
+    /* ==== COMPACTAÇÃO DO HERO (override) ==== */
+
+/* garante que nada “empurre” para os lados */
+html, body { overflow-x: hidden; }
+
+/* ativa layout compacto apenas quando a classe estiver presente */
+.hero-compact .hero,
+.hero.hero-compact {
+  min-height: 100svh !important;            /* ocupa a dobra inteira no mobile */
+  padding: 1.2rem 1rem !important;          /* menos respiro pra caber tudo */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;       /* centraliza verticalmente */
+  align-items: center !important;
+  text-align: left;                          /* mantém leitura natural */
+  gap: 0.7rem !important;                   /* espaço curto entre elementos */
+}
+
+/* container interno do hero (se houver) */
+.hero-compact .hero .container { 
+  max-width: 680px !important; 
+  width: 100%;
+}
+
+/* TÍTULO — um pouco menor */
+.hero-compact .hero h1 {
+  font-size: clamp(1.9rem, 5.2vw, 2.25rem) !important;
+  line-height: 1.08 !important;
+  margin: 0 0 0.35rem 0 !important;
+  letter-spacing: 0.2px;
+}
+
+/* PRIMEIRA FRASE DO SUBTÍTULO — maior (efeito de destaque) */
+.hero-compact .hero .lead,
+.hero-compact .hero p:first-of-type {
+  font-size: clamp(1.1rem, 3.6vw, 1.28rem) !important;
+  line-height: 1.32 !important;
+  margin: 0 0 0.5rem 0 !important;
+  font-weight: 600;
+}
+
+/* demais parágrafos do topo */
+.hero-compact .hero p:not(:first-of-type) {
+  font-size: clamp(0.95rem, 2.9vw, 1.06rem) !important;
+  line-height: 1.34 !important;
+  margin: 0 0 0.4rem 0 !important;
+}
+
+/* Cartões/blocos do hero (ex: Post que Paga / Selo de Confiança) */
+.hero-compact .hero .card {
+  padding: 0.72rem 0.9rem !important;       /* compacta o bloco */
+  margin: 0.45rem 0 !important;             /* menos espaço vertical */
+  border-radius: 10px !important;
+  border-width: 1px !important;
+  max-width: 620px !important;
+}
+
+/* texto dentro dos cards um tico menor */
+.hero-compact .hero .card p,
+.hero-compact .hero .card strong,
+.hero-compact .hero .card em {
+  font-size: clamp(0.95rem, 2.7vw, 1.02rem) !important;
+  line-height: 1.32 !important;
+}
+
+/* CTA (se existir) — compacto */
+.hero-compact .hero .cta, 
+.hero-compact .hero button {
+  padding: 0.72rem 1.1rem !important;
+  font-size: 0.98rem !important;
+  border-radius: 8px !important;
+  margin-top: 0.6rem !important;
+}
+
+/* diminui ainda mais em telas com pouca altura (ex.: iPhone com barra visível) */
+@media (max-height: 740px) {
+  .hero-compact .hero,
+  .hero.hero-compact {
+    padding: 0.9rem 1rem !important;
+    gap: 0.55rem !important;
+  }
+  .hero-compact .hero h1 {
+    font-size: clamp(1.8rem, 4.9vw, 2.1rem) !important;
+    margin-bottom: 0.25rem !important;
+  }
+  .hero-compact .hero .card {
+    padding: 0.62rem 0.85rem !important;
+    margin: 0.38rem 0 !important;
+  }
+}
   </style>
 </head>
 <body>
