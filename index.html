@@ -3,34 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
 <title>ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)</title>
 <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos. As 3 IAs certas, mini-cursos rápidos e gente de verdade te puxando pro post no ar." />
 
-<!-- Open Graph / Twitter -->
-<meta property="og:title" content="ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)" />
-<meta property="og:description" content="As 3 IAs certas + mini-cursos rápidos + comunidade. Seu 1º post no ar em 24h — ou 100% de volta." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://leislineduarda.github.io/assets/estudio-infinito-cover.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="ESTÚDIO INFINITO™ — Crie 1 post por dia" />
-<meta name="twitter:description" content="Seu celular vira um estúdio. ChatGPT + Higgsfield + Equipe Não-Humana™." />
-<meta name="twitter:image" content="https://leislineduarda.github.io/assets/estudio-infinito-cover.jpg" />
-
-<!-- Performance: preconnect para fontes -->
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Tipografia: Inter + Playfair como fallback editorial da Canela -->
+<!-- Tipografia -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-  /* ==== TOKENS ============================================================ */
+  /* ================= TOKENS DE TEMA ================== */
   :root{
     --wine: #7C1E28;          /* destaque/CTA */
     --green: #1D4D3A;         /* títulos e traços */
     --pink: #F9C8D2;          /* respiro/separadores */
-    --beige: #F5D7E2;         /* base de seção */
+    --beige: #F5D7E2;         /* base neutra */
     --off: #FBF7F8;           /* fundo off-white */
     --text: #222222;          /* corpo */
     --muted: #555555;         /* apoio */
@@ -39,51 +24,32 @@
     --maxw: 1120px;
   }
 
-  /* ==== RESET SUAVE ======================================================= */
-  *,*::before,*::after{ box-sizing:border-box }
-  html,body{ height:100% }
+  /* ================= RESET SUAVE ===================== */
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
   body{
     margin:0; background:var(--off); color:var(--text);
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    overflow-x:hidden;  /* impede rolagem lateral */
   }
   h1,h2,h3{ margin:0 0 .6rem 0; line-height:1.15; color:var(--green); }
-  h1{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
-  h2{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
+  h1{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
+  h2{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
   h3{ font-weight:700; font-size:clamp(1.1rem,2vw,1.4rem); }
   p{ margin:.7rem 0; }
   a{ color:var(--wine); text-decoration:none }
   .container{ width:min(100%, var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px); }
+  .center{ text-align:center }
+  .muted{ color:var(--muted) }
 
-  /* ==== SOCIAL PROOF (faixa) ============================================= */
-  .band{
-    border-bottom: 2px solid var(--pink);
-    background: linear-gradient(180deg,#FFFFFF 0%, var(--off) 100%);
-  }
-  .band .inner{
-    display:flex; align-items:center; gap:20px; padding:12px 0;
-    justify-content:center; flex-wrap:wrap;
-  }
-  .band .title{
-    font-family:"Playfair Display", Georgia, serif; color:var(--green);
-    font-size:clamp(1rem,2vw,1.3rem); font-weight:700; white-space:nowrap;
-  }
-  .avatars{ display:flex; gap:10px; overflow:auto; padding-bottom:6px }
-  .avatar{
-    width:44px; height:44px; border-radius:50%;
-    flex:0 0 auto; position:relative;
-    box-shadow:0 0 0 2px var(--green), 0 0 0 4px var(--pink);
-    object-fit:cover;
-  }
-
-  /* ==== HERO COM VISUAL STICKY =========================================== */
+  /* ================= HERO (COM BG FIXO) ============== */
   .hero{
     position:relative;
-    background: transparent;
+    height:300vh; /* 3 blocos de texto */
+    isolation:isolate;
   }
-  .hero-visual{
-    position:sticky; top:0; height:100vh; z-index:0; isolation:isolate;
+  .hero-bg{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:
       radial-gradient(60% 60% at 70% 20%, rgba(124,30,40,.12) 0%, rgba(124,30,40,0) 60%),
       radial-gradient(50% 50% at 20% 70%, rgba(29,77,58,.18) 0%, rgba(29,77,58,0) 60%),
@@ -91,28 +57,34 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox=\'0 0 1200 800\'>\
       <defs><radialGradient id=\'g\' cx=\'50%\' cy=\'50%\' r=\'70%\'><stop offset=\'0%\' stop-color=\'#ffffff\'/><stop offset=\'100%\' stop-color=\'#FBF7F8\'/></radialGradient></defs>\
       <rect width=\'1200\' height=\'800\' fill=\'url(#g)\'/>\
-      <!-- Placeholder Expert + 13 asas (sutil) -->\
+      <!-- Placeholder da Expert segurando 13 asas (silhueta abstrata) -->\
       <g opacity=\'.18\' fill=\'#1D4D3A\'>\
         <path d=\'M620 120c-30 80-60 160-90 240 120-30 200-20 240 30-40-140-90-220-150-270z\'/>\
-        <circle cx=\'820\' cy=\'260\' r=\'12\'/><circle cx=\'860\' cy=\'280\' r=\'10\'/>\
-        <circle cx=\'890\' cy=\'310\' r=\'9\'/><circle cx=\'910\' cy=\'350\' r=\'8\'/>\
-        <circle cx=\'920\' cy=\'390\' r=\'7\'/><circle cx=\'910\' cy=\'430\' r=\'8\'/>\
-        <circle cx=\'890\' cy=\'470\' r=\'9\'/><circle cx=\'860\' cy=\'500\' r=\'10\'/>\
-        <circle cx=\'820\' cy=\'520\' r=\'12\'/><circle cx=\'780\' cy=\'525\' r=\'11\'/>\
-        <circle cx=\'740\' cy=\'515\' r=\'9\'/><circle cx=\'705\' cy=\'490\' r=\'8\'/>\
+        <circle cx=\'820\' cy=\'260\' r=\'12\'/>\
+        <circle cx=\'860\' cy=\'280\' r=\'10\'/>\
+        <circle cx=\'890\' cy=\'310\' r=\'9\'/>\
+        <circle cx=\'910\' cy=\'350\' r=\'8\'/>\
+        <circle cx=\'920\' cy=\'390\' r=\'7\'/>\
+        <circle cx=\'910\' cy=\'430\' r=\'8\'/>\
+        <circle cx=\'890\' cy=\'470\' r=\'9\'/>\
+        <circle cx=\'860\' cy=\'500\' r=\'10\'/>\
+        <circle cx=\'820\' cy=\'520\' r=\'12\'/>\
+        <circle cx=\'780\' cy=\'525\' r=\'11\'/>\
+        <circle cx=\'740\' cy=\'515\' r=\'9\'/>\
+        <circle cx=\'705\' cy=\'490\' r=\'8\'/>\
         <circle cx=\'680\' cy=\'455\' r=\'7\'/>\
       </g></svg>') center/cover no-repeat;
   }
-  .hero-copy{
-    position:relative; z-index:1;
-    display:grid; gap:8vh; /* separa os blocos enquanto o fundo fica sticky */
-    padding-block:6vh;
+  .hero-copy{ position:relative; }
+  .hero-block{
+    min-height:100vh; display:grid; place-items:center;
+    padding-block:10vh;
   }
   .hero-card{
-    background:rgba(255,255,255,.78); backdrop-filter:saturate(140%) blur(6px);
+    background:rgba(255,255,255,.75); backdrop-filter:saturate(140%) blur(6px);
     border:1px solid rgba(29,77,58,.15);
     border-radius:var(--radius); box-shadow:var(--shadow);
-    padding:clamp(16px,3vw,32px); width:min(100%,840px); margin-inline:auto;
+    padding:clamp(16px,3vw,32px); width:min(100%,840px);
   }
   .lead{ font-size:clamp(1.1rem,2.2vw,1.4rem); }
   .cta{
@@ -121,54 +93,63 @@
     padding-bottom:2px;
   }
 
-  /* ==== DOBRA 2: INFINITY MAP (HORIZONTAL) =============================== */
-  .infinity{
+  /* ============ SOCIAL PROOF (FAIXA) ============== */
+  .band{ border-top:2px solid var(--pink); border-bottom:2px solid var(--pink); background:linear-gradient(180deg,#fff 0%, var(--off) 100%);}
+  .band .inner{ display:flex; align-items:center; gap:20px; padding:12px 0; justify-content:center; flex-wrap:wrap; }
+  .band .title{ font-family:"Canela","Playfair Display",serif; color:var(--green); font-size:clamp(1rem,2vw,1.3rem); font-weight:700; white-space:nowrap; }
+  .avatars{ display:flex; gap:10px; overflow:auto; padding-bottom:6px }
+  .avatar{ width:44px; height:44px; border-radius:50%; background:#ddd; flex:0 0 auto; box-shadow:0 0 0 2px var(--green), 0 0 0 4px var(--pink); background-size:cover; background-position:center; }
+
+  /* ============ DOBRA 2 — MAPA DO ESTÚDIO (shopping) ============== */
+  .studio-map{
     background:var(--beige);
     padding-block:clamp(40px,6vw,80px);
     border-top:4px solid var(--pink);
     border-bottom:4px solid var(--pink);
   }
-  .infinity .wrap{ position:relative; }
-  .svg-box{ position:relative; width:100%; aspect-ratio:16/9; }
-  #infinityPath{
-    stroke: var(--green);
-    stroke-width:9;              /* mais grosso, porém elegante */
-    fill:none; stroke-linecap:round;
-    filter: drop-shadow(0 8px 20px rgba(29,77,58,.18));
+  .map-grid{
+    display:grid; grid-template-columns: 1.2fr .8fr; gap:24px;
   }
-  .dot{
-    position:absolute; width:36px; height:36px; border-radius:50%;
-    background:#fff;
-    border:2px solid var(--green);
-    box-shadow:var(--shadow);
-    display:grid; place-items:center;
-    transform:translate(-50%,-50%) scale(.92);
-    transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s;
-    cursor:pointer;
+  @media (max-width: 900px){
+    .map-grid{ grid-template-columns:1fr; }
   }
-  .dot:focus-visible{
-    outline:3px solid var(--wine);
-    outline-offset:3px;
+  .map-card, .panel-card{
+    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:var(--radius);
+    padding:clamp(12px,2.5vw,20px); box-shadow:var(--shadow);
   }
-  .dot.open{ transform:translate(-50%,-50%) scale(1.08); box-shadow:0 16px 36px rgba(29,77,58,.24); z-index:3 }
-  .dot::after{
-    content:""; width:10px; height:10px; border-radius:50%;
-    background:var(--wine);
+  .panel-card h3{ margin-bottom:8px }
+  .panel-list{ display:grid; gap:10px; }
+  .pill{
+    display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
+    border:1px solid rgba(29,77,58,.18); background:#fff; cursor:pointer;
   }
-  .dot-label{
-    position:absolute; top:110%; left:50%; transform:translateX(-50%);
-    background:#111; color:#F1F6F4; border:1px solid rgba(249,200,210,.25);
-    border-radius:12px; padding:10px 12px; width:max(220px,22ch); max-width:260px;
-    box-shadow:var(--shadow); display:none;
-  }
-  .dot.open .dot-label{ display:block; }
-  .dot-label h4{ margin:0 0 4px 0; font-size:1rem; color:#EAEFF0; font-family:"Playfair Display", Georgia, serif; }
-  .dot-label small{ color:#B8C2BE }
+  .pill .dot{ width:10px; height:10px; border-radius:50%; background:var(--wine); box-shadow:0 0 0 2px var(--green); }
+  .pill small{ color:var(--muted) }
 
-  .legend{ margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; color:var(--muted) }
+  /* Mapa em SVG responsivo */
+  .map-box{ position:relative; width:100%; aspect-ratio: 16/11; }
+  .zone{ fill:#FFFFFF; stroke: var(--green); stroke-width:2; }
+  .zone-label{ font-family: "Canela","Playfair Display",serif; fill: var(--green); font-weight:700; }
+  .corridor{ stroke: var(--green); stroke-width:3; stroke-dasharray:6 6; fill:none; opacity:.6 }
+
+  /* Lojas / pinos (aulas) */
+  .store-pin{
+    position:absolute; transform:translate(-50%,-50%); width:22px; height:22px; border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #fff 55%, #FCE9EE 100%);
+    border:2px solid var(--green); cursor:pointer; box-shadow:var(--shadow);
+  }
+  .store-pin.active{ outline: 3px solid var(--pink); }
+  .store-tooltip{
+    position:absolute; transform:translate(-50%, 12px); min-width: 240px; max-width: 280px;
+    background:#fff; border:1px solid rgba(29,77,58,.18); border-radius:12px; padding:10px 12px; box-shadow:var(--shadow); display:none;
+  }
+  .store-pin.active + .store-tooltip{ display:block; }
+
+  /* Legenda */
+  .legend{ margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; color:var(--muted) }
   .badge{ padding:6px 10px; border-radius:999px; background:#fff; border:1px solid rgba(29,77,58,.18) }
 
-  /* ==== RECOMPENSA ======================================================== */
+  /* ============ RECOMPENSA ============== */
   .reward{ padding-block:clamp(40px,6vw,80px); }
   .reward-card{
     background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:var(--radius);
@@ -178,25 +159,14 @@
   .progress{ height:12px; background:rgba(29,77,58,.12); border-radius:999px; overflow:hidden }
   .progress > span{ display:block; height:100%; width:42%; background:var(--wine); }
 
-  /* ==== STORIES ENH ======================================================= */
+  /* ============ STORIES (ENH) ============== */
   .stories{ padding-block:clamp(40px,6vw,80px); background:linear-gradient(180deg, var(--off), #fff); }
-  .stories-grid{
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-    gap:22px;
-  }
-  .story{
-    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:18px;
-    padding:16px; text-align:center; box-shadow:var(--shadow);
-  }
-  .story .bubble{
-    width:72px; height:72px; border-radius:50%;
-    margin-inline:auto 10px; position:relative; background:linear-gradient(135deg,#eee,#fff);
-    box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green);
-  }
+  .stories-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:22px; }
+  .story{ background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:18px; padding:16px; text-align:center; box-shadow:var(--shadow); }
+  .story .bubble{ width:72px; height:72px; border-radius:50%; margin-inline:auto; background:#eee; box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green); }
   .story h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green); }
   .story small{ color:var(--muted) }
 
-  /* Modal */
   dialog{ border:none; border-radius:16px; width:min(92vw,720px); padding:0; box-shadow:0 30px 80px rgba(0,0,0,.25); }
   dialog::backdrop{ background:rgba(0,0,0,.35); }
   .modal{ padding:22px; background:#fff; border-radius:16px; }
@@ -204,80 +174,62 @@
   .modal h3{ margin:0; }
   .modal .close{ background:transparent; border:none; font-weight:700; color:var(--wine); cursor:pointer; }
 
-  /* ==== FAQ =============================================================== */
+  /* ============ FAQ ======================= */
   .faq{ padding-block:clamp(40px,6vw,80px); border-top:4px solid var(--pink); }
   .accordion{ display:grid; gap:10px; }
-  .acc{
-    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:12px; overflow:hidden;
-  }
-  .acc summary{
-    list-style:none; padding:14px 16px; cursor:pointer; position:relative;
-    font-weight:700; color:var(--green);
-  }
+  .acc{ background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:12px; overflow:hidden; }
+  .acc summary{ list-style:none; padding:14px 16px; cursor:pointer; position:relative; font-weight:700; color:var(--green); }
   .acc summary::-webkit-details-marker{ display:none }
-  .acc summary::after{
-    content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700;
-  }
+  .acc summary::after{ content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700; }
   .acc[open] summary::after{ content:"–" }
   .acc .content{ padding:0 16px 16px 16px; color:var(--text) }
 
-  /* ==== FOOTER ============================================================ */
+  /* Footer */
   footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:24px 0; text-align:center }
 
-  /* ==== UTIL ============================================================== */
-  .center{ text-align:center }
-  .mt-8{ margin-top:8px } .mt-16{ margin-top:16px } .mt-24{ margin-top:24px }
-  .mb-0{ margin-bottom:0 }
-  .muted{ color:var(--muted) }
-
-  /* ==== RESPONSIVO ======================================================== */
-  @media (max-width: 800px){
-    .svg-box{ aspect-ratio: 9/12; }
-    .dot-label{ left:50%; transform:translateX(-50%); top:118%; }
-  }
-
-  /* ==== REDUCED MOTION ==================================================== */
-  @media (prefers-reduced-motion: reduce){
-    .dot, .dot-label, .hero-card{ transition: none !important; }
-  }
+  /* Entradas animadas */
+  .reveal{ opacity:.001; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
 </style>
 </head>
 <body>
 
-<header class="band" role="banner">
-  <div class="container inner">
-    <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
-    <div class="avatars" aria-label="Alguns alunos que já participam">
-      <img class="avatar" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200" alt="Aluna" loading="lazy" decoding="async">
-      <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200" alt="Aluno" loading="lazy" decoding="async">
-      <img class="avatar" src="https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200" alt="Aluna" loading="lazy" decoding="async">
-      <img class="avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200" alt="Aluno" loading="lazy" decoding="async">
-      <img class="avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200" alt="Aluna" loading="lazy" decoding="async">
-      <img class="avatar" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200" alt="Aluno" loading="lazy" decoding="async">
-    </div>
-  </div>
-</header>
-
-<main id="conteudo">
-
-  <!-- HERO: visual sticky no fundo e cópia rolando -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-visual" aria-hidden="true"></div>
-
-    <div class="hero-copy">
-      <div class="hero-card" id="hero-title">
+<!-- ========================= HERO ================================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-copy container">
+    <div class="hero-block">
+      <div class="hero-card reveal">
         <h1>ESTÚDIO INFINITO™</h1>
         <p class="lead"><strong>Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</strong></p>
         <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
         <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil.</em></p>
         <p>Você paga <strong>só o 1º ano</strong>.<br>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br><small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
         <p><strong>Selo de confiança:</strong> seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
-        <a href="#infinity" class="cta">Entrar e criar o seu primeiro post agora →</a>
-        <p class="mt-8"><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
+        <a href="#mapa" class="cta">Entrar e criar o seu primeiro post agora →</a>
+        <p style="margin-top:8px"><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
       </div>
 
-      <div class="hero-card center">
+      <!-- Social proof -->
+      <section class="band reveal">
+        <div class="container inner">
+          <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
+          <div class="avatars" aria-label="Alunos que já participam">
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200');"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="hero-block">
+      <div class="hero-card center reveal">
         <h2 class="mb-0">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+        <p class="muted" style="margin-top:.4rem">Visão rápida antes do mapa</p>
         <p class="mt-8">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
         <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
         <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos + comunidade sobre humano</strong> = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
@@ -287,212 +239,313 @@
           🤖 <strong>Equipe Não-Humana™</strong> — meus funcionários não humanos pra montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.
         </p>
       </div>
+    </div>
 
-      <div class="hero-card">
+    <div class="hero-block">
+      <div class="hero-card reveal">
         <h3>✳️ Quando você entra, é assim que acontece:</h3>
         <p>Você vai assistir um mini-curso express que vai mostrar como dominar uma das 3 IAs que formam o coração do Estúdio.</p>
         <p><strong>Mapa do Estúdio Infinito — mini curso + IA</strong></p>
-        <p class="muted">Role para ver o fluxo visual na próxima dobra ↓</p>
+        <p class="muted">Abaixo, veja o “mapa de shopping” do Estúdio. Toque nas áreas e nas “lojas” (aulas) para abrir detalhes.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- DOBRA 2 — INFINITY MAP (HORIZONTAL) -->
-  <section class="infinity" id="infinity" aria-label="Mapa em forma de infinito com as aulas">
-    <div class="container wrap">
-      <div class="svg-box" aria-hidden="true">
-        <svg id="infinitySVG" viewBox="0 0 1000 560" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-          <!-- Símbolo ∞ horizontal -->
-          <path id="infinityPath"
-            d="M 120 280
-               C 120 120, 360 120, 500 280
-               S 880 440, 880 280
-               S 640 120, 500 280
-               S 120 440, 120 280" />
-        </svg>
-        <!-- Dots são injetados via JS com acessibilidade -->
+<!-- ========================= DOBRA 2 — MAPA DO ESTÚDIO ===================== -->
+<section class="studio-map" id="mapa">
+  <div class="container">
+    <h2 class="center" style="margin-bottom:16px">Mapa do Estúdio (guia de navegação)</h2>
+    <div class="map-grid">
+      <!-- MAPA (SVG + PINS ABSOLUTOS) -->
+      <div class="map-card">
+        <div class="map-box" id="mapBox" aria-label="Mapa do Estúdio (como shopping)">
+          <!-- SVG do “shopping” -->
+          <svg id="studioSVG" viewBox="0 0 1000 700" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="mapTitle">
+            <title id="mapTitle">Mapa do Estúdio Infinito — Zonas e Conexões</title>
+
+            <!-- Corredores -->
+            <path class="corridor" d="M80 350 H920" />
+            <path class="corridor" d="M500 80 V620" />
+
+            <!-- Zonas / Alas -->
+            <!-- Praça das 3 IAs -->
+            <rect class="zone" id="zona-ias" x="90" y="90" rx="18" ry="18" width="340" height="220" fill="#fff"/>
+            <text class="zone-label" x="260" y="120" text-anchor="middle" font-size="20">Praça das 3 IAs</text>
+
+            <!-- Estúdios (Carrossel, Stories, Roteiros) -->
+            <rect class="zone" id="zona-estudios" x="570" y="90" rx="18" ry="18" width="340" height="220" fill="#fff"/>
+            <text class="zone-label" x="740" y="120" text-anchor="middle" font-size="20">Estúdios de Formatos</text>
+
+            <!-- Estratégia & Público -->
+            <rect class="zone" id="zona-estrategia" x="90" y="390" rx="18" ry="18" width="340" height="220" fill="#fff"/>
+            <text class="zone-label" x="260" y="420" text-anchor="middle" font-size="20">Estratégia & Público</text>
+
+            <!-- Comunidade Sobre-Humano -->
+            <rect class="zone" id="zona-comunidade" x="570" y="390" rx="18" ry="18" width="340" height="220" fill="#fff"/>
+            <text class="zone-label" x="740" y="420" text-anchor="middle" font-size="20">Comunidade Sobre-Humano</text>
+          </svg>
+
+          <!-- Pinos (aulas) posicionados de forma absoluta (percentual sobre viewBox) -->
+          <!-- Praça das 3 IAs -->
+          <button class="store-pin" data-id="higgsfield-gemea" style="left:22%; top:26%;" aria-label="Crie sua Gêmea Digital pelo Celular"></button>
+          <div class="store-tooltip"><strong>Crie sua Gêmea Digital pelo Celular</strong><br><small>IA: Higgsfield — Poste sem aparecer.</small></div>
+
+          <button class="store-pin" data-id="chatgpt-designs" style="left:34%; top:30%;" aria-label="Designs conversando com o ChatGPT (sem abrir o Canva)"></button>
+          <div class="store-tooltip"><strong>Designs conversando com o ChatGPT</strong><br><small>IA: ChatGPT — Criação direta pela conversa.</small></div>
+
+          <!-- Estúdios -->
+          <button class="store-pin" data-id="carlos-carrosseis" style="left:76%; top:26%;" aria-label="Carrosséis Inteligentes Criados com IA"></button>
+          <div class="store-tooltip"><strong>Carrosséis Inteligentes Criados com IA</strong><br><small>IA: Carlos dos Carrosséis — Do 1º slide ao CTA.</small></div>
+
+          <button class="store-pin" data-id="jose-stories" style="left:86%; top:34%;" aria-label="Stories que as Pessoas Realmente Querem Ver"></button>
+          <div class="store-tooltip"><strong>Stories que as Pessoas Realmente Querem Ver</strong><br><small>IA: José dos Stories — Sequência, ritmo, pergunta.</small></div>
+
+          <button class="store-pin" data-id="larissa-roteiros" style="left:70%; top:34%;" aria-label="Roteiros com IA que as Pessoas Querem Ouvir"></button>
+          <div class="store-tooltip"><strong>Roteiros com IA que as Pessoas Querem Ouvir</strong><br><small>IA: Larissa dos Roteiros — Estrutura e tensão.</small></div>
+
+          <!-- Estratégia & Público -->
+          <button class="store-pin" data-id="bia-publico" style="left:28%; top:70%;" aria-label="Estratégia de Público — Como Vender para as Pessoas Certas"></button>
+          <div class="store-tooltip"><strong>Estratégia de Público</strong><br><small>IA: Bia do Público — Direção, mensagem, oferta.</small></div>
+
+          <button class="store-pin" data-id="maria-ideias" style="left:18%; top:62%;" aria-label="Ideias que Nunca Acabam (mesmo produto)"></button>
+          <div class="store-tooltip"><strong>Ideias que Nunca Acabam</strong><br><small>IA: Maria das Ideias — Mapa infinito de temas.</small></div>
+
+          <button class="store-pin" data-id="joao-ganchos" style="left:36%; top:62%;" aria-label="Domine os Primeiros 3 Segundos do Seu Post"></button>
+          <div class="store-tooltip"><strong>Domine os Primeiros 3 Segundos</strong><br><small>IA: João dos Ganchos — Começos que fazem parar.</small></div>
+
+          <!-- Comunidade -->
+          <button class="store-pin" data-id="comunidade" style="left:70%; top:72%;" aria-label="Comunidade Sobre-Humano — feedback e oficinas"></button>
+          <div class="store-tooltip"><strong>Comunidade Sobre-Humano™</strong><br><small>Feedback, oficinas (2×/mês) e suporte.</small></div>
+
+          <!-- Extras (crescimento e hacks) -->
+          <button class="store-pin" data-id="tiktok-2026" style="left:62%; top:56%;" aria-label="Como Crescer no TikTok em 2026"></button>
+          <div class="store-tooltip"><strong>Como Crescer no TikTok em 2026</strong><br><small>IA: ChatGPT — Estratégias atualizadas.</small></div>
+
+          <button class="store-pin" data-id="instagram-2026" style="left:80%; top:56%;" aria-label="Como Crescer no Instagram em 2026"></button>
+          <div class="store-tooltip"><strong>Como Crescer no Instagram em 2026</strong><br><small>IA: ChatGPT — Série, constância e loops.</small></div>
+
+          <button class="store-pin" data-id="hacks-chatgpt" style="left:50%; top:46%;" aria-label="Dominando o ChatGPT — Meus Hacks Secretos"></button>
+          <div class="store-tooltip"><strong>Dominando o ChatGPT — Meus Hacks Secretos</strong><br><small>IA: ChatGPT — Prompts e atalhos práticos.</small></div>
+
+          <!-- Legenda -->
+          <div class="legend" style="position:absolute; left:10px; bottom:10px;">
+            <span class="badge">🧠 ChatGPT</span>
+            <span class="badge">🎨 Higgsfield</span>
+            <span class="badge">🤖 Equipe Não-Humana™</span>
+          </div>
+        </div>
       </div>
-      <div class="legend" aria-hidden="true"></div>
+
+      <!-- PAINEL LATERAL (lista navegável) -->
+      <aside class="panel-card">
+        <h3>Diretório do Estúdio</h3>
+        <p class="muted" style="margin-top:-4px">Navegue como num shopping: escolha a ala e toque na “loja”.</p>
+        <div class="panel-list" id="panelList">
+          <!-- Itens preenchidos via JS (mantendo a mesma copy / aulas) -->
+        </div>
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- RECOMPENSA -->
-  <section class="reward" aria-labelledby="recompensa-title">
-    <div class="container">
-      <div class="reward-card">
-        <h2 id="recompensa-title">💰 Recompensas Infindas — Post que Paga</h2>
-        <p><strong>1 post = +1 dia</strong> de desconto na renovação (bateu <strong>365</strong>, o próximo ano pode sair <strong>de graça</strong>).</p>
-        <div class="progress" aria-label="Progresso de dias pagos"><span style="width:38%"></span></div>
-        <small class="muted">Publicou hoje? +1 dia garantido.</small>
-      </div>
+<!-- ========================= RECOMPENSA ================================= -->
+<section class="reward">
+  <div class="container">
+    <div class="reward-card reveal">
+      <h2>💰 Recompensas Infindas — Post que Paga</h2>
+      <p><strong>1 post = +1 dia</strong> de desconto na renovação (bateu <strong>365</strong>, o próximo ano pode sair <strong>de graça</strong>).</p>
+      <div class="progress" aria-label="Progresso de dias pagos"><span style="width:38%"></span></div>
+      <small class="muted">Publicou hoje? +1 dia garantido.</small>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- STORIES: EQUIPE NÃO-HUMANA -->
-  <section class="stories" aria-labelledby="enh-title">
-    <div class="container">
-      <h2 class="center" id="enh-title">Equipe Não-Humana™ — perfis</h2>
-      <p class="center muted">Toque em um perfil para ver o que cada “funcionário” entrega.</p>
-      <div class="stories-grid" id="storiesGrid"></div>
+<!-- ========================= STORIES ENH ================================ -->
+<section class="stories">
+  <div class="container">
+    <h2 class="center">Equipe Não-Humana™ — perfis</h2>
+    <p class="center muted">Toque em um perfil para ver o que cada “funcionário” entrega.</p>
+    <div class="stories-grid" id="storiesGrid"></div>
+  </div>
+</section>
+
+<!-- ========================= FAQ ======================================= -->
+<section class="faq">
+  <div class="container">
+    <h2 class="center">FAQ (com reforço da tese das 3 IAs)</h2>
+    <div class="accordion" style="margin-top:24px">
+      <details class="acc">
+        <summary>Consigo mesmo com pouco tempo?</summary>
+        <div class="content">
+          <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Preciso de computador ou app pago?</summary>
+        <div class="content">
+          <p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Não sou “do digital”. É pra mim?</summary>
+        <div class="content">
+          <p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Não quero aparecer em vídeo. E agora?</summary>
+        <div class="content">
+          <p>Usa o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto!</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Como funciona o “Post que Paga”?</summary>
+        <div class="content">
+          <p>Cada post feito com a minha Equipe Não-Humana vale +1 dia de desconto na próxima renovação.</p>
+          <p><strong>Regras simples:</strong> 1 post por dia; vale Feed/Carrossel/Reel (Stories não); mantenha 48h no ar; marque #PostQuePaga + #FeitoComEquipeNaoHumana ou envie o link no mural.</p>
+          <p>Painel mostra Dias pagos: X/365 e a próxima renovação estimada. Se bater 365, o próximo ano pode sair de graça.</p>
+          <p>Perfil privado? Manda print/link no mural que eu conto manualmente.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>E se eu travar?</summary>
+        <div class="content">
+          <p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Quando sai meu primeiro post?</summary>
+        <div class="content">
+          <p>Em até 24h. Se não sair, eu devolvo 100%.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Qual é o preço? Posso cancelar?</summary>
+        <div class="content">
+          <p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p>
+        </div>
+      </details>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FAQ -->
-  <section class="faq" aria-labelledby="faq-title">
-    <div class="container">
-      <h2 class="center" id="faq-title">FAQ (com reforço da tese das 3 IAs)</h2>
-      <div class="accordion mt-24">
-        <details class="acc">
-          <summary>Consigo mesmo com pouco tempo?</summary>
-          <div class="content">
-            <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
-          </div>
-        </details>
-        <details class="acc">
-          <summary>Preciso de computador ou app pago?</summary>
-          <div class="content">
-            <p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p>
-          </div>
-        </details>
-        <details class="acc">
-          <summary>Não sou “do digital”. É pra mim?</summary>
-          <div class="content">
-            <p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p>
-          </div>
-        </details>
-        <details class="acc">
-          <summary>Não quero aparecer em vídeo. E agora?</summary>
-          <div class="content">
-            <p>Usa o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.</p>
-          </div>
-        </details>
-        <details class="acc">
-          <summary>Como funciona o “Post que Paga”?</summary>
-          <div class="content">
-            <p>Cada post feito com a minha Equipe Não-Humana vale +1 dia de desconto na próxima renovação.</p>
-            <p><strong>Regras simples:</strong> 1 post por dia; vale Feed/Carrossel/Reel (Stories não); mantenha 48h no ar; marque #PostQuePaga + #FeitoComEquipeNaoHumana ou envie o link no mural.</p>
-            <p>Painel mostra Dias pagos: X/365 e a próxima renovação estimada. Se bater 365, o próximo ano pode sair de graça.</p>
-            <p>Perfil privado? Manda print/link no mural que eu conto manualmente.</p>
-          </div>
-        </details>
-        <details class="acc">
-          <summary>E se eu travar?</summary>
-          <div class="content">
-            <p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p>
-          </div>
-        </details>
-        <details class="acc">
-          <summary>Quando sai meu primeiro post?</summary>
-          <div class="content">
-            <p>Em até 24h. Se não sair, eu devolvo 100%.</p>
-          </div>
-        </details>
-        <details class="acc">
-          <summary>Qual é o preço? Posso cancelar?</summary>
-          <div class="content">
-            <p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer role="contentinfo">
+<footer>
   <div class="container">
     <small>© Estúdio Infinito™ — Todos os direitos reservados.</small>
   </div>
 </footer>
 
-<!-- ========================= SCRIPTS ==================================== -->
+<!-- ========================= JS ========================================= -->
 <script>
-/* ====== Dados (Aulas no ∞) =============================================== */
+/* ====== ENTRADAS SUAVES ====== */
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=> entries.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+}),{threshold:.2});
+reveals.forEach(el=> io.observe(el));
+
+/* ====== DADOS (Aulas) — mesma copy ====== */
 const aulas = [
-  { id:'higgsfield-gemea', titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
-  { id:'chatgpt-designs', titulo:'Designs conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
-  { id:'bia-publico', titulo:'Estratégia de Público — Como Vender para as Pessoas Certas', ia:'Bia do Público (ENH)', detalhe:'Direção, mensagem, oferta.' },
-  { id:'maria-ideias', titulo:'Ideias que Nunca Acabam (falando do mesmo produto)', ia:'Maria das Ideias (ENH)', detalhe:'Mapa infinito de temas.' },
-  { id:'joao-ganchos', titulo:'Domine os Primeiros 3 Segundos do Seu Post', ia:'João dos Ganchos (ENH)', detalhe:'Começos que fazem parar.' },
-  { id:'carlos-carrosseis', titulo:'Carrosséis Inteligentes Criados com IA', ia:'Carlos dos Carrosséis (ENH)', detalhe:'Primeiro slide até CTA.' },
-  { id:'jose-stories', titulo:'Stories que as Pessoas Realmente Querem Ver', ia:'José dos Stories (ENH)', detalhe:'Sequência, ritmo, pergunta.' },
-  { id:'larissa-roteiros', titulo:'Roteiros com IA que as Pessoas Querem Ouvir', ia:'Larissa dos Roteiros (ENH)', detalhe:'Estrutura e tensão.' },
-  { id:'tiktok-2026', titulo:'Como Crescer no TikTok em 2026', ia:'ChatGPT', detalhe:'Estratégias atualizadas.' },
-  { id:'instagram-2026', titulo:'Como Crescer no Instagram em 2026', ia:'ChatGPT', detalhe:'Série, consistência e loops.' },
-  { id:'hacks-chatgpt', titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
+  { id:'higgsfield-gemea', zona:'zona-ias', titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
+  { id:'chatgpt-designs', zona:'zona-ias', titulo:'Designs conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
+
+  { id:'carlos-carrosseis', zona:'zona-estudios', titulo:'Carrosséis Inteligentes Criados com IA', ia:'Carlos dos Carrosséis (ENH)', detalhe:'Primeiro slide até CTA.' },
+  { id:'jose-stories', zona:'zona-estudios', titulo:'Stories que as Pessoas Realmente Querem Ver', ia:'José dos Stories (ENH)', detalhe:'Sequência, ritmo, pergunta.' },
+  { id:'larissa-roteiros', zona:'zona-estudios', titulo:'Roteiros com IA que as Pessoas Querem Ouvir', ia:'Larissa dos Roteiros (ENH)', detalhe:'Estrutura e tensão.' },
+
+  { id:'bia-publico', zona:'zona-estrategia', titulo:'Estratégia de Público — Como Vender para as Pessoas Certas', ia:'Bia do Público (ENH)', detalhe:'Direção, mensagem, oferta.' },
+  { id:'maria-ideias', zona:'zona-estrategia', titulo:'Ideias que Nunca Acabam (falando do mesmo produto)', ia:'Maria das Ideias (ENH)', detalhe:'Mapa infinito de temas.' },
+  { id:'joao-ganchos', zona:'zona-estrategia', titulo:'Domine os Primeiros 3 Segundos do Seu Post', ia:'João dos Ganchos (ENH)', detalhe:'Começos que fazem parar.' },
+
+  { id:'comunidade', zona:'zona-comunidade', titulo:'Comunidade Sobre-Humano™', ia:'—', detalhe:'Feedback, oficinas (2×/mês) e suporte.' },
+
+  { id:'tiktok-2026', zona:'zona-estudios', titulo:'Como Crescer no TikTok em 2026', ia:'ChatGPT', detalhe:'Estratégias atualizadas.' },
+  { id:'instagram-2026', zona:'zona-estudios', titulo:'Como Crescer no Instagram em 2026', ia:'ChatGPT', detalhe:'Série, constância e loops.' },
+  { id:'hacks-chatgpt', zona:'zona-ias', titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
 ];
 
-/* ====== Util: debounce p/ resize ======================================== */
-function debounce(fn, ms){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn.apply(this,args), ms); }; }
+/* ====== PAINEL LATERAL (diretório) ====== */
+const panel = document.getElementById('panelList');
+const zonasLabels = {
+  'zona-ias': 'Praça das 3 IAs',
+  'zona-estudios': 'Estúdios de Formatos',
+  'zona-estrategia': 'Estratégia & Público',
+  'zona-comunidade': 'Comunidade Sobre-Humano'
+};
 
-/* ====== INFINITY: posicionar dots ao longo do path (horizontal) ========= */
-const svg = document.getElementById('infinitySVG');
-const path = document.getElementById('infinityPath');
-const box  = document.querySelector('.svg-box');
-const totalLen = path.getTotalLength();
+function renderPanel(){
+  // Agrupa por zona
+  const groups = aulas.reduce((acc,a)=>{
+    (acc[a.zona] = acc[a.zona] || []).push(a);
+    return acc;
+  },{});
 
-function placeDots(){
-  // limpa
-  box.querySelectorAll('.dot').forEach(d => d.remove());
+  panel.innerHTML = '';
+  Object.keys(groups).forEach(z=>{
+    const title = document.createElement('h4');
+    title.textContent = zonasLabels[z] || 'Zona';
+    title.style.color = 'var(--green)';
+    title.style.margin = '12px 0 8px 0';
+    title.style.fontFamily = '"Canela","Playfair Display",serif';
+    panel.appendChild(title);
 
-  aulas.forEach((item, i)=>{
-    const t = (i+1)/(aulas.length+1);
-    const p = path.getPointAtLength(totalLen * t);
-
-    const dot = document.createElement('button');
-    dot.className = 'dot';
-    dot.style.left = (p.x / svg.viewBox.baseVal.width * 100) + '%';
-    dot.style.top  = (p.y / svg.viewBox.baseVal.height * 100) + '%';
-
-    // Acessibilidade
-    const labelId = `dot-label-${item.id}`;
-    dot.setAttribute('type','button');
-    dot.setAttribute('aria-expanded','false');
-    dot.setAttribute('aria-controls', labelId);
-    dot.setAttribute('aria-label', `Abrir: ${item.titulo}. IA: ${item.ia}.`);
-
-    dot.innerHTML = `
-      <div class="dot-label" id="${labelId}" role="region" aria-live="polite" aria-hidden="true">
-        <h4>${item.titulo}</h4>
-        <small><strong>IA:</strong> ${item.ia} — ${item.detalhe || ''}</small>
-      </div>`;
-
-    dot.addEventListener('click', ()=>{
-      document.querySelectorAll('.dot').forEach(d=>{
-        d.classList.remove('open');
-        d.setAttribute('aria-expanded','false');
-        const lbl = d.querySelector('.dot-label');
-        if(lbl){ lbl.setAttribute('aria-hidden','true'); }
-      });
-      dot.classList.add('open');
-      dot.setAttribute('aria-expanded','true');
-      dot.querySelector('.dot-label')?.setAttribute('aria-hidden','false');
+    groups[z].forEach(a=>{
+      const item = document.createElement('button');
+      item.className = 'pill';
+      item.setAttribute('data-go', a.id);
+      item.innerHTML = `<span class="dot"></span><div><strong>${a.titulo}</strong><br><small>${a.ia} — ${a.detalhe}</small></div>`;
+      item.addEventListener('click', ()=> focusStore(a.id));
+      panel.appendChild(item);
     });
-
-    box.appendChild(dot);
   });
 }
-placeDots();
-window.addEventListener('resize', debounce(placeDots, 150));
+renderPanel();
 
-/* Auto-abrir próximo dot ao rolar (efeito “sequência”, threshold moderado) */
-const ioDots = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      document.querySelectorAll('.dot').forEach(d=>{
-        d.classList.remove('open');
-        d.setAttribute('aria-expanded','false');
-        d.querySelector('.dot-label')?.setAttribute('aria-hidden','true');
-      });
-      e.target.classList.add('open');
-      e.target.setAttribute('aria-expanded','true');
-      e.target.querySelector('.dot-label')?.setAttribute('aria-hidden','false');
+/* ====== MAPA — PINs/Tooltips ====== */
+// Conecta cada .store-pin ao seu .store-tooltip adjacente
+const mapBox = document.getElementById('mapBox');
+const pins = Array.from(mapBox.querySelectorAll('.store-pin'));
+const tips = Array.from(mapBox.querySelectorAll('.store-tooltip'));
+
+// Auxiliar: desativa tudo
+function clearActive(){
+  pins.forEach(p=> p.classList.remove('active'));
+  tips.forEach(t=> t.style.display='none');
+}
+
+// Ativa um pin por id
+function focusStore(id){
+  clearActive();
+  const pin = pins.find(p=> p.dataset.id === id);
+  if(!pin) return;
+  const tip = pin.nextElementSibling;
+  pin.classList.add('active');
+  tip.style.display='block';
+  // Scroll suave até o mapa, se estiver fora de vista
+  mapBox.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// Click nos pins
+pins.forEach(p=>{
+  p.addEventListener('click', ()=>{
+    const isActive = p.classList.contains('active');
+    clearActive();
+    if(!isActive){
+      p.classList.add('active');
+      const tip = p.nextElementSibling; tip.style.display='block';
     }
   });
-},{root:null, threshold:.5});
-setTimeout(()=> box.querySelectorAll('.dot').forEach(d=> ioDots.observe(d)), 400);
+});
 
-/* ====== STORIES ENH (modais com focus trap) ============================== */
+// Fecha tooltip ao clicar fora
+document.addEventListener('click', (e)=>{
+  if(!mapBox.contains(e.target) && !panel.contains(e.target)){
+    clearActive();
+  }
+});
+
+/* ====== STORIES ENH (cards + modais) ====== */
 const ENH = [
   { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”' },
   { nome:'Larissa dos Roteiros', func:'Roteiros práticos', exemplo:'Estrutura 3A: Atenção, Âncora, Ação.' },
@@ -511,43 +564,24 @@ function cardENH(p){
   const el = document.createElement('div');
   el.className = 'story';
   el.innerHTML = `
-    <div class="bubble" role="img" aria-label="${p.nome}"></div>
+    <div class="bubble"></div>
     <h5>${p.nome}</h5>
     <small>${p.func}</small>
   `;
-  el.addEventListener('click', (ev)=> openModal(p, el));
+  el.addEventListener('click', ()=> openModal(p));
   return el;
 }
 ENH.forEach(p => grid.appendChild(cardENH(p)));
 
-function trapFocus(container, firstToFocus){
-  const FOCUSABLE = 'a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),iframe,[tabindex]:not([tabindex="-1"]),[contenteditable=true]';
-  const nodes = ()=> Array.from(container.querySelectorAll(FOCUSABLE));
-  function onKey(e){
-    if(e.key !== 'Tab') return;
-    const f = nodes();
-    if(!f.length) return;
-    const first = f[0], last = f[f.length-1];
-    if(e.shiftKey){
-      if(document.activeElement === first){ last.focus(); e.preventDefault(); }
-    }else{
-      if(document.activeElement === last){ first.focus(); e.preventDefault(); }
-    }
-  }
-  container.addEventListener('keydown', onKey);
-  if(firstToFocus){ firstToFocus.focus(); }
-  return ()=> container.removeEventListener('keydown', onKey);
-}
-
-function openModal(p, triggerEl){
+function openModal(p){
   const dlg = document.createElement('dialog');
   dlg.innerHTML = `
-    <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal">
       <header>
-        <h3 id="modal-title">${p.nome}</h3>
+        <h3>${p.nome}</h3>
         <button class="close" aria-label="Fechar">fechar ✕</button>
       </header>
-      <div class="mt-16">
+      <div style="margin-top:16px">
         <p><strong>Função:</strong> ${p.func}</p>
         <p><strong>Exemplo de saída:</strong> <em>${p.exemplo}</em></p>
       </div>
@@ -555,32 +589,10 @@ function openModal(p, triggerEl){
   `;
   document.body.appendChild(dlg);
   dlg.showModal();
-
-  const closeBtn = dlg.querySelector('.close');
-  const untrap = trapFocus(dlg, closeBtn);
-
-  function close(){
-    dlg.close();
-    dlg.remove();
-    untrap();
-    if(triggerEl){ triggerEl.querySelector('.bubble')?.focus?.(); }
-  }
-  closeBtn.addEventListener('click', close);
-  dlg.addEventListener('close', close);
-  dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+  dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
+  dlg.addEventListener('close', ()=> dlg.remove());
+  dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
 }
-
-/* ====== Suavização de entrada =========================================== */
-const fadeEls = document.querySelectorAll('.reward-card, .stories .container, .faq .container, .hero-card');
-const ioFade = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)';
-      ioFade.unobserve(e.target);
-    }
-  })
-},{ threshold:.25 });
-fadeEls.forEach(el => { el.style.opacity=.001; el.style.transform='translateY(12px)'; ioFade.observe(el); });
 </script>
 </body>
 </html>
