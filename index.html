@@ -6,422 +6,329 @@
 <title>ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)</title>
 <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos. As 3 IAs certas, mini-cursos rápidos e gente de verdade te puxando pro post no ar." />
 
-<!-- Tipografia -->
+<!-- Tipografia: Canela (fallback editorial) + Inter -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-  /* ================= TOKENS DE TEMA ================== */
+  /* ========= TOKENS ======================================================= */
   :root{
-    --wine: #7C1E28;          /* destaque/CTA */
-    --green: #1D4D3A;         /* títulos e traços */
-    --pink: #F9C8D2;          /* respiro/separadores */
-    --beige: #F5D7E2;         /* base neutra */
-    --off: #FBF7F8;           /* fundo off-white */
-    --text: #222222;          /* corpo */
-    --muted: #555555;         /* apoio */
-    --shadow: 0 10px 30px rgba(29,77,58,.12);
+    --wine:  #7C1E28;   /* destaque/CTA */
+    --green: #1D4D3A;   /* títulos/ícones */
+    --pink:  #F9C8D2;   /* respiro/detalhes */
+    --beige: #F5D7E2;   /* bloco neutro */
+    --off:   #FBF7F8;   /* fundo off-white */
+    --text:  #222222;   /* texto principal */
+    --muted: #555555;   /* apoio */
     --radius: 16px;
+    --shadow: 0 12px 30px rgba(29,77,58,.12);
     --maxw: 1120px;
   }
 
-  /* ================= RESET SUAVE ===================== */
-  *,*::before,*::after{box-sizing:border-box}
-  html,body{height:100%}
+  /* ========= RESET SUAVE ================================================== */
+  *,*::before,*::after{ box-sizing: border-box }
+  html,body{ height:100% }
   body{
     margin:0; background:var(--off); color:var(--text);
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    line-height:1.55; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
-  h1,h2,h3{ margin:0 0 .6rem 0; line-height:1.15; color:var(--green); }
-  h1{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
-  h2{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
-  h3{ font-weight:700; font-size:clamp(1.1rem,2vw,1.4rem); }
-  p{ margin:.7rem 0; }
+  h1,h2,h3,h4{ margin:0 0 .6rem 0; line-height:1.15; color:var(--green) }
+  h1{ font-family:"Canela","Playfair Display",Georgia,serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem) }
+  h2{ font-family:"Canela","Playfair Display",Georgia,serif; font-weight:700; font-size:clamp(1.6rem,2.6vw,2.2rem) }
+  h3{ font-weight:700; font-size:clamp(1.2rem,2vw,1.4rem) }
+  p{ margin:.7rem 0 }
   a{ color:var(--wine); text-decoration:none }
-  .container{ width:min(100%, var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px); }
-  .center{ text-align:center }
-  .muted{ color:var(--muted) }
+  .container{ width:min(100%,var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px) }
 
-  /* ================= HERO (COM BG FIXO) ============== */
-  .hero{
-    position:relative;
-    height:300vh; /* 3 blocos de texto */
-    isolation:isolate;
+  /* ========= PROVA SOCIAL (faixa) ======================================== */
+  .band{
+    border-bottom:2px solid var(--pink);
+    background:linear-gradient(180deg,#fff 0%, var(--off) 100%);
   }
+  .band .inner{ display:flex; align-items:center; justify-content:center; gap:20px; padding:12px 0; flex-wrap:wrap }
+  .band .title{ font-family:"Canela","Playfair Display",serif; color:var(--green); font-size:clamp(1rem,2vw,1.3rem); font-weight:700 }
+  .avatars{ display:flex; gap:10px; overflow:auto; padding-bottom:6px }
+  .avatar{
+    width:44px; height:44px; border-radius:50%; background:#ddd; background-size:cover; background-position:center;
+    box-shadow:0 0 0 2px var(--green), 0 0 0 4px var(--pink)
+  }
+
+  /* ========= HERO (3 blocos em scroll) =================================== */
+  .hero{ position:relative }
   .hero-bg{
     position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:
       radial-gradient(60% 60% at 70% 20%, rgba(124,30,40,.12) 0%, rgba(124,30,40,0) 60%),
       radial-gradient(50% 50% at 20% 70%, rgba(29,77,58,.18) 0%, rgba(29,77,58,0) 60%),
-      url('data:image/svg+xml;utf8,\
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox=\'0 0 1200 800\'>\
-      <defs><radialGradient id=\'g\' cx=\'50%\' cy=\'50%\' r=\'70%\'><stop offset=\'0%\' stop-color=\'#ffffff\'/><stop offset=\'100%\' stop-color=\'#FBF7F8\'/></radialGradient></defs>\
-      <rect width=\'1200\' height=\'800\' fill=\'url(#g)\'/>\
-      <!-- Placeholder da Expert segurando 13 asas (silhueta abstrata) -->\
-      <g opacity=\'.18\' fill=\'#1D4D3A\'>\
-        <path d=\'M620 120c-30 80-60 160-90 240 120-30 200-20 240 30-40-140-90-220-150-270z\'/>\
-        <circle cx=\'820\' cy=\'260\' r=\'12\'/>\
-        <circle cx=\'860\' cy=\'280\' r=\'10\'/>\
-        <circle cx=\'890\' cy=\'310\' r=\'9\'/>\
-        <circle cx=\'910\' cy=\'350\' r=\'8\'/>\
-        <circle cx=\'920\' cy=\'390\' r=\'7\'/>\
-        <circle cx=\'910\' cy=\'430\' r=\'8\'/>\
-        <circle cx=\'890\' cy=\'470\' r=\'9\'/>\
-        <circle cx=\'860\' cy=\'500\' r=\'10\'/>\
-        <circle cx=\'820\' cy=\'520\' r=\'12\'/>\
-        <circle cx=\'780\' cy=\'525\' r=\'11\'/>\
-        <circle cx=\'740\' cy=\'515\' r=\'9\'/>\
-        <circle cx=\'705\' cy=\'490\' r=\'8\'/>\
-        <circle cx=\'680\' cy=\'455\' r=\'7\'/>\
-      </g></svg>') center/cover no-repeat;
+      linear-gradient(180deg,#fff, var(--off));
   }
-  .hero-copy{ position:relative; }
-  .hero-block{
-    min-height:100vh; display:grid; place-items:center;
-    padding-block:10vh;
-  }
+  .hero-block{ min-height:100vh; display:grid; place-items:center; padding-block:10vh }
   .hero-card{
-    background:rgba(255,255,255,.75); backdrop-filter:saturate(140%) blur(6px);
-    border:1px solid rgba(29,77,58,.15);
-    border-radius:var(--radius); box-shadow:var(--shadow);
-    padding:clamp(16px,3vw,32px); width:min(100%,840px);
+    background:rgba(255,255,255,.78); backdrop-filter:saturate(140%) blur(6px);
+    border:1px solid rgba(29,77,58,.15); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:clamp(16px,3vw,32px); width:min(100%, 840px)
   }
-  .lead{ font-size:clamp(1.1rem,2.2vw,1.4rem); }
-  .cta{
-    display:inline-block; margin-top:12px; font-weight:700;
-    color:var(--wine); border-bottom:2px solid var(--wine);
-    padding-bottom:2px;
+  .tag{ display:inline-block; padding:6px 10px; border-radius:999px; background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem; letter-spacing:.2px; margin-bottom:10px }
+  .lead{ font-size:clamp(1.1rem,2.2vw,1.4rem) }
+  .cta-link{ display:inline-block; margin-top:12px; font-weight:700; color:var(--wine); border-bottom:2px solid var(--wine); padding-bottom:2px }
+
+  /* ========= DOBRA 2 — PASSO A PASSO ===================================== */
+  .steps{ background:var(--beige); padding-block:clamp(44px,6vw,80px); border-top:4px solid var(--pink); border-bottom:4px solid var(--pink) }
+  .steps-intro{ text-align:center; max-width:820px; margin:0 auto }
+  .steps-grid{
+    position:relative; display:grid; gap:18px;
+    grid-template-columns:repeat(6,1fr); margin-top:28px
+  }
+  /* Conectores */
+  .steps-grid::before{
+    content:""; position:absolute; left:0; right:0; top:64px; height:4px; background:
+      linear-gradient(90deg, rgba(29,77,58,.18) 0 50%, rgba(29,77,58,0) 50%),
+      linear-gradient(90deg, rgba(29,77,58,.18) 0 50%, rgba(29,77,58,0) 50%);
+    background-size: 24px 2px, 12px 2px; background-repeat:repeat-x; border-radius:4px;
+  }
+  .step{
+    grid-column: span 2;
+    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:14px; box-shadow:var(--shadow);
+    padding:16px; position:relative; overflow:hidden
+  }
+  .step .num{
+    position:absolute; top:12px; left:12px; width:36px; height:36px; border-radius:50%;
+    display:grid; place-items:center; font-weight:800; color:#fff; background:var(--wine); box-shadow:0 6px 18px rgba(124,30,40,.25)
+  }
+  .step header{ padding-left:56px }
+  .step h3{ font-family:"Canela","Playfair Display",serif; margin:0; font-size:1.15rem }
+  .step small{ color:var(--muted) }
+  .step .body{ margin-top:8px }
+  .step .chip{
+    display:inline-block; padding:4px 8px; border-radius:999px; background:var(--pink); color:var(--green);
+    font-weight:700; font-size:.75rem; letter-spacing:.2px; margin-right:6px
+  }
+  .step .ia{
+    display:inline-flex; align-items:center; gap:8px; font-weight:700; color:var(--green);
+  }
+  .step .ia::before{ content:""; width:10px; height:10px; border-radius:50%; background:var(--green) }
+  .step.chatgpt .ia::before{ background:var(--wine) }
+  .step.enh .ia::before{ background:linear-gradient(135deg,var(--pink),var(--wine)) }
+
+  .steps-note{ margin-top:20px; color:var(--muted); text-align:center }
+
+  @media (max-width: 960px){
+    .steps-grid{ grid-template-columns:repeat(2,1fr) }
+    .steps-grid::before{ display:none }
+    .step{ grid-column: span 2 }
   }
 
-  /* ============ SOCIAL PROOF (FAIXA) ============== */
-  .band{ border-top:2px solid var(--pink); border-bottom:2px solid var(--pink); background:linear-gradient(180deg,#fff 0%, var(--off) 100%);}
-  .band .inner{ display:flex; align-items:center; gap:20px; padding:12px 0; justify-content:center; flex-wrap:wrap; }
-  .band .title{ font-family:"Canela","Playfair Display",serif; color:var(--green); font-size:clamp(1rem,2vw,1.3rem); font-weight:700; white-space:nowrap; }
-  .avatars{ display:flex; gap:10px; overflow:auto; padding-bottom:6px }
-  .avatar{ width:44px; height:44px; border-radius:50%; background:#ddd; flex:0 0 auto; box-shadow:0 0 0 2px var(--green), 0 0 0 4px var(--pink); background-size:cover; background-position:center; }
-
-  /* ============ DOBRA 2 — MAPA DO ESTÚDIO (shopping) ============== */
-  .studio-map{
-    background:var(--beige);
-    padding-block:clamp(40px,6vw,80px);
-    border-top:4px solid var(--pink);
-    border-bottom:4px solid var(--pink);
-  }
-  .map-grid{
-    display:grid; grid-template-columns: 1.2fr .8fr; gap:24px;
-  }
-  @media (max-width: 900px){
-    .map-grid{ grid-template-columns:1fr; }
-  }
-  .map-card, .panel-card{
-    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:var(--radius);
-    padding:clamp(12px,2.5vw,20px); box-shadow:var(--shadow);
-  }
-  .panel-card h3{ margin-bottom:8px }
-  .panel-list{ display:grid; gap:10px; }
-  .pill{
-    display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
-    border:1px solid rgba(29,77,58,.18); background:#fff; cursor:pointer;
-  }
-  .pill .dot{ width:10px; height:10px; border-radius:50%; background:var(--wine); box-shadow:0 0 0 2px var(--green); }
-  .pill small{ color:var(--muted) }
-
-  /* Mapa em SVG responsivo */
-  .map-box{ position:relative; width:100%; aspect-ratio: 16/11; }
-  .zone{ fill:#FFFFFF; stroke: var(--green); stroke-width:2; }
-  .zone-label{ font-family: "Canela","Playfair Display",serif; fill: var(--green); font-weight:700; }
-  .corridor{ stroke: var(--green); stroke-width:3; stroke-dasharray:6 6; fill:none; opacity:.6 }
-
-  /* Lojas / pinos (aulas) */
-  .store-pin{
-    position:absolute; transform:translate(-50%,-50%); width:22px; height:22px; border-radius:50%;
-    background: radial-gradient(circle at 30% 30%, #fff, #fff 55%, #FCE9EE 100%);
-    border:2px solid var(--green); cursor:pointer; box-shadow:var(--shadow);
-  }
-  .store-pin.active{ outline: 3px solid var(--pink); }
-  .store-tooltip{
-    position:absolute; transform:translate(-50%, 12px); min-width: 240px; max-width: 280px;
-    background:#fff; border:1px solid rgba(29,77,58,.18); border-radius:12px; padding:10px 12px; box-shadow:var(--shadow); display:none;
-  }
-  .store-pin.active + .store-tooltip{ display:block; }
-
-  /* Legenda */
-  .legend{ margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; color:var(--muted) }
-  .badge{ padding:6px 10px; border-radius:999px; background:#fff; border:1px solid rgba(29,77,58,.18) }
-
-  /* ============ RECOMPENSA ============== */
-  .reward{ padding-block:clamp(40px,6vw,80px); }
+  /* ========= RECOMPENSAS ================================================== */
+  .reward{ padding-block:clamp(40px,6vw,80px) }
   .reward-card{
     background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:var(--radius);
-    padding:clamp(16px,3vw,28px); box-shadow:var(--shadow);
-    display:grid; gap:10px;
+    padding:clamp(16px,3vw,28px); box-shadow:var(--shadow); display:grid; gap:10px
   }
   .progress{ height:12px; background:rgba(29,77,58,.12); border-radius:999px; overflow:hidden }
-  .progress > span{ display:block; height:100%; width:42%; background:var(--wine); }
+  .progress > span{ display:block; height:100%; width:42%; background:var(--wine) }
 
-  /* ============ STORIES (ENH) ============== */
-  .stories{ padding-block:clamp(40px,6vw,80px); background:linear-gradient(180deg, var(--off), #fff); }
-  .stories-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:22px; }
-  .story{ background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:18px; padding:16px; text-align:center; box-shadow:var(--shadow); }
-  .story .bubble{ width:72px; height:72px; border-radius:50%; margin-inline:auto; background:#eee; box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green); }
-  .story h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green); }
+  /* ========= STORIES (ENH perfis) ======================================== */
+  .stories{ padding-block:clamp(40px,6vw,80px); background:linear-gradient(180deg,var(--off),#fff) }
+  .stories-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:22px }
+  .story{ background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:18px; padding:16px; text-align:center; box-shadow:var(--shadow) }
+  .bubble{ width:72px; height:72px; border-radius:50%; margin-inline:auto; background:#eee; box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green) }
+  .story h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green) }
   .story small{ color:var(--muted) }
 
-  dialog{ border:none; border-radius:16px; width:min(92vw,720px); padding:0; box-shadow:0 30px 80px rgba(0,0,0,.25); }
-  dialog::backdrop{ background:rgba(0,0,0,.35); }
-  .modal{ padding:22px; background:#fff; border-radius:16px; }
-  .modal header{ display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid var(--pink); padding-bottom:10px; }
-  .modal h3{ margin:0; }
-  .modal .close{ background:transparent; border:none; font-weight:700; color:var(--wine); cursor:pointer; }
-
-  /* ============ FAQ ======================= */
-  .faq{ padding-block:clamp(40px,6vw,80px); border-top:4px solid var(--pink); }
-  .accordion{ display:grid; gap:10px; }
-  .acc{ background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:12px; overflow:hidden; }
-  .acc summary{ list-style:none; padding:14px 16px; cursor:pointer; position:relative; font-weight:700; color:var(--green); }
+  /* ========= FAQ ========================================================== */
+  .faq{ padding-block:clamp(40px,6vw,80px); border-top:4px solid var(--pink) }
+  .accordion{ display:grid; gap:10px }
+  .acc{ background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:12px; overflow:hidden }
+  .acc summary{ list-style:none; padding:14px 16px; cursor:pointer; position:relative; font-weight:700; color:var(--green) }
   .acc summary::-webkit-details-marker{ display:none }
-  .acc summary::after{ content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700; }
+  .acc summary::after{ content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700 }
   .acc[open] summary::after{ content:"–" }
   .acc .content{ padding:0 16px 16px 16px; color:var(--text) }
 
-  /* Footer */
+  /* ========= UTIL/FOOTER ================================================== */
+  .center{ text-align:center }
+  .muted{ color:var(--muted) }
   footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:24px 0; text-align:center }
-
-  /* Entradas animadas */
-  .reveal{ opacity:.001; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease; }
-  .reveal.visible{ opacity:1; transform:translateY(0); }
-  /* ===================== TRILHA EM CARTAS (estilos) ======================= */
-.deck{ background:var(--beige); padding-block:clamp(48px,6vw,80px); }
-.deck-head .chip{
-  display:inline-block; padding:6px 12px; border-radius:999px;
-  background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem;
-  letter-spacing:.2px; margin-bottom:10px;
-}
-.deck h2{ color:var(--green); font-family:"Canela","Playfair Display",serif; }
-
-.deck-wrap{
-  position:relative; display:grid; place-items:center; margin-top:28px;
-  /* modo carrossel no mobile */
-  overflow-x:auto; padding:12px; gap:0; scroll-snap-type:x mandatory;
-}
-.card{
-  width:min(64vw, 260px); height:min(90vw, 380px);
-  background: #ddd; border-radius:28px; position:relative;
-  transform: translateX(calc(var(--x,0) * 1%)) rotate(calc(var(--deg,0) * 1deg));
-  box-shadow: 0 20px 50px rgba(29,77,58,.18);
-  transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s;
-  background-image: var(--bg); background-size:cover; background-position:center;
-  border: 2px solid rgba(29,77,58,.25);
-  margin-inline:clamp(6px, 2vw, 14px);
-  scroll-snap-align:center;
-}
-.card::before{
-  /* fio verde sutil ao redor (sinal técnico) */
-  content:""; position:absolute; inset:0; border-radius:28px;
-  box-shadow: inset 0 0 0 2px rgba(29,77,58,.12);
-  pointer-events:none;
-}
-.card .card-glow{
-  position:absolute; inset:auto -20% -12% -20%; height:40%;
-  background: radial-gradient(60% 50% at 50% 0%, rgba(124,30,40,.12), transparent 70%);
-  filter: blur(14px);
-}
-.card .card-meta{
-  position:absolute; left:14px; right:14px; bottom:14px;
-  background:rgba(255,255,255,.82); backdrop-filter: blur(6px) saturate(130%);
-  border:1px solid rgba(29,77,58,.15); border-radius:16px; padding:10px 12px;
-  color:var(--text);
-}
-.card .card-meta strong{ color:var(--wine); font-size:.8rem; }
-.card .card-meta h3{
-  margin:4px 0 4px; font-size:1.05rem; color:var(--green);
-  font-family:"Canela","Playfair Display",serif;
-}
-.card:hover{ transform: translateX(calc(var(--x,0) * 1%)) rotate(0deg) scale(1.02); box-shadow:0 28px 70px rgba(29,77,58,.26); }
-.card:focus-visible{ outline:3px solid var(--pink); }
-
-.deck-legend{
-  display:flex; flex-wrap:wrap; gap:14px 20px; margin-top:24px; color:var(--muted);
-}
-.dot{ display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; transform:translateY(1px); }
-.dot--chatgpt{ background:var(--wine); }
-.dot--higgs{ background:var(--green); }
-.dot--enh{ background:linear-gradient(135deg, var(--pink), var(--wine)); }
-
-.deck-divider{
-  height:4px; border:0; background: var(--pink); width:100%;
-  margin-top:clamp(36px,5vw,60px);
-}
-
-/* Desktop: leque central com cartas maiores */
-@media (min-width: 900px){
-  .deck-wrap{
-    display:flex; justify-content:center; align-items:flex-end; overflow:visible;
-    padding:24px 0 8px;
-  }
-  .card{ width:260px; height:380px; }
-}
-
-/* Reduz motion para acessibilidade */
-@media (prefers-reduced-motion: reduce){
-  .card{ transition:none; }
-}
 </style>
 </head>
 <body>
 
-<!-- ========================= HERO ================================ -->
+<!-- ================= PROVA SOCIAL (TOPO) =============================== -->
+<section class="band">
+  <div class="container inner">
+    <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
+    <div class="avatars" aria-label="Alunos que já participam">
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200')"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200')"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200')"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200')"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200')"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200')"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HERO ============================================== -->
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-copy container">
-    <div class="hero-block">
-      <div class="hero-card reveal">
-        <h1>ESTÚDIO INFINITO™</h1>
-        <p class="lead"><strong>Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</strong></p>
-        <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
-        <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil.</em></p>
-        <p>Você paga <strong>só o 1º ano</strong>.<br>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br><small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
-        <p><strong>Selo de confiança:</strong> seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
-        <a href="#mapa" class="cta">Entrar e criar o seu primeiro post agora →</a>
-        <p style="margin-top:8px"><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
-      </div>
 
-      <!-- Social proof -->
-      <section class="band reveal">
-        <div class="container inner">
-          <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
-          <div class="avatars" aria-label="Alunos que já participam">
-            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200');"></div>
-            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200');"></div>
-            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200');"></div>
-            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200');"></div>
-            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200');"></div>
-            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200');"></div>
-          </div>
-        </div>
-      </section>
-    </div>
+  <div class="container hero-block">
+    <article class="hero-card">
+      <span class="tag">🔥 Dobra 1 — A PROMESSA</span>
+      <h1>ESTÚDIO INFINITO™</h1>
+      <p class="lead"><strong>Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</strong></p>
+      <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
+      <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil.</em></p>
+      <p>Você paga <strong>só o 1º ano</strong>.<br>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
+        <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small>
+      </p>
+      <p><strong>Selo de confiança:</strong> seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
+      <a class="cta-link" href="#steps">Entrar e criar o seu primeiro post agora →</a>
+      <p><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
+    </article>
+  </div>
 
-    <div class="hero-block">
-      <div class="hero-card center reveal">
-        <h2 class="mb-0">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
-        <p class="muted" style="margin-top:.4rem">Visão rápida antes do mapa</p>
-        <p class="mt-8">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
-        <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
-        <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos + comunidade sobre humano</strong> = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
-        <p><strong>AS 3 IAS QUE EU USO SÃO:</strong><br>
-          🧠 <strong>ChatGPT</strong> — ideias, roteiros, legendas e designs direto da conversa.<br>
-          🎨 <strong>Higgsfield</strong> — sua <strong>Gêmea Digital</strong> pra postar sem precisar aparecer.<br>
-          🤖 <strong>Equipe Não-Humana™</strong> — meus funcionários não humanos pra montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.
-        </p>
-      </div>
-    </div>
+  <div class="container hero-block">
+    <article class="hero-card center">
+      <h2 class="mb-0">🧠 Dobra 2 — O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+      <p style="margin-top:.6rem">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
+      <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
+      <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos + comunidade sobre humano</strong> = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+      <p><strong>AS 3 IAS QUE EU USO SÃO:</strong><br>
+        🧠 <strong>ChatGPT</strong> — ideias, roteiros, legendas e designs direto da conversa.<br>
+        🎨 <strong>Higgsfield</strong> — sua <strong>Gêmea Digital</strong> pra postar sem precisar aparecer.<br>
+        🤖 <strong>Equipe Não-Humana™</strong> — meus funcionários não humanos pra montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.
+      </p>
+    </article>
+  </div>
 
-    <div class="hero-block">
-      <div class="hero-card reveal">
-        <h3>✳️ Quando você entra, é assim que acontece:</h3>
-        <p>Você vai assistir um mini-curso express que vai mostrar como dominar uma das 3 IAs que formam o coração do Estúdio.</p>
-        <p><strong>Mapa do Estúdio Infinito — mini curso + IA</strong></p>
-        <p class="muted">Abaixo, veja o “mapa de shopping” do Estúdio. Toque nas áreas e nas “lojas” (aulas) para abrir detalhes.</p>
-      </div>
-    </div>
+  <div class="container hero-block">
+    <article class="hero-card">
+      <h3>✳️ Quando você entra, é assim que acontece:</h3>
+      <p>Você vai assistir um mini-curso express que vai mostrar como dominar uma das 3 IAs que formam o coração do Estúdio.</p>
+      <p class="muted">Role para ver o passo a passo visual ↓</p>
+    </article>
   </div>
 </section>
 
-<!-- ========================= DOBRA 2 — TRILHA EM CARTAS ================== -->
-<section class="deck" id="mapa">
+<!-- ================= DOBRA 2 — PASSO A PASSO =========================== -->
+<section class="steps" id="steps">
   <div class="container">
-    <header class="deck-head center">
-      <span class="chip">MAPA DO ESTÚDIO — mini-curso + IA</span>
-      <h2>Você entra, escolhe a rota e publica em 24h.</h2>
-      <p class="muted">Passe o mouse (ou toque) nas cartas para ver o foco de cada etapa.</p>
-    </header>
+    <div class="steps-intro">
+      <h2>Mapa do Estúdio — do zero ao post no ar</h2>
+      <p class="muted">Cada passo destrava uma parte do seu post. Em 20–40 minutos você publica hoje — e cada post paga 1 dia da assinatura.</p>
+    </div>
 
-    <!-- Leque de cartas (desktop) + carrossel horizontal (mobile) -->
-    <div class="deck-wrap" role="list">
-      <!-- Cada carta representa uma aula/IA -->
-      <article class="card" role="listitem"
-        style="--deg:-14; --x:-14; --bg:url('https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200');"
-        data-titulo="Crie sua Gêmea Digital pelo Celular"
-        data-ia="Higgsfield"
-        data-desc="Poste sem aparecer — consistência com avatar fiel.">
-        <div class="card-glow"></div>
-        <div class="card-meta">
-          <strong>Higgsfield</strong>
-          <h3>Gêmea Digital no Celular</h3>
-          <small>Poste sem aparecer.</small>
+    <div class="steps-grid" role="list">
+      <!-- Linha 1 -->
+      <article class="step chatgpt" role="listitem">
+        <div class="num">1</div>
+        <header>
+          <h3>AULA: Designs conversando com o ChatGPT</h3>
+          <small class="ia">IA: ChatGPT</small>
+        </header>
+        <div class="body">
+          <span class="chip">Sem abrir o Canva</span>
+          <p>Aprenda a gerar peças e variações direto na conversa. Saída: arte-base pronta pra adaptar.</p>
         </div>
       </article>
 
-      <article class="card" role="listitem"
-        style="--deg:-7; --x:-7; --bg:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200');"
-        data-titulo="Designs conversando com o ChatGPT"
-        data-ia="ChatGPT"
-        data-desc="Peças e variações direto da conversa, sem abrir o Canva.">
-        <div class="card-glow"></div>
-        <div class="card-meta">
-          <strong>ChatGPT</strong>
-          <h3>Designs por Conversa</h3>
-          <small>Sem abrir o Canva.</small>
+      <article class="step" role="listitem">
+        <div class="num">2</div>
+        <header>
+          <h3>AULA: Crie sua Gêmea Digital pelo Celular</h3>
+          <small class="ia">IA: Higgsfield</small>
+        </header>
+        <div class="body">
+          <span class="chip">Sem aparecer</span>
+          <p>Configure a Gêmea com coerência visual e comece a postar sem câmera.</p>
         </div>
       </article>
 
-      <article class="card" role="listitem"
-        style="--deg:0; --x:0; --bg:url('https://images.unsplash.com/photo-1551281044-8d8e1421a9a1?q=80&w=1200');"
-        data-titulo="Estratégia de Público — Como Vender para as Pessoas Certas"
-        data-ia="Bia do Público (ENH)"
-        data-desc="Direção, mensagem e promessa que convertem.">
-        <div class="card-glow"></div>
-        <div class="card-meta">
-          <strong>ENH · Bia do Público</strong>
+      <!-- Linha 2 -->
+      <article class="step enh" role="listitem">
+        <div class="num">3</div>
+        <header>
           <h3>Estratégia de Público</h3>
-          <small>Falar com quem compra.</small>
+          <small class="ia">IA: Bia do Público (ENH)</small>
+        </header>
+        <div class="body">
+          <span class="chip">Quem é seu “alvo certo”</span>
+          <p>Mapeie dores/desejos e alinhe promessa, linguagem e proposta.</p>
         </div>
       </article>
 
-      <article class="card" role="listitem"
-        style="--deg:7; --x:7; --bg:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200');"
-        data-titulo="Ideias que Nunca Acabam"
-        data-ia="Maria das Ideias (ENH)"
-        data-desc="Estoque infinito sem soar repetitivo.">
-        <div class="card-glow"></div>
-        <div class="card-meta">
-          <strong>ENH · Maria das Ideias</strong>
-          <h3>Ideias Infindas</h3>
-          <small>Sem repetir de verdade.</small>
+      <article class="step enh" role="listitem">
+        <div class="num">4</div>
+        <header>
+          <h3>Ideias que Nunca Acabam</h3>
+          <small class="ia">IA: Maria das Ideias (ENH)</small>
+        </header>
+        <div class="body">
+          <span class="chip">Falando do mesmo produto</span>
+          <p>Crie um estoque infinito de ângulos pra não travar nunca mais.</p>
         </div>
       </article>
 
-      <article class="card" role="listitem"
-        style="--deg:14; --x:14; --bg:url('https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200');"
-        data-titulo="Domine os Primeiros 3 Segundos"
-        data-ia="João dos Ganchos (ENH)"
-        data-desc="Começos que fazem a pessoa parar.">
-        <div class="card-glow"></div>
-        <div class="card-meta">
-          <strong>ENH · João dos Ganchos</strong>
-          <h3>Primeiros 3s</h3>
-          <small>Prende e conduz.</small>
+      <!-- Linha 3 -->
+      <article class="step enh" role="listitem">
+        <div class="num">5</div>
+        <header>
+          <h3>Domine os 3 Primeiros Segundos</h3>
+          <small class="ia">IA: João dos Ganchos (ENH)</small>
+        </header>
+        <div class="body">
+          <span class="chip">Abertura que para o dedo</span>
+          <p>Construa a frase/visual de abertura que segura atenção e leva ao CTA.</p>
+        </div>
+      </article>
+
+      <article class="step enh" role="listitem">
+        <div class="num">6</div>
+        <header>
+          <h3>Escolha o Formato</h3>
+          <small class="ia">IA: Carlos (Carrosséis) ou José (Stories) ou Larissa (Roteiros)</small>
+        </header>
+        <div class="body">
+          <span class="chip">Carrossel • Stories • Roteiro</span>
+          <p>Gere peça pronta: slides, sequência de stories ou script de vídeo.</p>
+        </div>
+      </article>
+
+      <!-- Linha 4 -->
+      <article class="step chatgpt" role="listitem">
+        <div class="num">7</div>
+        <header>
+          <h3>Legenda & Tom</h3>
+          <small class="ia">IA: ChatGPT + Laura das Legendas</small>
+        </header>
+        <div class="body">
+          <span class="chip">Natural e direto</span>
+          <p>Transforme sua ideia em texto com voz e cadência do seu perfil.</p>
+        </div>
+      </article>
+
+      <article class="step" role="listitem">
+        <div class="num">8</div>
+        <header>
+          <h3>Publicação e Recompensa</h3>
+          <small class="ia">Post que Paga</small>
+        </header>
+        <div class="body">
+          <span class="chip">+1 dia na renovação</span>
+          <p>Postou hoje? O painel já soma o dia e mostra sua estimativa de renovação.</p>
         </div>
       </article>
     </div>
 
-    <!-- Legenda de trilhas (mantém a tese das 3 IAs) -->
-    <ul class="deck-legend">
-      <li><span class="dot dot--chatgpt"></span> ChatGPT: ideias, roteiros, legendas e designs.</li>
-      <li><span class="dot dot--higgs"></span> Higgsfield: sua Gêmea Digital (poste sem aparecer).</li>
-      <li><span class="dot dot--enh"></span> Equipe Não-Humana™: peças completas, prontas pra publicar.</li>
-    </ul>
+    <p class="steps-note">Aula vista = post no ar. Em 24h você publica — ou eu devolvo 100%.</p>
   </div>
-
-  <!-- Divisória rosa sutil, alinhada ao branding -->
-  <hr class="deck-divider" />
 </section>
 
-<!-- ========================= RECOMPENSA ================================= -->
+<!-- ================= RECOMPENSAS ======================================= -->
 <section class="reward">
   <div class="container">
-    <div class="reward-card reveal">
+    <div class="reward-card">
       <h2>💰 Recompensas Infindas — Post que Paga</h2>
       <p><strong>1 post = +1 dia</strong> de desconto na renovação (bateu <strong>365</strong>, o próximo ano pode sair <strong>de graça</strong>).</p>
       <div class="progress" aria-label="Progresso de dias pagos"><span style="width:38%"></span></div>
@@ -430,7 +337,7 @@
   </div>
 </section>
 
-<!-- ========================= STORIES ENH ================================ -->
+<!-- ================= STORIES (ENH perfis) =============================== -->
 <section class="stories">
   <div class="container">
     <h2 class="center">Equipe Não-Humana™ — perfis</h2>
@@ -439,34 +346,26 @@
   </div>
 </section>
 
-<!-- ========================= FAQ ======================================= -->
+<!-- ================= FAQ =============================================== -->
 <section class="faq">
   <div class="container">
     <h2 class="center">FAQ (com reforço da tese das 3 IAs)</h2>
     <div class="accordion" style="margin-top:24px">
       <details class="acc">
         <summary>Consigo mesmo com pouco tempo?</summary>
-        <div class="content">
-          <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
-        </div>
+        <div class="content"><p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p></div>
       </details>
       <details class="acc">
         <summary>Preciso de computador ou app pago?</summary>
-        <div class="content">
-          <p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p>
-        </div>
+        <div class="content"><p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p></div>
       </details>
       <details class="acc">
         <summary>Não sou “do digital”. É pra mim?</summary>
-        <div class="content">
-          <p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p>
-        </div>
+        <div class="content"><p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p></div>
       </details>
       <details class="acc">
         <summary>Não quero aparecer em vídeo. E agora?</summary>
-        <div class="content">
-          <p>Usa o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto!</p>
-        </div>
+        <div class="content"><p>Use o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.</p></div>
       </details>
       <details class="acc">
         <summary>Como funciona o “Post que Paga”?</summary>
@@ -479,21 +378,15 @@
       </details>
       <details class="acc">
         <summary>E se eu travar?</summary>
-        <div class="content">
-          <p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p>
-        </div>
+        <div class="content"><p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p></div>
       </details>
       <details class="acc">
         <summary>Quando sai meu primeiro post?</summary>
-        <div class="content">
-          <p>Em até 24h. Se não sair, eu devolvo 100%.</p>
-        </div>
+        <div class="content"><p>Em até 24h. Se não sair, eu devolvo 100%.</p></div>
       </details>
       <details class="acc">
         <summary>Qual é o preço? Posso cancelar?</summary>
-        <div class="content">
-          <p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p>
-        </div>
+        <div class="content"><p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p></div>
       </details>
     </div>
   </div>
@@ -505,144 +398,41 @@
   </div>
 </footer>
 
-<!-- ========================= JS ========================================= -->
+<!-- ================= SCRIPTS =========================================== -->
 <script>
-/* ====== ENTRADAS SUAVES ====== */
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries)=> entries.forEach(e=>{
-  if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
-}),{threshold:.2});
-reveals.forEach(el=> io.observe(el));
+/* Suave: revelar cards/blocos quando entram na viewport */
+const reveal = document.querySelectorAll('.hero-card, .reward-card, .stories .container, .faq .container, .step');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity = 1;
+      e.target.style.transform = 'translateY(0)';
+      io.unobserve(e.target);
+    }
+  })
+},{threshold:.18});
+reveal.forEach(el => { el.style.opacity=.001; el.style.transform='translateY(12px)'; io.observe(el); });
 
-/* ====== DADOS (Aulas) — mesma copy ====== */
-const aulas = [
-  { id:'higgsfield-gemea', zona:'zona-ias', titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
-  { id:'chatgpt-designs', zona:'zona-ias', titulo:'Designs conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
-
-  { id:'carlos-carrosseis', zona:'zona-estudios', titulo:'Carrosséis Inteligentes Criados com IA', ia:'Carlos dos Carrosséis (ENH)', detalhe:'Primeiro slide até CTA.' },
-  { id:'jose-stories', zona:'zona-estudios', titulo:'Stories que as Pessoas Realmente Querem Ver', ia:'José dos Stories (ENH)', detalhe:'Sequência, ritmo, pergunta.' },
-  { id:'larissa-roteiros', zona:'zona-estudios', titulo:'Roteiros com IA que as Pessoas Querem Ouvir', ia:'Larissa dos Roteiros (ENH)', detalhe:'Estrutura e tensão.' },
-
-  { id:'bia-publico', zona:'zona-estrategia', titulo:'Estratégia de Público — Como Vender para as Pessoas Certas', ia:'Bia do Público (ENH)', detalhe:'Direção, mensagem, oferta.' },
-  { id:'maria-ideias', zona:'zona-estrategia', titulo:'Ideias que Nunca Acabam (falando do mesmo produto)', ia:'Maria das Ideias (ENH)', detalhe:'Mapa infinito de temas.' },
-  { id:'joao-ganchos', zona:'zona-estrategia', titulo:'Domine os Primeiros 3 Segundos do Seu Post', ia:'João dos Ganchos (ENH)', detalhe:'Começos que fazem parar.' },
-
-  { id:'comunidade', zona:'zona-comunidade', titulo:'Comunidade Sobre-Humano™', ia:'—', detalhe:'Feedback, oficinas (2×/mês) e suporte.' },
-
-  { id:'tiktok-2026', zona:'zona-estudios', titulo:'Como Crescer no TikTok em 2026', ia:'ChatGPT', detalhe:'Estratégias atualizadas.' },
-  { id:'instagram-2026', zona:'zona-estudios', titulo:'Como Crescer no Instagram em 2026', ia:'ChatGPT', detalhe:'Série, constância e loops.' },
-  { id:'hacks-chatgpt', zona:'zona-ias', titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
-];
-
-/* ====== STORIES ENH (cards + modais) ====== */
+/* Grid de perfis ENH (mock) */
 const ENH = [
-  { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”' },
-  { nome:'Larissa dos Roteiros', func:'Roteiros práticos', exemplo:'Estrutura 3A: Atenção, Âncora, Ação.' },
-  { nome:'José dos Stories', func:'Sequências que prendem', exemplo:'3 stories: Puxada • Prova • Ponto final com pergunta.' },
-  { nome:'Carlos dos Carrosséis', func:'Carrosséis que convertem', exemplo:'Slide 1: pergunta que resolve. Slide 10: decisão.' },
-  { nome:'Bruno do Branding', func:'Tom e identidade', exemplo:'3 palavras-âncora + 2 proibições.' },
-  { nome:'Dudu da Bio', func:'Perfil que vende', exemplo:'Headline em 7 palavras + link com promessa.' },
-  { nome:'Laura das Legendas', func:'Texto que flui', exemplo:'Frase-gancho + quebra + convite.' },
-  { nome:'Bia do Público', func:'Leitura de audiência', exemplo:'Mapa de dores x desejos atualizado.' },
-  { nome:'Maria das Ideias', func:'Estoque infinito', exemplo:'5 fontes de ideias do mesmo produto.' },
-  { nome:'Leonardo da Viralização', func:'Ajustes de alcance', exemplo:'Tensão + contraste + repetição útil.' }
+  { nome:'João dos Ganchos', func:'Começos que fazem parar' },
+  { nome:'Larissa dos Roteiros', func:'Roteiros práticos' },
+  { nome:'José dos Stories', func:'Sequências que prendem' },
+  { nome:'Carlos dos Carrosséis', func:'Carrosséis que convertem' },
+  { nome:'Bruno do Branding', func:'Tom e identidade' },
+  { nome:'Dudu da Bio', func:'Perfil que vende' },
+  { nome:'Laura das Legendas', func:'Texto que flui' },
+  { nome:'Bia do Público', func:'Leitura de audiência' },
+  { nome:'Maria das Ideias', func:'Estoque infinito' },
+  { nome:'Leonardo da Viralização', func:'Ajustes de alcance' }
 ];
 const grid = document.getElementById('storiesGrid');
-
-function cardENH(p){
+ENH.forEach(p=>{
   const el = document.createElement('div');
-  el.className = 'story';
-  el.innerHTML = `
-    <div class="bubble"></div>
-    <h5>${p.nome}</h5>
-    <small>${p.func}</small>
-  `;
-  el.addEventListener('click', ()=> openModal(p));
-  return el;
-}
-ENH.forEach(p => grid.appendChild(cardENH(p)));
-
-function openModal(p){
-  const dlg = document.createElement('dialog');
-  dlg.innerHTML = `
-    <div class="modal">
-      <header>
-        <h3>${p.nome}</h3>
-        <button class="close" aria-label="Fechar">fechar ✕</button>
-      </header>
-      <div style="margin-top:16px">
-        <p><strong>Função:</strong> ${p.func}</p>
-        <p><strong>Exemplo de saída:</strong> <em>${p.exemplo}</em></p>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(dlg);
-  dlg.showModal();
-  dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
-  dlg.addEventListener('close', ()=> dlg.remove());
-  dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
-}
-<!-- ===================== JS (efeitos das cartas) =================== -->
-<script>
-(function(){
-  const cards = document.querySelectorAll('.deck .card');
-
-  // Tilt suave
-  cards.forEach(card=>{
-    card.addEventListener('mousemove', (e)=>{
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left)/r.width - .5;
-      const y = (e.clientY - r.top)/r.height - .5;
-      card.style.transform =
-        `translateX(calc(var(--x,0)*1%)) rotate(calc(var(--deg,0)*1deg)) 
-         rotateY(${x*6}deg) rotateX(${ -y*6 }deg)`;
-    });
-    card.addEventListener('mouseleave', ()=>{
-      card.style.transform =
-        `translateX(calc(var(--x,0)*1%)) rotate(calc(var(--deg,0)*1deg))`;
-    });
-  });
-
-  // Entrando na viewport
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.style.opacity = 1;
-        e.target.style.transform += ' translateY(0)';
-      } else {
-        e.target.style.opacity = .92;
-        e.target.style.transform += ' translateY(8px)';
-      }
-    });
-  },{threshold:.35});
-  cards.forEach(c=>{ c.style.opacity=.92; c.style.transform += ' translateY(8px)'; io.observe(c); });
-
-  // Clique abre detalhe (modal nativo)
-  document.addEventListener('click', (ev)=>{
-    const card = ev.target.closest('.deck .card');
-    if(!card) return;
-    const titulo = card.dataset.titulo || '';
-    const ia = card.dataset.ia || '';
-    const desc = card.dataset.desc || '';
-    const dlg = document.createElement('dialog');
-    dlg.innerHTML = `
-      <div style="padding:22px;background:#fff;border-radius:16px;min-width:min(92vw,640px)">
-        <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--pink);padding-bottom:10px">
-          <h3 style="margin:0;color:var(--green);font-family: 'Canela','Playfair Display',serif;">${titulo}</h3>
-          <button style="background:transparent;border:none;color:var(--wine);font-weight:700;cursor:pointer">fechar ✕</button>
-        </header>
-        <div style="margin-top:14px;color:var(--text)">
-          <p><strong>IA:</strong> ${ia}</p>
-          <p>${desc}</p>
-          <p class="muted">Aula vista = post no ar.</p>
-        </div>
-      </div>`;
-    document.body.appendChild(dlg);
-    dlg.showModal();
-    dlg.querySelector('button').addEventListener('click', ()=> dlg.close());
-    dlg.addEventListener('close', ()=> dlg.remove());
-  });
-})();
+  el.className='story';
+  el.innerHTML = `<div class="bubble"></div><h5>${p.nome}</h5><small>${p.func}</small>`;
+  grid.appendChild(el);
+});
 </script>
 </body>
 </html>
