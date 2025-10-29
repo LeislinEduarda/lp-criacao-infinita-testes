@@ -32,7 +32,11 @@
     line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
   h1,h2,h3{ margin:0 0 .6rem 0; line-height:1.15; color:var(--green); }
-  h1{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
+  h1{
+    font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700;
+    font-size:clamp(2rem,3.6vw,3rem);
+    text-shadow: 0 1px 10px rgba(255,255,255,.55); /* foco leve no hero */
+  }
   h2{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
   h3{ font-weight:700; font-size:clamp(1.1rem,2vw,1.4rem); }
   p{ margin:.7rem 0; }
@@ -43,6 +47,8 @@
   .band{
     border-bottom: 2px solid var(--pink);
     background: linear-gradient(180deg,#FFFFFF 0%, var(--off) 100%);
+    margin-top: 32px;   /* respiro adicional */
+    margin-bottom: 16px;
   }
   .band .inner{
     display:flex; align-items:center; gap:20px; padding:12px 0;
@@ -99,10 +105,12 @@
     padding-block:10vh;
   }
   .hero-card{
-    background:rgba(255,255,255,.75); backdrop-filter:saturate(140%) blur(6px);
+    background:rgba(255,255,255,.85); /* +claridade */
+    backdrop-filter:saturate(140%) blur(6px);
     border:1px solid rgba(29,77,58,.15);
     border-radius:var(--radius); box-shadow:var(--shadow);
     padding:clamp(16px,3vw,32px); width:min(100%,840px);
+    transition: transform .35s, opacity .35s;
   }
   .tag{ display:inline-block; padding:6px 10px; border-radius:999px;
     background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem;
@@ -127,7 +135,12 @@
   #infinityPath{
     stroke: var(--wine); stroke-width:3; fill:none; stroke-linecap:round;
     filter: drop-shadow(0 6px 14px rgba(124,30,40,.15));
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;  /* animado via JS ao entrar na dobra */
+    transition: stroke-dashoffset 2.2s ease;
   }
+  .infinity.active #infinityPath{ stroke-dashoffset: 0; }
+
   .dot{
     position:absolute; width:34px; height:34px; border-radius:50%;
     background:radial-gradient(circle at 30% 30%, #fff, #fff 50%, #FCE9EE 100%);
@@ -202,12 +215,15 @@
   .acc summary{
     list-style:none; padding:14px 16px; cursor:pointer; position:relative;
     font-weight:700; color:var(--green);
+    display:flex; align-items:center; gap:10px;
   }
   .acc summary::-webkit-details-marker{ display:none }
   .acc summary::after{
-    content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700;
+    content:"+"; margin-left:auto; color:var(--wine); font-weight:700;
+    transition: transform .25s ease;
   }
-  .acc[open] summary::after{ content:"–" }
+  .acc[open] summary{ background: var(--pink); }
+  .acc[open] summary::after{ content:"–"; transform: rotate(180deg); }
   .acc .content{ padding:0 16px 16px 16px; color:var(--text) }
 
   /* ==== FOOTER ============================================================ */
@@ -229,6 +245,7 @@
   /* ==== PREFERS REDUCED MOTION =========================================== */
   @media (prefers-reduced-motion: reduce){
     .dot, .dot-label, .hero-card{ transition: none !important; }
+    #infinityPath{ transition: none !important; }
   }
 </style>
 </head>
@@ -249,21 +266,24 @@
         <a href="#infinity" class="cta">Entrar e criar o seu primeiro post agora →</a>
         <p class="mt-8"><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
       </div>
+
       <!-- ========================= SOCIAL PROOF =============================== -->
-<section class="band">
-  <div class="container inner">
-    <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
-    <div class="avatars" aria-label="Alunos que já participam">
-      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200');"></div>
-      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200');"></div>
-      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200');"></div>
-      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200');"></div>
-      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200');"></div>
-      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200');"></div>
+      <section class="band">
+        <div class="container inner">
+          <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
+          <div class="avatars" aria-label="Alunos que já participam">
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200');"></div>
+            <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200');"></div>
+          </div>
+        </div>
+      </section>
+      <!-- ===================================================================== -->
     </div>
-  </div>
-</section>
-    </div>
+
     <div class="hero-block">
       <div class="hero-card center">
         <h2 class="mb-0">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
@@ -277,6 +297,7 @@
         </p>
       </div>
     </div>
+
     <div class="hero-block">
       <div class="hero-card">
         <h3>✳️ Quando você entra, é assim que acontece:</h3>
@@ -305,6 +326,8 @@
     </div>
 
     <div class="legend">
+      <!-- reservada para futuras legendas/selos se desejar -->
+    </div>
   </div>
 </section>
 
@@ -429,19 +452,22 @@ heroBlocks.forEach(card=>{
 const svg = document.getElementById('infinitySVG');
 const path = document.getElementById('infinityPath');
 const box = document.querySelector('.svg-box');
+const infinitySection = document.querySelector('.infinity');
 const totalLen = path.getTotalLength();
 
 function placeDots(){
   // limpa dots antigos
   box.querySelectorAll('.dot').forEach(d => d.remove());
-  const rect = box.getBoundingClientRect();
+  const vbW = svg.viewBox.baseVal.width;
+  const vbH = svg.viewBox.baseVal.height;
+
   aulas.forEach((item, i)=>{
     const t = (i+1)/(aulas.length+1);
     const p = path.getPointAtLength(totalLen * t);
     const dot = document.createElement('button');
     dot.className = 'dot';
-    dot.style.left = (p.x / svg.viewBox.baseVal.width * 100) + '%';
-    dot.style.top  = (p.y / svg.viewBox.baseVal.height * 100) + '%';
+    dot.style.left = (p.x / vbW * 100) + '%';
+    dot.style.top  = (p.y / vbH * 100) + '%';
     dot.setAttribute('aria-expanded','false');
     dot.innerHTML = `<span style="font-size:.9rem;color:var(--wine);font-weight:700">●</span>
         <div class="dot-label" role="region" aria-live="polite">
@@ -456,14 +482,18 @@ function placeDots(){
   });
 }
 placeDots();
-window.addEventListener('resize', placeDots);
+
+/* Debounce do resize */
+let resizeTimeout;
+window.addEventListener('resize', ()=>{
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(placeDots, 300);
+});
 
 /* Auto-abrir próximo dot ao rolar (efeito “sequência”) */
-const dots = [];
 const ioDots = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
-      // fecha outros e abre este
       document.querySelectorAll('.dot').forEach(d=>d.classList.remove('open'));
       e.target.classList.add('open');
     }
@@ -472,6 +502,14 @@ const ioDots = new IntersectionObserver((entries)=>{
 setTimeout(()=>{
   box.querySelectorAll('.dot').forEach(d=> ioDots.observe(d));
 }, 400);
+
+/* Ativar animação do traço do ∞ ao entrar na dobra */
+const ioInfinity = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ infinitySection.classList.add('active'); }
+  });
+},{ threshold:.25 });
+ioInfinity.observe(infinitySection);
 
 /* ====== STORIES ENH (modais) ============================================= */
 const ENH = [
