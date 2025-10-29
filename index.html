@@ -8,6 +8,7 @@
 
 <!-- Tipografia: Canela (fallbacks editoriais) + Inter -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
 <style>
   /* ==== TOKENS DE TEMA ===================================================== */
   :root{
@@ -32,11 +33,7 @@
     line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
   h1,h2,h3{ margin:0 0 .6rem 0; line-height:1.15; color:var(--green); }
-  h1{
-    font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700;
-    font-size:clamp(2rem,3.6vw,3rem);
-    text-shadow: 0 1px 10px rgba(255,255,255,.55); /* foco leve no hero */
-  }
+  h1{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
   h2{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
   h3{ font-weight:700; font-size:clamp(1.1rem,2vw,1.4rem); }
   p{ margin:.7rem 0; }
@@ -47,8 +44,6 @@
   .band{
     border-bottom: 2px solid var(--pink);
     background: linear-gradient(180deg,#FFFFFF 0%, var(--off) 100%);
-    margin-top: 32px;   /* respiro adicional */
-    margin-bottom: 16px;
   }
   .band .inner{
     display:flex; align-items:center; gap:20px; padding:12px 0;
@@ -67,11 +62,7 @@
   }
 
   /* ==== HERO PINNED ======================================================== */
-  .hero{
-    position:relative;
-    height:300vh; /* seção longa para scroll do texto */
-    isolation:isolate;
-  }
+  .hero{ position:relative; height:300vh; isolation:isolate; }
   .hero-bg{
     position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:
@@ -100,75 +91,115 @@
       </g></svg>') center/cover no-repeat;
   }
   .hero-copy{ position:relative; }
-  .hero-block{
-    min-height:100vh; display:grid; place-items:center;
-    padding-block:10vh;
-  }
+  .hero-block{ min-height:100vh; display:grid; place-items:center; padding-block:10vh; }
   .hero-card{
-    background:rgba(255,255,255,.85); /* +claridade */
-    backdrop-filter:saturate(140%) blur(6px);
+    background:rgba(255,255,255,.75); backdrop-filter:saturate(140%) blur(6px);
     border:1px solid rgba(29,77,58,.15);
     border-radius:var(--radius); box-shadow:var(--shadow);
     padding:clamp(16px,3vw,32px); width:min(100%,840px);
-    transition: transform .35s, opacity .35s;
   }
-  .tag{ display:inline-block; padding:6px 10px; border-radius:999px;
-    background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem;
-    letter-spacing:.2px; margin-bottom:10px; }
+  .tag{ display:inline-block; padding:6px 10px; border-radius:999px; background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem; letter-spacing:.2px; margin-bottom:10px; }
   .lead{ font-size:clamp(1.1rem,2.2vw,1.4rem); }
-
   .cta{
     display:inline-block; margin-top:12px; font-weight:700;
-    color:var(--wine); border-bottom:2px solid var(--wine);
-    padding-bottom:2px;
+    color:var(--wine); border-bottom:2px solid var(--wine); padding-bottom:2px;
   }
 
-  /* ==== DOBRA 2: INFINITY MAP ============================================ */
+  /* ==== DOBRA 2: INFINITY (vertical + universo) ============================ */
   .infinity{
-    background:var(--beige);
-    padding-block:clamp(40px,6vw,80px);
-    border-top:4px solid var(--pink);
-    border-bottom:4px solid var(--pink);
+    background: var(--beige);
+    padding-block: clamp(40px,6vw,90px);
+    border-top: 4px solid var(--pink);
+    border-bottom: 4px solid var(--pink);
   }
-  .infinity .wrap{ position:relative; }
-  .svg-box{ position:relative; width:100%; aspect-ratio:16/9; }
+  .infinity .wrap{ position: relative; display: grid; place-items: center; }
+  .svg-box{
+    position: relative;
+    width: min(100%, 860px);
+    aspect-ratio: 9 / 16;              /* vertical */
+    margin-inline: auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    /* Universo dentro da caixa (sem escurecer a seção toda) */
+    background:
+      radial-gradient(120% 100% at 50% 0%, rgba(124,30,40,.22) 0%, rgba(124,30,40,0) 55%),
+      radial-gradient(100% 120% at 50% 100%, rgba(29,77,58,.28) 0%, rgba(29,77,58,0) 60%),
+      #0F1A17; /* “céu” escuro, puxando pro verde */
+  }
+  /* estrelas simples (baixa densidade, barato) */
+  .svg-box::before{
+    content:"";
+    position:absolute; inset:0; pointer-events:none; opacity:.55;
+    background-image:
+      radial-gradient(2px 2px at 10% 15%, #fff 60%, transparent 61%),
+      radial-gradient(1.5px 1.5px at 28% 32%, #fff 60%, transparent 61%),
+      radial-gradient(1.5px 1.5px at 72% 24%, #fff 60%, transparent 61%),
+      radial-gradient(2px 2px at 85% 56%, #fff 60%, transparent 61%),
+      radial-gradient(1.5px 1.5px at 40% 70%, #fff 60%, transparent 61%),
+      radial-gradient(2px 2px at 65% 82%, #fff 60%, transparent 61%);
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,.35));
+  }
+  /* Caminho ∞ mais grosso, com brilho sutil “neon” vinho→verde */
   #infinityPath{
-    stroke: var(--wine); stroke-width:3; fill:none; stroke-linecap:round;
-    filter: drop-shadow(0 6px 14px rgba(124,30,40,.15));
-    stroke-dasharray: 2000;
-    stroke-dashoffset: 2000;  /* animado via JS ao entrar na dobra */
-    transition: stroke-dashoffset 2.2s ease;
+    stroke: url(#gradInfinity);
+    stroke-width: 8;                   /* mais grosso */
+    fill: none;
+    stroke-linecap: round;
+    filter: drop-shadow(0 6px 18px rgba(29,77,58,.28));
   }
-  .infinity.active #infinityPath{ stroke-dashoffset: 0; }
-
+  /* Dots mais “tech”: menos rosa, borda dupla vinho/verde e brilho */
   .dot{
-    position:absolute; width:34px; height:34px; border-radius:50%;
-    background:radial-gradient(circle at 30% 30%, #fff, #fff 50%, #FCE9EE 100%);
-    border:2px solid var(--green); box-shadow:var(--shadow);
-    display:grid; place-items:center; transform:translate(-50%,-50%) scale(.9);
-    transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s;
-    cursor:pointer;
+    position:absolute; width:38px; height:38px; border-radius:50%;
+    background: radial-gradient(circle at 32% 30%, #ffffff, #e9eef0 55%, #ced7d1 100%);
+    border: 2px solid var(--green);
+    box-shadow: 0 0 0 2px rgba(124,30,40,.25), 0 10px 22px rgba(0,0,0,.20);
+    display:grid; place-items:center; transform:translate(-50%,-50%) scale(.92);
+    transition: transform .28s cubic-bezier(.2,.6,.2,1), box-shadow .28s, border-color .28s;
+    cursor: pointer;
   }
-  .dot.open{ transform:translate(-50%,-50%) scale(1.1); box-shadow:0 12px 30px rgba(29,77,58,.22); z-index:3 }
   .dot::after{
-    content:""; position:absolute; inset:-6px; border-radius:50%;
-    box-shadow:0 0 0 2px var(--pink) inset; opacity:.9;
+    content:""; position:absolute; inset:-5px; border-radius:50%;
+    box-shadow:
+      0 0 0 1px rgba(29,77,58,.45) inset,
+      0 0 12px rgba(124,30,40,.35);
+    opacity:.9;
   }
+  .dot.open{
+    transform:translate(-50%,-50%) scale(1.12);
+    box-shadow:
+      0 0 0 2px rgba(124,30,40,.45),
+      0 18px 34px rgba(29,77,58,.35);
+    z-index:3;
+  }
+  .dot span{ font-size:.9rem; color:var(--wine); font-weight:700 }
   .dot-label{
     position:absolute; top:110%; left:50%; transform:translateX(-50%);
-    background:#fff; border:1px solid rgba(29,77,58,.18); border-radius:12px;
-    padding:10px 12px; width:max(220px,22ch); max-width:260px;
-    box-shadow:var(--shadow); display:none;
+    background:#111; color:#EDEDED;
+    border:1px solid rgba(245,215,226,.18);
+    border-radius:12px; padding:10px 12px; width:max(220px,22ch); max-width:260px;
+    box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    display:none;
   }
   .dot.open .dot-label{ display:block; }
-  .dot-label h4{ margin:0 0 4px 0; font-size:1rem; color:var(--green); font-family:"Canela","Playfair Display",serif; }
-  .dot-label small{ color:var(--muted) }
-
+  .dot-label h4{
+    margin:0 0 4px 0; font-size:1rem;
+    color:#F4F4F4;
+    font-family:"Canela","Playfair Display",serif;
+  }
+  .dot-label small{ color:#B8C2BE }
   .legend{
-    margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;
-    color:var(--muted)
+    margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; color:var(--muted)
   }
   .badge{ padding:6px 10px; border-radius:999px; background:#fff; border:1px solid rgba(29,77,58,.18) }
+  @media (max-width: 800px){
+    .svg-box{ width:min(100%, 92vw); aspect-ratio: 9 / 16; }
+    .dot-label{ top:118%; left:50%; transform:translateX(-50%); }
+  }
+  @media (min-width: 1100px){
+    .svg-box{ width: 920px; }
+  }
 
   /* ==== RECOMPENSA ======================================================== */
   .reward{ padding-block:clamp(40px,6vw,80px); }
@@ -215,15 +246,12 @@
   .acc summary{
     list-style:none; padding:14px 16px; cursor:pointer; position:relative;
     font-weight:700; color:var(--green);
-    display:flex; align-items:center; gap:10px;
   }
   .acc summary::-webkit-details-marker{ display:none }
   .acc summary::after{
-    content:"+"; margin-left:auto; color:var(--wine); font-weight:700;
-    transition: transform .25s ease;
+    content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700;
   }
-  .acc[open] summary{ background: var(--pink); }
-  .acc[open] summary::after{ content:"–"; transform: rotate(180deg); }
+  .acc[open] summary::after{ content:"–" }
   .acc .content{ padding:0 16px 16px 16px; color:var(--text) }
 
   /* ==== FOOTER ============================================================ */
@@ -236,16 +264,9 @@
   .caps{ text-transform:uppercase; letter-spacing:.06em; font-weight:700 }
   .muted{ color:var(--muted) }
 
-  /* ==== RESPONSIVO ======================================================== */
-  @media (max-width: 800px){
-    .svg-box{ aspect-ratio: 9/12; }
-    .dot-label{ left:50%; transform:translateX(-50%); top:118%; }
-  }
-
   /* ==== PREFERS REDUCED MOTION =========================================== */
   @media (prefers-reduced-motion: reduce){
     .dot, .dot-label, .hero-card{ transition: none !important; }
-    #infinityPath{ transition: none !important; }
   }
 </style>
 </head>
@@ -254,6 +275,7 @@
 <!-- ========================= HERO PINNED ================================ -->
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true"></div>
+
   <div class="hero-copy container">
     <div class="hero-block">
       <div class="hero-card">
@@ -267,7 +289,7 @@
         <p class="mt-8"><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
       </div>
 
-      <!-- ========================= SOCIAL PROOF =============================== -->
+      <!-- ========================= SOCIAL PROOF =========================== -->
       <section class="band">
         <div class="container inner">
           <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
@@ -281,7 +303,8 @@
           </div>
         </div>
       </section>
-      <!-- ===================================================================== -->
+      <!-- ================================================================== -->
+
     </div>
 
     <div class="hero-block">
@@ -313,21 +336,34 @@
 <section class="infinity" id="infinity">
   <div class="container wrap">
     <div class="svg-box" aria-hidden="true">
-      <svg id="infinitySVG" viewBox="0 0 1000 560" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-        <!-- símbolo do ∞ -->
+      <svg id="infinitySVG" viewBox="0 0 560 1000" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+        <!-- Gradiente para o traço do ∞ (vinho → verde) -->
+        <defs>
+          <linearGradient id="gradInfinity" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"  stop-color="#7C1E28"/>
+            <stop offset="50%" stop-color="#9C2A35"/>
+            <stop offset="100%" stop-color="#1D4D3A"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ∞ VERTICAL, mais espesso (stroke dado no CSS) -->
         <path id="infinityPath"
-          d="M 100 280
-             C 100 120, 360 120, 500 280
-             S 900 440, 900 280
-             S 640 120, 500 280
-             S 100 440, 100 280" />
+          d="
+            M 280 100
+            C 180 100, 150 260, 260 380
+            C 320 445, 360 470, 280 500
+            C 200 530, 240 555, 300 620
+            C 410 740, 380 900, 280 900
+            C 180 900, 150 740, 260 620
+            C 320 555, 360 530, 280 500
+            C 200 470, 240 445, 300 380
+            C 410 260, 380 100, 280 100
+          " />
       </svg>
       <!-- Dots posicionados via JS -->
     </div>
 
-    <div class="legend">
-      <!-- reservada para futuras legendas/selos se desejar -->
-    </div>
+    <div class="legend"></div>
   </div>
 </section>
 
@@ -452,24 +488,21 @@ heroBlocks.forEach(card=>{
 const svg = document.getElementById('infinitySVG');
 const path = document.getElementById('infinityPath');
 const box = document.querySelector('.svg-box');
-const infinitySection = document.querySelector('.infinity');
 const totalLen = path.getTotalLength();
 
 function placeDots(){
   // limpa dots antigos
   box.querySelectorAll('.dot').forEach(d => d.remove());
-  const vbW = svg.viewBox.baseVal.width;
-  const vbH = svg.viewBox.baseVal.height;
-
+  const rect = box.getBoundingClientRect();
   aulas.forEach((item, i)=>{
     const t = (i+1)/(aulas.length+1);
     const p = path.getPointAtLength(totalLen * t);
     const dot = document.createElement('button');
     dot.className = 'dot';
-    dot.style.left = (p.x / vbW * 100) + '%';
-    dot.style.top  = (p.y / vbH * 100) + '%';
+    dot.style.left = (p.x / svg.viewBox.baseVal.width * 100) + '%';
+    dot.style.top  = (p.y / svg.viewBox.baseVal.height * 100) + '%';
     dot.setAttribute('aria-expanded','false');
-    dot.innerHTML = `<span style="font-size:.9rem;color:var(--wine);font-weight:700">●</span>
+    dot.innerHTML = `<span>●</span>
         <div class="dot-label" role="region" aria-live="polite">
           <h4>${item.titulo}</h4>
           <small><strong>IA:</strong> ${item.ia} — ${item.detalhe || ''}</small>
@@ -482,13 +515,7 @@ function placeDots(){
   });
 }
 placeDots();
-
-/* Debounce do resize */
-let resizeTimeout;
-window.addEventListener('resize', ()=>{
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(placeDots, 300);
-});
+window.addEventListener('resize', placeDots);
 
 /* Auto-abrir próximo dot ao rolar (efeito “sequência”) */
 const ioDots = new IntersectionObserver((entries)=>{
@@ -502,14 +529,6 @@ const ioDots = new IntersectionObserver((entries)=>{
 setTimeout(()=>{
   box.querySelectorAll('.dot').forEach(d=> ioDots.observe(d));
 }, 400);
-
-/* Ativar animação do traço do ∞ ao entrar na dobra */
-const ioInfinity = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ infinitySection.classList.add('active'); }
-  });
-},{ threshold:.25 });
-ioInfinity.observe(infinitySection);
 
 /* ====== STORIES ENH (modais) ============================================= */
 const ENH = [
