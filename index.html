@@ -402,6 +402,26 @@ main, .page {
 .footer, footer {
   padding: .5rem 0;
 }
+    .hero h1 {
+  font-size: clamp(2.5rem, 6vw, 3.2rem); /* aumenta bem o título */
+  line-height: 1.1;
+  color: #1D4D3A; /* mantém o verde escuro */
+  margin-bottom: 0.75rem;
+}
+
+.hero p:first-of-type {
+  font-size: clamp(1.2rem, 3.5vw, 1.5rem); /* subtítulo inicial maior */
+  font-weight: 500;
+  line-height: 1.35;
+  color: #222; /* texto escuro e legível */
+  margin-bottom: 0.5rem;
+}
+
+.hero p:not(:first-of-type) {
+  font-size: clamp(1rem, 3vw, 1.1rem); /* os demais voltam ao padrão */
+  line-height: 1.4;
+  color: #333;
+}
   </style>
 </head>
 <body>
