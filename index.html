@@ -168,53 +168,59 @@
 </head>
 <body>
 
-<!-- ================= PROVA SOCIAL (TOPO — Stories clicáveis) =============================== -->
-<section class="band">
-  <div class="container inner">
-    <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
+<style>
+  /* Rail horizontal tipo stories */
+  .band .stories-rail{
+    display:flex; gap:14px; align-items:center;
+    overflow:auto; padding:8px 2px;
+    scrollbar-width:none;
+  }
+  .band .stories-rail::-webkit-scrollbar{ display:none; }
 
-    <div class="stories-rail" id="storiesTestimonials">
-      <button class="story-chip" data-name="Ana Ribeiro" data-user="@anaribeiro" data-role="Designer" data-text="Entrei achando que seria mais um curso — hoje o Estúdio é meu lugar diário de criação.">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200" alt="Ana Ribeiro">
-      </button>
-      <button class="story-chip" data-name="Lucas Moraes" data-user="@lucasmoraes" data-role="Empreendedor" data-text="Nunca pensei que conseguiria postar todos os dias. A equipe não-humana mudou tudo.">
-        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200" alt="Lucas Moraes">
-      </button>
-      <button class="story-chip" data-name="Bianca Souza" data-user="@biancasouza" data-role="Arquiteta" data-text="O ChatGPT nunca tinha feito sentido pra mim até ver a metodologia do Estúdio.">
-        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200" alt="Bianca Souza">
-      </button>
-      <button class="story-chip" data-name="Rafael Lima" data-user="@rafael.lima" data-role="Mentor de carreira" data-text="O sistema de Post que Paga me fez voltar a postar com prazer.">
-        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200" alt="Rafael Lima">
-      </button>
-      <button class="story-chip" data-name="Clara Martins" data-user="@claramartins" data-role="Fotógrafa" data-text="Me impressionou o quanto tudo flui com leveza — sem cobrança e com resultados reais.">
-        <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200" alt="Clara Martins">
-      </button>
-    </div>
-  </div>
+  /* Botão/bolinha */
+  .band .story-chip{
+    background:transparent; border:none; padding:0; cursor:pointer;
+    flex:0 0 auto;
+  }
+  .band .story-chip .photo{
+    width:56px; height:56px; border-radius:50%; display:block; object-fit:cover;
+    /* Anéis iguais à ENH (apenas menor): vinho interno (3px) + verde externo (6px) */
+    box-shadow: 0 0 0 3px var(--wine), 0 0 0 6px var(--green);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .band .story-chip:hover .photo,
+  .band .story-chip:focus .photo{
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 3px var(--wine), 0 4px 18px rgba(29,77,58,.25), 0 0 0 6px var(--green);
+  }
 
-  <!-- Modal de depoimento -->
-  <dialog id="testimonialModal" style="border:none; border-radius:16px; max-width:420px; width:90%; padding:28px; background:white; box-shadow:0 15px 40px rgba(0,0,0,.25)">
-    <h3 id="tName" style="margin-bottom:4px;color:#1D4D3A;font-family:'Canela','Playfair Display',serif;"></h3>
-    <div id="tUser" style="color:#7C1E28;font-weight:700;margin-bottom:6px"></div>
-    <div id="tRole" style="color:#666;margin-bottom:10px;font-size:.95rem"></div>
-    <p id="tText" style="font-size:1rem;line-height:1.5;color:#222"></p>
-    <button onclick="document.getElementById('testimonialModal').close()" style="margin-top:14px;background:#7C1E28;color:#fff;border:none;padding:10px 20px;border-radius:999px;cursor:pointer">Fechar</button>
-  </dialog>
-</section>
+  /* Modal visual */
+  #testimonialModal{
+    border:none; padding:0; width:min(92vw,480px); border-radius:16px;
+    box-shadow:0 20px 60px rgba(0,0,0,.28);
+  }
+  #testimonialModal::backdrop{ background:rgba(0,0,0,.35); }
+  #testimonialModal .tmodal{
+    background:#fff; border-radius:16px; padding:24px;
+    border:1px solid rgba(29,77,58,.15);
+  }
+  #testimonialModal h3{
+    margin:0 0 4px 0; color:var(--green);
+    font-family:"Canela","Playfair Display",Georgia,serif; font-weight:700;
+  }
+  #testimonialModal .user{ color:var(--wine); font-weight:700; margin-bottom:4px; }
+  #testimonialModal .role{ color:#666; margin-bottom:12px; font-size:.95rem; }
+  #testimonialModal .text{ color:#222; line-height:1.55; }
+  #testimonialModal .close{
+    margin-top:14px; background:var(--wine); color:#fff;
+    border:none; padding:10px 18px; border-radius:999px; cursor:pointer;
+  }
 
-<script>
-const chips = document.querySelectorAll('.story-chip');
-const modal = document.getElementById('testimonialModal');
-chips.forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    document.getElementById('tName').textContent = chip.dataset.name;
-    document.getElementById('tUser').textContent = chip.dataset.user;
-    document.getElementById('tRole').textContent = chip.dataset.role;
-    document.getElementById('tText').textContent = chip.dataset.text;
-    modal.showModal();
-  });
-});
-</script>
+  /* Pequeno ajuste responsivo para bolinhas */
+  @media (max-width: 480px){
+    .band .story-chip .photo{ width:52px; height:52px; }
+  }
+</style>
 
 <!-- ================= HERO ============================================== -->
 <section class="hero" id="hero">
