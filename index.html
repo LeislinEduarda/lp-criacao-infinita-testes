@@ -164,6 +164,61 @@
   @media (max-width: 720px){
     .btn{ width:40px; height:40px }
   }
+  /* ================= AJUSTES SOLICITADOS ================= */
+
+/* (3) Indicador do carrossel: bolinha verde menor */
+.feed-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(29,77,58,.45); /* var(--green) com transparência */
+  flex: 0 0 auto;
+}
+.feed-dot.is-active {
+  background: var(--wine);
+  transform: scale(1.1);
+}
+
+/* (6) Rolagem mais compacta (mobile) */
+@media (max-width: 480px){
+  /* hero mais curto e com menos respiro */
+  .hero { height: 220vh; }               /* antes era maior; mantém o efeito pinned sem excesso de scroll */
+  .hero-block { padding-block: 7vh; }    /* reduz leve o respiro vertical */
+  
+  /* dobras reduzidas */
+  .infinity,
+  .reward,
+  .stories,
+  .faq {
+    padding-block: 28px;                 /* antes 40–80px; agora mais compacto */
+  }
+
+  /* cartões com menos preenchimento */
+  .hero-card,
+  .reward-card,
+  .story,
+  .acc {
+    padding: 14px;
+  }
+
+  /* títulos com leve ajuste para caber melhor sem quebrar em excesso */
+  h1 { font-size: clamp(1.7rem, 5.6vw, 2.3rem); }
+  h2 { font-size: clamp(1.2rem, 4.6vw, 1.6rem); }
+
+  /* carrossel: slides um pouco menores para reduzir rolagem por slide */
+  .feed-slide {
+    min-width: 82vw;     /* era 84vw; encurta a “pista” para avançar mais rápido */
+  }
+}
+
+/* Garantia sem overflow lateral */
+html, body { overflow-x: hidden; }
+
+/* Opcional: se quiser a “bolinha verde” dos stories um pouco mais discreta (anel mais fino) */
+.story .bubble {
+  /* anel duplo: vinho interno + verde externo, ambos mais finos */
+  box-shadow: 0 0 0 2px var(--wine), 0 0 0 3px var(--green);
+}
 </style>
 </head>
 <body>
