@@ -1,404 +1,544 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Reabertura — Estúdio Infinito™</title>
-<meta name="description" content="A comunidade está de portas fechadas. Ela não acabou. Ela está se transformando. Reabre dia 1º de novembro com uma nova forma de criar: Estúdio Infinito™." />
+<title>ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)</title>
+<meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos. As 3 IAs certas, mini-cursos rápidos e gente de verdade te puxando pro post no ar." />
 
-<!-- Tipografia (mantendo a identidade) -->
-<link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com/)" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
+<!-- Tipografia: Canela (fallbacks editoriais) + Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{
---bg-offwhite:#F8F7F3;     /* fundo off-white */
---text-main:#1A1A1A;       /* texto principal */
---text-muted:#666666;      /* texto secundário */
---green-title:#0B7D5E;     /* títulos */
---wine:#7A003C;            /* blocos/CTA */
---pink:#E6007E;            /* detalhes sutis (linha) */
---card-bg:#FFFFFF;         /* fundo dos cards do contador */
---card-border:#E9E6E0;     /* borda suave dos cards */
---shadow:0 6px 22px rgba(0,0,0,.06);
-}
+  /* ==== TOKENS DE TEMA ===================================================== */
+  :root{
+    --wine: #7C1E28;          /* destaque/CTA */
+    --green: #1D4D3A;         /* títulos e traços */
+    --pink: #F9C8D2;          /* respiro/separadores */
+    --beige: #F5D7E2;         /* base neutra */
+    --off: #FBF7F8;           /* fundo off-white */
+    --text: #222222;          /* corpo */
+    --muted: #555555;         /* apoio */
+    --shadow: 0 10px 30px rgba(29,77,58,.12);
+    --radius: 16px;
+    --maxw: 1120px;
+  }
 
-```
-html,body{
-  background:var(--bg-offwhite);
-  color:var(--text-main);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-  margin:0; padding:0;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-}
+  /* ==== RESET (suave) ====================================================== */
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--off); color:var(--text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3{ margin:0 0 .6rem 0; line-height:1.15; color:var(--green); }
+  h1{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(2rem,3.6vw,3rem); }
+  h2{ font-family: "Canela", "Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,2.4vw,2rem); }
+  h3{ font-weight:700; font-size:clamp(1.1rem,2vw,1.4rem); }
+  p{ margin:.7rem 0; }
+  a{ color:var(--wine); text-decoration:none }
+  .container{ width:min(100%, var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px); }
 
-/* ===== Dobra única, centralizada verticalmente ===== */
-.viewport{
-  min-height: 100svh; /* melhor em mobile */
-  display: flex;
-  align-items: center; /* centraliza verticalmente */
-  justify-content: center;
-  padding: 48px 20px 28px;
-}
+  /* ==== SOCIAL PROOF (faixa superior) ===================================== */
+  .band{
+    border-bottom: 2px solid var(--pink);
+    background: linear-gradient(180deg,#FFFFFF 0%, var(--off) 100%);
+  }
+  .band .inner{
+    display:flex; align-items:center; gap:20px; padding:12px 0;
+    justify-content:center; flex-wrap:wrap;
+  }
+  .band .title{
+    font-family:"Canela","Playfair Display",serif; color:var(--green);
+    font-size:clamp(1rem,2vw,1.3rem); font-weight:700; white-space:nowrap;
+  }
+  .avatars{ display:flex; gap:10px; overflow:auto; padding-bottom:6px }
+  .avatar{
+    width:44px; height:44px; border-radius:50%;
+    background:#ddd; flex:0 0 auto; position:relative;
+    box-shadow:0 0 0 2px var(--green), 0 0 0 4px var(--pink);
+    background-size:cover; background-position:center;
+  }
 
-.wrapper{
-  width: 100%;
-  max-width: 940px;
-  margin: 0 auto;
-  text-align:center;
-}
+  /* ==== HERO PINNED ======================================================== */
+  .hero{
+    position:relative;
+    height:300vh; /* seção longa para scroll do texto */
+    isolation:isolate;
+  }
+  .hero-bg{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(60% 60% at 70% 20%, rgba(124,30,40,.12) 0%, rgba(124,30,40,0) 60%),
+      radial-gradient(50% 50% at 20% 70%, rgba(29,77,58,.18) 0%, rgba(29,77,58,0) 60%),
+      url('data:image/svg+xml;utf8,\
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox=\'0 0 1200 800\'>\
+      <defs><radialGradient id=\'g\' cx=\'50%\' cy=\'50%\' r=\'70%\'><stop offset=\'0%\' stop-color=\'#ffffff\'/><stop offset=\'100%\' stop-color=\'#FBF7F8\'/></radialGradient></defs>\
+      <rect width=\'1200\' height=\'800\' fill=\'url(#g)\'/>\
+      <!-- Placeholder da Expert + 13 asas -->\
+      <g opacity=\'.18\' fill=\'#1D4D3A\'>\
+        <path d=\'M620 120c-30 80-60 160-90 240 120-30 200-20 240 30-40-140-90-220-150-270z\'/>\
+        <circle cx=\'820\' cy=\'260\' r=\'12\'/>\
+        <circle cx=\'860\' cy=\'280\' r=\'10\'/>\
+        <circle cx=\'890\' cy=\'310\' r=\'9\'/>\
+        <circle cx=\'910\' cy=\'350\' r=\'8\'/>\
+        <circle cx=\'920\' cy=\'390\' r=\'7\'/>\
+        <circle cx=\'910\' cy=\'430\' r=\'8\'/>\
+        <circle cx=\'890\' cy=\'470\' r=\'9\'/>\
+        <circle cx=\'860\' cy=\'500\' r=\'10\'/>\
+        <circle cx=\'820\' cy=\'520\' r=\'12\'/>\
+        <circle cx=\'780\' cy=\'525\' r=\'11\'/>\
+        <circle cx=\'740\' cy=\'515\' r=\'9\'/>\
+        <circle cx=\'705\' cy=\'490\' r=\'8\'/>\
+        <circle cx=\'680\' cy=\'455\' r=\'7\'/>\
+      </g></svg>') center/cover no-repeat;
+  }
+  .hero-copy{ position:relative; }
+  .hero-block{
+    min-height:100vh; display:grid; place-items:center;
+    padding-block:10vh;
+  }
+  .hero-card{
+    background:rgba(255,255,255,.75); backdrop-filter:saturate(140%) blur(6px);
+    border:1px solid rgba(29,77,58,.15);
+    border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:clamp(16px,3vw,32px); width:min(100%,840px);
+  }
+  .tag{ display:inline-block; padding:6px 10px; border-radius:999px;
+    background:var(--pink); color:var(--green); font-weight:700; font-size:.85rem;
+    letter-spacing:.2px; margin-bottom:10px; }
+  .lead{ font-size:clamp(1.1rem,2.2vw,1.4rem); }
 
-/* ===== Countdown em blocos ===== */
-.countdown{
-  display:grid;
-  grid-template-columns: repeat(4, minmax(84px, 1fr));
-  gap: 16px;
-  justify-items:center;
-  align-items:stretch;
-  margin: 0 auto 14px;
-  max-width: 720px;
-}
-.cd-card{
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
-  border-radius: 14px;
-  padding: 14px 10px 12px;
-  width: 100%;
-  max-width: 160px;
-  display:flex; flex-direction:column; align-items:center; gap:6px;
-}
-.cd-number{
-  font-size: clamp(28px, 4.6vw, 42px);
-  line-height:1.05;
-  font-weight:800;
-  color:#111;
-  letter-spacing:-.02em;
-}
-.cd-label{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  color:var(--text-muted);
-}
+  .cta{
+    display:inline-block; margin-top:12px; font-weight:700;
+    color:var(--wine); border-bottom:2px solid var(--wine);
+    padding-bottom:2px;
+  }
 
-/* ===== Linha rosa sob o contador ===== */
-.pink-line{
-  width: min(720px, 90%);
-  height: 3px;
-  margin: 10px auto 22px;
-  background: linear-gradient(90deg, transparent, var(--pink), transparent);
-  border-radius: 999px;
-}
+  /* ==== DOBRA 2: INFINITY MAP ============================================ */
+  .infinity{
+    background:var(--beige);
+    padding-block:clamp(40px,6vw,80px);
+    border-top:4px solid var(--pink);
+    border-bottom:4px solid var(--pink);
+  }
+  .infinity .wrap{ position:relative; }
+  .svg-box{ position:relative; width:100%; aspect-ratio:16/9; }
+  #infinityPath{
+    stroke: var(--wine); stroke-width:3; fill:none; stroke-linecap:round;
+    filter: drop-shadow(0 6px 14px rgba(124,30,40,.15));
+  }
+  .dot{
+    position:absolute; width:34px; height:34px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #fff, #fff 50%, #FCE9EE 100%);
+    border:2px solid var(--green); box-shadow:var(--shadow);
+    display:grid; place-items:center; transform:translate(-50%,-50%) scale(.9);
+    transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s;
+    cursor:pointer;
+  }
+  .dot.open{ transform:translate(-50%,-50%) scale(1.1); box-shadow:0 12px 30px rgba(29,77,58,.22); z-index:3 }
+  .dot::after{
+    content:""; position:absolute; inset:-6px; border-radius:50%;
+    box-shadow:0 0 0 2px var(--pink) inset; opacity:.9;
+  }
+  .dot-label{
+    position:absolute; top:110%; left:50%; transform:translateX(-50%);
+    background:#fff; border:1px solid rgba(29,77,58,.18); border-radius:12px;
+    padding:10px 12px; width:max(220px,22ch); max-width:260px;
+    box-shadow:var(--shadow); display:none;
+  }
+  .dot.open .dot-label{ display:block; }
+  .dot-label h4{ margin:0 0 4px 0; font-size:1rem; color:var(--green); font-family:"Canela","Playfair Display",serif; }
+  .dot-label small{ color:var(--muted) }
 
-/* ===== Eyebrow + Títulos ===== */
-.eyebrow{
-  font-size:12.5px;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--text-muted);
-  margin: 0 0 10px 0;
-}
-h1{
-  color:var(--green-title);
-  font-size: clamp(32px, 4.2vw, 48px);
-  line-height:1.15;
-  font-weight:800;
-  margin: 0 0 12px 0;
-}
+  .legend{
+    margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+    color:var(--muted)
+  }
+  .badge{ padding:6px 10px; border-radius:999px; background:#fff; border:1px solid rgba(29,77,58,.18) }
 
-/* ===== Texto ===== */
-.lead{
-  font-size: clamp(18px, 2.2vw, 20px);
-  line-height:1.6;
-  font-weight: 450;
-  margin: 0 0 8px 0;
-}
-.subtime{
-  font-size: 16px;
-  line-height:1.5;
-  color:var(--text-muted);
-  margin: 14px 0 18px 0;
-}
+  /* ==== RECOMPENSA ======================================================== */
+  .reward{ padding-block:clamp(40px,6vw,80px); }
+  .reward-card{
+    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:var(--radius);
+    padding:clamp(16px,3vw,28px); box-shadow:var(--shadow);
+    display:grid; gap:10px;
+  }
+  .progress{ height:12px; background:rgba(29,77,58,.12); border-radius:999px; overflow:hidden }
+  .progress > span{ display:block; height:100%; width:42%; background:var(--wine); }
 
-/* ===== CTA em bloco colorido (vinho) ===== */
-.cta-block{
-  display:inline-block;
-  background: var(--wine);
-  color: #fff;
-  font-weight:700;
-  font-size: clamp(16px, 2vw, 18px);
-  line-height:1.3;
-  text-decoration:none;
-  padding: 14px 18px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
-}
-.cta-block:hover{
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-  box-shadow: 0 8px 28px rgba(0,0,0,.10);
-}
-.cta-block:active{
-  transform: translateY(0);
-  box-shadow: var(--shadow);
-}
+  /* ==== STORIES ENH ======================================================= */
+  .stories{ padding-block:clamp(40px,6vw,80px); background:linear-gradient(180deg, var(--off), #fff); }
+  .stories-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+    gap:22px;
+  }
+  .story{
+    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:18px;
+    padding:16px; text-align:center; box-shadow:var(--shadow);
+  }
+  .story .bubble{
+    width:72px; height:72px; border-radius:50%;
+    margin-inline:auto 10px; position:relative; background:#eee;
+    box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green);
+  }
+  .story h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green); }
+  .story small{ color:var(--muted) }
 
-/* ===== Rodapé minimalista ===== */
-footer{
-  margin-top: 26px;
-  padding: 10px 0 6px;
-  font-size:12.5px;
-  color:#777;
-}
+  /* Modal */
+  dialog{ border:none; border-radius:16px; width:min(92vw,720px); padding:0; box-shadow:0 30px 80px rgba(0,0,0,.25); }
+  dialog::backdrop{ background:rgba(0,0,0,.35); }
+  .modal{ padding:22px; background:#fff; border-radius:16px; }
+  .modal header{ display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid var(--pink); padding-bottom:10px; }
+  .modal h3{ margin:0; }
+  .modal .close{ background:transparent; border:none; font-weight:700; color:var(--wine); cursor:pointer; }
 
-/* ===== Responsivo ===== */
-@media (max-width: 640px){
-  .viewport{ padding: 36px 16px 20px; }
-  .countdown{ gap:12px; }
-  .cd-card{ padding: 12px 8px 10px; }
-}
-/* RESET mínimo e contenção de largura */
+  /* ==== FAQ =============================================================== */
+  .faq{ padding-block:clamp(40px,6vw,80px); border-top:4px solid var(--pink); }
+  .accordion{ display:grid; gap:10px; }
+  .acc{
+    background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:12px; overflow:hidden;
+  }
+  .acc summary{
+    list-style:none; padding:14px 16px; cursor:pointer; position:relative;
+    font-weight:700; color:var(--green);
+  }
+  .acc summary::-webkit-details-marker{ display:none }
+  .acc summary::after{
+    content:"+"; position:absolute; right:16px; top:14px; color:var(--wine); font-weight:700;
+  }
+  .acc[open] summary::after{ content:"–" }
+  .acc .content{ padding:0 16px 16px 16px; color:var(--text) }
 
-```
+  /* ==== FOOTER ============================================================ */
+  footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:24px 0; text-align:center }
 
-- ,
-*::before,
-*::after {
-box-sizing: border-box;
-}
+  /* ==== UTIL ============================================================== */
+  .center{ text-align:center }
+  .mt-8{ margin-top:8px } .mt-16{ margin-top:16px } .mt-24{ margin-top:24px }
+  .mb-0{ margin-bottom:0 }
+  .caps{ text-transform:uppercase; letter-spacing:.06em; font-weight:700 }
+  .muted{ color:var(--muted) }
 
-html, body {
-height: 100%;
-margin: 0;                 /* evita empurrar pro lado por margem padrão */
-overflow: hidden;          /* trava rolagem vertical e horizontal */
-overscroll-behavior: none; /* remove bounce */
-scrollbar-gutter: stable both-edges; /* evita “pulo” por desaparecimento da barra */
-}
+  /* ==== RESPONSIVO ======================================================== */
+  @media (max-width: 800px){
+    .svg-box{ aspect-ratio: 9/12; }
+    .dot-label{ left:50%; transform:translateX(-50%); top:118%; }
+  }
 
-/* Body vira o centro do palco */
-body {
-display: grid;
-place-items: center;       /* centraliza tudo no meio da tela */
-background: var(--bg, #F7F7F5); /* off-white que você definiu */
-}
-
-/* Contêiner principal da sua dobra (ajuste o seletor se o seu for outro) */
-.hero, .wrapper, .container, main {
-width: min(960px, 92vw);   /* impede estourar a largura */
-max-width: 100%;
-margin: 0 auto;
-text-align: center;
-}
-
-/* Garante que imagens e mídias não “estourem” lateralmente */
-img, video, svg, canvas {
-max-width: 100%;
-height: auto;
-display: inline-block;
-}
-
-/* Espaçamentos agradáveis no hero */
-.hero {
-display: grid;
-gap: 20px;
-align-items: center;
-justify-items: center;
-padding: clamp(16px, 3vw, 32px);
-}
-
-/* Títulos e parágrafos — mantém sua tipografia */
-h1, h2, h3, p {
-margin: 0;
-}
-
-h1 {
-font-weight: 800;
-line-height: 1.1;
-}
-
-p {
-line-height: 1.6;
-}
-
-/* Countdown: garante bloco compacto e sem quebrar linha inesperadamente */
-.countdown {
-display: grid;
-grid-auto-flow: column;
-gap: 12px;
-align-items: center;
-justify-content: center;
-white-space: nowrap;
-}
-
-/* Blocos do contador (se você usa) */
-.count-item {
-display: grid;
-place-items: center;
-padding: 10px 12px;
-border-radius: 10px;
-min-width: 70px;
-box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-}
-
-/* Linha rosa sob o contador, se existir */
-.count-sep {
-width: min(560px, 80%);
-height: 3px;
-background: var(--accent, #E6007E); /* seu rosa-detalhe */
-border-radius: 999px;
-}
-
-/* CTA em destaque sem ser “botão” (bloco colorido inline) */
-.inline-cta {
-display: inline-block;
-padding: 10px 14px;
-border-radius: 10px;
-font-weight: 700;
-text-decoration: none;
-line-height: 1.2;
-}
-
-/* Evita qualquer “scroll fantasmas” dentro de elementos */
-[style*="overflow"] {
-overscroll-behavior: contain;
-}
-
-/* iOS: usa unidade segura de viewport pra não cortar nada com a barra */
-@supports (-webkit-touch-callout: none) {
-body { min-height: 100svh; }
-}
+  /* ==== PREFERS REDUCED MOTION =========================================== */
+  @media (prefers-reduced-motion: reduce){
+    .dot, .dot-label, .hero-card{ transition: none !important; }
+  }
 </style>
 </head>
 <body>
-<main class="viewport">
-<div class="wrapper">
-<!-- Countdown em blocos -->
-<section class="countdown" aria-label="Contagem regressiva para a reabertura">
-<div class="cd-card" aria-label="Dias restantes">
-<div class="cd-number" id="cd-days">00</div>
-<div class="cd-label">dias</div>
-</div>
-<div class="cd-card" aria-label="Horas restantes">
-<div class="cd-number" id="cd-hours">00</div>
-<div class="cd-label">horas</div>
-</div>
-<div class="cd-card" aria-label="Minutos restantes">
-<div class="cd-number" id="cd-min">00</div>
-<div class="cd-label">min</div>
-</div>
-<div class="cd-card" aria-label="Segundos restantes">
-<div class="cd-number" id="cd-sec">00</div>
-<div class="cd-label">seg</div>
-</div>
+
+<!-- ========================= SOCIAL PROOF =============================== -->
+<section class="band">
+  <div class="container inner">
+    <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
+    <div class="avatars" aria-label="Alunos que já participam">
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200');"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200');"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200');"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200');"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200');"></div>
+      <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200');"></div>
+    </div>
+  </div>
 </section>
 
-```
-  <!-- Linha rosa sob o contador -->
-  <div class="pink-line" role="presentation"></div>
+<!-- ========================= HERO PINNED ================================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-copy container">
+    <div class="hero-block">
+      <div class="hero-card">
+        <span class="tag caps">Dobra 1 — A PROMESSA</span>
+        <h1>ESTÚDIO INFINITO™</h1>
+        <p class="lead"><strong>Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</strong></p>
+        <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
+        <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil.</em></p>
+        <p>Você paga <strong>só o 1º ano</strong>.<br>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br><small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
+        <p><strong>Selo de confiança:</strong> seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
+        <a href="#infinity" class="cta">Entrar e criar o seu primeiro post agora →</a>
+        <p class="mt-8"><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
+      </div>
+    </div>
+    <div class="hero-block">
+      <div class="hero-card center">
+        <h2 class="mb-0">🧠 Dobra 2 — O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+        <p class="mt-8">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
+        <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
+        <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos + comunidade sobre humano</strong> = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+        <p><strong>AS 3 IAS QUE EU USO SÃO:</strong><br>
+          🧠 <strong>ChatGPT</strong> — ideias, roteiros, legendas e designs direto da conversa.<br>
+          🎨 <strong>Higgsfield</strong> — sua <strong>Gêmea Digital</strong> pra postar sem precisar aparecer.<br>
+          🤖 <strong>Equipe Não-Humana™</strong> — meus funcionários não humanos pra montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.
+        </p>
+      </div>
+    </div>
+    <div class="hero-block">
+      <div class="hero-card">
+        <h3>✳️ Quando você entra, é assim que acontece:</h3>
+        <p>Você vai assistir um mini-curso express que vai mostrar como dominar uma das 3 IAs que formam o coração do Estúdio.</p>
+        <p><strong>Mapa do Estúdio Infinito — mini curso + IA</strong></p>
+        <p class="muted">Role para ver o fluxo visual na próxima dobra ↓</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- Hierarquia textual -->
-  <div class="eyebrow" id="eyebrow">Comunidade — Portas Fechadas</div>
-  <h1 id="headline">Reabertura dia 1º de novembro</h1>
+<!-- ========================= DOBRA 2 — INFINITY MAP ===================== -->
+<section class="infinity" id="infinity">
+  <div class="container wrap">
+    <div class="svg-box" aria-hidden="true">
+      <svg id="infinitySVG" viewBox="0 0 1000 560" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+        <!-- símbolo do ∞ -->
+        <path id="infinityPath"
+          d="M 100 280
+             C 100 120, 360 120, 500 280
+             S 900 440, 900 280
+             S 640 120, 500 280
+             S 100 440, 100 280" />
+      </svg>
+      <!-- Dots posicionados via JS -->
+    </div>
 
-  <p class="lead">Ela não acabou.</p>
-  <p class="lead">Ela está se transformando.</p>
-  <p class="lead">O que vem aí é muito maior — e vai mudar completamente o jeito de criar.</p>
+    <div class="legend">
+      <span class="badge">Trajeto do ∞ = ordem de aprendizado</span>
+      <span class="badge">Bolinhas = aulas/IA (abre ao passar)</span>
+      <span class="badge">Toque/click para reabrir</span>
+    </div>
+  </div>
+</section>
 
-  <p class="subtime" id="dateLine">
-    🕒 <strong>Dia 1º de novembro</strong>, ela reabre com um novo nome, um novo formato e uma nova forma de criar.
-  </p>
+<!-- ========================= RECOMPENSA ================================= -->
+<section class="reward">
+  <div class="container">
+    <div class="reward-card">
+      <h2>💰 Recompensas Infindas — Post que Paga</h2>
+      <p><strong>1 post = +1 dia</strong> de desconto na renovação (bateu <strong>365</strong>, o próximo ano pode sair <strong>de graça</strong>).</p>
+      <div class="progress" aria-label="Progresso de dias pagos"><span style="width:38%"></span></div>
+      <small class="muted">Publicou hoje? +1 dia garantido.</small>
+    </div>
+  </div>
+</section>
 
-  <!-- CTA em bloco colorido (sem “botão” tradicional) -->
-  <a class="cta-block" href="#" aria-label="Acompanhe meus stories no dia da reabertura">
-    Entra nos meus stories nesse dia — é lá que o novo Estúdio vai aparecer primeiro.
-  </a>
+<!-- ========================= STORIES ENH ================================ -->
+<section class="stories">
+  <div class="container">
+    <h2 class="center">Equipe Não-Humana™ — perfis</h2>
+    <p class="center muted">Toque em um perfil para ver o que cada “funcionário” entrega.</p>
+    <div class="stories-grid" id="storiesGrid"></div>
+  </div>
+</section>
 
-  <footer>© 2025 — Estúdio Infinito™. Todos os direitos reservados.</footer>
-</div>
+<!-- ========================= FAQ ======================================= -->
+<section class="faq">
+  <div class="container">
+    <h2 class="center">💬 Dobra 3 — FAQ (com reforço da tese das 3 IAs)</h2>
+    <div class="accordion mt-24">
+      <details class="acc">
+        <summary>Consigo mesmo com pouco tempo?</summary>
+        <div class="content">
+          <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Preciso de computador ou app pago?</summary>
+        <div class="content">
+          <p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Não sou “do digital”. É pra mim?</summary>
+        <div class="content">
+          <p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Não quero aparecer em vídeo. E agora?</summary>
+        <div class="content">
+          <p>Usa o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Como funciona o “Post que Paga”?</summary>
+        <div class="content">
+          <p>Cada post feito com a minha Equipe Não-Humana vale +1 dia de desconto na próxima renovação.</p>
+          <p><strong>Regras simples:</strong> 1 post por dia; vale Feed/Carrossel/Reel (Stories não); mantenha 48h no ar; marque #PostQuePaga + #FeitoComEquipeNaoHumana ou envie o link no mural.</p>
+          <p>Painel mostra Dias pagos: X/365 e a próxima renovação estimada. Se bater 365, o próximo ano pode sair de graça.</p>
+          <p>Perfil privado? Manda print/link no mural que eu conto manualmente.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>E se eu travar?</summary>
+        <div class="content">
+          <p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Quando sai meu primeiro post?</summary>
+        <div class="content">
+          <p>Em até 24h. Se não sair, eu devolvo 100%.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Qual é o preço? Posso cancelar?</summary>
+        <div class="content">
+          <p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
 
-```
+<footer>
+  <div class="container">
+    <small>© Estúdio Infinito™ — Todos os direitos reservados.</small>
+  </div>
+</footer>
 
-</main>
-
+<!-- ========================= SCRIPTS ==================================== -->
 <script>
-// ===== Countdown para 01/11/2025 00:00:00 America/Sao_Paulo (UTC-03:00) =====
-const target = new Date('2025-11-01T00:00:00-03:00').getTime();
+/* ====== DADOS (Aulas no ∞) ================================================= */
+const aulas = [
+  { id:'higgsfield-gemea', titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
+  { id:'chatgpt-designs', titulo:'Designs conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
+  { id:'bia-publico', titulo:'Estratégia de Público — Como Vender para as Pessoas Certas', ia:'Bia do Público (ENH)', detalhe:'Direção, mensagem, oferta.' },
+  { id:'maria-ideias', titulo:'Ideias que Nunca Acabam (falando do mesmo produto)', ia:'Maria das Ideias (ENH)', detalhe:'Mapa infinito de temas.' },
+  { id:'joao-ganchos', titulo:'Domine os Primeiros 3 Segundos do Seu Post', ia:'João dos Ganchos (ENH)', detalhe:'Começos que fazem parar.' },
+  { id:'carlos-carrosseis', titulo:'Carrosséis Inteligentes Criados com IA', ia:'Carlos dos Carrosséis (ENH)', detalhe:'Primeiro slide até CTA.' },
+  { id:'jose-stories', titulo:'Stories que as Pessoas Realmente Querem Ver', ia:'José dos Stories (ENH)', detalhe:'Sequência, ritmo, pergunta.' },
+  { id:'larissa-roteiros', titulo:'Roteiros com IA que as Pessoas Querem Ouvir', ia:'Larissa dos Roteiros (ENH)', detalhe:'Estrutura e tensão.' },
+  { id:'tiktok-2026', titulo:'Como Crescer no TikTok em 2026', ia:'ChatGPT', detalhe:'Estratégias atualizadas.' },
+  { id:'instagram-2026', titulo:'Como Crescer no Instagram em 2026', ia:'ChatGPT', detalhe:'Série, consistência e loops.' },
+  { id:'hacks-chatgpt', titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
+];
 
-```
-const elDays  = document.getElementById('cd-days');
-const elHours = document.getElementById('cd-hours');
-const elMin   = document.getElementById('cd-min');
-const elSec   = document.getElementById('cd-sec');
+/* ====== HERO: revelação suave dos cards =================================== */
+const heroBlocks = document.querySelectorAll('.hero-card');
+const ioHero = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    e.target.style.opacity = e.isIntersecting ? 1 : .35;
+    e.target.style.transform = e.isIntersecting ? 'translateY(0)' : 'translateY(20px)';
+  });
+},{ threshold:.45 });
+heroBlocks.forEach(card=>{
+  card.style.opacity = 0; card.style.transform = 'translateY(20px)';
+  ioHero.observe(card);
+});
 
-const eyebrow  = document.getElementById('eyebrow');
-const headline = document.getElementById('headline');
-const dateLine = document.getElementById('dateLine');
+/* ====== INFINITY: posicionar dots ao longo do path ======================== */
+const svg = document.getElementById('infinitySVG');
+const path = document.getElementById('infinityPath');
+const box = document.querySelector('.svg-box');
+const totalLen = path.getTotalLength();
 
-function pad2(n){ return String(n).padStart(2,'0'); }
+function placeDots(){
+  // limpa dots antigos
+  box.querySelectorAll('.dot').forEach(d => d.remove());
+  const rect = box.getBoundingClientRect();
+  aulas.forEach((item, i)=>{
+    const t = (i+1)/(aulas.length+1);
+    const p = path.getPointAtLength(totalLen * t);
+    const dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.style.left = (p.x / svg.viewBox.baseVal.width * 100) + '%';
+    dot.style.top  = (p.y / svg.viewBox.baseVal.height * 100) + '%';
+    dot.setAttribute('aria-expanded','false');
+    dot.innerHTML = `<span style="font-size:.9rem;color:var(--wine);font-weight:700">●</span>
+        <div class="dot-label" role="region" aria-live="polite">
+          <h4>${item.titulo}</h4>
+          <small><strong>IA:</strong> ${item.ia} — ${item.detalhe || ''}</small>
+        </div>`;
+    dot.addEventListener('click', ()=>{
+      document.querySelectorAll('.dot').forEach(d=>{ d.classList.remove('open'); d.setAttribute('aria-expanded','false'); });
+      dot.classList.add('open'); dot.setAttribute('aria-expanded','true');
+    });
+    box.appendChild(dot);
+  });
+}
+placeDots();
+window.addEventListener('resize', placeDots);
 
-function tick(){
-  const now = Date.now();
-  let diff = target - now;
+/* Auto-abrir próximo dot ao rolar (efeito “sequência”) */
+const dots = [];
+const ioDots = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      // fecha outros e abre este
+      document.querySelectorAll('.dot').forEach(d=>d.classList.remove('open'));
+      e.target.classList.add('open');
+    }
+  })
+},{root:null, threshold:.95});
+setTimeout(()=>{
+  box.querySelectorAll('.dot').forEach(d=> ioDots.observe(d));
+}, 400);
 
-  if (diff <= 0){
-    elDays.textContent  = '00';
-    elHours.textContent = '00';
-    elMin.textContent   = '00';
-    elSec.textContent   = '00';
+/* ====== STORIES ENH (modais) ============================================= */
+const ENH = [
+  { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”' },
+  { nome:'Larissa dos Roteiros', func:'Roteiros práticos', exemplo:'Estrutura 3A: Atenção, Âncora, Ação.' },
+  { nome:'José dos Stories', func:'Sequências que prendem', exemplo:'3 stories: Puxada • Prova • Ponto final com pergunta.' },
+  { nome:'Carlos dos Carrosséis', func:'Carrosséis que convertem', exemplo:'Slide 1: pergunta que resolve. Slide 10: decisão.' },
+  { nome:'Bruno do Branding', func:'Tom e identidade', exemplo:'3 palavras-âncora + 2 proibições.' },
+  { nome:'Dudu da Bio', func:'Perfil que vende', exemplo:'Headline em 7 palavras + link com promessa.' },
+  { nome:'Laura das Legendas', func:'Texto que flui', exemplo:'Frase-gancho + quebra + convite.' },
+  { nome:'Bia do Público', func:'Leitura de audiência', exemplo:'Mapa de dores x desejos atualizado.' },
+  { nome:'Maria das Ideias', func:'Estoque infinito', exemplo:'5 fontes de ideias do mesmo produto.' },
+  { nome:'Leonardo da Viralização', func:'Ajustes de alcance', exemplo:'Tensão + contraste + repetição útil.' }
+];
+const grid = document.getElementById('storiesGrid');
 
-    eyebrow.textContent  = 'Comunidade — Reaberta';
-    headline.textContent = 'Hoje: o novo Estúdio Infinito™';
-    dateLine.innerHTML   = '🕒 Já está no ar — entra nos stories para ver primeiro.';
+function cardENH(p){
+  const el = document.createElement('div');
+  el.className = 'story';
+  el.innerHTML = `
+    <div class="bubble" style="background:linear-gradient(135deg,#eee,#fff)"></div>
+    <h5>${p.nome}</h5>
+    <small>${p.func}</small>
+  `;
+  el.addEventListener('click', ()=> openModal(p));
+  return el;
+}
+ENH.forEach(p => grid.appendChild(cardENH(p)));
 
-    clearInterval(timer);
-    return;
-  }
-
-  const d = Math.floor(diff / (1000*60*60*24));
-  diff -= d*(1000*60*60*24);
-  const h = Math.floor(diff / (1000*60*60));
-  diff -= h*(1000*60*60);
-  const m = Math.floor(diff / (1000*60));
-  diff -= m*(1000*60);
-  const s = Math.floor(diff / 1000);
-
-  elDays.textContent  = pad2(d);
-  elHours.textContent = pad2(h);
-  elMin.textContent   = pad2(m);
-  elSec.textContent   = pad2(s);
+function openModal(p){
+  const dlg = document.createElement('dialog');
+  dlg.innerHTML = `
+    <div class="modal">
+      <header>
+        <h3>${p.nome}</h3>
+        <button class="close" aria-label="Fechar">fechar ✕</button>
+      </header>
+      <div class="mt-16">
+        <p><strong>Função:</strong> ${p.func}</p>
+        <p><strong>Exemplo de saída:</strong> <em>${p.exemplo}</em></p>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(dlg);
+  dlg.showModal();
+  dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
+  dlg.addEventListener('close', ()=> dlg.remove());
+  dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
 }
 
-tick();
-const timer = setInterval(tick, 1000);
-
-```
-
-</script>
-<script>
-// Bloqueia rolagem por mouse/touch/teclado sem “empurrar” layout
-const stopWheel = (e) => e.preventDefault();
-const stopTouch = (e) => e.preventDefault();
-const stopKeys = (e) => {
-const keys = [
-'Space', 'PageUp', 'PageDown',
-'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
-'Home', 'End'
-];
-if (keys.includes(e.code)) e.preventDefault();
-};
-
-// Aplica no documento todo
-document.addEventListener('wheel', stopWheel, { passive: false });
-document.addEventListener('touchmove', stopTouch, { passive: false });
-document.addEventListener('keydown', stopKeys, { passive: false });
+/* ====== SUAVIZAÇÃO DE ENTRADA NO SCROLL ================================== */
+const fadeEls = document.querySelectorAll('.reward-card, .stories .container, .faq .container');
+const ioFade = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)';
+      ioFade.unobserve(e.target);
+    }
+  })
+},{ threshold:.25 });
+fadeEls.forEach(el => { el.style.opacity=.001; el.style.transform='translateY(12px)'; ioFade.observe(el); });
 </script>
 </body>
 </html>
-
-</aside>
