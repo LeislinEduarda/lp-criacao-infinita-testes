@@ -265,12 +265,78 @@ html, body {
 }
 
 /* 2) Hero ocupa a tela toda e centraliza o conteúdo */
+/* HERO compactado e centralizado */
 .hero {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 2.5rem 1.25rem;       /* padding mais contido */
-  box-sizing: border-box;
+  padding: 2.2rem 1rem; /* reduz altura do topo e base */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centraliza verticalmente */
+  align-items: center;
+  text-align: center;
+  min-height: 100vh; /* garante dobra completa sem scroll */
+  background-color: #F5F5F3; /* off-white */
+}
+
+/* Título principal */
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 2.4rem); /* menor e equilibrado */
+  line-height: 1.1;
+  color: #1D4D3A; /* verde escuro */
+  margin-bottom: 0.6rem;
+}
+
+/* Subtítulo inicial */
+.hero p:first-of-type {
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: #222;
+  margin-bottom: 0.8rem;
+}
+
+/* Demais parágrafos */
+.hero p:not(:first-of-type) {
+  font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+  line-height: 1.4;
+  color: #333;
+}
+
+/* Blocos de destaque (como “selo de confiança” e “post que paga”) */
+.hero .card {
+  padding: 0.9rem 1rem; /* compacta os blocos */
+  border: 1px solid #DDD;
+  border-radius: 10px;
+  margin: 0.6rem 0;
+  background-color: #fff;
+  max-width: 420px;
+}
+
+/* Espaçamento entre os blocos */
+.hero .stack > * + * {
+  margin-top: 0.7rem;
+}
+
+/* Botão */
+.hero button, 
+.hero .cta {
+  padding: 0.8rem 1.4rem;
+  font-size: 1rem;
+  background-color: #7C1E28; /* vinho */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.8rem;
+  box-shadow: 0 4px 8px rgba(124, 30, 40, 0.25);
+}
+
+/* Ajuste responsivo — garante que tudo caiba no hero */
+@media (max-height: 750px) {
+  .hero {
+    transform: scale(0.95);
+    transform-origin: top center;
+  }
 }
 
 /* 3) Largura máxima e grid interno enxuto */
