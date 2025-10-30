@@ -6,17 +6,17 @@
 <title>ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)</title>
 <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos. As 3 IAs certas, mini-cursos rápidos e gente de verdade te puxando pro post no ar." />
 
-<!-- Tipografia: Canela/Playfair para títulos + Inter para corpo -->
+<!-- Tipografia -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 /* =================== TOKENS / TEMA =================== */
 :root{
-  --wine:#7C1E28;     /* CTA/realces texto-CTA */
-  --green:#1D4D3A;    /* Títulos, traços, ícones linha */
-  --pink:#F9C8D2;     /* separadores/leves detalhes */
+  --wine:#7C1E28;     /* CTA/realces */
+  --green:#1D4D3A;    /* Títulos/traços */
+  --pink:#F9C8D2;     /* separadores */
   --beige:#F5D7E2;    /* cards sutis */
-  --off:#FBF7F8;      /* fundo geral (off-white) */
+  --off:#FBF7F8;      /* fundo off-white */
   --text:#222222;     /* texto principal */
   --muted:#555555;    /* apoio */
   --radius:16px;
@@ -40,27 +40,31 @@ p{margin:.55rem 0}
 a{color:var(--wine); text-decoration:none}
 .container{width:min(100%,var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px)}
 
-/* =================== REGRAS GERAIS DE RITMO =================== */
-/* Gaps mínimos entre dobras/sections para mobile-first */
-section{padding-block:20px}          /* compacto por padrão */
-.section-tight{padding-block:16px}   /* ainda mais curto quando necessário */
+/* =================== RITMO GERAL =================== */
+section{padding-block:18px}          /* mínimo espaço entre dobras */
+.section-tight{padding-block:14px}
 .sep-line{border-top:2px solid var(--pink)}
 .sep-bottom{border-bottom:2px solid var(--pink)}
 .small{font-size:.95rem}
 .muted{color:var(--muted)}
 .center{text-align:center}
 
-/* =================== SOCIAL PROOF (stories-style) =================== */
-.band{padding-block:14px}
+/* =================== SOCIAL PROOF — UMA LINHA =================== */
+.band{padding-block:12px}
 .band .inner{display:flex; align-items:center; gap:10px; justify-content:center; flex-wrap:wrap}
 .band .title{
   font-family:"Playfair Display","Canela",serif; color:var(--green);
   font-size:clamp(1rem,1.8vw,1.25rem); font-weight:700; white-space:nowrap
 }
-.sp-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(56px,1fr)); gap:10px; width:100%}
-.sp-item{display:grid; justify-items:center; gap:4px}
+/* trilho horizontal, uma única linha, com rolagem */
+.sp-rail{
+  display:flex; gap:10px; overflow-x:auto; padding:6px 2px 2px 2px;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.sp-rail::-webkit-scrollbar{display:none}
+.sp-item{display:grid; justify-items:center; gap:4px; flex:0 0 auto}
 .sp-bubble{
-  width:56px; height:56px; border-radius:50%; position:relative; flex:0 0 auto;
+  width:56px; height:56px; border-radius:50%; position:relative;
   background:#e9e9e9 center/cover no-repeat;
   box-shadow:0 0 0 2px var(--wine), 0 0 0 5px var(--pink);
 }
@@ -83,31 +87,36 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
   border-bottom:2px solid var(--wine); padding-bottom:2px
 }
 
-/* =================== CARROSSEL (Mapa do Estúdio) =================== */
+/* =================== CARROSSEL IG-LIKE (Mapa do Estúdio) =================== */
+/* Estrutura parecida com o post do Instagram:
+   - mídia quadrada 1:1
+   - pagers logo abaixo da mídia
+   - legenda/caption abaixo dos pagers
+   - swipe horizontal nativo */
 .carousel{position:relative}
-.carousel-track{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:10px; padding-bottom:6px}
+.carousel-track{
+  display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:10px; padding-bottom:4px;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.carousel-track::-webkit-scrollbar{display:none}
 .slide{
   min-width:calc(100% - 32px); max-width:calc(100% - 32px);
   scroll-snap-align:center; background:#fff; border:1px solid rgba(29,77,58,.14);
-  border-radius:14px; box-shadow:var(--shadow); overflow:hidden
+  border-radius:14px; box-shadow:var(--shadow); overflow:hidden; display:grid; grid-template-rows:auto auto auto;
 }
-.slide-media{aspect-ratio:16/9; background:linear-gradient(180deg,#fff,var(--beige))}
-.slide-body{padding:12px}
-.slide-title{color:var(--green); font-weight:700; margin-bottom:4px}
-.slide-caption{color:var(--muted)}
-/* pagers “estilo Instagram” idênticos (apenas cor muda) */
-.pagers{display:flex; gap:6px; justify-content:center; align-items:center; margin-top:6px}
+.slide-media{aspect-ratio:1/1; background:linear-gradient(180deg,#fff,var(--beige))}
+.pagers{
+  display:flex; gap:6px; justify-content:center; align-items:center;
+  padding:8px 0 4px 0; /* logo abaixo da mídia */
+}
 .pager-dot{
-  width:9px; height:9px; border-radius:50%; background:#ddd; border:1px solid rgba(0,0,0,.08);
-  transition:transform .2s ease, opacity .2s ease
+  width:7px; height:7px; border-radius:50%; background:#dadada; transition:transform .2s ease, opacity .2s ease
 }
-.pager-dot.active{background:var(--wine); transform:scale(1.12)}
-/* botões setas compactos */
-.nav-arrows{display:flex; gap:8px; justify-content:center; align-items:center; margin-top:8px}
-.nav-btn{
-  border:1px solid rgba(29,77,58,.2); background:#fff; color:var(--green);
-  padding:6px 10px; border-radius:999px; cursor:pointer
-}
+.pager-dot.active{background:#9e9e9e; transform:scale(1.12)}
+.slide-body{padding:10px 12px 14px 12px}
+.slide-title{color:var(--green); font-weight:700; margin-bottom:3px}
+.slide-caption{color:var(--muted)}
+/* Removemos setas para manter linguagem IG */
 
 /* =================== RECOMPENSAS =================== */
 .reward-card{
@@ -119,7 +128,6 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
   display:block; height:100%; width:42%;
   background:linear-gradient(90deg, var(--wine), #8e2632 85%)
 }
-/* micro-cards */
 .rew-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
 .rew{
   background:var(--beige); border:1px solid rgba(29,77,58,.14); border-radius:12px;
@@ -150,19 +158,26 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .story h5{margin:8px 0 2px 0; font-size:.98rem; color:var(--green)}
 .story small{color:var(--muted)}
 
-/* =================== FAQ (com quebra sutil de expectativa) =================== */
+/* =================== FAQ — Novo diferencial (marcador lateral animado) =================== */
 .accordion{display:grid; gap:8px}
-.acc{background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:12px; overflow:hidden}
+.acc{
+  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:12px; overflow:hidden;
+  position:relative;
+}
+.acc::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
+  background:linear-gradient(180deg,var(--pink), transparent);
+  transition:width .25s ease;
+}
+.acc[open]::before{width:8px}
 .acc summary{
-  list-style:none; padding:12px 14px; cursor:pointer; position:relative;
+  list-style:none; padding:12px 14px 12px 18px; cursor:pointer; position:relative;
   font-weight:700; color:var(--green)
 }
 .acc summary::-webkit-details-marker{display:none}
-.acc summary::after{content:"+"; position:absolute; right:14px; top:10px; color:var(--wine); font-weight:700}
-.acc[open] summary::after{content:"–"}
-.acc .content{padding:0 14px 12px 14px; color:var(--text)}
-/* Prefixo “verdade/sem floreio” + 1 quote rápido em uma questão */
-.acc .truth{color:var(--wine); font-style:italic; margin-right:6px}
+.acc summary::after{content:"+"; position:absolute; right:14px; top:10px; color:var(--wine); font-weight:700; transition:transform .2s ease}
+.acc[open] summary::after{content:"–"; transform:rotate(-90deg)}
+.acc .content{padding:0 14px 12px 18px; color:var(--text)}
 .blockquote{
   margin:.4rem 0; padding:8px 10px; border-left:3px solid var(--pink); background:#fff
 }
@@ -172,24 +187,22 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 
 /* =================== RESPONSIVO =================== */
 @media (min-width: 720px){
-  section{padding-block:24px} /* ligeiro respiro no desktop sem perder compacidade */
-  .slide{min-width:640px; max-width:640px}
+  section{padding-block:20px}
+  .slide{min-width:560px; max-width:560px} /* post quadrado “desktop” */
 }
 </style>
 </head>
 <body>
 
-<!-- ============ SOCIAL PROOF — Stories menores com depoimentos (compacto) ============ -->
+<!-- ============ SOCIAL PROOF — UMA LINHA (stories + depoimento) ============ -->
 <section class="band section-tight sep-bottom">
   <div class="container inner">
     <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
-    <div class="sp-grid" id="proofGrid">
-      <!-- Itens inseridos por JS -->
-    </div>
+    <div class="sp-rail" id="proofRail"><!-- itens via JS --></div>
   </div>
 </section>
 
-<!-- ============ HERO (copy fiel, hierarquia otimizada) ============ -->
+<!-- ============ HERO (copy fiel) ============ -->
 <section class="section-tight">
   <div class="container">
     <div class="hero-card">
@@ -215,10 +228,9 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   </div>
 </section>
 
-<!-- linha separadora mínima -->
 <div class="sep-line"></div>
 
-<!-- ============ DOBRA 2 — O QUE É O ESTÚDIO (copy fiel) ============ -->
+<!-- ============ O QUE É O ESTÚDIO (copy fiel) ============ -->
 <section class="section-tight" id="o-que-e">
   <div class="container">
     <div class="hero-card">
@@ -239,24 +251,15 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   </div>
 </section>
 
-<!-- ============ MAPA DO ESTÚDIO — Carrossel tipo “post” com pagers Instagram ============ -->
+<!-- ============ MAPA DO ESTÚDIO — CARROSSEL IG-LIKE ============ -->
 <section class="section-tight" id="mapa">
   <div class="container">
     <h2 class="center">Mapa do Estúdio Infinito — mini curso + IA</h2>
 
-    <div class="carousel" aria-label="Carrossel de aulas">
-      <div class="carousel-track" id="track">
-        <!-- Slides via JS (mantendo sua copy da listagem) -->
-      </div>
-
-      <!-- pagers idênticos (apenas cor ativa muda) -->
+    <div class="carousel" aria-label="Carrossel de aulas (formato Instagram)">
+      <div class="carousel-track" id="track"><!-- slides via JS --></div>
+      <!-- pagers (estilo IG) -->
       <div class="pagers" id="pagers" aria-hidden="true"></div>
-
-      <!-- setas compactas -->
-      <div class="nav-arrows">
-        <button class="nav-btn" id="prevBtn" aria-label="Slide anterior">←</button>
-        <button class="nav-btn" id="nextBtn" aria-label="Próximo slide">→</button>
-      </div>
     </div>
   </div>
 </section>
@@ -295,38 +298,38 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   </div>
 </section>
 
-<!-- ============ FAQ (com pequenas quebras de expectativa) ============ -->
+<!-- ============ FAQ (novo diferencial visual) ============ -->
 <section class="section-tight">
   <div class="container">
     <h2 class="center">FAQ (com reforço da tese das 3 IAs)</h2>
     <div class="accordion" style="margin-top:10px">
       <details class="acc">
-        <summary><span class="truth">verdade:</span> Consigo mesmo com pouco tempo?</summary>
+        <summary>Consigo mesmo com pouco tempo?</summary>
         <div class="content">
           <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
           <div class="blockquote">“Seu 1º post vale mais que 100 ideias no bloco de notas.”</div>
         </div>
       </details>
       <details class="acc">
-        <summary><span class="truth">sem floreio:</span> Preciso de computador ou app pago?</summary>
+        <summary>Preciso de computador ou app pago?</summary>
         <div class="content">
           <p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p>
         </div>
       </details>
       <details class="acc">
-        <summary><span class="truth">direto:</span> Não sou “do digital”. É pra mim?</summary>
+        <summary>Não sou “do digital”. É pra mim?</summary>
         <div class="content">
           <p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p>
         </div>
       </details>
       <details class="acc">
-        <summary><span class="truth">sem câmera:</span> Não quero aparecer em vídeo. E agora?</summary>
+        <summary>Não quero aparecer em vídeo. E agora?</summary>
         <div class="content">
           <p>Usa o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.</p>
         </div>
       </details>
       <details class="acc">
-        <summary><span class="truth">mecânica:</span> Como funciona o “Post que Paga”?</summary>
+        <summary>Como funciona o “Post que Paga”?</summary>
         <div class="content">
           <p>Cada post feito com a minha Equipe Não-Humana vale +1 dia de desconto na próxima renovação.</p>
           <p><strong>Regras simples:</strong> 1 post por dia; vale Feed/Carrossel/Reel (Stories não); mantenha 48h no ar; marque #PostQuePaga + #FeitoComEquipeNaoHumana ou envie o link no mural.</p>
@@ -335,19 +338,19 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
         </div>
       </details>
       <details class="acc">
-        <summary><span class="truth">apoio:</span> E se eu travar?</summary>
+        <summary>E se eu travar?</summary>
         <div class="content">
           <p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p>
         </div>
       </details>
       <details class="acc">
-        <summary><span class="truth">garantia:</span> Quando sai meu primeiro post?</summary>
+        <summary>Quando sai meu primeiro post?</summary>
         <div class="content">
           <p>Em até 24h. Se não sair, eu devolvo 100%.</p>
         </div>
       </details>
       <details class="acc">
-        <summary><span class="truth">preço:</span> Qual é o preço? Posso cancelar?</summary>
+        <summary>Qual é o preço? Posso cancelar?</summary>
         <div class="content">
           <p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p>
         </div>
@@ -378,23 +381,24 @@ const aulas = [
   { titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
 ];
 
-/* =================== SOCIAL PROOF (stories menores com depoimento) =================== */
+/* =================== SOCIAL PROOF — uma linha com depoimento em modal =================== */
 const proofData = [
   {nome:'Ana', img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200', depo:'Saí do zero a 1 post/dia em 3 dias.'},
   {nome:'Rafa', img:'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200', depo:'Usei a Gêmea Digital e vendi sem aparecer.'},
   {nome:'João', img:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200', depo:'Os roteiros economizaram horas por semana.'},
   {nome:'Cris', img:'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200', depo:'Meu primeiro viral veio do carrossel do Carlos.'},
   {nome:'Lia', img:'https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200', depo:'ChatGPT + método = consistência real.'},
-  {nome:'Beto', img:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200', depo:'“Post que paga” me prendeu no hábito.'}
+  {nome:'Beto', img:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200', depo:'“Post que paga” me prendeu no hábito.'},
+  {nome:'Iasmin', img:'https://images.unsplash.com/photo-1544005314-3bc2cabc5e9f?q=60&w=200', depo:'Publiquei por 30 dias seguidos.'},
+  {nome:'Leo', img:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200', depo:'Subi 5x o alcance com ganchos.'}
 ];
-const proofGrid = document.getElementById('proofGrid');
+const proofRail = document.getElementById('proofRail');
 function makeProof(p){
   const el = document.createElement('div'); el.className='sp-item';
   el.innerHTML = `
     <button class="sp-bubble" style="background-image:url('${p.img}')" aria-label="Ver depoimento de ${p.nome}"></button>
     <div class="sp-name">${p.nome}</div>
   `;
-  // modal
   el.querySelector('.sp-bubble').addEventListener('click', ()=>{
     const dlg = document.createElement('dialog');
     dlg.innerHTML = `
@@ -414,9 +418,9 @@ function makeProof(p){
   });
   return el;
 }
-proofData.forEach(p=> proofGrid.appendChild(makeProof(p)));
+proofData.forEach(p=> proofRail.appendChild(makeProof(p)));
 
-/* =================== MAPA — construir slides e pagers =================== */
+/* =================== MAPA — construir slides e pagers (estilo IG) =================== */
 const track = document.getElementById('track');
 const pagers = document.getElementById('pagers');
 let activeIndex = 0;
@@ -429,6 +433,7 @@ function slideEl(item, idx){
   el.setAttribute('aria-label', `${idx+1} de ${aulas.length}`);
   el.innerHTML = `
     <div class="slide-media"></div>
+    <div class="pagers" aria-hidden="true"></div>
     <div class="slide-body">
       <div class="slide-title">${item.titulo}</div>
       <div class="slide-caption"><strong>IA:</strong> ${item.ia} — ${item.detalhe || ''}</div>
@@ -436,20 +441,42 @@ function slideEl(item, idx){
   `;
   return el;
 }
-function pagerEl(i){
+function pagerDot(i){
   const d = document.createElement('span');
   d.className='pager-dot'; d.setAttribute('data-idx', i);
   d.addEventListener('click', ()=> scrollToIndex(i));
   return d;
 }
 function buildCarousel(){
-  aulas.forEach((a,i)=> track.appendChild(slideEl(a,i)));
-  aulas.forEach((_,i)=> pagers.appendChild(pagerEl(i)));
+  aulas.forEach((a,i)=> {
+    const s = slideEl(a,i);
+    track.appendChild(s);
+  });
+  // pagers globais (abaixo do carrossel) e réplica local em cada slide (linha IG-like)
+  for(let i=0;i<aulas.length;i++){
+    pagers.appendChild(pagerDot(i));
+  }
+  // também colocar “pontos” dentro de cada slide para sensação IG
+  [...track.children].forEach((slide, si)=>{
+    const local = slide.querySelector('.pagers');
+    for(let i=0;i<aulas.length;i++){
+      const p = document.createElement('span');
+      p.className='pager-dot' + (i===si ? ' active' : '');
+      p.addEventListener('click', ()=> scrollToIndex(i));
+      local.appendChild(p);
+    }
+  });
   updatePagers(0);
 }
 function updatePagers(i){
   activeIndex = i;
+  // globais
   [...pagers.children].forEach((d,idx)=> d.classList.toggle('active', idx===i));
+  // locais (em cada slide)
+  [...track.children].forEach((slide, si)=>{
+    const pts = slide.querySelectorAll('.pager-dot');
+    pts.forEach((p, idx)=> p.classList.toggle('active', idx===i));
+  });
 }
 function scrollToIndex(i){
   const slide = track.children[i];
@@ -470,10 +497,6 @@ function observeSlides(){
 }
 buildCarousel();
 observeSlides();
-
-/* setas */
-document.getElementById('prevBtn').addEventListener('click', ()=> scrollToIndex(Math.max(0, activeIndex-1)));
-document.getElementById('nextBtn').addEventListener('click', ()=> scrollToIndex(Math.min(aulas.length-1, activeIndex+1)));
 
 /* =================== ENH (mantido) =================== */
 const ENH = [
@@ -521,8 +544,7 @@ function openModal(p){
 }
 ENH.forEach(p=> grid.appendChild(cardENH(p)));
 
-/* =================== PEQUENAS MELHORIAS UX =================== */
-/* Suaviza entrada de alguns blocos (sem exageros) */
+/* =================== SUAVIZAÇÃO DE ENTRADA =================== */
 const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .hero-card');
 const ioFade = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
@@ -533,7 +555,6 @@ const ioFade = new IntersectionObserver((entries)=>{
   });
 },{threshold:.25});
 faders.forEach(el=>{ el.style.opacity=.001; el.style.transform='translateY(8px)'; ioFade.observe(el); });
-
 </script>
 </body>
 </html>
