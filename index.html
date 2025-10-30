@@ -1,169 +1,581 @@
-  <div class="slider" id="slider">
-    <div class="track" id="track">
-      <!-- SLIDE 1 -->
-      <article class="slide">
-        <div class="post-head">
-          <div class="post-ava"></div>
-          <div class="post-title">AULA 1 — Gêmea Digital pelo Celular (Higgsfield)</div>
-        </div>
-        <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1520975922284-9e0ce8275d32?q=60&w=1200')"></div>
-        <div class="post-caption"><strong>Poste sem aparecer.</strong> Monte seu personagem e publique hoje mesmo.</div>
-        <div class="ig-dots" role="tablist" aria-label="Slides">
-          <span class="ig-dot active" data-to="0"></span>
-          <span class="ig-dot" data-to="1"></span>
-          <span class="ig-dot" data-to="2"></span>
-          <span class="ig-dot" data-to="3"></span>
-          <span class="ig-dot" data-to="4"></span>
-          <span class="ig-dot" data-to="5"></span>
-          <span class="ig-dot" data-to="6"></span>
-        </div>
-        <div class="nav">
-          <button class="btn-outline" data-prev>◀</button>
-          <button class="btn-outline" data-next>Próximo passo ▶</button>
-        </div>
-      </article>
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)</title>
+<meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos. As 3 IAs certas, mini-cursos rápidos e gente de verdade te puxando pro post no ar." />
 
-      <!-- SLIDE 2 -->
-      <article class="slide">
-        <div class="post-head">
-          <div class="post-ava"></div>
-          <div class="post-title">AULA 2 — Designs conversando com o ChatGPT</div>
-        </div>
-        <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1529335764857-3f1164d1cb24?q=60&w=1200')"></div>
-        <div class="post-caption"><strong>Sem abrir o Canva.</strong> Peças direto da conversa.</div>
-        <div class="ig-dots">
-          <span class="ig-dot" data-to="0"></span>
-          <span class="ig-dot active" data-to="1"></span>
-          <span class="ig-dot" data-to="2"></span>
-          <span class="ig-dot" data-to="3"></span>
-          <span class="ig-dot" data-to="4"></span>
-          <span class="ig-dot" data-to="5"></span>
-          <span class="ig-dot" data-to="6"></span>
-        </div>
-        <div class="nav">
-          <button class="btn-outline" data-prev>◀</button>
-          <button class="btn-outline" data-next>Próximo passo ▶</button>
-        </div>
-      </article>
+<!-- Tipografia -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-      <!-- SLIDE 3 -->
-      <article class="slide">
-        <div class="post-head">
-          <div class="post-ava"></div>
-          <div class="post-title">AULA 3 — Estratégia de Público (Bia do Público)</div>
-        </div>
-        <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1518600506278-4e8ef466b810?q=60&w=1200')"></div>
-        <div class="post-caption"><strong>Venda para as pessoas certas.</strong> Direção, mensagem, oferta.</div>
-        <div class="ig-dots">
-          <span class="ig-dot" data-to="0"></span>
-          <span class="ig-dot" data-to="1"></span>
-          <span class="ig-dot active" data-to="2"></span>
-          <span class="ig-dot" data-to="3"></span>
-          <span class="ig-dot" data-to="4"></span>
-          <span class="ig-dot" data-to="5"></span>
-          <span class="ig-dot" data-to="6"></span>
-        </div>
-        <div class="nav">
-          <button class="btn-outline" data-prev>◀</button>
-          <button class="btn-outline" data-next>Próximo passo ▶</button>
-        </div>
-      </article>
+<style>
+/* =================== TOKENS / TEMA =================== */
+:root{
+  --wine:#7C1E28;     /* CTA/realces */
+  --green:#1D4D3A;    /* Títulos/traços */
+  --pink:#F9C8D2;     /* separadores / detalhes */
+  --beige:#F5D7E2;    /* cards sutis */
+  --off:#FBF7F8;      /* fundo off-white */
+  --text:#222222;     /* texto principal */
+  --muted:#555555;    /* apoio */
+  --radius:16px;
+  --shadow:0 10px 30px rgba(29,77,58,.12);
+  --maxw:1120px;
+  --bar-h:62px;       /* altura da barra flutuante (usada no HERO) */
+  --band-h:64px;      /* altura aproximada da faixa social proof */
+}
 
-      <!-- SLIDE 4 -->
-      <article class="slide">
-        <div class="post-head">
-          <div class="post-ava"></div>
-          <div class="post-title">AULA 4 — Ideias que Nunca Acabam (Maria das Ideias)</div>
-        </div>
-        <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=60&w=1200')"></div>
-        <div class="post-caption"><strong>Fale do mesmo produto</strong> de formas infinitas.</div>
-        <div class="ig-dots">
-          <span class="ig-dot" data-to="0"></span>
-          <span class="ig-dot" data-to="1"></span>
-          <span class="ig-dot" data-to="2"></span>
-          <span class="ig-dot active" data-to="3"></span>
-          <span class="ig-dot" data-to="4"></span>
-          <span class="ig-dot" data-to="5"></span>
-          <span class="ig-dot" data-to="6"></span>
-        </div>
-        <div class="nav">
-          <button class="btn-outline" data-prev>◀</button>
-          <button class="btn-outline" data-next>Próximo passo ▶</button>
-        </div>
-      </article>
+/* =================== RESET / BASE =================== */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--off); color:var(--text);
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; line-height:1.5;
+}
 
-      <!-- SLIDE 5 -->
-      <article class="slide">
-        <div class="post-head">
-          <div class="post-ava"></div>
-          <div class="post-title">AULA 5 — Domine os 3 primeiros segundos (João dos Ganchos)</div>
-        </div>
-        <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=60&w=1200')"></div>
-        <div class="post-caption"><strong>Começos que fazem parar.</strong> Atenção, tensão e clique.</div>
-        <div class="ig-dots">
-          <span class="ig-dot" data-to="0"></span>
-          <span class="ig-dot" data-to="1"></span>
-          <span class="ig-dot" data-to="2"></span>
-          <span class="ig-dot" data-to="3"></span>
-          <span class="ig-dot active" data-to="4"></span>
-          <span class="ig-dot" data-to="5"></span>
-          <span class="ig-dot" data-to="6"></span>
-        </div>
-        <div class="nav">
-          <button class="btn-outline" data-prev>◀</button>
-          <button class="btn-outline" data-next>Próximo passo ▶</button>
-        </div>
-      </article>
+/* =================== TIPOGRAFIA =================== */
+.h-serif{font-family:"Playfair Display","Canela",Georgia,serif; color:var(--green); line-height:1.12}
+h1.h-serif{font-weight:700; font-size:clamp(2rem,3.4vw,3rem); margin:0 0 .55rem}
+h2.h-serif{font-weight:700; font-size:clamp(1.4rem,2.3vw,2rem); margin:0 0 .5rem}
+h3.h-serif{font-weight:700; font-size:clamp(1.05rem,1.6vw,1.35rem); margin:0 0 .45rem}
+p{margin:.55rem 0}
+.small{font-size:.95rem}
+.muted{color:var(--muted)}
+.center{text-align:center}
 
-      <!-- SLIDE 6 -->
-      <article class="slide">
-        <div class="post-head">
-          <div a class="post-ava"></div>
-          <div class="post-title">AULA 6 — Carrosséis Inteligentes (Carlos dos Carrosséis)</div>
-        </div>
-        <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=60&w=1200')"></div>
-        <div class="post-caption"><strong>Do 1º slide ao CTA.</strong> Sequência, ritmo e retenção.</div>
-        <div class="ig-dots">
-          <span class="ig-dot" data-to="0"></span>
-          <span class="ig-dot" data-to="1"></span>
-          <span class="ig-dot" data-to="2"></span>
-          <span class="ig-dot" data-to="3"></span>
-          <span class="ig-dot" data-to="4"></span>
-          <span class="ig-dot active" data-to="5"></span>
-          <span class="ig-dot" data-to="6"></span>
-        </div>
-        <div class="nav">
-          <button class="btn-outline" data-prev>◀</button>
-          <button class="btn-outline" data-next>Próximo passo ▶</button>
-        </div>
-      </article>
+/* =================== LAYOUT / RITMO =================== */
+.container{width:min(100%,var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px)}
+section{padding-block:18px}             /* mínimo espaço entre dobras */
+.section-tight{padding-block:14px}
+.sep-line{border-top:2px solid var(--pink)}
+.sep-bottom{border-bottom:2px solid var(--pink)}
 
-      <!-- SLIDE 7 -->
-      <article class="slide">
-        <div class="post-head">
-          <div class="post-ava"></div>
-          <div class="post-title">AULA 7 — Stories que as pessoas querem ver (José dos Stories)</div>
-        </div>
-        <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=60&w=1200')"></div>
-        <div class="post-caption"><strong>Sequência curta e diária.</strong> Puxada • Prova • Pergunta.</div>
-        <div class="ig-dots">
-          <span class="ig-dot" data-to="0"></span>
-          <span class="ig-dot" data-to="1"></span>
-          <span class="ig-dot" data-to="2"></span>
-          <span class="ig-dot" data-to="3"></span>
-          <span class="ig-dot" data-to="4"></span>
-          <span class="ig-dot" data-to="5"></span>
-          <span class="ig-dot active" data-to="6"></span>
-        </div>
-        <div class="nav">
-          <button class="btn-outline" data-prev>◀</button>
-          <button class="btn-outline" data-next>Publicar hoje ▶</button>
-        </div>
-      </article>
+/* =================== BOTÕES (CTA) =================== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:12px 18px; border-radius:999px; font-weight:700;
+  background:var(--wine); color:#fff; border:1px solid var(--wine);
+  box-shadow:0 6px 18px rgba(124,30,40,.22); text-decoration:none;
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.btn:hover{transform:translateY(-1px); box-shadow:0 10px 24px rgba(124,30,40,.26)}
+.btn:active{transform:translateY(0)}
+.btn-outline{
+  background:#fff; color:var(--wine); border:2px solid var(--wine); box-shadow:none;
+}
+.btn-ghost{
+  background:transparent; color:var(--wine); border-bottom:2px solid var(--wine); border-radius:0; padding:2px 0
+}
+
+/* =================== BARRA FLUTUANTE (estilo comunidade) =================== */
+.cta-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  background:#fff; border-top:1px solid rgba(29,77,58,.14);
+  height:var(--bar-h);
+  padding: 8px max(10px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  box-shadow:0 -8px 30px rgba(0,0,0,.06);
+}
+.cta-bar .btn{padding:12px 18px}
+@media (min-width: 720px){
+  .cta-bar{justify-content:center}
+}
+
+/* =================== SOCIAL PROOF — UMA LINHA =================== */
+.band{padding-block:12px; min-height:var(--band-h)}
+.band .inner{display:flex; align-items:center; gap:10px; justify-content:center; flex-wrap:wrap}
+.band .title{font-family:"Playfair Display","Canela",serif; color:var(--green); font-size:clamp(1rem,1.8vw,1.25rem); font-weight:700; white-space:nowrap}
+.sp-rail{
+  display:flex; gap:10px; overflow-x:auto; padding:6px 2px 2px 2px;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.sp-rail::-webkit-scrollbar{display:none}
+.sp-item{display:grid; justify-items:center; gap:4px; flex:0 0 auto}
+.sp-bubble{
+  width:56px; height:56px; border-radius:50%; position:relative;
+  background:#e9e9e9 center/cover no-repeat;
+  box-shadow:0 0 0 2px var(--wine), 0 0 0 5px var(--pink);
+}
+.sp-name{font-size:.7rem; color:var(--muted); max-width:64px; text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+dialog{border:none; border-radius:14px; padding:0; width:min(92vw,680px); box-shadow:0 30px 80px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(0,0,0,.35)}
+.modal{padding:18px; background:#fff; border-radius:14px}
+.modal header{display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid var(--pink); padding-bottom:8px}
+.modal .close{background:transparent; border:none; color:var(--wine); font-weight:700; cursor:pointer}
+
+/* =================== HERO (AJUSTADO PARA CABER 100%) =================== */
+.hero{
+  /* ocupa exatamente a 1ª dobra útil, considerando barra e faixa */
+  min-height: calc(100svh - var(--bar-h) - var(--band-h));
+  display:flex; align-items:center; /* centra vertical */
+}
+.hero .stack{
+  display:grid; gap:8px;           /* mais compacto */
+  padding-block: 6px;              /* sem “caixa” */
+}
+.hero p em{background:linear-gradient(transparent 70%, var(--beige) 0)}
+
+/* Reduções de tipografia/altura para telas mais baixas */
+@media (max-height: 760px){
+  h1.h-serif{font-size:clamp(1.9rem,3vw,2.4rem)}
+  h3.h-serif{font-size:clamp(.98rem,1.45vw,1.2rem)}
+  .hero .stack{gap:6px}
+  p{margin:.45rem 0}
+}
+@media (max-height: 640px){
+  h1.h-serif{font-size:1.8rem}
+  h3.h-serif{font-size:1.05rem}
+  .hero .stack{gap:5px}
+  .btn{padding:10px 16px}
+}
+
+/* =================== CARROSSEL IG-LIKE (Mapa do Estúdio) =================== */
+.carousel{position:relative}
+.carousel-track{
+  display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:10px; padding-bottom:4px;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.carousel-track::-webkit-scrollbar{display:none}
+.slide{
+  min-width:calc(100% - 32px); max-width:calc(100% - 32px);
+  scroll-snap-align:center; background:#fff; border:1px solid rgba(29,77,58,.14);
+  border-radius:14px; box-shadow:var(--shadow); overflow:hidden; display:grid; grid-template-rows:auto auto auto;
+}
+.slide-media{aspect-ratio:1/1; background:linear-gradient(180deg,#fff,var(--beige))}
+.pagers{
+  display:flex; gap:6px; justify-content:center; align-items:center;
+  padding:8px 0 4px 0;
+}
+.pager-dot{width:7px; height:7px; border-radius:50%; background:#dadada; transition:transform .2s ease, opacity .2s ease}
+.pager-dot.active{background:#9e9e9e; transform:scale(1.12)}
+.slide-body{padding:10px 12px 14px 12px}
+.slide-title{color:var(--green); font-weight:700; margin-bottom:3px}
+.slide-caption{color:var(--muted)}
+
+/* =================== RECOMPENSAS =================== */
+.reward-card{
+  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:clamp(14px,2.2vw,22px); display:grid; gap:10px
+}
+.progress{height:12px; background:rgba(29,77,58,.12); border-radius:999px; overflow:hidden}
+.progress > span{display:block; height:100%; width:42%; background:linear-gradient(90deg, var(--wine), #8e2632 85%)}
+.rew-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
+.rew{background:var(--beige); border:1px solid rgba(29,77,58,.14); border-radius:12px; padding:10px; display:grid; gap:4px}
+.rew h4{margin:0; color:var(--green); font-size:.98rem}
+.rew .kpi{font-weight:700; color:var(--wine); font-size:.95rem}
+.icon{width:18px; height:18px; border:2px solid var(--green); border-radius:4px; display:inline-block; vertical-align:middle; margin-right:6px}
+.icon.trophy{border-radius:50%; position:relative}
+.icon.trophy::after{content:""; position:absolute; inset:3px 5px 7px 5px; border:2px solid var(--green); border-bottom:none; border-radius:0 0 4px 4px}
+.icon.coin{border-radius:50%}
+
+/* =================== STORIES ENH =================== */
+.stories-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px}
+.story{background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:14px; padding:14px; text-align:center; box-shadow:var(--shadow)}
+.story .bubble{width:70px; height:70px; border-radius:50%; margin-inline:auto; background:#eee; box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green)}
+.story h5{margin:8px 0 2px 0; font-size:.98rem; color:var(--green)}
+.story small{color:var(--muted)}
+
+/* =================== FAQ DIFERENCIAL =================== */
+.accordion{display:grid; gap:8px}
+.acc{
+  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:12px; overflow:hidden; position:relative;
+}
+.acc::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(180deg,var(--pink), transparent); transition:width .25s ease}
+.acc[open]::before{width:8px}
+.acc summary{list-style:none; padding:12px 14px 12px 18px; cursor:pointer; position:relative; font-weight:700; color:var(--green)}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+"; position:absolute; right:14px; top:10px; color:var(--wine); font-weight:700; transition:transform .2s ease}
+.acc[open] summary::after{content:"–"; transform:rotate(-90deg)}
+.acc .content{padding:0 14px 12px 18px; color:var(--text)}
+.blockquote{margin:.4rem 0; padding:8px 10px; border-left:3px solid var(--pink); background:#fff}
+
+/* =================== FOOTER =================== */
+footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text-align:center}
+
+/* =================== RESPONSIVO =================== */
+@media (min-width: 720px){
+  section{padding-block:20px}
+  .slide{min-width:560px; max-width:560px}
+  .cta-row{display:flex; gap:10px; align-items:center; justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== BARRA FLUTUANTE (estilo comunidade) ===== -->
+<div class="cta-bar" id="ctaBar">
+  <a class="btn" id="barBuy" href="#" rel="noopener">Quero entrar no Estúdio</a>
+</div>
+
+<!-- ===== SOCIAL PROOF — UMA LINHA ===== -->
+<section class="band section-tight sep-bottom">
+  <div class="container inner">
+    <div class="title h-serif">Junte-se a mais de 25.000 alunos por toda a vida.</div>
+    <div class="sp-rail" id="proofRail"></div>
+  </div>
+</section>
+
+<!-- ===== HERO (CABENDO 100% NA PRIMEIRA DOBRA) ===== -->
+<section class="section-tight hero" id="hero">
+  <div class="container">
+    <div class="stack">
+      <h1 class="h-serif">ESTÚDIO INFINITO™</h1>
+
+      <h3 class="h-serif">Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</h3>
+      <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
+      <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil</em></p>
+
+      <h3 class="h-serif">Você paga só o 1º ano.</h3>
+      <p>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
+      <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
+
+      <h3 class="h-serif">Selo de confiança:</h3>
+      <p>seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
+
+      <!-- CTA principal do hero (sempre visível) -->
+      <div class="center" style="margin-top:6px">
+        <a class="btn" id="heroBuy" href="#" rel="noopener">Entrar e criar o seu primeiro post agora</a>
+      </div>
+
+      <p><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
     </div>
   </div>
+</section>
 
-  <div class="center">
-    <a class="btn-quiet" href="#checkout">Quero ver por dentro</a>
+<div class="sep-line"></div>
+
+<!-- ===== O QUE É O ESTÚDIO (SEM CARTÃO) ===== -->
+<section class="section-tight" id="o-que-e">
+  <div class="container">
+    <div class="stack">
+      <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+      <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia.</p>
+      <p>Isso só te deixa <strong>travado</strong>.</p>
+      <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso.</p>
+      <p>É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
+      <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos</strong> + comunidade sobre humano = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+
+      <p><strong>AS 3 IAS QUE EU USO SÃO:</strong></p>
+      <p>🧠 <strong>ChatGPT</strong> — pra criar ideias, roteiros, legendas e designs direto da conversa.</p>
+      <p>🎨 <strong>Higgsfield</strong> — pra gerar sua <strong>Gêmea Digital</strong> e postar sem precisar aparecer.</p>
+      <p>🤖 <strong>Equipe Não-Humana™</strong> — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</p>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- ===== MAPA DO ESTÚDIO — CARROSSEL IG-LIKE ===== -->
+<section class="section-tight" id="mapa">
+  <div class="container">
+    <h2 class="h-serif center">Mapa do Estúdio Infinito — mini curso + IA</h2>
+
+    <div class="carousel" aria-label="Carrossel de aulas (formato Instagram)">
+      <div class="carousel-track" id="track"><!-- slides via JS --></div>
+      <div class="pagers" id="pagers" aria-hidden="true"></div>
+    </div>
+
+    <div class="center" style="margin-top:8px">
+      <a class="btn" id="mapBuy" href="#" rel="noopener">Quero publicar meu 1º post hoje</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RECOMPENSAS ===== -->
+<section class="section-tight" id="recompensas">
+  <div class="container">
+    <div class="reward-card">
+      <h2 class="h-serif">💰 Recompensas Infindas — Post que Paga</h2>
+      <p><strong>1 post = +1 dia</strong> de desconto na renovação (bateu <strong>365</strong>, o próximo ano pode sair <strong>de graça</strong>).</p>
+      <div class="progress" aria-label="Progresso de dias pagos"><span id="progBar" style="width:38%"></span></div>
+      <small class="muted">Publicou hoje? <strong>+1 dia</strong> garantido.</small>
+
+      <div class="rew-grid">
+        <div class="rew">
+          <h4><span class="icon coin" aria-hidden="true"></span>Post que Paga</h4>
+          <div class="kpi" id="kpiDias">Dias pagos: 142/365</div>
+          <small class="small muted">Mantenha 48h no ar • Vale Feed/Carrossel/Reel</small>
+        </div>
+        <div class="rew">
+          <h4><span class="icon trophy" aria-hidden="true"></span>Campeonato Infinito</h4>
+          <div class="kpi" id="kpiRank">Ranking semanal: Top 5%</div>
+          <small class="small muted">Pontos por constância • Palco nos meus canais</small>
+        </div>
+      </div>
+
+      <div class="center" style="margin-top:6px">
+        <a class="btn" id="rewBuy" href="#" rel="noopener">Entrar agora e ativar minhas recompensas</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STORIES — EQUIPE NÃO-HUMANA ===== -->
+<section class="section-tight" id="equipe">
+  <div class="container">
+    <h2 class="h-serif center">Equipe Não-Humana™ — perfis</h2>
+    <p class="center muted small">Toque em um perfil para ver o que cada “funcionário” entrega.</p>
+    <div class="stories-grid" id="storiesGrid"></div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section-tight" id="faq">
+  <div class="container">
+    <h2 class="h-serif center">FAQ (com reforço da tese das 3 IAs)</h2>
+    <div class="accordion" style="margin-top:10px">
+      <details class="acc">
+        <summary>Consigo mesmo com pouco tempo?</summary>
+        <div class="content">
+          <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
+          <div class="blockquote">“Seu 1º post vale mais que 100 ideias no bloco de notas.”</div>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Preciso de computador ou app pago?</summary>
+        <div class="content">
+          <p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Não sou “do digital”. É pra mim?</summary>
+        <div class="content">
+          <p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Não quero aparecer em vídeo. E agora?</summary>
+        <div class="content">
+          <p>Usa o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Como funciona o “Post que Paga”?</summary>
+        <div class="content">
+          <p>Cada post feito com a minha Equipe Não-Humana vale +1 dia de desconto na próxima renovação.</p>
+          <p><strong>Regras simples:</strong> 1 post por dia; vale Feed/Carrossel/Reel (Stories não); mantenha 48h no ar; marque #PostQuePaga + #FeitoComEquipeNaoHumana ou envie o link no mural.</p>
+          <p>Painel mostra Dias pagos: X/365 e a próxima renovação estimada. Se bater 365, o próximo ano pode sair de graça.</p>
+          <p>Perfil privado? Manda print/link no mural que eu conto manualmente.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>E se eu travar?</summary>
+        <div class="content">
+          <p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Quando sai meu primeiro post?</summary>
+        <div class="content">
+          <p>Em até 24h. Se não sair, eu devolvo 100%.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>Qual é o preço? Posso cancelar?</summary>
+        <div class="content">
+          <p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="center" style="margin-top:12px">
+      <a class="btn" id="faqBuy" href="#" rel="noopener">Quero entrar no Estúdio agora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <small>© Estúdio Infinito™ — Todos os direitos reservados.</small>
+  </div>
+</footer>
+
+<script>
+/* ========= URL ÚNICA DE CHECKOUT (edite aqui) ========= */
+const CHECKOUT_URL = 'https://exemplo.com/checkout-estudio-infinito'; // <-- coloque sua URL real aqui
+
+/* ========= Apontar todos os CTAs para o checkout ========= */
+['barBuy','heroBuy','mapBuy','rewBuy','faqBuy'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.setAttribute('href', CHECKOUT_URL);
+});
+
+/* ========= SOCIAL PROOF (stories + modal de depoimento) ========= */
+const proofData = [
+  {nome:'Ana', img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200', depo:'Saí do zero a 1 post/dia em 3 dias.'},
+  {nome:'Rafa', img:'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200', depo:'Usei a Gêmea Digital e vendi sem aparecer.'},
+  {nome:'João', img:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200', depo:'Os roteiros economizaram horas por semana.'},
+  {nome:'Cris', img:'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=60&w=200', depo:'Meu primeiro viral veio do carrossel do Carlos.'},
+  {nome:'Lia', img:'https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200', depo:'ChatGPT + método = consistência real.'},
+  {nome:'Beto', img:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=60&w=200', depo:'“Post que paga” me prendeu no hábito.'},
+  {nome:'Iasmin', img:'https://images.unsplash.com/photo-1544005314-3bc2cabc5e9f?q=60&w=200', depo:'Publiquei por 30 dias seguidos.'},
+  {nome:'Leo', img:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=60&w=200', depo:'Subi 5x o alcance com ganchos.'}
+];
+const proofRail = document.getElementById('proofRail');
+function makeProof(p){
+  const el = document.createElement('div'); el.className='sp-item';
+  el.innerHTML = `
+    <button class="sp-bubble" style="background-image:url('${p.img}')" aria-label="Ver depoimento de ${p.nome}"></button>
+    <div class="sp-name">${p.nome}</div>
+  `;
+  el.querySelector('.sp-bubble').addEventListener('click', ()=>{
+    const dlg = document.createElement('dialog');
+    dlg.innerHTML = `
+      <div class="modal">
+        <header>
+          <strong style="color:var(--green)">Depoimento — ${p.nome}</strong>
+          <button class="close" aria-label="Fechar">fechar ✕</button>
+        </header>
+        <div style="padding-top:10px">
+          <p>${p.depo}</p>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(dlg); dlg.showModal();
+    dlg.querySelector('.close').addEventListener('click',()=>dlg.close());
+    dlg.addEventListener('close',()=>dlg.remove());
+  });
+  return el;
+}
+proofData.forEach(p=> proofRail.appendChild(makeProof(p)));
+
+/* ========= AULAS (carrossel IG-like) ========= */
+const aulas = [
+  { titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
+  { titulo:'Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
+  { titulo:'Estratégia de Público — Como Vender para as Pessoas Certas', ia:'Bia do Público (ENH)', detalhe:'Direção, mensagem, oferta.' },
+  { titulo:'Ideias que Nunca Acabam (mesmo falando do mesmo produto)', ia:'Maria das Ideias (ENH)', detalhe:'Mapa infinito de temas.' },
+  { titulo:'Domine os Primeiros 3 Segundos do Seu Post', ia:'João dos Ganchos (ENH)', detalhe:'Começos que fazem parar.' },
+  { titulo:'Carrosséis Inteligentes Criados com IA', ia:'Carlos dos Carrosséis (ENH)', detalhe:'Primeiro slide até CTA.' },
+  { titulo:'Como Criar Stories com IA que as Pessoas Realmente Querem Ver', ia:'José dos Stories (ENH)', detalhe:'Sequência, ritmo, pergunta.' },
+  { titulo:'Como Criar Roteiros com IA que as Pessoas Querem Ouvir', ia:'Larissa dos Roteiros (ENH)', detalhe:'Estrutura e tensão.' },
+  { titulo:'Como Crescer no TikTok em 2026', ia:'ChatGPT', detalhe:'Estratégias atualizadas.' },
+  { titulo:'Como Crescer no Instagram em 2026', ia:'ChatGPT', detalhe:'Série, consistência e loops.' },
+  { titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
+];
+
+const track = document.getElementById('track');
+const pagers = document.getElementById('pagers');
+
+function slideEl(item, idx){
+  const el = document.createElement('article');
+  el.className='slide';
+  el.setAttribute('role','group');
+  el.setAttribute('aria-roledescription','slide');
+  el.setAttribute('aria-label', `${idx+1} de ${aulas.length}`);
+  el.innerHTML = `
+    <div class="slide-media"></div>
+    <div class="pagers" aria-hidden="true"></div>
+    <div class="slide-body">
+      <div class="slide-title">${item.titulo}</div>
+      <div class="slide-caption"><strong>IA:</strong> ${item.ia} — ${item.detalhe || ''}</div>
+    </div>
+  `;
+  return el;
+}
+function pagerDot(i){
+  const d = document.createElement('span');
+  d.className='pager-dot'; d.setAttribute('data-idx', i);
+  d.addEventListener('click', ()=> scrollToIndex(i));
+  return d;
+}
+function buildCarousel(){
+  aulas.forEach((a,i)=> {
+    const s = slideEl(a,i);
+    track.appendChild(s);
+  });
+  for(let i=0;i<aulas.length;i++){ pagers.appendChild(pagerDot(i)); }
+  [...track.children].forEach((slide, si)=>{
+    const local = slide.querySelector('.pagers');
+    for(let i=0;i<aulas.length;i++){
+      const p = document.createElement('span');
+      p.className='pager-dot' + (i===si ? ' active' : '');
+      p.addEventListener('click', ()=> scrollToIndex(i));
+      local.appendChild(p);
+    }
+  });
+  updatePagers(0);
+}
+function updatePagers(i){
+  [...pagers.children].forEach((d,idx)=> d.classList.toggle('active', idx===i));
+  [...track.children].forEach((slide)=> {
+    const pts = slide.querySelectorAll('.pager-dot');
+    pts.forEach((p, idx)=> p.classList.toggle('active', idx===i));
+  });
+}
+function scrollToIndex(i){
+  const slide = track.children[i];
+  if(!slide) return;
+  slide.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+}
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const idx = [...track.children].indexOf(e.target);
+      if(idx>=0) updatePagers(idx);
+    }
+  })
+}, {root: track, threshold:.6});
+function observeSlides(){ [...track.children].forEach(sl => io.observe(sl)); }
+buildCarousel(); observeSlides();
+
+/* ========= ENH (modais) ========= */
+const ENH = [
+  { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”' },
+  { nome:'Larissa dos Roteiros', func:'Roteiros práticos', exemplo:'Estrutura 3A: Atenção, Âncora, Ação.' },
+  { nome:'José dos Stories', func:'Sequências que prendem', exemplo:'3 stories: Puxada • Prova • Ponto final com pergunta.' },
+  { nome:'Carlos dos Carrosséis', func:'Carrosséis que convertem', exemplo:'Slide 1: pergunta que resolve. Slide 10: decisão.' },
+  { nome:'Bruno do Branding', func:'Tom e identidade', exemplo:'3 palavras-âncora + 2 proibições.' },
+  { nome:'Dudu da Bio', func:'Perfil que vende', exemplo:'Headline em 7 palavras + link com promessa.' },
+  { nome:'Laura das Legendas', func:'Texto que flui', exemplo:'Frase-gancho + quebra + convite.' },
+  { nome:'Bia do Público', func:'Leitura de audiência', exemplo:'Mapa de dores x desejos atualizado.' },
+  { nome:'Maria das Ideias', func:'Estoque infinito', exemplo:'5 fontes de ideias do mesmo produto.' },
+  { nome:'Leonardo da Viralização', func:'Ajustes de alcance', exemplo:'Tensão + contraste + repetição útil.' }
+];
+const grid = document.getElementById('storiesGrid');
+function cardENH(p){
+  const el = document.createElement('div');
+  el.className='story';
+  el.innerHTML = `
+    <div class="bubble" style="background:linear-gradient(135deg,#eee,#fff)"></div>
+    <h5>${p.nome}</h5>
+    <small>${p.func}</small>
+  `;
+  el.addEventListener('click', ()=> openModal(p));
+  return el;
+}
+function openModal(p){
+  const dlg = document.createElement('dialog');
+  dlg.innerHTML = `
+    <div class="modal">
+      <header>
+        <h3 class="h-serif" style="margin:0">${p.nome}</h3>
+        <button class="close" aria-label="Fechar">fechar ✕</button>
+      </header>
+      <div style="padding-top:10px">
+        <p><strong>Função:</strong> ${p.func}</p>
+        <p><strong>Exemplo de saída:</strong> <em>${p.exemplo}</em></p>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(dlg); dlg.showModal();
+  dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
+  dlg.addEventListener('close', ()=> dlg.remove());
+  dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
+}
+ENH.forEach(p=> grid.appendChild(cardENH(p)));
+
+/* ========= SUAVIZAÇÃO DE ENTRADA ========= */
+const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion');
+const ioFade = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)';
+      ioFade.unobserve(e.target);
+    }
+  });
+},{threshold:.25});
+faders.forEach(el=>{ el.style.opacity=.001; el.style.transform='translateY(8px)'; ioFade.observe(el); });
+</script>
+</body>
+</html>
