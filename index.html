@@ -2,12 +2,11 @@
 <html lang="pt-br">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ESTÚDIO INFINITO™ — Crie 1 post por dia (com as 3 IAs que eu uso)</title>
 <meta name="description" content="Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos. As 3 IAs certas, mini-cursos rápidos e gente de verdade te puxando pro post no ar." />
 
-<!-- Tipografia (Inter + fallback editorial para títulos) -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ================= TOKENS ================================================= */
@@ -22,54 +21,57 @@
   --shadow: 0 10px 30px rgba(29,77,58,.12);
   --radius: 16px;
   --maxw: 1120px;
+  --buybarH: 64px;    /* altura fixa da barra flutuante */
 }
 
-/* ================= RESET SUAVE =========================================== */
+/* ================= RESET ================================================== */
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0; background:var(--off); color:var(--text);
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-  line-height:1.45;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; line-height:1.45;
+  overflow-x:hidden;
 }
 h1,h2,h3{ margin:0 0 .5rem 0; line-height:1.12; color:var(--green) }
-h1{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.9rem,4.8vw,3.1rem) }
-h2{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.4rem,3vw,2.1rem) }
-h3{ font-weight:800; font-size:clamp(1.1rem,2.2vw,1.4rem) }
+h1{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.8rem,5vw,3rem) }
+h2{ font-family:"Playfair Display", Georgia, serif; font-weight:700; font-size:clamp(1.3rem,3vw,2rem) }
+h3{ font-weight:800; font-size:clamp(1.05rem,2.2vw,1.35rem) }
 p{ margin:.55rem 0 }
 small{font-size:.92rem}
 a{ color:var(--wine); text-decoration:none }
 .container{ width:min(100%, var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,3vw,24px) }
 
 /* ================= ESPAÇAMENTO GLOBAL (compacto) ========================= */
-.section{ padding-block: clamp(24px, 6vw, 48px); }
-.section--tighter{ padding-block: clamp(18px, 4vw, 32px); }
-.stack{ display:flex; flex-direction:column; gap:clamp(8px,1.8vw,14px); }
+.section{ padding-block: clamp(20px, 5vw, 40px); }
+.section--tighter{ padding-block: clamp(14px, 3.5vw, 28px); }
+.stack{ display:flex; flex-direction:column; gap:clamp(6px,1.6vw,12px); }
 
-/* ================= BARRA FLUTUANTE (compra) =============================== */
+/* ================= BARRA FLUTUANTE ======================================= */
 .buybar{
   position:fixed; left:0; right:0; bottom:0; z-index:50;
+  height:var(--buybarH);
   background:#fff; border-top:2px solid var(--pink);
   box-shadow:0 -12px 30px rgba(0,0,0,.06);
 }
 .buybar .inner{
+  height:100%;
   display:flex; align-items:center; justify-content:center; gap:12px;
-  padding:10px 14px;
+  padding:0 14px;
 }
 .price{ font-weight:800; color:var(--green) }
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
   padding:10px 16px; border-radius:999px; font-weight:800; letter-spacing:.2px;
   border:2px solid var(--wine); color:#fff; background:var(--wine);
+  white-space:nowrap;
 }
-.btn:hover{ filter:brightness(0.98) }
 .btn-quiet{
   border:1px dashed rgba(124,30,40,.4); color:var(--green); background:transparent;
-  padding:8px 12px; border-radius:10px; font-weight:700;
+  padding:8px 12px; border-radius:10px; font-weight:700; white-space:nowrap;
 }
 
-/* ================= SOCIAL PROOF (linha única) ============================= */
+/* ================= SOCIAL PROOF (linha única “stories”) ================== */
 .band{ border-bottom:2px solid var(--pink); background:linear-gradient(180deg,#fff 0%, var(--off) 100%) }
 .band .row{ display:flex; align-items:center; gap:12px; padding:10px 0; justify-content:center; flex-wrap:wrap }
 .band .title{ font-family:"Playfair Display",serif; color:var(--green); font-weight:700 }
@@ -86,65 +88,65 @@ a{ color:var(--wine); text-decoration:none }
   cursor:pointer;
 }
 
-/* ================= HERO (caber 100vh sem scroll) ========================== */
+/* ================= HERO — CABER 100vh SEM SCROLL ========================= */
 .hero{
-  min-height: calc(100vh - 64px); /* 64px ~ altura da buybar para caber na dobra */
-  display:flex; align-items:center; /* centraliza vertical */
-  padding-block: clamp(16px, 4vw, 24px);
+  min-height: calc(100vh - var(--buybarH));
+  display:grid; place-items:center;
+  padding: 10px 0;  /* mínimo absoluto */
 }
 .hero .container{
-  display:grid; align-items:center; justify-items:start;
+  max-width: 860px;
 }
 .hero .eyebrow{
-  display:inline-block; padding:6px 10px; border-radius:999px;
-  background:var(--pink); color:var(--green); font-weight:800; font-size:.85rem;
-  letter-spacing:.2px; margin-bottom:6px;
+  display:inline-block; padding:5px 10px; border-radius:999px;
+  background:var(--pink); color:var(--green); font-weight:800; font-size:.82rem;
+  letter-spacing:.2px; margin-bottom:4px;
 }
-.hero .lead{ font-size:clamp(1.05rem,2.2vw,1.35rem) }
+.hero .lead{ font-size:clamp(1rem,2.2vw,1.28rem) }
 .hero .sub{ color:var(--muted) }
 .hero .guarantee{ font-weight:700 }
 .hero .note{ font-weight:800; color:var(--green) }
 
-/* ================= MAPA (Carrossel IG – versão mantida) ================== */
+/* Força caber em telas pequenas */
+@media (max-width: 420px){
+  .hero h1{ font-size:1.75rem }
+  .hero .lead{ font-size:1rem }
+  .hero p{ margin:.4rem 0 }
+}
+
+/* ================= MAPA — CARROSSEL “FORMATO INSTAGRAM (ORIGINAL)” ====== */
 .map{ background:var(--beige); border-block:4px solid var(--pink) }
 .slider{
   position:relative; overflow:hidden; border-radius:14px; background:#fff;
   border:1px solid rgba(29,77,58,.15); box-shadow:var(--shadow);
+  touch-action: pan-y; /* evitar bounce horizontal */
 }
-.track{ display:flex; transition: transform .4s cubic-bezier(.2,.7,.2,1) }
-.slide{
-  min-width:100%; padding:16px; display:grid; gap:10px; align-content:start;
-}
-.post-head{
-  display:flex; align-items:center; gap:10px; padding-bottom:8px; border-bottom:1px solid rgba(29,77,58,.12)
-}
+.track{ display:flex; will-change:transform; transition: transform .35s cubic-bezier(.2,.7,.2,1) }
+.slide{ min-width:100%; padding:14px; display:grid; gap:10px; align-content:start }
+.post-head{ display:flex; align-items:center; gap:10px; padding-bottom:8px; border-bottom:1px solid rgba(29,77,58,.12) }
 .post-ava{ width:36px; height:36px; border-radius:50%; background:#eee; box-shadow:0 0 0 2px var(--wine) }
 .post-title{ font-weight:800; color:var(--green) }
 .post-image{
-  height:220px; border-radius:12px; background:
-    linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)),
-    url('https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=60&w=1200') center/cover no-repeat;
-  border:1px solid rgba(29,77,58,.12);
+  height:220px; border-radius:12px; border:1px solid rgba(29,77,58,.12);
+  background-position:center; background-size:cover;
 }
 .post-caption{ font-size:.98rem; color:var(--text) }
+
+/* Dots únicos (como IG) */
 .ig-dots{
   display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 0;
 }
-.ig-dot{
-  width:6px; height:6px; border-radius:50%;
-  background:#d9d9d9;
-}
+.ig-dot{ width:6px; height:6px; border-radius:50%; background:#d9d9d9 }
 .ig-dot.active{ background:#2F2F2F }
+
+/* Setas simples */
 .nav{
-  display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:8px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:6px;
 }
 .nav .btn{ padding:8px 12px; font-weight:800 }
 
 /* ================= RECOMPENSAS ========================================== */
-.reward .grid{
-  display:grid; gap:16px;
-  grid-template-columns: 1fr;
-}
+.reward .grid{ display:grid; gap:16px; grid-template-columns: 1fr }
 .reward-card{
   background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:var(--radius);
   padding:clamp(14px,2.4vw,20px); box-shadow:var(--shadow);
@@ -158,10 +160,7 @@ a{ color:var(--wine); text-decoration:none }
 
 /* ================= EQUIPE NÃO-HUMANA ==================================== */
 .stories{ background:linear-gradient(180deg, var(--off), #fff) }
-.stories-grid{
-  display:grid; grid-template-columns:repeat(auto-fill, minmax(120px,1fr));
-  gap:16px;
-}
+.stories-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); gap:16px }
 .story-card{
   background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:18px;
   padding:14px; text-align:center; box-shadow:var(--shadow)
@@ -171,14 +170,12 @@ a{ color:var(--wine); text-decoration:none }
   margin-inline:auto; position:relative; background:#eee;
   box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green);
 }
-.story-card h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green); }
+.story-card h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green) }
 .story-card small{ color:var(--muted) }
 
 /* ================= FAQ (cartas) ========================================== */
 .faq{ border-top:4px solid var(--pink) }
-.faq-grid{
-  display:grid; gap:12px;
-}
+.faq-grid{ display:grid; gap:12px }
 .card-q{
   background:#fff; border:1px solid rgba(29,77,58,.15); border-radius:14px;
   box-shadow:var(--shadow); overflow:hidden;
@@ -203,7 +200,6 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
 }
 @media (max-width: 480px){
   .post-image{ height:190px }
-  .hero h1{ font-size:clamp(1.8rem,8vw,2.4rem) }
 }
 
 /* ================= PREFERÊNCIAS ========================================= */
@@ -229,7 +225,6 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
     <div class="row">
       <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
       <div class="stories-line" id="proofLine" aria-label="Alunos que já participam">
-        <!-- Troque as imagens pelos seus perfis reais -->
         <div class="story-dot" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200')" title="Ana"></div>
         <div class="story-dot" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200')" title="Lucas"></div>
         <div class="story-dot" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200')" title="Marina"></div>
@@ -241,9 +236,9 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   </div>
 </section>
 
-<!-- =================== HERO (100vh sem scroll; com todo conteúdo visível) -->
+<!-- =================== HERO (100vh sem scroll; todo conteúdo visível) ==== -->
 <section class="hero section--tighter" id="hero">
-  <div class="container" style="max-width: 860px">
+  <div class="container">
     <span class="eyebrow">As 3 IAs que eu realmente uso</span>
     <div class="stack">
       <h1>ESTÚDIO INFINITO™</h1>
@@ -277,185 +272,92 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   </div>
 </section>
 
-<!-- =================== MAPA DO ESTÚDIO (carrossel IG mantido) ============ -->
+<!-- =================== MAPA DO ESTÚDIO — CARROSSEL IG (ORIGINAL) ========= -->
 <section class="map section" id="mapa">
-  <div class="container">
-    <div class="stack" style="max-width: 900px; margin-inline:auto">
-      <h2 class="center">Mapa do Estúdio Infinito — mini-curso + IA</h2>
+  <div class="container" style="max-width: 900px">
+    <h2 class="center">Mapa do Estúdio Infinito — mini-curso + IA</h2>
 
-      <div class="slider" id="slider">
-        <div class="track" id="track">
-          <!-- SLIDE 1 -->
-          <article class="slide">
-            <div class="post-head">
-              <div class="post-ava"></div>
-              <div class="post-title">AULA 1 — Gêmea Digital pelo Celular (Higgsfield)</div>
-            </div>
-            <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1520975922284-9e0ce8275d32?q=60&w=1200')"></div>
-            <div class="post-caption"><strong>Poste sem aparecer.</strong> Monte seu personagem e publique hoje mesmo.</div>
-            <div class="ig-dots" role="tablist" aria-label="Slides">
-              <span class="ig-dot active" data-to="0"></span>
-              <span class="ig-dot" data-to="1"></span>
-              <span class="ig-dot" data-to="2"></span>
-              <span class="ig-dot" data-to="3"></span>
-              <span class="ig-dot" data-to="4"></span>
-              <span class="ig-dot" data-to="5"></span>
-              <span class="ig-dot" data-to="6"></span>
-            </div>
-            <div class="nav">
-              <button class="btn" data-prev>◀</button>
-              <button class="btn" data-next>Próximo passo ▶</button>
-            </div>
-          </article>
+    <!-- Dots únicos do carrossel (estilo IG) -->
+    <div class="ig-dots" id="igDots" role="tablist" aria-label="Slides">
+      <!-- preenchido via JS -->
+    </div>
 
-          <!-- SLIDE 2 -->
-          <article class="slide">
-            <div class="post-head">
-              <div class="post-ava"></div>
-              <div class="post-title">AULA 2 — Designs conversando com o ChatGPT</div>
-            </div>
-            <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1529335764857-3f1164d1cb24?q=60&w=1200')"></div>
-            <div class="post-caption"><strong>Sem abrir o Canva.</strong> Peças direto da conversa.</div>
-            <div class="ig-dots">
-              <span class="ig-dot" data-to="0"></span>
-              <span class="ig-dot active" data-to="1"></span>
-              <span class="ig-dot" data-to="2"></span>
-              <span class="ig-dot" data-to="3"></span>
-              <span class="ig-dot" data-to="4"></span>
-              <span class="ig-dot" data-to="5"></span>
-              <span class="ig-dot" data-to="6"></span>
-            </div>
-            <div class="nav">
-              <button class="btn" data-prev>◀</button>
-              <button class="btn" data-next>Próximo passo ▶</button>
-            </div>
-          </article>
+    <div class="slider" id="slider">
+      <div class="track" id="track">
+        <!-- Cada slide = 1 “post” IG -->
+        <article class="slide">
+          <div class="post-head">
+            <div class="post-ava"></div>
+            <div class="post-title">AULA 1 — Gêmea Digital pelo Celular (Higgsfield)</div>
+          </div>
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1520975922284-9e0ce8275d32?q=60&w=1200')"></div>
+          <div class="post-caption"><strong>Poste sem aparecer.</strong> Monte seu personagem e publique hoje mesmo.</div>
+        </article>
 
-          <!-- SLIDE 3 -->
-          <article class="slide">
-            <div class="post-head">
-              <div class="post-ava"></div>
-              <div class="post-title">AULA 3 — Estratégia de Público (Bia do Público)</div>
-            </div>
-            <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1518600506278-4e8ef466b810?q=60&w=1200')"></div>
-            <div class="post-caption"><strong>Venda para as pessoas certas.</strong> Direção, mensagem, oferta.</div>
-            <div class="ig-dots">
-              <span class="ig-dot" data-to="0"></span>
-              <span class="ig-dot" data-to="1"></span>
-              <span class="ig-dot active" data-to="2"></span>
-              <span class="ig-dot" data-to="3"></span>
-              <span class="ig-dot" data-to="4"></span>
-              <span class="ig-dot" data-to="5"></span>
-              <span class="ig-dot" data-to="6"></span>
-            </div>
-            <div class="nav">
-              <button class="btn" data-prev>◀</button>
-              <button class="btn" data-next>Próximo passo ▶</button>
-            </div>
-          </article>
+        <article class="slide">
+          <div class="post-head">
+            <div class="post-ava"></div>
+            <div class="post-title">AULA 2 — Designs conversando com o ChatGPT</div>
+          </div>
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1529335764857-3f1164d1cb24?q=60&w=1200')"></div>
+          <div class="post-caption"><strong>Sem abrir o Canva.</strong> Peças direto da conversa.</div>
+        </article>
 
-          <!-- SLIDE 4 -->
-          <article class="slide">
-            <div class="post-head">
-              <div class="post-ava"></div>
-              <div class="post-title">AULA 4 — Ideias que Nunca Acabam (Maria das Ideias)</div>
-            </div>
-            <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=60&w=1200')"></div>
-            <div class="post-caption"><strong>Fale do mesmo produto</strong> de formas infinitas.</div>
-            <div class="ig-dots">
-              <span class="ig-dot" data-to="0"></span>
-              <span class="ig-dot" data-to="1"></span>
-              <span class="ig-dot" data-to="2"></span>
-              <span class="ig-dot active" data-to="3"></span>
-              <span class="ig-dot" data-to="4"></span>
-              <span class="ig-dot" data-to="5"></span>
-              <span class="ig-dot" data-to="6"></span>
-            </div>
-            <div class="nav">
-              <button class="btn" data-prev>◀</button>
-              <button class="btn" data-next>Próximo passo ▶</button>
-            </div>
-          </article>
+        <article class="slide">
+          <div class="post-head">
+            <div class="post-ava"></div>
+            <div class="post-title">AULA 3 — Estratégia de Público (Bia do Público)</div>
+          </div>
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1518600506278-4e8ef466b810?q=60&w=1200')"></div>
+          <div class="post-caption"><strong>Venda para as pessoas certas.</strong> Direção, mensagem, oferta.</div>
+        </article>
 
-          <!-- SLIDE 5 -->
-          <article class="slide">
-            <div class="post-head">
-              <div class="post-ava"></div>
-              <div class="post-title">AULA 5 — Domine os 3 primeiros segundos (João dos Ganchos)</div>
-            </div>
-            <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=60&w=1200')"></div>
-            <div class="post-caption"><strong>Começos que fazem parar.</strong> Atenção, tensão e clique.</div>
-            <div class="ig-dots">
-              <span class="ig-dot" data-to="0"></span>
-              <span class="ig-dot" data-to="1"></span>
-              <span class="ig-dot" data-to="2"></span>
-              <span class="ig-dot" data-to="3"></span>
-              <span class="ig-dot active" data-to="4"></span>
-              <span class="ig-dot" data-to="5"></span>
-              <span class="ig-dot" data-to="6"></span>
-            </div>
-            <div class="nav">
-              <button class="btn" data-prev>◀</button>
-              <button class="btn" data-next>Próximo passo ▶</button>
-            </div>
-          </article>
+        <article class="slide">
+          <div class="post-head">
+            <div class="post-ava"></div>
+            <div class="post-title">AULA 4 — Ideias que Nunca Acabam (Maria das Ideias)</div>
+          </div>
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=60&w=1200')"></div>
+          <div class="post-caption"><strong>Fale do mesmo produto</strong> de formas infinitas.</div>
+        </article>
 
-          <!-- SLIDE 6 -->
-          <article class="slide">
-            <div class="post-head">
-              <div class="post-ava"></div>
-              <div class="post-title">AULA 6 — Carrosséis Inteligentes (Carlos dos Carrosséis)</div>
-            </div>
-            <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=60&w=1200')"></div>
-            <div class="post-caption"><strong>Do 1º slide ao CTA.</strong> Sequência, ritmo e retenção.</div>
-            <div class="ig-dots">
-              <span class="ig-dot" data-to="0"></span>
-              <span class="ig-dot" data-to="1"></span>
-              <span class="ig-dot" data-to="2"></span>
-              <span class="ig-dot" data-to="3"></span>
-              <span class="ig-dot" data-to="4"></span>
-              <span class="ig-dot active" data-to="5"></span>
-              <span class="ig-dot" data-to="6"></span>
-            </div>
-            <div class="nav">
-              <button class="btn" data-prev>◀</button>
-              <button class="btn" data-next>Próximo passo ▶</button>
-            </div>
-          </article>
+        <article class="slide">
+          <div class="post-head">
+            <div class="post-ava"></div>
+            <div class="post-title">AULA 5 — Domine os 3 primeiros segundos (João dos Ganchos)</div>
+          </div>
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=60&w=1200')"></div>
+          <div class="post-caption"><strong>Começos que fazem parar.</strong> Atenção, tensão e clique.</div>
+        </article>
 
-          <!-- SLIDE 7 -->
-          <article class="slide">
-            <div class="post-head">
-              <div class="post-ava"></div>
-              <div class="post-title">AULA 7 — Stories que as pessoas querem ver (José dos Stories)</div>
-            </div>
-            <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=60&w=1200')"></div>
-            <div class="post-caption"><strong>Sequência curta e diária.</strong> Puxada • Prova • Pergunta.</div>
-            <div class="ig-dots">
-              <span class="ig-dot" data-to="0"></span>
-              <span class="ig-dot" data-to="1"></span>
-              <span class="ig-dot" data-to="2"></span>
-              <span class="ig-dot" data-to="3"></span>
-              <span class="ig-dot" data-to="4"></span>
-              <span class="ig-dot" data-to="5"></span>
-              <span class="ig-dot active" data-to="6"></span>
-            </div>
-            <div class="nav">
-              <button class="btn" data-prev>◀</button>
-              <button class="btn" data-next>Publicar hoje ▶</button>
-            </div>
-          </article>
-        </div>
+        <article class="slide">
+          <div class="post-head">
+            <div class="post-ava"></div>
+            <div class="post-title">AULA 6 — Carrosséis Inteligentes (Carlos dos Carrosséis)</div>
+          </div>
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=60&w=1200')"></div>
+          <div class="post-caption"><strong>Do 1º slide ao CTA.</strong> Sequência, ritmo e retenção.</div>
+        </article>
+
+        <article class="slide">
+          <div class="post-head">
+            <div class="post-ava"></div>
+            <div class="post-title">AULA 7 — Stories que as pessoas querem ver (José dos Stories)</div>
+          </div>
+          <div class="post-image" style="background-image:url('https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=60&w=1200')"></div>
+          <div class="post-caption"><strong>Sequência curta e diária.</strong> Puxada • Prova • Pergunta.</div>
+        </article>
       </div>
 
-      <div class="center" style="margin-top:10px">
-        <span class="btn-quiet">Quero ver por dentro</span>
+      <div class="nav">
+        <button class="btn" id="prevBtn" aria-label="Anterior">◀</button>
+        <button class="btn" id="nextBtn" aria-label="Próximo">Próximo passo ▶</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- =================== RECOMPENSAS (sem o link secundário) =============== -->
+<!-- =================== RECOMPENSAS ======================================= -->
 <section class="reward section--tighter" id="recompensas">
   <div class="container">
     <div class="grid">
@@ -470,7 +372,6 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
       <div class="reward-card">
         <h2>📅 24h ou 100%</h2>
         <p><strong>Selo de confiança:</strong> seu primeiro post no ar em até <strong>24 horas</strong> — ou <strong>eu devolvo 100%</strong>.</p>
-        <!-- (botão “Entrar com segurança” removido como pediu) -->
       </div>
     </div>
   </div>
@@ -485,7 +386,7 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   </div>
 </section>
 
-<!-- =================== FAQ (cartas) ====================================== -->
+<!-- =================== FAQ =============================================== -->
 <section class="faq section--tighter" id="faq">
   <div class="container">
     <h2 class="center">FAQ (com reforço da tese das 3 IAs)</h2>
@@ -499,32 +400,64 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   </div>
 </footer>
 
-<!-- =================== SCRIPTS =========================================== -->
 <script>
-/* ====== Slider IG-like (versão mantida) ================================== */
-const track = document.getElementById('track');
+/* ===== HERO: garante caber 100vh mesmo com barra flutuante ================ */
+function fitHero(){
+  const hero = document.getElementById('hero');
+  const bb = getComputedStyle(document.documentElement).getPropertyValue('--buybarH').trim();
+  const h = parseInt(bb) || 64;
+  hero.style.minHeight = `calc(100vh - ${h}px)`;
+}
+fitHero();
+window.addEventListener('resize', fitHero);
+
+/* ===== Carrossel IG — ORIGINAL (dots únicos + swipe) ===================== */
+const track   = document.getElementById('track');
+const slides  = Array.from(document.querySelectorAll('.slide'));
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const igDots  = document.getElementById('igDots');
 let index = 0;
-const slides = Array.from(document.querySelectorAll('.slide'));
-const total = slides.length;
+
+/* cria os dots únicos fora dos slides (como IG) */
+slides.forEach((_, i)=>{
+  const d = document.createElement('span');
+  d.className = 'ig-dot' + (i===0 ? ' active' : '');
+  d.dataset.to = i;
+  d.addEventListener('click', ()=> goTo(i));
+  igDots.appendChild(d);
+});
+const dots = Array.from(igDots.querySelectorAll('.ig-dot'));
 
 function goTo(i){
-  index = Math.max(0, Math.min(total-1, i));
+  index = Math.max(0, Math.min(slides.length-1, i));
   track.style.transform = `translateX(-${index * 100}%)`;
-  // atualiza bolinhas (cada slide destaca a sua)
-  slides.forEach((s, si)=>{
-    s.querySelectorAll('.ig-dot').forEach((d, di)=>{
-      d.classList.toggle('active', di === si);
-    });
-  });
+  dots.forEach((d, di)=> d.classList.toggle('active', di === index));
 }
-document.querySelectorAll('[data-next]').forEach(btn=> btn.addEventListener('click',()=> goTo(index+1)));
-document.querySelectorAll('[data-prev]').forEach(btn=> btn.addEventListener('click',()=> goTo(index-1)));
-document.querySelectorAll('.ig-dot').forEach(dot=>{
-  dot.addEventListener('click', ()=> goTo(parseInt(dot.dataset.to,10)));
+prevBtn.addEventListener('click', ()=> goTo(index-1));
+nextBtn.addEventListener('click', ()=> goTo(index+1));
+
+/* swipe mobile */
+let startX = 0, currentX = 0, dragging = false;
+const slider = document.getElementById('slider');
+slider.addEventListener('touchstart', (e)=>{
+  startX = e.touches[0].clientX; dragging = true;
+}, {passive:true});
+slider.addEventListener('touchmove', (e)=>{
+  if(!dragging) return;
+  currentX = e.touches[0].clientX;
+}, {passive:true});
+slider.addEventListener('touchend', ()=>{
+  if(!dragging) return;
+  const dx = currentX - startX;
+  if(Math.abs(dx) > 40){
+    if(dx < 0) goTo(index+1); else goTo(index-1);
+  }
+  dragging = false; startX = 0; currentX = 0;
 });
 goTo(0);
 
-/* ====== Equipe Não-Humana (mock básico) ================================== */
+/* ===== Equipe Não-Humana (mock) ========================================== */
 const ENH = [
   { nome:'João dos Ganchos', func:'Começos que fazem parar' },
   { nome:'Larissa dos Roteiros', func:'Roteiros práticos' },
@@ -548,7 +481,7 @@ ENH.forEach(p=>{
   grid.appendChild(el);
 });
 
-/* ====== FAQ (cartas com toggle) ========================================== */
+/* ===== FAQ (cartas com toggle) =========================================== */
 const faqs = [
   {q:'Consigo mesmo com pouco tempo?', a:'Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.'},
   {q:'Preciso de computador ou app pago?', a:'Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.'},
@@ -577,7 +510,7 @@ faqs.forEach(item=>{
   faqGrid.appendChild(card);
 });
 
-/* ====== Social proof dots: clique para "depoimento" ====================== */
+/* ===== Social proof dots: clique para “depoimento” ======================= */
 document.querySelectorAll('.story-dot').forEach(dot=>{
   dot.addEventListener('click', ()=>{
     alert('Depoimento do aluno(a). (Aqui você pode abrir um modal com o depoimento.)');
