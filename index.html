@@ -44,9 +44,8 @@ a{ color:var(--wine); text-decoration:none }
 
 /* ================= ESPAÇAMENTO GLOBAL (compacto) ========================= */
 .section{ padding-block: clamp(24px, 6vw, 48px); }
-.section--tighter{ padding-block: clamp(18px, 4vw, 36px); }
+.section--tighter{ padding-block: clamp(18px, 4vw, 32px); }
 .stack{ display:flex; flex-direction:column; gap:clamp(8px,1.8vw,14px); }
-.stack-tight{ display:flex; flex-direction:column; gap:clamp(6px,1.2vw,10px); }
 
 /* ================= BARRA FLUTUANTE (compra) =============================== */
 .buybar{
@@ -65,9 +64,6 @@ a{ color:var(--wine); text-decoration:none }
   border:2px solid var(--wine); color:#fff; background:var(--wine);
 }
 .btn:hover{ filter:brightness(0.98) }
-.btn-outline{
-  border:2px solid var(--wine); color:var(--green); background:transparent;
-}
 .btn-quiet{
   border:1px dashed rgba(124,30,40,.4); color:var(--green); background:transparent;
   padding:8px 12px; border-radius:10px; font-weight:700;
@@ -90,9 +86,11 @@ a{ color:var(--wine); text-decoration:none }
   cursor:pointer;
 }
 
-/* ================= HERO (caber sem scroll) ================================ */
+/* ================= HERO (caber 100vh sem scroll) ========================== */
 .hero{
-  padding-block: clamp(24px, 6vw, 42px); /* reduzido */
+  min-height: calc(100vh - 64px); /* 64px ~ altura da buybar para caber na dobra */
+  display:flex; align-items:center; /* centraliza vertical */
+  padding-block: clamp(16px, 4vw, 24px);
 }
 .hero .container{
   display:grid; align-items:center; justify-items:start;
@@ -100,14 +98,14 @@ a{ color:var(--wine); text-decoration:none }
 .hero .eyebrow{
   display:inline-block; padding:6px 10px; border-radius:999px;
   background:var(--pink); color:var(--green); font-weight:800; font-size:.85rem;
-  letter-spacing:.2px;
+  letter-spacing:.2px; margin-bottom:6px;
 }
 .hero .lead{ font-size:clamp(1.05rem,2.2vw,1.35rem) }
 .hero .sub{ color:var(--muted) }
 .hero .guarantee{ font-weight:700 }
 .hero .note{ font-weight:800; color:var(--green) }
 
-/* ================= MAPA (Carrossel estilo Instagram) ===================== */
+/* ================= MAPA (Carrossel IG – versão mantida) ================== */
 .map{ background:var(--beige); border-block:4px solid var(--pink) }
 .slider{
   position:relative; overflow:hidden; border-radius:14px; background:#fff;
@@ -176,7 +174,7 @@ a{ color:var(--wine); text-decoration:none }
 .story-card h5{ margin:10px 0 2px 0; font-size:.98rem; color:var(--green); }
 .story-card small{ color:var(--muted) }
 
-/* ================= FAQ (diferencial com “cartas”) ======================== */
+/* ================= FAQ (cartas) ========================================== */
 .faq{ border-top:4px solid var(--pink) }
 .faq-grid{
   display:grid; gap:12px;
@@ -221,7 +219,7 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   <div class="container inner">
     <span class="price">R$ 388/ano</span>
     <a class="btn" href="#checkout" aria-label="Entrar no Estúdio Infinito">Entrar agora</a>
-    <span class="btn-quiet">24h ou 100%</span>
+    <span class="btn-quiet">Selo 24h ou 100% do 1º post</span>
   </div>
 </div>
 
@@ -231,7 +229,7 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
     <div class="row">
       <div class="title">Junte-se a mais de 25.000 alunos por toda a vida.</div>
       <div class="stories-line" id="proofLine" aria-label="Alunos que já participam">
-        <!-- Exemplo: substitua as imagens abaixo pelas reais -->
+        <!-- Troque as imagens pelos seus perfis reais -->
         <div class="story-dot" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200')" title="Ana"></div>
         <div class="story-dot" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200')" title="Lucas"></div>
         <div class="story-dot" style="background-image:url('https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=60&w=200')" title="Marina"></div>
@@ -243,11 +241,11 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   </div>
 </section>
 
-<!-- =================== HERO (caber naturalmente sem scroll) ============== -->
+<!-- =================== HERO (100vh sem scroll; com todo conteúdo visível) -->
 <section class="hero section--tighter" id="hero">
-  <div class="container">
+  <div class="container" style="max-width: 860px">
     <span class="eyebrow">As 3 IAs que eu realmente uso</span>
-    <div class="stack" style="max-width: 850px">
+    <div class="stack">
       <h1>ESTÚDIO INFINITO™</h1>
       <p class="lead"><strong>Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</strong></p>
       <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
@@ -258,15 +256,14 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
       </p>
       <p class="guarantee"><strong>Selo de confiança:</strong> seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
       <p class="note">✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</p>
-      <!-- (CTA do hero removido propositalmente; CTA principal é a barra flutuante) -->
     </div>
   </div>
 </section>
 
 <!-- =================== O QUE É O ESTÚDIO ================================= -->
 <section class="section--tighter" id="oque-e">
-  <div class="container">
-    <div class="stack" style="max-width: 860px">
+  <div class="container" style="max-width: 860px">
+    <div class="stack">
       <h2>O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
       <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
       <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
@@ -280,10 +277,10 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   </div>
 </section>
 
-<!-- =================== MAPA DO ESTÚDIO (carrossel estilo IG) ============= -->
+<!-- =================== MAPA DO ESTÚDIO (carrossel IG mantido) ============ -->
 <section class="map section" id="mapa">
   <div class="container">
-    <div class="stack-tight" style="max-width: 900px; margin-inline:auto">
+    <div class="stack" style="max-width: 900px; margin-inline:auto">
       <h2 class="center">Mapa do Estúdio Infinito — mini-curso + IA</h2>
 
       <div class="slider" id="slider">
@@ -306,8 +303,8 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
               <span class="ig-dot" data-to="6"></span>
             </div>
             <div class="nav">
-              <button class="btn-outline" data-prev>◀</button>
-              <button class="btn-outline" data-next>Próximo passo ▶</button>
+              <button class="btn" data-prev>◀</button>
+              <button class="btn" data-next>Próximo passo ▶</button>
             </div>
           </article>
 
@@ -329,8 +326,8 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
               <span class="ig-dot" data-to="6"></span>
             </div>
             <div class="nav">
-              <button class="btn-outline" data-prev>◀</button>
-              <button class="btn-outline" data-next>Próximo passo ▶</button>
+              <button class="btn" data-prev>◀</button>
+              <button class="btn" data-next>Próximo passo ▶</button>
             </div>
           </article>
 
@@ -352,8 +349,8 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
               <span class="ig-dot" data-to="6"></span>
             </div>
             <div class="nav">
-              <button class="btn-outline" data-prev>◀</button>
-              <button class="btn-outline" data-next>Próximo passo ▶</button>
+              <button class="btn" data-prev>◀</button>
+              <button class="btn" data-next>Próximo passo ▶</button>
             </div>
           </article>
 
@@ -375,8 +372,8 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
               <span class="ig-dot" data-to="6"></span>
             </div>
             <div class="nav">
-              <button class="btn-outline" data-prev>◀</button>
-              <button class="btn-outline" data-next>Próximo passo ▶</button>
+              <button class="btn" data-prev>◀</button>
+              <button class="btn" data-next>Próximo passo ▶</button>
             </div>
           </article>
 
@@ -398,15 +395,15 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
               <span class="ig-dot" data-to="6"></span>
             </div>
             <div class="nav">
-              <button class="btn-outline" data-prev>◀</button>
-              <button class="btn-outline" data-next>Próximo passo ▶</button>
+              <button class="btn" data-prev>◀</button>
+              <button class="btn" data-next>Próximo passo ▶</button>
             </div>
           </article>
 
           <!-- SLIDE 6 -->
           <article class="slide">
             <div class="post-head">
-              <div a class="post-ava"></div>
+              <div class="post-ava"></div>
               <div class="post-title">AULA 6 — Carrosséis Inteligentes (Carlos dos Carrosséis)</div>
             </div>
             <div class="post-image" style="background-image:linear-gradient(135deg, rgba(124,30,40,.06), rgba(29,77,58,.08)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=60&w=1200')"></div>
@@ -421,8 +418,8 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
               <span class="ig-dot" data-to="6"></span>
             </div>
             <div class="nav">
-              <button class="btn-outline" data-prev>◀</button>
-              <button class="btn-outline" data-next>Próximo passo ▶</button>
+              <button class="btn" data-prev>◀</button>
+              <button class="btn" data-next>Próximo passo ▶</button>
             </div>
           </article>
 
@@ -444,21 +441,21 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
               <span class="ig-dot active" data-to="6"></span>
             </div>
             <div class="nav">
-              <button class="btn-outline" data-prev>◀</button>
-              <button class="btn-outline" data-next>Publicar hoje ▶</button>
+              <button class="btn" data-prev>◀</button>
+              <button class="btn" data-next>Publicar hoje ▶</button>
             </div>
           </article>
         </div>
       </div>
 
-      <div class="center">
-        <a class="btn-quiet" href="#checkout">Quero ver por dentro</a>
+      <div class="center" style="margin-top:10px">
+        <span class="btn-quiet">Quero ver por dentro</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- =================== RECOMPENSAS ======================================= -->
+<!-- =================== RECOMPENSAS (sem o link secundário) =============== -->
 <section class="reward section--tighter" id="recompensas">
   <div class="container">
     <div class="grid">
@@ -473,7 +470,7 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
       <div class="reward-card">
         <h2>📅 24h ou 100%</h2>
         <p><strong>Selo de confiança:</strong> seu primeiro post no ar em até <strong>24 horas</strong> — ou <strong>eu devolvo 100%</strong>.</p>
-        <a class="btn-quiet" href="#checkout">Entrar com segurança</a>
+        <!-- (botão “Entrar com segurança” removido como pediu) -->
       </div>
     </div>
   </div>
@@ -484,9 +481,7 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
   <div class="container">
     <h2 class="center">Equipe Não-Humana™ — perfis</h2>
     <p class="center" style="color:var(--muted)">Toque em um perfil para ver o que cada “funcionário” entrega.</p>
-    <div class="stories-grid" id="storiesGrid">
-      <!-- Cards gerados via JS (mantido para compatibilidade com sua versão anterior) -->
-    </div>
+    <div class="stories-grid" id="storiesGrid"></div>
   </div>
 </section>
 
@@ -494,9 +489,7 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
 <section class="faq section--tighter" id="faq">
   <div class="container">
     <h2 class="center">FAQ (com reforço da tese das 3 IAs)</h2>
-    <div class="faq-grid" id="faqGrid">
-      <!-- Cartas com abertura/fechamento via JS -->
-    </div>
+    <div class="faq-grid" id="faqGrid"></div>
   </div>
 </section>
 
@@ -508,24 +501,25 @@ footer{ border-top:1px solid rgba(29,77,58,.15); color:#777; padding:22px 0; tex
 
 <!-- =================== SCRIPTS =========================================== -->
 <script>
-/* ====== Slider IG-like ==================================================== */
+/* ====== Slider IG-like (versão mantida) ================================== */
 const track = document.getElementById('track');
-const dotsAll = () => Array.from(document.querySelectorAll('.slide .ig-dots .ig-dot'));
-let index = 0, total = document.querySelectorAll('.slide').length;
+let index = 0;
+const slides = Array.from(document.querySelectorAll('.slide'));
+const total = slides.length;
 
 function goTo(i){
   index = Math.max(0, Math.min(total-1, i));
   track.style.transform = `translateX(-${index * 100}%)`;
-  // Atualiza bolinhas do slide atual
-  document.querySelectorAll('.slide').forEach((s, si)=>{
-    s.querySelectorAll('.ig-dot').forEach((d,di)=>{
+  // atualiza bolinhas (cada slide destaca a sua)
+  slides.forEach((s, si)=>{
+    s.querySelectorAll('.ig-dot').forEach((d, di)=>{
       d.classList.toggle('active', di === si);
     });
   });
 }
 document.querySelectorAll('[data-next]').forEach(btn=> btn.addEventListener('click',()=> goTo(index+1)));
 document.querySelectorAll('[data-prev]').forEach(btn=> btn.addEventListener('click',()=> goTo(index-1)));
-dotsAll().forEach(dot=>{
+document.querySelectorAll('.ig-dot').forEach(dot=>{
   dot.addEventListener('click', ()=> goTo(parseInt(dot.dataset.to,10)));
 });
 goTo(0);
