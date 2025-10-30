@@ -12,18 +12,18 @@
 <style>
 /* =================== TOKENS / TEMA =================== */
 :root{
-  --wine:#7C1E28;     
-  --green:#1D4D3A;    
-  --pink:#F9C8D2;     
-  --beige:#F5D7E2;    
-  --off:#FBF7F8;      
-  --text:#1A1A1A;     
-  --muted:#555555;    
+  --wine:#7C1E28;     /* CTA/realces */
+  --green:#1D4D3A;    /* Títulos/traços */
+  --pink:#F9C8D2;     /* separadores / detalhes */
+  --beige:#F5D7E2;    /* cards sutis */
+  --off:#FBF7F8;      /* fundo off-white */
+  --text:#1A1A1A;     /* texto principal */
+  --muted:#555555;    /* apoio */
   --radius:16px;
   --shadow:0 10px 30px rgba(29,77,58,.12);
   --maxw:1120px;
-  --bar-h:68px;       
-  --band-h:64px;      
+  --bar-h:62px;       /* altura da barra flutuante */
+  --band-h:64px;      /* altura aproximada da faixa social proof */
 }
 
 /* =================== RESET / BASE =================== */
@@ -47,6 +47,14 @@ p{margin:.5rem 0}
 .center{text-align:center}
 strong{font-weight:700}
 
+/* =================== LAYOUT / RITMO =================== */
+.container{width:min(100%,var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px)}
+section{padding-block:16px}             /* mínimo espaço entre dobras */
+.section-tight{padding-block:12px}
+.sep-line{border-top:2px solid var(--pink)}
+.sep-bottom{border-bottom:2px solid var(--pink)}
+.stack{display:grid; gap:6px}           /* escaneável */
+
 /* =================== BOTÕES (CTA) =================== */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
@@ -59,19 +67,6 @@ strong{font-weight:700}
 .btn:active{transform:translateY(0)}
 .btn-ghost{
   background:transparent; color:var(--wine); border-bottom:2px solid var(--wine); border-radius:0; padding:2px 0
-}
-
-/* ===== CTA com preço (pill) ===== */
-.btn-price{display:inline-flex; align-items:center; gap:10px}
-.price-pill{
-  background:#fff; color:var(--wine);
-  border:1px solid var(--wine);
-  padding:6px 10px; border-radius:999px;
-  font-weight:700; font-size:.95rem; line-height:1;
-  white-space:nowrap;
-}
-@media (max-width: 360px){
-  .price-pill{display:none}
 }
 
 /* =================== BARRA FLUTUANTE =================== */
@@ -87,17 +82,6 @@ strong{font-weight:700}
 @media (min-width: 720px){
   .cta-bar{justify-content:center}
 }
-</style>
-</head>
-<body>
-
-<!-- ===== BARRA FLUTUANTE (atualizada com preço) ===== -->
-<div class="cta-bar" id="ctaBar">
-  <a class="btn btn-price" id="barBuy" href="#" rel="noopener" aria-label="Entrar no Estúdio — 12 vezes de 38,80 reais no plano anual">
-    <span class="label">Entrar no Estúdio</span>
-    <span class="price-pill">12× R$38,80</span>
-  </a>
-</div>
 
 /* =================== SOCIAL PROOF — UMA LINHA =================== */
 .band{padding-block:10px; min-height:var(--band-h)}
@@ -126,7 +110,9 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
   min-height: calc(100svh - var(--bar-h) - var(--band-h));
   display:flex; align-items:center;
 }
-.hero .stack{ gap:4px; } /* compacto para caber 100% */
+.hero .stack{
+  gap:4px;               /* compacto para caber 100% */
+}
 .hero p em{background:linear-gradient(transparent 70%, var(--beige) 0)}
 .hero .cta-row{display:flex; gap:10px; align-items:center; justify-content:flex-start; flex-wrap:wrap}
 
@@ -268,18 +254,13 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   html{scroll-behavior:auto}
   .btn, .pager-dot{transition:none}
 }
-
-/* ===== Ajuste extra: bolhas menores em telas mini ===== */
-@media (max-width:420px){
-  .sp-bubble{width:52px;height:52px}
-}
 </style>
 </head>
 <body>
 
 <!-- ===== BARRA FLUTUANTE ===== -->
 <div class="cta-bar" id="ctaBar">
-  <a class="btn" id="barBuy" href="#" rel="noopener">Quero entrar no Estúdio</a>
+  <a class="btn" id="barBuy" href="#" rel="noopener">Entrar no Estúdio — 12× R$38,80/mês</a>
 </div>
 
 <!-- ===== SOCIAL PROOF — UMA LINHA ===== -->
@@ -304,10 +285,7 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
       <p>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
       <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
 
-      <!-- Microcopy ajustado -->
-      <p><strong>✅ Seu 1º post no ar em 24h — ou devolvo 100%.</strong></p>
-
-      <!-- CTA no HERO (preenchido) -->
+      <p><strong>✅ Selo de confiança: 1º post no ar em 24h ou eu devolvo 100%</strong></p>
       <div class="cta-row">
       </div>
     </div>
@@ -545,6 +523,14 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
         </div>
       </div>
     </div>
+
+    <div id="sec-pronto" class="section" style="padding-top:14px">
+      <div class="container">
+        <p class="cta-head">Pronto pra criar sem cara de IA e parar de parecer igual a todo mundo?</p>
+        <a href="https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275" class="cta-btn-standalone" aria-label="Ir para o checkout">QUERO FAZER PARTE</a>
+        <div class="preco-mini">apenas R$38,80/mês (plano anual)</div>
+        <p class="cta-notes">* sem burocracia&nbsp;&nbsp;* funciona no ChatGPT gratuito&nbsp;&nbsp;* aulas novas todo mês</p>
+      </div>
     </div>
   </div>
 </section>
@@ -596,10 +582,7 @@ function makeProof(p){
         </div>
       </div>
     `;
-    document.body.appendChild(dlg);
-    dlg.setAttribute('aria-modal','true');
-    dlg.showModal();
-    dlg.querySelector('.close').focus();
+    document.body.appendChild(dlg); dlg.showModal();
     dlg.querySelector('.close').addEventListener('click',()=>dlg.close());
     dlg.addEventListener('close',()=>dlg.remove());
   });
@@ -726,10 +709,7 @@ function openModal(p){
       </div>
     </div>
   `;
-  document.body.appendChild(dlg);
-  dlg.setAttribute('aria-modal','true');
-  dlg.showModal();
-  dlg.querySelector('.close').focus();
+  document.body.appendChild(dlg); dlg.showModal();
   dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
   dlg.addEventListener('close', ()=> dlg.remove());
   dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
@@ -737,9 +717,6 @@ function openModal(p){
 ENH.forEach(p=> grid.appendChild(cardENH(p)));
 
 /* ========= RECOMPENSA: contador “vivo” ========= */
-/* Lógica simples: guarda em localStorage o último dia registrado.
-   Se virou o dia (00:00), incrementa +1 automaticamente.
-   Mostra progresso e “faltam X”. */
 const TOTAL = 365;
 const numEl = document.getElementById('diasPostados');
 const faltamEl = document.getElementById('faltamDias');
