@@ -52,6 +52,11 @@ section{padding-block:18px}             /* mínimo espaço entre dobras */
 .sep-line{border-top:2px solid var(--pink)}
 .sep-bottom{border-bottom:2px solid var(--pink)}
 
+/* helpers novos */
+.grid-2{display:grid; gap:14px}
+@media (min-width: 800px){ .grid-2{grid-template-columns:1.2fr .8fr} }
+.stack{display:grid; gap:2px} /* usado em vários blocos */
+
 /* =================== BOTÕES (CTA) =================== */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
@@ -69,7 +74,7 @@ section{padding-block:18px}             /* mínimo espaço entre dobras */
   background:transparent; color:var(--wine); border-bottom:2px solid var(--wine); border-radius:0; padding:2px 0
 }
 
-/* =================== BARRA FLUTUANTE (estilo comunidade) =================== */
+/* =================== BARRA FLUTUANTE =================== */
 .cta-bar{
   position:fixed; left:0; right:0; bottom:0; z-index:60;
   background:#fff; border-top:1px solid rgba(29,77,58,.14);
@@ -105,19 +110,15 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .modal header{display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid var(--pink); padding-bottom:8px}
 .modal .close{background:transparent; border:none; color:var(--wine); font-weight:700; cursor:pointer}
 
-/* =================== HERO (AJUSTADO PARA CABER 100%) =================== */
+/* =================== HERO (CABENDO 100%) =================== */
 .hero{
-  /* ocupa exatamente a 1ª dobra útil, considerando barra e faixa */
   min-height: calc(100svh - var(--bar-h) - var(--band-h));
-  display:flex; align-items:center; /* centra vertical */
+  display:flex; align-items:center;
 }
-.hero .stack{
-  display:grid; gap:2px;           /* mais compacto */
-  padding-block: 3px;              /* sem “caixa” */
-}
+.hero .stack{gap:2px; padding-block:3px}
 .hero p em{background:linear-gradient(transparent 70%, var(--beige) 0)}
 
-/* Reduções de tipografia/altura para telas mais baixas */
+/* Reduções finas para telas mais baixas */
 @media (max-height: 760px){
   h1.h-serif{font-size:clamp(1.9rem,3vw,2.4rem)}
   h3.h-serif{font-size:clamp(.98rem,1.45vw,1.2rem)}
@@ -131,7 +132,7 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
   .btn{padding:10px 16px}
 }
 
-/* =================== CARROSSEL IG-LIKE (Mapa do Estúdio) =================== */
+/* =================== CARROSSEL IG-LIKE (Mapa) =================== */
 .carousel{position:relative}
 .carousel-track{
   display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:10px; padding-bottom:4px;
@@ -191,6 +192,19 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .acc .content{padding:0 14px 12px 18px; color:var(--text)}
 .blockquote{margin:.4rem 0; padding:8px 10px; border-left:3px solid var(--pink); background:#fff}
 
+/* =================== OFERTA (novo) =================== */
+.offer-card{
+  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:16px; box-shadow:var(--shadow);
+  padding:clamp(14px,2.2vw,22px);
+}
+.offer-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
+.offer-price{font-weight:700; color:var(--wine)}
+.offer-list{display:grid; gap:8px; margin:10px 0 0 0; padding:0; list-style:none}
+.offer-item{display:flex; gap:8px; align-items:flex-start}
+.offer-bullet{width:12px; height:12px; border-radius:50%; background:var(--wine); margin-top:.35rem; box-shadow:0 0 0 3px var(--pink)}
+.offer-foot{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:10px}
+.pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-weight:700; color:var(--green); background:var(--beige); border:1px solid rgba(29,77,58,.14)}
+
 /* =================== FOOTER =================== */
 footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text-align:center}
 
@@ -200,16 +214,9 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   .slide{min-width:560px; max-width:560px}
   .cta-row{display:flex; gap:10px; align-items:center; justify-content:center}
 }
-  /* ===== AJUSTE DO ESPAÇO ENTRE PROVA SOCIAL E HERO ===== */
-.band.section-tight {
-  padding-bottom: 1px; /* era 12px — reduzido */
-}
-
-.hero.section-tight {
-  padding-top: 1px; /* era 18px — reduzido */
-}
-
-/* ajuste fino em telas pequenas */
+/* ===== AJUSTE DO ESPAÇO ENTRE PROVA SOCIAL E HERO ===== */
+.band.section-tight { padding-bottom: 1px; }
+.hero.section-tight { padding-top: 1px; }
 @media (max-height: 700px){
   .band.section-tight { padding-bottom: 1px; }
   .hero.section-tight { padding-top: 1px; }
@@ -218,7 +225,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 </head>
 <body>
 
-<!-- ===== BARRA FLUTUANTE (estilo comunidade) ===== -->
+<!-- ===== BARRA FLUTUANTE ===== -->
 <div class="cta-bar" id="ctaBar">
   <a class="btn" id="barBuy" href="#" rel="noopener">Quero entrar no Estúdio</a>
 </div>
@@ -231,7 +238,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   </div>
 </section>
 
-<!-- ===== HERO (CABENDO 100% NA PRIMEIRA DOBRA) ===== -->
+<!-- ===== HERO ===== -->
 <section class="section-tight hero" id="hero">
   <div class="container">
     <div class="stack">
@@ -252,21 +259,39 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 
 <div class="sep-line"></div>
 
-<!-- ===== O QUE É O ESTÚDIO (SEM CARTÃO) ===== -->
+<!-- ===== O QUE É O ESTÚDIO (MAIS ESCANEÁVEL) ===== -->
 <section class="section-tight" id="o-que-e">
   <div class="container">
-    <div class="stack">
-      <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
-      <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia.</p>
-      <p>Isso só te deixa <strong>travado</strong>.</p>
-      <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso.</p>
-      <p>É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
-      <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos</strong> + comunidade sobre humano = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+    <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
 
-      <p><strong>AS 3 IAS QUE EU USO SÃO:</strong></p>
-      <p>🧠 <strong>ChatGPT</strong> — pra criar ideias, roteiros, legendas e designs direto da conversa.</p>
-      <p>🎨 <strong>Higgsfield</strong> — pra gerar sua <strong>Gêmea Digital</strong> e postar sem precisar aparecer.</p>
-      <p>🤖 <strong>Equipe Não-Humana™</strong> — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</p>
+    <div class="grid-2" style="margin-top:6px">
+      <!-- Bloco A: tese e missão -->
+      <div class="stack">
+        <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia.</p>
+        <p>Isso só te deixa <strong>travado</strong>.</p>
+        <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso.</p>
+        <p>É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
+        <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos</strong> + comunidade sobre humano = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+      </div>
+
+      <!-- Bloco B: as 3 IAs (itens) -->
+      <div>
+        <p><strong>AS 3 IAS QUE EU USO SÃO:</strong></p>
+        <ul class="offer-list" style="margin-top:6px">
+          <li class="offer-item">
+            <span class="offer-bullet" aria-hidden="true"></span>
+            <span>🧠 <strong>ChatGPT</strong> — pra criar ideias, roteiros, legendas e designs direto da conversa.</span>
+          </li>
+          <li class="offer-item">
+            <span class="offer-bullet" aria-hidden="true"></span>
+            <span>🎨 <strong>Higgsfield</strong> — pra gerar sua <strong>Gêmea Digital</strong> e postar sem precisar aparecer.</span>
+          </li>
+          <li class="offer-item">
+            <span class="offer-bullet" aria-hidden="true"></span>
+            <span>🤖 <strong>Equipe Não-Humana™</strong> — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -375,7 +400,47 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
         </div>
       </details>
     </div>
+  </div>
+</section>
 
+<!-- ===== RESUMO DA OFERTA (novo, após o FAQ) ===== -->
+<section class="section-tight" id="oferta">
+  <div class="container">
+    <div class="offer-card">
+      <div class="offer-head">
+        <h2 class="h-serif" style="margin:0">Resumo da Oferta</h2>
+        <div class="offer-price">R$ 388/ano</div>
+      </div>
+
+      <ul class="offer-list">
+        <li class="offer-item">
+          <span class="offer-bullet" aria-hidden="true"></span>
+          <span><strong>Você paga só o 1º ano.</strong> Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>. <em class="muted">(Post que Paga: cada post = +1 dia de desconto.)</em></span>
+        </li>
+        <li class="offer-item">
+          <span class="offer-bullet" aria-hidden="true"></span>
+          <span><strong>✅ Selo de confiança:</strong> 1º post no ar em 24h — <strong>ou eu devolvo 100%</strong>.</span>
+        </li>
+        <li class="offer-item">
+          <span class="offer-bullet" aria-hidden="true"></span>
+          <span><strong>As 3 IAs que eu uso:</strong> 🧠 ChatGPT • 🎨 Higgsfield (Gêmea Digital) • 🤖 Equipe Não-Humana™.</span>
+        </li>
+        <li class="offer-item">
+          <span class="offer-bullet" aria-hidden="true"></span>
+          <span><strong>Mini-cursos rápidos</strong> e <strong>comunidade sobre humano</strong> te puxando para o <strong>post no ar</strong>.</span>
+        </li>
+        <li class="offer-item">
+          <span class="offer-bullet" aria-hidden="true"></span>
+          <span><strong>Renovação anual automática.</strong> <strong>Pode cancelar quando quiser</strong>; o acesso fica até o fim do ciclo. <strong>Preço de fundador travado</strong> para quem entra agora.</span>
+        </li>
+      </ul>
+
+      <div class="offer-foot">
+        <span class="pill">Post que Paga</span>
+        <span class="pill">Campeonato Infinito</span>
+        <span class="pill">Feito no celular</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -561,7 +626,7 @@ function openModal(p){
 ENH.forEach(p=> grid.appendChild(cardENH(p)));
 
 /* ========= SUAVIZAÇÃO DE ENTRADA ========= */
-const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion');
+const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .offer-card');
 const ioFade = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
