@@ -24,7 +24,6 @@
   --maxw:1120px;
   --bar-h:62px;       /* altura da barra flutuante */
   --band-h:64px;      /* altura aproximada da faixa social proof */
-  --slide-w: min(560px, calc(100vw - 32px)); /* usado no carrossel */
 }
 
 /* =================== RESET / BASE =================== */
@@ -117,74 +116,46 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .hero p em{background:linear-gradient(transparent 70%, var(--beige) 0)}
 .hero .cta-row{display:flex; gap:10px; align-items:center; justify-content:flex-start; flex-wrap:wrap}
 
-/* =================== O QUE É O ESTÚDIO — FLUIDO/HIERÁRQUICO =================== */
-#o-que-e .lead{
-  font-size:1.02rem; color:var(--text);
+/* =================== “O QUE É O ESTÚDIO” — ESCANEÁVEL =================== */
+.grid-features{
+  display:grid; gap:10px; grid-template-columns:1fr; margin-top:6px;
 }
-.feature-lines{
-  margin-top:6px; display:grid; gap:10px;
+.feature{
+  display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:start;
+  background:#fff; border:1px solid rgba(29,77,58,.12); border-radius:12px; padding:10px; box-shadow:var(--shadow)
 }
-.fline{
-  display:grid; grid-template-columns:32px 1fr; gap:10px; align-items:start;
-  padding:6px 2px; border-bottom:1px dashed rgba(29,77,58,.18);
+.feature .ico{
+  width:28px; height:28px; border-radius:8px; display:grid; place-items:center;
+  border:2px solid var(--green); color:var(--green); font-weight:700; background:linear-gradient(180deg,#fff,var(--beige))
 }
-.fline:last-child{border-bottom:none}
-.fline .ico{
-  width:32px; height:32px; border-radius:9px; display:grid; place-items:center;
-  border:2px solid var(--green); color:var(--green); font-weight:700;
-  background:linear-gradient(180deg,#fff,var(--beige));
+.feature h4{margin:0; color:var(--green); font-size:1rem}
+.feature p{margin:.2rem 0 0 0}
+@media (min-width: 760px){
+  .grid-features{grid-template-columns:repeat(2,1fr)}
 }
-.fline h4{margin:0; color:var(--green); font-size:1rem}
-.fline p{margin:.15rem 0 0 0}
 
 /* =================== CARROSSEL IG-LIKE (Mapa do Estúdio) =================== */
-#mapa .container{ padding-inline: 0; }     /* evita padding somado */
-.carousel{
-  position:relative;
-  padding-inline:16px;                      /* respiro lateral */
-}
-.carousel-viewport{
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
+.carousel{position:relative}
+.carousel-track{
+  display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:10px; padding-bottom:4px;
   scrollbar-width:none; -ms-overflow-style:none;
 }
-.carousel-viewport::-webkit-scrollbar{display:none}
-.carousel-track{
-  display:flex;
-  gap:10px;
-  padding:0;
-  margin:0 auto;
-  width:max-content;
-}
+.carousel-track::-webkit-scrollbar{display:none}
 .slide{
-  flex:0 0 var(--slide-w);
-  width:var(--slide-w);
-  max-width:var(--slide-w);
-  scroll-snap-align:center;
-  background:#fff;
-  border:1px solid rgba(29,77,58,.14);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  display:grid;
-  grid-template-rows:auto auto auto;
+  min-width:calc(100% - 32px); max-width:calc(100% - 32px);
+  scroll-snap-align:center; background:#fff; border:1px solid rgba(29,77,58,.14);
+  border-radius:14px; box-shadow:var(--shadow); overflow:hidden; display:grid; grid-template-rows:auto auto auto;
 }
-.slide-media{
-  aspect-ratio:1/1;
-  background:linear-gradient(180deg,#fff,var(--beige));
-}
+.slide-media{aspect-ratio:1/1; background:linear-gradient(180deg,#fff,var(--beige))}
 .pagers{
   display:flex; gap:6px; justify-content:center; align-items:center;
   padding:8px 0 4px 0;
 }
-.pager-dot{
-  width:7px; height:7px; border-radius:50%; background:#dadada; transition:transform .2s ease;
-}
-.pager-dot.active{ background:#9e9e9e; transform:scale(1.12) }
-.slide-body{ padding:10px 12px 14px 12px; min-height:96px }
-.slide-title{ color:var(--green); font-weight:700; margin-bottom:3px }
-.slide-caption{ color:var(--muted) }
+.pager-dot{width:7px; height:7px; border-radius:50%; background:#dadada; transition:transform .2s ease, opacity .2s ease}
+.pager-dot.active{background:#9e9e9e; transform:scale(1.12)}
+.slide-body{padding:10px 12px 14px 12px}
+.slide-title{color:var(--green); font-weight:700; margin-bottom:3px}
+.slide-caption{color:var(--muted)}
 
 /* =================== RECOMPENSAS (CONTADOR VIVO) =================== */
 .reward-card{
@@ -265,6 +236,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 /* =================== RESPONSIVO =================== */
 @media (min-width: 720px){
   section{padding-block:18px}
+  .slide{min-width:560px; max-width:560px}
   .cta-row{display:flex; gap:10px; align-items:center; justify-content:center}
 }
 /* ===== AJUSTE DO ESPAÇO ENTRE PROVA SOCIAL E HERO ===== */
@@ -288,7 +260,7 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
 
 <!-- ===== BARRA FLUTUANTE ===== -->
 <div class="cta-bar" id="ctaBar">
-  <a class="btn" id="barBuy" href="#" rel="noopener">Entrar por 12× R$38,80</a>
+  <a class="btn" id="barBuy" href="#" rel="noopener">Entrar no Estúdio — 12× R$38,80/mês</a>
 </div>
 
 <!-- ===== SOCIAL PROOF — UMA LINHA ===== -->
@@ -306,7 +278,7 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
       <h1 class="h-serif">ESTÚDIO INFINITO™</h1>
 
       <h3 class="h-serif">Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</h3>
-      <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu use todos os dias.</strong></p>
+      <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
       <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil</em></p>
 
       <h3 class="h-serif">Você paga só o 1º ano.</h3>
@@ -314,51 +286,67 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
       <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
 
       <p><strong>✅ Selo de confiança: 1º post no ar em 24h ou eu devolvo 100%</strong></p>
-      <div class="cta-row"></div>
+      <div class="cta-row">
+      </div>
     </div>
   </div>
 </section>
 
 <div class="sep-line" role="presentation"></div>
 
-<!-- ===== O QUE É O ESTÚDIO (fluido/hierárquico) ===== -->
+<!-- ===== O QUE É O ESTÚDIO (escaneável) ===== -->
 <section class="section-tight" id="o-que-e">
   <div class="container">
     <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
-    <p class="lead">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso te deixa <strong>travado</strong>. O <strong>Estúdio Infinito™</strong> nasce como o <strong>contrário</strong> disso: é o <strong>meu estúdio real de criação — aberto pra você</strong>.</p>
 
-    <div class="feature-lines" role="list">
-      <div class="fline" role="listitem">
-        <div class="ico">★</div>
+    <div class="grid-features" role="list">
+      <article class="feature" role="listitem">
+        <div class="ico">1</div>
+        <div>
+          <h4>A internet te vendeu “mais ferramentas”</h4>
+          <p>“30 IAs, 10 apps, 5 cursos” e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
+        </div>
+      </article>
+
+      <article class="feature" role="listitem">
+        <div class="ico">2</div>
+        <div>
+          <h4>O Estúdio Infinito™ nasce como o contrário</h4>
+          <p>É o <strong>meu estúdio real de criação — aberto pra você</strong>.</p>
+        </div>
+      </article>
+
+      <article class="feature" role="listitem">
+        <div class="ico">3</div>
         <div>
           <h4>O coração do Estúdio</h4>
-          <p>Unimos <strong>as 3 IAs certas</strong> + mini-cursos rápidos + uma comunidade sobre-humana — <strong>gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+          <p>Une <strong>as 3 IAs certas + mini-cursos rápidos + comunidade sobre-humano</strong> = <strong>gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="fline" role="listitem">
+      <article class="feature" role="listitem">
         <div class="ico">🧠</div>
         <div>
           <h4>ChatGPT</h4>
-          <p>Ideias, roteiros, legendas e designs direto da conversa — sem abrir ferramentas pesadas.</p>
+          <p>Ideias, roteiros, legendas e designs direto da conversa.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="fline" role="listitem">
+      <article class="feature" role="listitem">
         <div class="ico">🎨</div>
         <div>
           <h4>Higgsfield</h4>
-          <p>Sua <strong>Gêmea Digital</strong> para postar sem aparecer — com coerência visual nos feeds.</p>
+          <p>Sua <strong>Gêmea Digital</strong> pra postar sem precisar aparecer.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="fline" role="listitem">
+      <article class="feature" role="listitem">
         <div class="ico">🤖</div>
         <div>
           <h4>Equipe Não-Humana™</h4>
-          <p>“Funcionários não-humanos” treinados por mim para montar o post completo: <strong>ideia → carrossel → stories → roteiro</strong>, pronto pra publicar.</p>
+          <p><strong>Funcionários não humanos</strong> criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</p>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -369,10 +357,8 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
     <h2 class="h-serif center">Mapa do Estúdio Infinito — mini curso + IA</h2>
 
     <div class="carousel" aria-label="Carrossel de aulas (formato Instagram)">
-      <div class="carousel-viewport" id="carViewport">
-        <div class="carousel-track" id="carTrack"><!-- slides via JS --></div>
-      </div>
-      <div class="pagers" id="carPagers" aria-hidden="true"></div>
+      <div class="carousel-track" id="track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Aulas do Estúdio"><!-- slides via JS --></div>
+      <div class="pagers" id="pagers" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -480,7 +466,7 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   </div>
 </section>
 
-<!-- ===== OFERTA (VIBRANTE) ===== -->
+<!-- ===== 8.5 — OFERTA (VIBRANTE) ===== -->
 <section class="section theme-9" id="sec-oferta">
   <div class="container">
     <h2 class="grid-title section-title-heroish">
@@ -538,7 +524,14 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
       </div>
     </div>
 
-    <!-- Sem botões/preço aqui, conforme sua decisão -->
+    <div id="sec-pronto" class="section" style="padding-top:14px">
+      <div class="container">
+        <p class="cta-head">Pronto pra criar sem cara de IA e parar de parecer igual a todo mundo?</p>
+        <a href="https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275" class="cta-btn-standalone" aria-label="Ir para o checkout">QUERO FAZER PARTE</a>
+        <div class="preco-mini">apenas R$38,80/mês (plano anual)</div>
+        <p class="cta-notes">* sem burocracia&nbsp;&nbsp;* funciona no ChatGPT gratuito&nbsp;&nbsp;* aulas novas todo mês</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -549,10 +542,10 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
 </footer>
 
 <script>
-/* ========= URL ÚNICA DE CHECKOUT ========= */
+/* ========= URL ÚNICA DE CHECKOUT (edite aqui se quiser unificar) ========= */
 const CHECKOUT_URL = 'https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275';
 
-/* ========= Apontar CTAs para o checkout (se houver IDs na página) ========= */
+/* ========= Apontar todos os CTAs para o checkout ========= */
 ['barBuy','heroBuy','mapBuy','rewBuy','faqBuy'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.setAttribute('href', CHECKOUT_URL);
@@ -597,7 +590,7 @@ function makeProof(p){
 }
 proofData.forEach(p=> proofRail.appendChild(makeProof(p)));
 
-/* ========= CARROSSEL IG-LIKE (Mapa do Estúdio) ========= */
+/* ========= AULAS (carrossel IG-like) ========= */
 const aulas = [
   { titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
   { titulo:'Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
@@ -612,9 +605,8 @@ const aulas = [
   { titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
 ];
 
-const carViewport = document.getElementById('carViewport');
-const carTrack    = document.getElementById('carTrack');
-const carPagers   = document.getElementById('carPagers');
+const track = document.getElementById('track');
+const pagers = document.getElementById('pagers');
 
 function slideEl(item, idx){
   const el = document.createElement('article');
@@ -639,10 +631,12 @@ function pagerDot(i){
   return d;
 }
 function buildCarousel(){
-  aulas.forEach((a,i)=> carTrack.appendChild(slideEl(a,i)));
-  for(let i=0;i<aulas.length;i++){ carPagers.appendChild(pagerDot(i)); }
-  // pager local (em cada slide)
-  [...carTrack.children].forEach((slide, si)=>{
+  aulas.forEach((a,i)=> {
+    const s = slideEl(a,i);
+    track.appendChild(s);
+  });
+  for(let i=0;i<aulas.length;i++){ pagers.appendChild(pagerDot(i)); }
+  [...track.children].forEach((slide, si)=>{
     const local = slide.querySelector('.pagers');
     for(let i=0;i<aulas.length;i++){
       const p = document.createElement('span');
@@ -652,46 +646,29 @@ function buildCarousel(){
     }
   });
   updatePagers(0);
-  requestAnimationFrame(()=> scrollToIndex(0)); // centraliza o primeiro
 }
 function updatePagers(i){
-  [...carPagers.children].forEach((d,idx)=> d.classList.toggle('active', idx===i));
-  [...carTrack.children].forEach((slide)=> {
+  [...pagers.children].forEach((d,idx)=> d.classList.toggle('active', idx===i));
+  [...track.children].forEach((slide)=> {
     const pts = slide.querySelectorAll('.pager-dot');
     pts.forEach((p, idx)=> p.classList.toggle('active', idx===i));
   });
 }
 function scrollToIndex(i){
-  const slide = carTrack.children[i];
+  const slide = track.children[i];
   if(!slide) return;
-  const slideRect = slide.getBoundingClientRect();
-  const vpRect    = carViewport.getBoundingClientRect();
-  const current   = carViewport.scrollLeft;
-  const target    = current + (slideRect.left - vpRect.left) - ((vpRect.width - slideRect.width)/2);
-  carViewport.scrollTo({ left: target, behavior:'smooth' });
+  slide.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
 }
-const ioSlides = new IntersectionObserver((entries)=>{
+const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
-      const idx = [...carTrack.children].indexOf(e.target);
+      const idx = [...track.children].indexOf(e.target);
       if(idx>=0) updatePagers(idx);
     }
-  });
-},{ root: carViewport, threshold: .6 });
-
-function observeSlides(){ [...carTrack.children].forEach(sl => ioSlides.observe(sl)); }
-
-/* garante largura consistente se viewport mudar */
-const ro = new ResizeObserver(()=>{
-  document.documentElement.style.setProperty('--slide-w', `min(560px, calc(100vw - 32px))`);
-  const active = [...carPagers.children].findIndex(d => d.classList.contains('active'));
-  if(active >= 0) scrollToIndex(active);
-});
-ro.observe(document.documentElement);
-
-/* init */
-buildCarousel();
-observeSlides();
+  })
+}, {root: track, threshold:.6});
+function observeSlides(){ [...track.children].forEach(sl => io.observe(sl)); }
+buildCarousel(); observeSlides();
 
 /* ========= ENH (modais) ========= */
 const ENH = [
@@ -749,11 +726,11 @@ const progBar = document.getElementById('progBar');
 function yyyymmdd(d){ return d.toISOString().slice(0,10); }
 
 (function initCounter(){
-  let dias = parseInt(localStorage.getItem('ei_dias_postados')||'142',10); // demonstração
+  let dias = parseInt(localStorage.getItem('ei_dias_postados')||'142',10); // valor inicial de demonstração
   const last = localStorage.getItem('ei_last_day');
   const today = yyyymmdd(new Date());
   if(last !== today){
-    // simula “postou hoje” (em produção, valide de fato)
+    // Simula que “postou” hoje: em produção, você verificaria de fato
     dias = Math.min(TOTAL, dias + 1);
     localStorage.setItem('ei_last_day', today);
     localStorage.setItem('ei_dias_postados', String(dias));
@@ -765,9 +742,9 @@ function renderDias(dias){
   const faltam = Math.max(0, TOTAL - dias);
   numEl.textContent = String(dias);
   faltamEl.textContent = String(faltam);
-  if(kpiNumEl) kpiNumEl.textContent = String(dias);
+  kpiNumEl.textContent = String(dias);
   const pct = Math.max(0, Math.min(100, (dias/TOTAL)*100));
-  if(progBar) progBar.style.width = pct.toFixed(1) + '%';
+  progBar.style.width = pct.toFixed(1) + '%';
 }
 
 /* ========= Suavização de entrada ========= */
