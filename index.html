@@ -70,19 +70,30 @@ section{padding-block:16px}             /* mínimo espaço entre dobras */
   background:transparent; color:var(--wine); border-bottom:2px solid var(--wine); border-radius:0; padding:2px 0
 }
 
-/* =================== BARRA FLUTUANTE =================== */
-.cta-bar{
-  position:fixed; left:0; right:0; bottom:0; z-index:60;
-  background:#fff; border-top:1px solid rgba(29,77,58,.14);
-  height:var(--bar-h);
-  padding: 8px max(10px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  box-shadow:0 -8px 30px rgba(0,0,0,.06);
+<!-- ===== BARRA FLUTUANTE (atualizada com preço) ===== -->
+<div class="cta-bar" id="ctaBar">
+  <a class="btn btn-price" id="barBuy" href="#" rel="noopener" aria-label="Entrar no Estúdio — 12 vezes de 38,80 reais no plano anual">
+    <span class="label">Entrar no Estúdio</span>
+    <span class="price-pill">12× R$38,80</span>
+  </a>
+</div>
+
+<style>
+/* ===== CTA com preço (pill) ===== */
+.btn-price{display:inline-flex; align-items:center; gap:10px}
+.price-pill{
+  background:#fff; color:var(--wine);
+  border:1px solid var(--wine);
+  padding:6px 10px; border-radius:999px;
+  font-weight:700; font-size:.95rem; line-height:1;
+  white-space:nowrap;
 }
-.cta-bar .btn{padding:12px 18px}
-@media (min-width: 720px){
-  .cta-bar{justify-content:center}
+/* Ajuste fino da barra para caber o pill com folga */
+:root{ --bar-h: 68px; }
+@media (max-width: 360px){
+  .price-pill{display:none} /* some se a tela for muito estreita */
 }
+</style>
 
 /* =================== SOCIAL PROOF — UMA LINHA =================== */
 .band{padding-block:10px; min-height:var(--band-h)}
