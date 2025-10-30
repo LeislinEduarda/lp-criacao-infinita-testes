@@ -160,13 +160,33 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .slide-title{color:var(--green); font-weight:700; margin-bottom:3px}
 .slide-caption{color:var(--muted)}
 
-/* =================== RECOMPENSAS =================== */
+/* =================== RECOMPENSAS (com sensação de ganho) =================== */
 .reward-card{
   background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:var(--radius);
-  box-shadow:var(--shadow); padding:clamp(14px,2.2vw,22px); display:grid; gap:10px
+  box-shadow:var(--shadow); padding:clamp(14px,2.2vw,22px); display:grid; gap:12px
 }
+.streak-badge{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:linear-gradient(135deg, #FFF0F3 0%, #FDE5EA 100%);
+  border:1px solid rgba(124,30,40,.18);
+  border-radius:14px; padding:10px 12px;
+  box-shadow:0 8px 22px rgba(124,30,40,.10);
+}
+.streak-left{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap
+}
+.streak-dot{
+  width:16px; height:16px; border-radius:50%;
+  background:var(--wine); box-shadow:0 0 0 4px var(--pink)
+}
+.streak-num{
+  font-weight:900; color:var(--wine); font-size:1.05rem; letter-spacing:.2px
+}
+.streak-sub{color:var(--green); font-weight:700; font-size:.95rem}
+.streak-note{color:var(--muted); font-size:.86rem}
+
 .progress{height:12px; background:rgba(29,77,58,.12); border-radius:999px; overflow:hidden}
-.progress > span{display:block; height:100%; width:42%; background:linear-gradient(90deg, var(--wine), #8e2632 85%)}
+.progress > span{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--wine), #8e2632 85%); transition:width .6s ease}
 .rew-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
 .rew{background:var(--beige); border:1px solid rgba(29,77,58,.14); border-radius:12px; padding:10px; display:grid; gap:4px}
 .rew h4{margin:0; color:var(--green); font-size:.98rem}
@@ -175,6 +195,12 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .icon.trophy{border-radius:50%; position:relative}
 .icon.trophy::after{content:""; position:absolute; inset:3px 5px 7px 5px; border:2px solid var(--green); border-bottom:none; border-radius:0 0 4px 4px}
 .icon.coin{border-radius:50%}
+
+/* ticker visual (demonstração) */
+.ticker{
+  display:flex; align-items:center; gap:8px; color:var(--muted); font-size:.9rem
+}
+.ticker .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; font-weight:800; color:var(--green)}
 
 /* =================== STORIES ENH =================== */
 .stories-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px}
@@ -267,7 +293,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 
 <!-- ===== BARRA FLUTUANTE ===== -->
 <div class="cta-bar" id="ctaBar">
-  <a class="btn" id="barBuy" href="#" rel="noopener">Quero entrar no Estúdio</a>
+  <a class="btn" id="barBuy" href="#" rel="noopener">QUERO FAZER PARTE</a>
 </div>
 
 <!-- ===== SOCIAL PROOF — UMA LINHA ===== -->
@@ -305,7 +331,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
     <h2 class="h-serif center">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
 
     <div class="estudio-grid">
-      <!-- tese/missão em blocos curtos -->
+      <!-- tese/missão -->
       <div class="estudio-card">
         <div class="est-ico" aria-hidden="true">🧭</div>
         <div>
@@ -330,7 +356,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
         </div>
       </div>
 
-      <!-- as 3 IAs (sem mudar a copy) -->
+      <!-- as 3 IAs -->
       <div class="estudio-card">
         <div class="est-ico" aria-hidden="true">🧠</div>
         <div>
@@ -370,14 +396,34 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   </div>
 </section>
 
-<!-- ===== RECOMPENSAS ===== -->
+<!-- ===== RECOMPENSAS (GANHO / CONTADOR) ===== -->
 <section class="section-tight" id="recompensas">
   <div class="container">
     <div class="reward-card">
       <h2 class="h-serif">💰 Recompensas Infinitas — Post que Paga</h2>
-      <p><strong>1 post = +1 dia</strong> de desconto na renovação (bateu <strong>365</strong>, o próximo ano pode sair <strong>de graça</strong>).</p>
-      <div class="progress" aria-label="Progresso de dias pagos"><span id="progBar" style="width:38%"></span></div>
-      <small class="muted">Publicou hoje? <strong>+1 dia</strong> garantido.</small>
+
+      <!-- Badge de ganho com contador -->
+      <div class="streak-badge" role="status" aria-live="polite">
+        <div class="streak-left">
+          <span class="streak-dot" aria-hidden="true"></span>
+          <span class="streak-num"><span id="diasCount">142</span> dias postados</span>
+        </div>
+        <div class="streak-sub">em <strong>365 dias</strong> sua assinatura sai de <strong>graça</strong> naquele ano</div>
+      </div>
+
+      <!-- Barra e texto dinâmicos -->
+      <div class="progress" aria-label="Progresso de dias pagos">
+        <span id="progBar" style="width:0%"></span>
+      </div>
+      <div class="ticker">
+        <span>faltam <span class="mono" id="faltam">223</span> dias</span>
+        <span class="mono">•</span>
+        <span>+1/dia por post</span>
+        <span class="mono">•</span>
+        <span style="opacity:.8">demonstração visual</span>
+      </div>
+
+      <p class="small muted">Publicou hoje? <strong>+1 dia</strong> garantido. Vale Feed/Carrossel/Reels.</p>
 
       <div class="rew-grid">
         <div class="rew">
@@ -552,8 +598,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 </footer>
 
 <script>
-/* ========= URL ÚNICA DE CHECKOUT =========
-   (a âncora principal já usa o link exato, mas mantive para a barra flutuante) */
+/* ========= URL ÚNICA DE CHECKOUT ========= */
 const CHECKOUT_URL = 'https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275';
 
 /* ========= Apontar CTAs secundários (se houver) ========= */
@@ -561,6 +606,10 @@ const CHECKOUT_URL = 'https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=162
   const el = document.getElementById(id);
   if(el) el.setAttribute('href', CHECKOUT_URL);
 });
+
+/* ========= Garantir rótulo padrão do botão flutuante ========= */
+const barBtn = document.getElementById('barBuy');
+if(barBtn) barBtn.textContent = 'QUERO FAZER PARTE';
 
 /* ========= SOCIAL PROOF (stories + modal de depoimento) ========= */
 const proofData = [
@@ -646,6 +695,7 @@ function buildCarousel(){
     const s = slideEl(a,i);
     track.appendChild(s);
   });
+  for(let i=0;i+aulas.length;i++){/* guard */}
   for(let i=0;i<aulas.length;i++){ pagers.appendChild(pagerDot(i)); }
   [...track.children].forEach((slide, si)=>{
     const local = slide.querySelector('.pagers');
@@ -726,6 +776,60 @@ function openModal(p){
   dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
 }
 ENH.forEach(p=> grid.appendChild(cardENH(p)));
+
+/* ========= RECOMPENSAS — contador/ganho dinâmico ========= */
+(function(){
+  const TOTAL = 365;
+  const baseDias = 142;        // valor atual exibido
+  let liveDias = baseDias;     // usado na simulação visual
+  const diasEl   = document.getElementById('diasCount');
+  const faltamEl = document.getElementById('faltam');
+  const kpiEl    = document.getElementById('kpiDias');
+  const barEl    = document.getElementById('progBar');
+
+  function render(dias){
+    const pct = Math.min(100, (dias / TOTAL) * 100);
+    if(diasEl)   diasEl.textContent = dias.toString();
+    if(faltamEl) faltamEl.textContent = Math.max(0, TOTAL - dias).toString();
+    if(kpiEl)    kpiEl.textContent = `Dias pagos: ${dias}/${TOTAL}`;
+    if(barEl)    barEl.style.width = pct + '%';
+  }
+
+  // anima de 0 -> baseDias quando a seção entra em tela
+  const recomp = document.getElementById('recompensas');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      io.unobserve(recomp);
+      let curr = 0;
+      const target = baseDias;
+      const dur = 900; // ms
+      const steps = 45;
+      const inc = Math.max(1, Math.round(target/steps));
+      const tick = setInterval(()=>{
+        curr += inc;
+        if(curr >= target){
+          curr = target;
+          clearInterval(tick);
+          startTicker(); // inicia a simulação suave
+        }
+        render(curr);
+      }, dur/steps);
+    });
+  }, {threshold:.35});
+  if(recomp) io.observe(recomp);
+
+  // simulação suave: a cada ~6s adiciona +1 até baseDias+7, e volta
+  let dir = 1;
+  function startTicker(){
+    setInterval(()=>{
+      liveDias += dir;
+      if(liveDias >= baseDias + 7) dir = -1;
+      if(liveDias <= baseDias)     dir = 1;
+      render(liveDias);
+    }, 6000);
+  }
+})();
 
 /* ========= SUAVIZAÇÃO DE ENTRADA ========= */
 const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .oferta-grid');
