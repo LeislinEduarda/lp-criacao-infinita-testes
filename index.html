@@ -258,7 +258,7 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .cta-head{text-align:center; font-weight:700; color:var(--green); margin:12px 0 8px}
 .cta-notes{color:var(--muted); text-align:center; font-size:.9rem}
 
-/* =================== “O QUE É O ESTÚDIO” — estilo semelhante à oferta ===== */
+/* =================== “O QUE É O ESTÚDIO” — cards ===== */
 .estudio-grid{display:grid; gap:10px; margin-top:8px}
 @media (min-width: 760px){
   .estudio-grid{grid-template-columns:1fr 1fr}
@@ -325,7 +325,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 
 <div class="sep-line"></div>
 
-<!-- ===== O QUE É O ESTÚDIO (reorganizado em cards, sem mudar a copy) ===== -->
+<!-- ===== O QUE É O ESTÚDIO (cards, mesma copy) ===== -->
 <section class="section-tight" id="o-que-e">
   <div class="container">
     <h2 class="h-serif center">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
@@ -695,7 +695,6 @@ function buildCarousel(){
     const s = slideEl(a,i);
     track.appendChild(s);
   });
-  for(let i=0;i+aulas.length;i++){/* guard */}
   for(let i=0;i<aulas.length;i++){ pagers.appendChild(pagerDot(i)); }
   [...track.children].forEach((slide, si)=>{
     const local = slide.querySelector('.pagers');
@@ -720,7 +719,7 @@ function scrollToIndex(i){
   if(!slide) return;
   slide.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
 }
-const io = new IntersectionObserver((entries)=>{
+const io2 = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       const idx = [...track.children].indexOf(e.target);
@@ -728,7 +727,7 @@ const io = new IntersectionObserver((entries)=>{
     }
   })
 }, {root: track, threshold:.6});
-function observeSlides(){ [...track.children].forEach(sl => io.observe(sl)); }
+function observeSlides(){ [...track.children].forEach(sl => io2.observe(sl)); }
 buildCarousel(); observeSlides();
 
 /* ========= ENH (modais) ========= */
@@ -781,7 +780,7 @@ ENH.forEach(p=> grid.appendChild(cardENH(p)));
 (function(){
   const TOTAL = 365;
   const baseDias = 142;        // valor atual exibido
-  let liveDias = baseDias;     // usado na simulação visual
+  let liveDias = baseDias;     // simulação visual
   const diasEl   = document.getElementById('diasCount');
   const faltamEl = document.getElementById('faltam');
   const kpiEl    = document.getElementById('kpiDias');
