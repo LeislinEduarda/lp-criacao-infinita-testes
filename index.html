@@ -24,6 +24,11 @@
   --maxw:1120px;
   --bar-h:62px;       /* altura da barra flutuante (usada no HERO) */
   --band-h:64px;      /* altura aproximada da faixa social proof */
+
+  /* tema vibrante p/ OFERTA */
+  --v-bg:#fff7f8;
+  --v-grad:linear-gradient(180deg,#FFF7F8 0%, #FDEBED 100%);
+  --v-chip:#FFE4EA;
 }
 
 /* =================== RESET / BASE =================== */
@@ -51,11 +56,11 @@ section{padding-block:18px}             /* mínimo espaço entre dobras */
 .section-tight{padding-block:14px}
 .sep-line{border-top:2px solid var(--pink)}
 .sep-bottom{border-bottom:2px solid var(--pink)}
+.stack{display:grid; gap:2px}
 
-/* helpers novos */
+/* helpers */
 .grid-2{display:grid; gap:14px}
 @media (min-width: 800px){ .grid-2{grid-template-columns:1.2fr .8fr} }
-.stack{display:grid; gap:2px} /* usado em vários blocos */
 
 /* =================== BOTÕES (CTA) =================== */
 .btn{
@@ -192,18 +197,53 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .acc .content{padding:0 14px 12px 18px; color:var(--text)}
 .blockquote{margin:.4rem 0; padding:8px 10px; border-left:3px solid var(--pink); background:#fff}
 
-/* =================== OFERTA (novo) =================== */
-.offer-card{
-  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:16px; box-shadow:var(--shadow);
-  padding:clamp(14px,2.2vw,22px);
+/* =================== OFERTA (VIBRANTE) =================== */
+.section-title-heroish{
+  font-family:"Playfair Display","Canela",Georgia,serif; color:var(--green);
+  font-weight:700; text-align:center; line-height:1.1; margin:0 0 6px;
+  font-size:clamp(1.6rem,2.6vw,2.2rem)
 }
-.offer-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
-.offer-price{font-weight:700; color:var(--wine)}
-.offer-list{display:grid; gap:8px; margin:10px 0 0 0; padding:0; list-style:none}
-.offer-item{display:flex; gap:8px; align-items:flex-start}
-.offer-bullet{width:12px; height:12px; border-radius:50%; background:var(--wine); margin-top:.35rem; box-shadow:0 0 0 3px var(--pink)}
-.offer-foot{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:10px}
-.pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-weight:700; color:var(--green); background:var(--beige); border:1px solid rgba(29,77,58,.14)}
+.no-break{white-space:nowrap}
+.section-sub{
+  text-align:center; color:var(--muted); max-width:680px; margin:0 auto 12px auto
+}
+.theme-9{background:var(--v-grad); border-top:2px solid var(--pink); border-bottom:2px solid var(--pink)}
+.oferta-grid{
+  display:grid; gap:10px; margin-top:10px
+}
+@media (min-width: 760px){
+  .oferta-grid{grid-template-columns:1fr 1fr}
+}
+.oferta-card{
+  display:grid; grid-template-columns:auto 1fr; gap:10px;
+  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:14px; padding:12px;
+  box-shadow:0 10px 22px rgba(29,77,58,.08)
+}
+.oferta-ico{font-size:1.4rem; line-height:1; width:34px; height:34px; display:grid; place-items:center; background:var(--v-chip); border-radius:10px}
+.oferta-body strong{color:var(--green)}
+.cta-btn-standalone{
+  display:block; width:100%; text-align:center; margin:12px 0 6px 0;
+  padding:14px 18px; border-radius:999px; font-weight:800; letter-spacing:.3px;
+  text-decoration:none; color:#fff; background:var(--wine);
+  box-shadow:0 10px 26px rgba(124,30,40,.25)
+}
+.cta-btn-standalone:hover{filter:brightness(1.03)}
+.preco-mini{font-size:.92rem; text-align:center; color:var(--green); font-weight:700}
+.cta-head{text-align:center; font-weight:700; color:var(--green); margin:12px 0 8px}
+.cta-notes{color:var(--muted); text-align:center; font-size:.9rem}
+
+/* =================== “O QUE É O ESTÚDIO” — estilo semelhante à oferta ===== */
+.estudio-grid{display:grid; gap:10px; margin-top:8px}
+@media (min-width: 760px){
+  .estudio-grid{grid-template-columns:1fr 1fr}
+}
+.estudio-card{
+  display:grid; grid-template-columns:auto 1fr; gap:10px;
+  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:14px; padding:12px;
+  box-shadow:var(--shadow)
+}
+.est-ico{font-size:1.3rem; width:32px; height:32px; display:grid; place-items:center; background:#FAF3F6; border-radius:10px}
+.estudio-card strong{color:var(--green)}
 
 /* =================== FOOTER =================== */
 footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text-align:center}
@@ -259,38 +299,60 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 
 <div class="sep-line"></div>
 
-<!-- ===== O QUE É O ESTÚDIO (MAIS ESCANEÁVEL) ===== -->
+<!-- ===== O QUE É O ESTÚDIO (reorganizado em cards, sem mudar a copy) ===== -->
 <section class="section-tight" id="o-que-e">
   <div class="container">
-    <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+    <h2 class="h-serif center">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
 
-    <div class="grid-2" style="margin-top:6px">
-      <!-- Bloco A: tese e missão -->
-      <div class="stack">
-        <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia.</p>
-        <p>Isso só te deixa <strong>travado</strong>.</p>
-        <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso.</p>
-        <p>É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
-        <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos</strong> + comunidade sobre humano = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+    <div class="estudio-grid">
+      <!-- tese/missão em blocos curtos -->
+      <div class="estudio-card">
+        <div class="est-ico" aria-hidden="true">🧭</div>
+        <div>
+          <strong>A internet te vendeu complexidade.</strong>
+          <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
+        </div>
       </div>
 
-      <!-- Bloco B: as 3 IAs (itens) -->
-      <div>
-        <p><strong>AS 3 IAS QUE EU USO SÃO:</strong></p>
-        <ul class="offer-list" style="margin-top:6px">
-          <li class="offer-item">
-            <span class="offer-bullet" aria-hidden="true"></span>
-            <span>🧠 <strong>ChatGPT</strong> — pra criar ideias, roteiros, legendas e designs direto da conversa.</span>
-          </li>
-          <li class="offer-item">
-            <span class="offer-bullet" aria-hidden="true"></span>
-            <span>🎨 <strong>Higgsfield</strong> — pra gerar sua <strong>Gêmea Digital</strong> e postar sem precisar aparecer.</span>
-          </li>
-          <li class="offer-item">
-            <span class="offer-bullet" aria-hidden="true"></span>
-            <span>🤖 <strong>Equipe Não-Humana™</strong> — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</span>
-          </li>
-        </ul>
+      <div class="estudio-card">
+        <div class="est-ico" aria-hidden="true">🎯</div>
+        <div>
+          <strong>O contrário disso.</strong>
+          <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação — aberto pra você</strong>.</p>
+        </div>
+      </div>
+
+      <div class="estudio-card">
+        <div class="est-ico" aria-hidden="true">🚀</div>
+        <div>
+          <strong>Ambiente único para publicar.</strong>
+          <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos</strong> + comunidade sobre humano = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+        </div>
+      </div>
+
+      <!-- as 3 IAs (sem mudar a copy) -->
+      <div class="estudio-card">
+        <div class="est-ico" aria-hidden="true">🧠</div>
+        <div>
+          <strong>ChatGPT</strong>
+          <p>Pra criar ideias, roteiros, legendas e designs direto da conversa.</p>
+        </div>
+      </div>
+
+      <div class="estudio-card">
+        <div class="est-ico" aria-hidden="true">🎨</div>
+        <div>
+          <strong>Higgsfield</strong>
+          <p>Pra gerar sua <strong>Gêmea Digital</strong> e postar sem precisar aparecer.</p>
+        </div>
+      </div>
+
+      <div class="estudio-card">
+        <div class="est-ico" aria-hidden="true">🤖</div>
+        <div>
+          <strong>Equipe Não-Humana™</strong>
+          <p>Funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -403,44 +465,83 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   </div>
 </section>
 
-<!-- ===== RESUMO DA OFERTA (novo, após o FAQ) ===== -->
-<section class="section-tight" id="oferta">
+<!-- 8.5 — OFERTA (VIBRANTE) -->
+<section class="section theme-9" id="sec-oferta">
   <div class="container">
-    <div class="offer-card">
-      <div class="offer-head">
-        <h2 class="h-serif" style="margin:0">Resumo da Oferta</h2>
-        <div class="offer-price">R$ 388/ano</div>
+    <h2 class="grid-title section-title-heroish">
+      TUDO O QUE VOCÊ LEVA<br>
+      <span class="no-break">ENTRANDO HOJE 👇</span>
+    </h2>
+    <p class="section-sub">Um pacote prático, vivo e direto ao ponto — pensado para você criar <strong>reels, carrosséis e stories</strong> do zero, com IA, sem parecer IA.</p>
+
+    <div class="oferta-grid">
+      <div class="oferta-card">
+        <div class="oferta-ico" aria-hidden="true">🤖</div>
+        <div class="oferta-body">
+          <strong>Equipe de Social Media Não Humana</strong>
+          <p>10 “funcionários” treinados por mim para ideias, ganchos, roteiros, carrosséis, legendas, stories, bio e branding.</p>
+        </div>
       </div>
 
-      <ul class="offer-list">
-        <li class="offer-item">
-          <span class="offer-bullet" aria-hidden="true"></span>
-          <span><strong>Você paga só o 1º ano.</strong> Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>. <em class="muted">(Post que Paga: cada post = +1 dia de desconto.)</em></span>
-        </li>
-        <li class="offer-item">
-          <span class="offer-bullet" aria-hidden="true"></span>
-          <span><strong>✅ Selo de confiança:</strong> 1º post no ar em 24h — <strong>ou eu devolvo 100%</strong>.</span>
-        </li>
-        <li class="offer-item">
-          <span class="offer-bullet" aria-hidden="true"></span>
-          <span><strong>As 3 IAs que eu uso:</strong> 🧠 ChatGPT • 🎨 Higgsfield (Gêmea Digital) • 🤖 Equipe Não-Humana™.</span>
-        </li>
-        <li class="offer-item">
-          <span class="offer-bullet" aria-hidden="true"></span>
-          <span><strong>Mini-cursos rápidos</strong> e <strong>comunidade sobre humano</strong> te puxando para o <strong>post no ar</strong>.</span>
-        </li>
-        <li class="offer-item">
-          <span class="offer-bullet" aria-hidden="true"></span>
-          <span><strong>Renovação anual automática.</strong> <strong>Pode cancelar quando quiser</strong>; o acesso fica até o fim do ciclo. <strong>Preço de fundador travado</strong> para quem entra agora.</span>
-        </li>
-      </ul>
+      <div class="oferta-card">
+        <div class="oferta-ico" aria-hidden="true">🎥</div>
+        <div class="oferta-body">
+          <strong>Aulas express (conteúdo + IA)</strong>
+          <p>Aulas rápidas, atualizadas e aplicáveis no mesmo dia, com o que eu realmente uso e funciona.</p>
+        </div>
+      </div>
 
-      <div class="offer-foot">
-        <span class="pill">Post que Paga</span>
-        <span class="pill">Campeonato Infinito</span>
-        <span class="pill">Feito no celular</span>
+      <div class="oferta-card">
+        <div class="oferta-ico" aria-hidden="true">🧵</div>
+        <div class="oferta-body">
+          <strong>Material de apoio inteligente</strong>
+          <p>Checklists e prompts prontos para acelerar sua execução (sem ficar perdida).</p>
+        </div>
+      </div>
+
+      <div class="oferta-card">
+        <div class="oferta-ico" aria-hidden="true">🧠</div>
+        <div class="oferta-body">
+          <strong>Segredos testados + curadoria</strong>
+          <p>Hacks, ganchos e estratégias validadas por mim (sem teoria solta).</p>
+        </div>
+      </div>
+
+      <div class="oferta-card">
+        <div class="oferta-ico" aria-hidden="true">👯‍♀️</div>
+        <div class="oferta-body">
+          <strong>Gêmea Digital (passo a passo)</strong>
+          <p>Guia prático para criar sua gêmea e usar em imagens, vídeos e carrosséis.</p>
+        </div>
+      </div>
+
+      <div class="oferta-card">
+        <div class="oferta-ico" aria-hidden="true">💬</div>
+        <div class="oferta-body">
+          <strong>Comunidade ativa</strong>
+          <p>Espaço para pedir ajuda, trocar feedbacks e acelerar com quem está no mesmo jogo.</p>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CTA FINAL (SEÇÃO PRONTO) -->
+<section class="section" id="sec-pronto">
+  <div class="container">
+    <p class="cta-head">
+      Pronto pra criar sem cara de IA e parar de parecer igual a todo mundo?
+    </p>
+
+    <a href="https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275" class="cta-btn-standalone" aria-label="Ir para o checkout">
+      QUERO FAZER PARTE
+    </a>
+
+    <div class="preco-mini">apenas R$38,80/mês (plano anual)</div>
+
+    <p class="cta-notes">
+      * sem burocracia&nbsp;&nbsp;* funciona no ChatGPT gratuito&nbsp;&nbsp;* aulas novas todo mês
+    </p>
   </div>
 </section>
 
@@ -451,10 +552,11 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 </footer>
 
 <script>
-/* ========= URL ÚNICA DE CHECKOUT (edite aqui) ========= */
-const CHECKOUT_URL = 'https://exemplo.com/checkout-estudio-infinito'; // <-- coloque sua URL real aqui
+/* ========= URL ÚNICA DE CHECKOUT =========
+   (a âncora principal já usa o link exato, mas mantive para a barra flutuante) */
+const CHECKOUT_URL = 'https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275';
 
-/* ========= Apontar todos os CTAs para o checkout ========= */
+/* ========= Apontar CTAs secundários (se houver) ========= */
 ['barBuy','heroBuy','mapBuy','rewBuy','faqBuy'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.setAttribute('href', CHECKOUT_URL);
@@ -626,7 +728,7 @@ function openModal(p){
 ENH.forEach(p=> grid.appendChild(cardENH(p)));
 
 /* ========= SUAVIZAÇÃO DE ENTRADA ========= */
-const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .offer-card');
+const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .oferta-grid');
 const ioFade = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
