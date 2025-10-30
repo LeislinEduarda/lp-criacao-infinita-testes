@@ -254,6 +254,85 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   html{scroll-behavior:auto}
   .btn, .pager-dot{transition:none}
 }
+  /* =================== CARROSSEL IG-LIKE (Mapa do Estúdio) =================== */
+:root{
+  --slide-w-mob: calc(100% - 32px); /* mobile: quase tela cheia */
+  --slide-w-desk: 560px;            /* desktop fixo */
+  --slide-w: var(--slide-w-mob);
+}
+@media (min-width: 720px){
+  :root{ --slide-w: var(--slide-w-desk); }
+}
+
+.carousel{
+  position:relative;
+}
+.carousel-track{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  gap:10px;
+  padding-inline:16px;
+  padding-bottom:4px;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-stop:always;
+}
+.carousel-track::-webkit-scrollbar{display:none}
+
+/* slides uniformes */
+.slide{
+  flex: 0 0 var(--slide-w);
+  width: var(--slide-w);
+  max-width: var(--slide-w);
+  scroll-snap-align:center;
+  background:#fff;
+  border:1px solid rgba(29,77,58,.14);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  display:grid;
+  grid-template-rows:auto auto auto;
+  margin:0 auto;
+}
+
+.slide-media{
+  aspect-ratio:1/1;
+  background:linear-gradient(180deg,#fff,var(--beige));
+}
+.slide-body{
+  padding:10px 12px 14px 12px;
+  min-height:96px; /* equaliza altura */
+}
+.slide-title{
+  color:var(--green);
+  font-weight:700;
+  margin-bottom:3px;
+}
+.slide-caption{
+  color:var(--muted);
+}
+
+/* indicadores */
+.pagers{
+  display:flex;
+  gap:6px;
+  justify-content:center;
+  align-items:center;
+  padding:8px 0 4px 0;
+}
+.pager-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#dadada;
+  transition:transform .2s ease, opacity .2s ease;
+}
+.pager-dot.active{
+  background:#9e9e9e;
+  transform:scale(1.12);
+}
 </style>
 </head>
 <body>
