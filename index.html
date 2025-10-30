@@ -39,7 +39,8 @@ body{
 /* =================== TIPOGRAFIA =================== */
 .h-serif{font-family:"Playfair Display","Canela",Georgia,serif; color:var(--green); line-height:1.12}
 h1.h-serif{font-weight:700; font-size:clamp(2rem,3.4vw,3rem); margin:0 0 .45rem}
-h2.h-serif{font-weight:700; font-size:clamp(1.45rem,2.3vw,2rem); margin:0 0 .4rem}
+/* AUMENTO DE H2 PARA MELHOR HIERARQUIA */
+h2.h-serif{font-weight:700; font-size:clamp(1.55rem,2.6vw,2.2rem); margin:0 0 .4rem}
 h3.h-serif{font-weight:700; font-size:clamp(1.05rem,1.6vw,1.35rem); margin:0 0 .35rem}
 p{margin:.5rem 0}
 .small{font-size:.95rem}
@@ -110,9 +111,7 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
   min-height: calc(100svh - var(--bar-h) - var(--band-h));
   display:flex; align-items:center;
 }
-.hero .stack{
-  gap:4px;               /* compacto para caber 100% */
-}
+.hero .stack{ gap:4px; } /* compacto para caber 100% */
 .hero p em{background:linear-gradient(transparent 70%, var(--beige) 0)}
 .hero .cta-row{display:flex; gap:10px; align-items:center; justify-content:flex-start; flex-wrap:wrap}
 
@@ -254,6 +253,11 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   html{scroll-behavior:auto}
   .btn, .pager-dot{transition:none}
 }
+
+/* ===== Ajuste extra: bolhas menores em telas mini ===== */
+@media (max-width:420px){
+  .sp-bubble{width:52px;height:52px}
+}
 </style>
 </head>
 <body>
@@ -285,8 +289,13 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
       <p>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
       <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
 
-      <p><strong>✅ Selo de confiança: 1º post no ar em 24h ou eu devolvo 100%</strong></p>
+      <!-- Microcopy ajustado -->
+      <p><strong>✅ Seu 1º post no ar em 24h — ou devolvo 100%.</strong></p>
+
+      <!-- CTA no HERO (preenchido) -->
       <div class="cta-row">
+        <a class="btn" id="heroBuy" href="#" rel="noopener">Entrar agora</a>
+        <a class="btn-ghost" href="#mapa">Ver como funciona →</a>
       </div>
     </div>
   </div>
@@ -527,7 +536,10 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
     <div id="sec-pronto" class="section" style="padding-top:14px">
       <div class="container">
         <p class="cta-head">Pronto pra criar sem cara de IA e parar de parecer igual a todo mundo?</p>
-        <a href="https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275" class="cta-btn-standalone" aria-label="Ir para o checkout">QUERO FAZER PARTE</a>
+        <a href="https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275"
+           class="cta-btn-standalone"
+           aria-label="Ir para o checkout"
+           rel="noopener">QUERO FAZER PARTE</a>
         <div class="preco-mini">apenas R$38,80/mês (plano anual)</div>
         <p class="cta-notes">* sem burocracia&nbsp;&nbsp;* funciona no ChatGPT gratuito&nbsp;&nbsp;* aulas novas todo mês</p>
       </div>
@@ -582,7 +594,10 @@ function makeProof(p){
         </div>
       </div>
     `;
-    document.body.appendChild(dlg); dlg.showModal();
+    document.body.appendChild(dlg);
+    dlg.setAttribute('aria-modal','true');
+    dlg.showModal();
+    dlg.querySelector('.close').focus();
     dlg.querySelector('.close').addEventListener('click',()=>dlg.close());
     dlg.addEventListener('close',()=>dlg.remove());
   });
@@ -709,7 +724,10 @@ function openModal(p){
       </div>
     </div>
   `;
-  document.body.appendChild(dlg); dlg.showModal();
+  document.body.appendChild(dlg);
+  dlg.setAttribute('aria-modal','true');
+  dlg.showModal();
+  dlg.querySelector('.close').focus();
   dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
   dlg.addEventListener('close', ()=> dlg.remove());
   dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
