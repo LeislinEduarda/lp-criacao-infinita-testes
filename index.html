@@ -24,7 +24,7 @@
   --maxw:1120px;
 }
 
-/* =================== RESET SUAVE =================== */
+/* =================== RESET / BASE =================== */
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -33,7 +33,7 @@ body{
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; line-height:1.5;
 }
 
-/* =================== TIPOGRAFIA PADRONIZADA =================== */
+/* =================== TIPOGRAFIA =================== */
 .h-serif{font-family:"Playfair Display","Canela",Georgia,serif; color:var(--green); line-height:1.12}
 h1.h-serif{font-weight:700; font-size:clamp(2rem,3.4vw,3rem); margin:0 0 .55rem}
 h2.h-serif{font-weight:700; font-size:clamp(1.4rem,2.3vw,2rem); margin:0 0 .5rem}
@@ -45,7 +45,7 @@ p{margin:.55rem 0}
 
 /* =================== LAYOUT / RITMO =================== */
 .container{width:min(100%,var(--maxw)); margin-inline:auto; padding-inline:clamp(16px,2vw,24px)}
-section{padding-block:18px}          /* mínimo espaço entre dobras */
+section{padding-block:18px}             /* mínimo espaço entre dobras */
 .section-tight{padding-block:14px}
 .sep-line{border-top:2px solid var(--pink)}
 .sep-bottom{border-bottom:2px solid var(--pink)}
@@ -67,14 +67,18 @@ section{padding-block:18px}          /* mínimo espaço entre dobras */
   background:transparent; color:var(--wine); border-bottom:2px solid var(--wine); border-radius:0; padding:2px 0
 }
 
-/* Botão flutuante (mobile-first) */
-.fab{
-  position:fixed; right:16px; bottom:18px; z-index:50;
-  opacity:0; pointer-events:none; transform:translateY(8px);
-  transition:opacity .2s ease, transform .2s ease;
+/* =================== BARRA FLUTUANTE (estilo comunidade) =================== */
+.cta-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  background:#fff; border-top:1px solid rgba(29,77,58,.14);
+  padding: max(10px, env(safe-area-inset-bottom));
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  box-shadow:0 -8px 30px rgba(0,0,0,.06);
 }
-.fab.visible{opacity:1; pointer-events:auto; transform:translateY(0)}
-.fab .btn{padding:12px 16px}
+.cta-bar .btn{padding:12px 18px}
+@media (min-width: 720px){
+  .cta-bar{justify-content:center}
+}
 
 /* =================== SOCIAL PROOF — UMA LINHA =================== */
 .band{padding-block:12px}
@@ -98,13 +102,13 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .modal header{display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid var(--pink); padding-bottom:8px}
 .modal .close{background:transparent; border:none; color:var(--wine); font-weight:700; cursor:pointer}
 
-/* =================== HERO =================== */
-.hero-card{
-  background:#fff; border:1px solid rgba(29,77,58,.14);
-  border-radius:var(--radius); box-shadow:var(--shadow);
-  padding:clamp(16px,2.2vw,22px);
+/* =================== HERO (sem cartão) =================== */
+.hero { }
+.hero .stack{
+  display:grid; gap:10px;           /* menos espaço */
+  padding-block: 6px;               /* sem “caixa” */
 }
-.hero .stack{display:grid; gap:12px}
+.hero p em{background:linear-gradient(transparent 70%, var(--beige) 0)}
 
 /* =================== CARROSSEL IG-LIKE (Mapa do Estúdio) =================== */
 .carousel{position:relative}
@@ -179,9 +183,9 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 </head>
 <body>
 
-<!-- ===== FAB (botão flutuante global de compra) ===== -->
-<div class="fab" id="fab">
-  <a class="btn" id="fabBtn" href="#" rel="noopener">Quero entrar no Estúdio</a>
+<!-- ===== BARRA FLUTUANTE (estilo comunidade) ===== -->
+<div class="cta-bar" id="ctaBar">
+  <a class="btn" id="barBuy" href="#" rel="noopener">Quero entrar no Estúdio</a>
 </div>
 
 <!-- ===== SOCIAL PROOF — UMA LINHA ===== -->
@@ -192,54 +196,50 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
   </div>
 </section>
 
-<!-- ===== HERO ===== -->
-<section class="section-tight" id="hero">
+<!-- ===== HERO (SEM CARTÃO) ===== -->
+<section class="section-tight hero" id="hero">
   <div class="container">
-    <div class="hero-card">
-      <div class="stack">
-        <h1 class="h-serif">ESTÚDIO INFINITO™</h1>
+    <div class="stack">
+      <h1 class="h-serif">ESTÚDIO INFINITO™</h1>
 
-        <h3 class="h-serif">Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</h3>
-        <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
-        <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil</em></p>
+      <h3 class="h-serif">Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</h3>
+      <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias.</strong></p>
+      <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil</em></p>
 
-        <h3 class="h-serif">Você paga só o 1º ano.</h3>
-        <p>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
-        <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
+      <h3 class="h-serif">Você paga só o 1º ano.</h3>
+      <p>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
+      <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
 
-        <h3 class="h-serif">Selo de confiança:</h3>
-        <p>seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
+      <h3 class="h-serif">Selo de confiança:</h3>
+      <p>seu <strong>1º post no ar em 24h</strong> — <strong>ou eu devolvo 100%</strong>.</p>
 
-        <div class="cta-row">
-          <a class="btn" id="heroBuy" href="#" rel="noopener">Entrar e criar o seu primeiro post agora</a>
-          <a class="btn-outline" href="#mapa">Ver como funciona ↓</a>
-        </div>
-
-        <p><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
+      <!-- CTA principal do hero (único) -->
+      <div class="center" style="margin-top:6px">
+        <a class="btn" id="heroBuy" href="#" rel="noopener">Entrar e criar o seu primeiro post agora</a>
       </div>
+
+      <p><strong>✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</strong></p>
     </div>
   </div>
 </section>
 
 <div class="sep-line"></div>
 
-<!-- ===== O QUE É O ESTÚDIO ===== -->
+<!-- ===== O QUE É O ESTÚDIO (SEM CARTÃO) ===== -->
 <section class="section-tight" id="o-que-e">
   <div class="container">
-    <div class="hero-card">
-      <div class="stack">
-        <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
-        <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia.</p>
-        <p>Isso só te deixa <strong>travado</strong>.</p>
-        <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso.</p>
-        <p>É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
-        <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos</strong> + comunidade sobre humano = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
+    <div class="stack">
+      <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+      <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia.</p>
+      <p>Isso só te deixa <strong>travado</strong>.</p>
+      <p>O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso.</p>
+      <p>É o <strong>meu estúdio real de criação — aberto pra você</strong>:</p>
+      <p>Um lugar único que vai unir <strong>as 3 IAs certas + mini-cursos rápidos</strong> + comunidade sobre humano = <strong>Gente de verdade</strong> te puxando pro <strong>post no ar</strong>.</p>
 
-        <p><strong>AS 3 IAS QUE EU USO SÃO:</strong></p>
-        <p>🧠 <strong>ChatGPT</strong> — pra criar ideias, roteiros, legendas e designs direto da conversa.</p>
-        <p>🎨 <strong>Higgsfield</strong> — pra gerar sua <strong>Gêmea Digital</strong> e postar sem precisar aparecer.</p>
-        <p>🤖 <strong>Equipe Não-Humana™</strong> — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</p>
-      </div>
+      <p><strong>AS 3 IAS QUE EU USO SÃO:</strong></p>
+      <p>🧠 <strong>ChatGPT</strong> — pra criar ideias, roteiros, legendas e designs direto da conversa.</p>
+      <p>🎨 <strong>Higgsfield</strong> — pra gerar sua <strong>Gêmea Digital</strong> e postar sem precisar aparecer.</p>
+      <p>🤖 <strong>Equipe Não-Humana™</strong> — São funcionários não humanos criados e treinados por mim para montar o post completo: ideia, carrossel, story ou roteiro, pronto pra publicar.</p>
     </div>
   </div>
 </section>
@@ -254,7 +254,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
       <div class="pagers" id="pagers" aria-hidden="true"></div>
     </div>
 
-    <div class="center" style="margin-top:10px">
+    <div class="center" style="margin-top:8px">
       <a class="btn" id="mapBuy" href="#" rel="noopener">Quero publicar meu 1º post hoje</a>
     </div>
   </div>
@@ -282,7 +282,7 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
         </div>
       </div>
 
-      <div class="center" style="margin-top:4px">
+      <div class="center" style="margin-top:6px">
         <a class="btn" id="rewBuy" href="#" rel="noopener">Entrar agora e ativar minhas recompensas</a>
       </div>
     </div>
@@ -370,23 +370,13 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 </footer>
 
 <script>
-/* ========= URL ÚNICA DE CHECKOUT (edite aqui e vale para todos os CTAs) ========= */
+/* ========= URL ÚNICA DE CHECKOUT (edite aqui) ========= */
 const CHECKOUT_URL = 'https://exemplo.com/checkout-estudio-infinito'; // <-- coloque sua URL real aqui
 
-/* ========= VINCULAR TODOS OS CTAs ========= */
-['heroBuy','mapBuy','rewBuy','faqBuy','fabBtn'].forEach(id=>{
+/* ========= Apontar todos os CTAs para o checkout ========= */
+['barBuy','heroBuy','mapBuy','rewBuy','faqBuy'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.setAttribute('href', CHECKOUT_URL);
-});
-
-/* ========= FAB (botão flutuante após scroll) ========= */
-const fab = document.getElementById('fab');
-let lastY = 0;
-window.addEventListener('scroll', ()=>{
-  const y = window.scrollY || document.documentElement.scrollTop;
-  if(y > 360){ fab.classList.add('visible'); }
-  else{ fab.classList.remove('visible'); }
-  lastY = y;
 });
 
 /* ========= SOCIAL PROOF (stories + modal de depoimento) ========= */
@@ -555,7 +545,7 @@ function openModal(p){
 ENH.forEach(p=> grid.appendChild(cardENH(p)));
 
 /* ========= SUAVIZAÇÃO DE ENTRADA ========= */
-const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .hero-card');
+const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion');
 const ioFade = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
