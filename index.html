@@ -265,6 +265,36 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
 /* lista curtinha do texto */
 .hero-bullets{ margin:.2rem 0 .4rem 1.1rem }
 .hero-bullets li{ margin:.12rem 0 }
+  /* ====== O QUE É O ESTÚDIO — estilo editorial + cards das 3 IAs ====== */
+.oquee .eyebrow{
+  text-transform:uppercase; letter-spacing:.06em; font-weight:700;
+  color:var(--wine); font-size:.82rem; margin:0 0 6px;
+}
+.oquee .lede{
+  font-size:clamp(1rem,1.15rem,1.15rem);
+  margin:.35rem 0; max-width:70ch;
+}
+.oquee em{background:linear-gradient(transparent 70%, var(--beige) 0)}
+.oquee .hr{height:2px; background:var(--pink); width:100%; margin:12px 0}
+
+/* grid visual para as 3 IAs (usa o mesmo visual da oferta) */
+.ias-grid{
+  display:grid; gap:10px; grid-template-columns:1fr;
+}
+.ia-card{
+  display:grid; grid-template-columns:42px 1fr; gap:10px; align-items:start;
+  background:#fff; border:1px solid rgba(29,77,58,.12); border-radius:12px; padding:12px; box-shadow:var(--shadow)
+}
+.ia-ico{
+  width:42px; height:42px; border-radius:10px; display:grid; place-items:center;
+  border:2px solid var(--green); color:var(--green); font-size:1.1rem; background:linear-gradient(180deg,#fff,var(--beige))
+}
+.ia-card h4{margin:0; color:var(--green)}
+.ia-card p{margin:.2rem 0 0 0}
+
+@media (min-width:760px){
+  .ias-grid{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
 <body>
@@ -335,28 +365,49 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   </div>
 </section>
 
-<!-- ===== O QUE É O ESTÚDIO (texto fluido) ===== -->
-<section class="section-tight" id="o-que-e">
+<!-- ===== O QUE É O ESTÚDIO ===== -->
+<section class="section-tight oquee" id="o-que-e">
   <div class="container">
-    <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
+    <p class="eyebrow">Por que existe</p>
+    <h2 class="h-serif">O ESTÚDIO É O CONTRÁRIO DO EXCESSO 👀</h2>
 
-    <p class="lead">
-      A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia.
-      Isso só te deixa <strong>travado</strong>.
-    </p>
+    <!-- Texto fluido, sem blocos atrás -->
+    <p class="lede">A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
+    <p class="lede">O <strong>Estúdio Infinito™</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>meu estúdio real de criação</strong> — agora aberto pra você.</p>
+    <p class="lede"><strong>Aqui você domina as 3 IAs certas</strong> em <strong>minicursos de até 30 min</strong> e a <strong>Comunidade Sobre-Humano</strong> te mantém em movimento com <em>gente real criando todos os dias</em>.</p>
 
-    <p>
-      O Estúdio Infinito nasceu como o <strong>contrário</strong> disso. É o meu estúdio real de criação — aberto pra você.
-      Aqui você domina as <strong>3 IAs certas</strong> em mini-cursos de até 30 min e a <strong>Comunidade Sobre-Humano</strong>
-      te mantém em movimento com <strong>gente real criando todos os dias</strong>.
-    </p>
+    <div class="hr" role="presentation"></div>
 
-    <ul class="intro-list">
-      <li><strong>Menos ferramenta, mais direção:</strong> você só usa o que move o post pro ar.</li>
-      <li><strong>Aprende fazendo:</strong> aula curta → tarefa simples → publicação no mesmo dia.</li>
-      <li><strong>Sem parecer IA:</strong> tom humano, visual limpo e mensagem certa.</li>
-    </ul>
+    <!-- Bloco visual das 3 IAs (cards, mesmo estilo da oferta) -->
+    <h3 class="h-serif" style="margin-top:6px">As 3 IAs que seguram minha criação todo santo dia</h3>
+
+    <div class="ias-grid" role="list">
+      <article class="ia-card" role="listitem">
+        <div class="ia-ico" aria-hidden="true">🧠</div>
+        <div>
+          <h4>ChatGPT</h4>
+          <p>Estratégia, ideias, roteiros, legendas e até designs direto da conversa.</p>
+        </div>
+      </article>
+
+      <article class="ia-card" role="listitem">
+        <div class="ia-ico" aria-hidden="true">🎨</div>
+        <div>
+          <h4>Higgsfield</h4>
+          <p>Crie sua <strong>Gêmea Digital</strong> pra postar sem precisar aparecer.</p>
+        </div>
+      </article>
+
+      <article class="ia-card" role="listitem">
+        <div class="ia-ico" aria-hidden="true">🤖</div>
+        <div>
+          <h4>Equipe Não-Humana™</h4>
+          <p>“Funcionários” treinados por mim que montam o post completo: ideia, gancho, carrossel, story ou roteiro — <strong>pronto pra publicar</strong>.</p>
+        </div>
+      </article>
+    </div>
   </div>
+</section>
 
   <!-- ===== As 3 IAs (mini-cards visuais) ===== -->
   <div class="container" style="margin-top:10px">
