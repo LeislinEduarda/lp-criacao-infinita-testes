@@ -277,29 +277,33 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
 <section class="section-tight hero hero-compact" id="hero">
   <div class="container">
     <div class="grid">
+<!-- ===== HERO (2 colunas) ===== -->
+<section class="section-tight hero hero-compact" id="hero">
+  <div class="container">
+    <div class="grid">
+
       <!-- COLUNA ESQUERDA (texto + imagem + CTA) -->
       <div>
         <h1 class="h-serif">MEU ESTÚDIO DE CRIAÇÃO ESTÁ ABERTO PRA VOCÊ:</h1>
 
         <p>Entre no meu estúdio e publique <strong>1 post por dia</strong> — só com o celular, como eu faço há mais de dois anos.</p>
 
-        <!-- SLOT DA IMAGEM (troque o src ou deixe vazio que vira “moldura”) -->
+        <!-- SLOT DA IMAGEM -->
         <div class="hero-media" aria-label="Imagem de destaque do estúdio">
           <div class="frame">
-            <!-- coloque sua imagem aqui -->
+            <!-- Descomente e troque o src pela sua imagem -->
             <!-- <img src="URL-DA-SUA-IMAGEM.jpg" alt="Prévia do Estúdio Infinito"> -->
             <small class="muted">slot da imagem (4:3). Troque pelo seu JPG/PNG.</small>
           </div>
           <small class="muted">Leve, rápido e simples — feito com IA + celular.</small>
         </div>
-        <!-- ===== SOCIAL PROOF — UMA LINHA ===== -->
-<section class="band section-tight sep-bottom">
-  <div class="container inner">
-    <div class="title h-serif">Junte-se a mais de 25.000 alunos por toda a vida.</div>
-    <div class="sp-rail" id="proofRail" aria-label="Lista de alunos (stories)"></div>
-  </div>
-</section>
 
+        <div class="cta-row" style="margin-top:8px">
+          <a class="btn" id="heroBuy" href="#">Entrar e criar o seu primeiro post agora →</a>
+        </div>
+
+        <p class="small" style="margin-top:8px">✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</p>
+      </div>
 
       <!-- COLUNA DIREITA (box verde “snapshot”) -->
       <aside class="snapshot" aria-label="Resumo do Estúdio">
@@ -307,22 +311,36 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
           <h4>Quanto custa?</h4>
           <p><strong>R$388 por ano</strong></p>
         </div>
+
         <div class="row">
           <h4>O que você recebe?</h4>
           <p>Acesso completo ao Estúdio Infinito = Minicursos express (≤30min) + <strong>9 Funcionários Não Humanos</strong> + Mapa do Estúdio + Comunidade Sobre-Humano + Recompensas Infinitas.</p>
         </div>
+
         <div class="row">
           <h4>Pra quem é?</h4>
           <p>Pra quem quer <strong>leveza, clareza e resultado</strong> — usando IA como aliada, não inimiga.</p>
         </div>
-        <h4>Aqui, você cria como eu crio:</h4>
-          <p><strong>3 IAs usando o próprio celular</strong></p>
-        </div>
-          <h4>Você paga só o 1º ano.</h4>
-          Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
-         <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
+
         <div class="row">
+          <h4>Aqui você cria como eu crio</h4>
+          <p><strong>As 3 IAs</strong> que eu uso todos os dias <strong>+ seu próprio celular</strong>.</p>
+        </div>
+
+        <!-- NOVO BLOCO no mesmo estilo -->
+        <div class="row">
+          <h4>Você paga só o 1º ano</h4>
+          <p>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
+            <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small>
+          </p>
+        </div>
+
+        <div class="row">
+          <h4>Como comprar?</h4>
+          <p><a id="snapBuy" href="#">TOQUE AQUI PARA ENTRAR NO ESTÚDIO</a></p>
+        </div>
       </aside>
+
     </div>
   </div>
 </section>
