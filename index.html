@@ -55,6 +55,16 @@ section{padding-block:16px}
 .sep-bottom{border-bottom:2px solid var(--pink)}
 .stack{display:grid; gap:6px}
 
+/* utilitários novos */
+.lead{font-size:1.05rem}
+.badge{display:inline-block; padding:4px 8px; border:1px solid rgba(29,77,58,.2); border-radius:999px; background:#fff; color:var(--green); font-weight:700}
+.note{
+  background:linear-gradient(0deg,#fff,var(--beige));
+  border:1px solid rgba(29,77,58,.14);
+  border-radius:12px; padding:12px; box-shadow:var(--shadow);
+}
+.hr{height:1px; background:var(--pink); opacity:.8; margin:12px 0}
+
 /* =================== BOTÕES (CTA) =================== */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
@@ -65,9 +75,7 @@ section{padding-block:16px}
 }
 .btn:hover{transform:translateY(-1px); box-shadow:0 10px 24px rgba(124,30,40,.26)}
 .btn:active{transform:translateY(0)}
-.btn-ghost{
-  background:transparent; color:var(--wine); border-bottom:2px solid var(--wine); border-radius:0; padding:2px 0
-}
+.btn-ghost{background:transparent; color:var(--wine); border-bottom:2px solid var(--wine); border-radius:0; padding:2px 0}
 
 /* =================== BARRA FLUTUANTE =================== */
 .cta-bar{
@@ -79,23 +87,17 @@ section{padding-block:16px}
   box-shadow:0 -8px 30px rgba(0,0,0,.06);
 }
 .cta-bar .btn{padding:12px 18px}
-@media (min-width: 720px){
-  .cta-bar{justify-content:center}
-}
+@media (min-width: 720px){ .cta-bar{justify-content:center} }
 
 /* =================== SOCIAL PROOF — UMA LINHA =================== */
 .band{padding-block:10px; min-height:var(--band-h)}
 .band .inner{display:flex; align-items:center; gap:10px; justify-content:center; flex-wrap:wrap}
 .band .title{font-family:"Playfair Display","Canela",serif; color:var(--green); font-size:clamp(1rem,1.8vw,1.25rem); font-weight:700; white-space:nowrap}
-.sp-rail{
-  display:flex; gap:10px; overflow-x:auto; padding:4px 2px 0 2px;
-  scrollbar-width:none; -ms-overflow-style:none;
-}
+.sp-rail{display:flex; gap:10px; overflow-x:auto; padding:4px 2px 0 2px; scrollbar-width:none; -ms-overflow-style:none}
 .sp-rail::-webkit-scrollbar{display:none}
 .sp-item{display:grid; justify-items:center; gap:3px; flex:0 0 auto}
 .sp-bubble{
-  width:56px; height:56px; border-radius:50%; position:relative;
-  background:#e9e9e9 center/cover no-repeat;
+  width:56px; height:56px; border-radius:50%; background:#e9e9e9 center/cover no-repeat;
   box-shadow:0 0 0 2px var(--wine), 0 0 0 5px var(--pink);
 }
 .sp-name{font-size:.7rem; color:var(--muted); max-width:64px; text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
@@ -106,36 +108,26 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .modal .close{background:transparent; border:none; color:var(--wine); font-weight:700; cursor:pointer}
 
 /* =================== HERO =================== */
-.hero{
-  min-height: calc(100svh - var(--bar-h) - var(--band-h));
-  display:flex; align-items:center;
-}
-.hero .stack{ gap:4px; }
+.hero{min-height: calc(100svh - var(--bar-h) - var(--band-h)); display:flex; align-items:center}
+.hero .stack{gap:4px}
 .hero p em{background:linear-gradient(transparent 70%, var(--beige) 0)}
 .hero .cta-row{display:flex; gap:10px; align-items:center; justify-content:flex-start; flex-wrap:wrap}
 
-/* =================== “O QUE É O ESTÚDIO” — NARRATIVO =================== */
-.narrative{display:grid; gap:10px}
-.narrative .block{
-  background:#fff; border:1px solid rgba(29,77,58,.12); border-radius:12px; padding:12px; box-shadow:var(--shadow)
-}
-.narrative h3{margin:.1rem 0 .2rem 0; color:var(--green); font-size:1.05rem}
-.narrative p{margin:.2rem 0 0 0}
+/* =================== SEÇÃO PITCH (texto do Notion) =================== */
+.pitch{display:grid; gap:10px}
+.pitch ul{margin:8px 0 0 1.2rem}
+.pitch li{margin:.2rem 0}
 
-/* =================== “AS 3 IAs” =================== */
-.ias{
-  display:grid; gap:10px; grid-template-columns:1fr;
-}
-.ia-item{
-  background:#fff; border:1px solid rgba(29,77,58,.12); border-radius:12px; padding:12px; box-shadow:var(--shadow);
-  display:grid; gap:6px;
-}
-.ia-item strong{color:var(--green)}
-@media (min-width: 760px){
-  .ias{grid-template-columns:repeat(3,1fr)}
-}
+/* =================== SNAPSHOT: Quanto custa / O que recebe / Pra quem é =================== */
+.info-cards{display:grid; gap:10px; grid-template-columns:1fr}
+.info{background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:12px; padding:12px; box-shadow:var(--shadow)}
+.info h4{margin:.2rem 0 .3rem 0; color:var(--green)}
+@media (min-width:760px){ .info-cards{grid-template-columns:repeat(3,1fr)} }
 
-/* =================== CARROSSEL IG-LIKE (Mapa do Estúdio) =================== */
+/* =================== O QUE É (bloco do Notion) =================== */
+.note h4{margin:.2rem 0 .3rem 0; color:var(--green)}
+
+/* =================== CARROSSEL (Mapa IG-like) =================== */
 .carousel{position:relative}
 .carousel-track{
   display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:10px; padding-bottom:4px;
@@ -143,27 +135,20 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 }
 .carousel-track::-webkit-scrollbar{display:none}
 .slide{
-  flex:0 0 auto;
-  width:min(560px, calc(100% - 32px));     /* CONSISTENTE em todos os slides */
+  min-width:calc(100% - 32px); max-width:calc(100% - 32px);
   scroll-snap-align:center; background:#fff; border:1px solid rgba(29,77,58,.14);
   border-radius:14px; box-shadow:var(--shadow); overflow:hidden; display:grid; grid-template-rows:auto auto auto;
 }
 .slide-media{aspect-ratio:1/1; background:linear-gradient(180deg,#fff,var(--beige))}
-.pagers{
-  display:flex; gap:6px; justify-content:center; align-items:center;
-  padding:8px 0 4px 0;
-}
+.pagers{display:flex; gap:6px; justify-content:center; align-items:center; padding:8px 0 4px 0}
 .pager-dot{width:7px; height:7px; border-radius:50%; background:#dadada; transition:transform .2s ease, opacity .2s ease}
 .pager-dot.active{background:#9e9e9e; transform:scale(1.12)}
 .slide-body{padding:10px 12px 14px 12px}
 .slide-title{color:var(--green); font-weight:700; margin-bottom:3px}
 .slide-caption{color:var(--muted)}
 
-/* =================== RECOMPENSAS (CONTADOR VIVO) =================== */
-.reward-card{
-  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:var(--radius);
-  box-shadow:var(--shadow); padding:clamp(14px,2.2vw,22px); display:grid; gap:10px
-}
+/* =================== RECOMPENSAS =================== */
+.reward-card{background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2.2vw,22px); display:grid; gap:10px}
 .progress{height:12px; background:rgba(29,77,58,.12); border-radius:999px; overflow:hidden}
 .progress > span{display:block; height:100%; width:42%; background:linear-gradient(90deg, var(--wine), #8e2632 85%)}
 .rew-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
@@ -174,12 +159,15 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .icon.trophy{border-radius:50%; position:relative}
 .icon.trophy::after{content:""; position:absolute; inset:3px 5px 7px 5px; border:2px solid var(--green); border-bottom:none; border-radius:0 0 4px 4px}
 .icon.coin{border-radius:50%}
-.counter{
-  display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
-  padding:8px 10px; border:1px dashed rgba(29,77,58,.25); border-radius:12px; background:#fff;
-}
+.counter{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; padding:8px 10px; border:1px dashed rgba(29,77,58,.25); border-radius:12px; background:#fff}
 .counter .num{font-variant-numeric:tabular-nums; font-weight:700; color:var(--green); font-size:clamp(1.2rem,2.2vw,1.5rem)}
 .counter small{color:var(--muted)}
+
+/* =================== CHOICES (Roteiro / Carrossel / Stories) =================== */
+.choices-grid{display:grid; gap:10px; grid-template-columns:1fr}
+.choice{background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:12px; padding:12px; box-shadow:var(--shadow)}
+.choice h4{margin:.2rem 0 .3rem 0; color:var(--green)}
+@media (min-width:760px){ .choices-grid{grid-template-columns:repeat(3,1fr)} }
 
 /* =================== STORIES ENH =================== */
 .stories-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px}
@@ -188,11 +176,9 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .story h5{margin:8px 0 2px 0; font-size:.98rem; color:var(--green)}
 .story small{color:var(--muted)}
 
-/* =================== FAQ (com diferencial) =================== */
+/* =================== FAQ =================== */
 .accordion{display:grid; gap:8px}
-.acc{
-  background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:12px; overflow:hidden; position:relative;
-}
+.acc{background:#fff; border:1px solid rgba(29,77,58,.14); border-radius:12px; overflow:hidden; position:relative}
 .acc::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(180deg,var(--pink), transparent); transition:width .25s ease}
 .acc[open]::before{width:8px}
 .acc summary{list-style:none; padding:12px 14px 12px 18px; cursor:pointer; position:relative; font-weight:700; color:var(--green)}
@@ -202,35 +188,19 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
 .acc .content{padding:0 14px 12px 18px; color:var(--text)}
 .faq-tip{margin:.4rem 0; padding:8px 10px; border-left:3px solid var(--pink); background:#fff; font-size:.96rem}
 
-/* =================== OFERTA (VIBRANTE) =================== */
+/* =================== OFERTA =================== */
 .theme-9{background:linear-gradient(0deg, #fff 0%, var(--off) 100%)}
-.grid-title.section-title-heroish{
-  font-family:"Playfair Display","Canela",serif; color:var(--green);
-  font-size:clamp(1.6rem,3vw,2.2rem); line-height:1.1; text-align:center; margin:0 0 6px
-}
+.grid-title.section-title-heroish{font-family:"Playfair Display","Canela",serif; color:var(--green); font-size:clamp(1.6rem,3vw,2.2rem); line-height:1.1; text-align:center; margin:0 0 6px}
 .section-sub{text-align:center; color:var(--muted); margin:0 0 14px}
-.oferta-grid{
-  display:grid; gap:10px; grid-template-columns:1fr;
-}
-.oferta-card{
-  display:grid; grid-template-columns:42px 1fr; gap:10px; align-items:start;
-  background:#fff; border:1px solid rgba(29,77,58,.12); border-radius:12px; padding:12px; box-shadow:var(--shadow)
-}
-.oferta-ico{
-  width:42px; height:42px; border-radius:10px; display:grid; place-items:center;
-  border:2px solid var(--green); color:var(--green); font-size:1.1rem; background:linear-gradient(180deg,#fff,var(--beige))
-}
+.oferta-grid{display:grid; gap:10px; grid-template-columns:1fr}
+.oferta-card{display:grid; grid-template-columns:42px 1fr; gap:10px; align-items:start; background:#fff; border:1px solid rgba(29,77,58,.12); border-radius:12px; padding:12px; box-shadow:var(--shadow)}
+.oferta-ico{width:42px; height:42px; border-radius:10px; display:grid; place-items:center; border:2px solid var(--green); color:var(--green); font-size:1.1rem; background:linear-gradient(180deg,#fff,var(--beige))}
 .oferta-body strong{color:var(--green)}
 .cta-head{text-align:center; font-weight:700; color:var(--green); margin:14px 0}
-.cta-btn-standalone{
-  display:block; width:100%; max-width:520px; margin:0 auto; text-align:center;
-  background:var(--wine); color:#fff; border:1px solid var(--wine); border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; box-shadow:0 8px 24px rgba(124,30,40,.22)
-}
+.cta-btn-standalone{display:block; width:100%; max-width:520px; margin:0 auto; text-align:center; background:var(--wine); color:#fff; border:1px solid var(--wine); border-radius:999px; padding:12px 18px; font-weight:700; text-decoration:none; box-shadow:0 8px 24px rgba(124,30,40,.22)}
 .preco-mini{text-align:center; color:var(--wine); font-weight:700; margin-top:8px}
 .cta-notes{text-align:center; color:var(--muted); font-size:.95rem; margin:8px 0 0 0}
-@media (min-width: 760px){
-  .oferta-grid{grid-template-columns:repeat(2,1fr)}
-}
+@media (min-width:760px){ .oferta-grid{grid-template-columns:repeat(2,1fr)} }
 
 /* =================== FOOTER =================== */
 footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text-align:center}
@@ -238,16 +208,17 @@ footer{border-top:1px solid rgba(29,77,58,.14); color:#777; padding:16px 0; text
 /* =================== RESPONSIVO =================== */
 @media (min-width: 720px){
   section{padding-block:18px}
+  .slide{min-width:560px; max-width:560px}
   .cta-row{display:flex; gap:10px; align-items:center; justify-content:center}
 }
-/* ===== AJUSTE DO ESPAÇO ENTRE PROVA SOCIAL E HERO ===== */
+/* ===== Espaço entre prova social e hero ===== */
 .band.section-tight { padding-bottom: 1px; }
 .hero.section-tight { padding-top: 1px; }
 
 /* ===== Performance ===== */
 section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibility:auto; contain-intrinsic-size: 1px 500px; }
 
-/* ===== Acessibilidade: foco visível ===== */
+/* ===== Acessibilidade ===== */
 :focus-visible{outline:2px dashed var(--wine); outline-offset:3px}
 
 /* ===== Redução de movimento ===== */
@@ -261,7 +232,7 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
 
 <!-- ===== BARRA FLUTUANTE ===== -->
 <div class="cta-bar" id="ctaBar">
-  <a class="btn" id="barBuy" href="#" rel="noopener">Entrar e ver o Estúdio por dentro — 12× R$38,80</a>
+  <a class="btn" id="barBuy" href="#" rel="noopener">Entrar no Estúdio — 12× R$38,80/mês</a>
 </div>
 
 <!-- ===== SOCIAL PROOF — UMA LINHA ===== -->
@@ -277,19 +248,11 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   <div class="container">
     <div class="stack">
       <h1 class="h-serif">ESTÚDIO INFINITO™</h1>
-
       <h3 class="h-serif">Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</h3>
-      <p>Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias</strong> e usando o próprio celular.</p>
-      <p class="muted"><em>Você vai criar presença nas redes sociais de forma mais leve, rápida e fácil.</em></p>
-
-      <h3 class="h-serif">Você paga só o 1º ano.</h3>
-      <p>Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
-      <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
-
-      <p><strong>✅ Selo de confiança: seu 1º post no ar em 24h — ou eu devolvo 100%.</strong></p>
-      <div class="cta-row">
-        <a class="btn" id="heroBuy" href="#" rel="noopener">Entrar e criar o 1º post agora</a>
-        <a class="btn-ghost" href="#mapa">Ver o mapa do Estúdio</a>
+      <p class="lead">Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias</strong> — usando o próprio celular.</p>
+      <div class="badge">Selo de confiança: 1º post no ar em 24h — ou eu devolvo 100%.</div>
+      <div class="cta-row" style="margin-top:8px">
+        <a class="btn" id="heroBuy" href="#">Entrar e criar o seu primeiro post agora →</a>
       </div>
     </div>
   </div>
@@ -297,63 +260,116 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
 
 <div class="sep-line" role="presentation"></div>
 
-<!-- ===== O QUE É O ESTÚDIO (narrativo, sem numeração) ===== -->
+<!-- ===== PITCH (texto do Notion) ===== -->
+<section class="section-tight" id="pitch">
+  <div class="container">
+    <div class="pitch">
+      <p><strong>Você paga só o 1º ano.</strong> Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.</p>
+      <p class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></p>
+      <div class="cta-row">
+        <a class="btn" href="#" id="pitchBuy">Entrar e ver o Estúdio por dentro →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SNAPSHOT: Quanto custa / O que recebe / Pra quem é ===== -->
+<section class="section-tight" id="snapshot">
+  <div class="container">
+    <div class="info-cards">
+      <div class="info">
+        <h4>Quanto custa?</h4>
+        <p><strong>R$388 por ano</strong></p>
+      </div>
+      <div class="info">
+        <h4>O que você recebe?</h4>
+        <p>Acesso completo ao <strong>Estúdio Infinito</strong> = Minicursos express (≤ 30 min) + <strong>9 Funcionários Não Humanos</strong> + Mapa do Estúdio + <strong>Comunidade Sobre-Humano</strong> + <strong>Recompensas Infinitas</strong>.</p>
+      </div>
+      <div class="info">
+        <h4>Pra quem é?</h4>
+        <p>Pra quem quer <strong>leveza, clareza e resultado</strong> — usando IA como aliada, não como inimiga.</p>
+      </div>
+    </div>
+    <div class="cta-row" style="margin-top:8px">
+      <a class="btn" id="snapBuy" href="#">TOQUE AQUI PARA ENTRAR NO ESTÚDIO</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== O QUE É O ESTÚDIO ===== -->
 <section class="section-tight" id="o-que-e">
   <div class="container">
-    <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE)</h2>
-
-    <div class="narrative">
-      <div class="block">
-        <h3>O excesso que te trava</h3>
-        <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa travado.</p>
-      </div>
-
-      <div class="block">
-        <h3>O contrário disso</h3>
-        <p>O Estúdio Infinito nasceu como o oposto: é o <strong>meu estúdio real de criação — aberto pra você</strong>. Menos barulho, mais post no ar.</p>
-      </div>
-
-      <div class="block">
-        <h3>Como você aprende (sem perder tempo)</h3>
-        <p>Aqui você domina <strong>as 3 IAs certas</strong> em <strong>minicursos de até 30 min</strong> e usa a <strong>Comunidade Sobre-Humano</strong> pra se manter em movimento com gente real criando todos os dias.</p>
-      </div>
+    <h2 class="h-serif">O QUE É O ESTÚDIO (E POR QUE ELE EXISTE) 👀</h2>
+    <div class="note" style="margin-top:8px">
+      <p>A internet te vendeu que, pra criar, você precisa de <strong>30 IAs, 10 apps, 5 cursos</strong> e uma ideia genial por dia. Isso só te deixa <strong>travado</strong>.</p>
+      <p>O <strong>Estúdio Infinito</strong> nasceu como o <strong>contrário</strong> disso. É o <strong>MEU estúdio real de criação</strong> — agora aberto pra você.</p>
+      <p><strong>Aqui você domina as 3 IAs certas</strong> em <strong>minicursos com menos de 30 min</strong> (pra não tomar seu tempo) e a <strong>Comunidade Sobre-Humano</strong> te mantém em movimento com gente real criando todos os dias.</p>
+      <div class="hr"></div>
+      <h4>As 3 IAs que seguram minha criação todo santo dia:</h4>
+      <ul>
+        <li><strong>ChatGPT</strong> — crio estratégia, ideias, roteiros, legendas e designs direto da conversa.</li>
+        <li><strong>Higgsfield</strong> — gero minha <strong>Gêmea Digital</strong> pra postar sem precisar aparecer.</li>
+        <li><strong>Equipe Não-Humana</strong> — meus “funcionários” treinados por mim para montar o post completo (ideia, gancho, carrossel, story ou roteiro + avaliação) e <strong>pronto pra publicar</strong>.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ===== AS 3 IAs (storytelling) ===== -->
-<section class="section-tight" id="tres-ias">
+<!-- ===== LOGO QUE VOCÊ ENTRAR + MAPA ===== -->
+<section class="section-tight" id="logo-entrar">
   <div class="container">
-    <h2 class="h-serif">AS 3 IAs QUE SEGURAM A MINHA CRIAÇÃO TODO SANTO DIA</h2>
-    <div class="ias">
-      <div class="ia-item">
-        <strong>ChatGPT</strong>
-        <p>Eu uso para <strong>estratégia</strong>, ideias, roteiros, legendas e até <strong>designs direto da conversa</strong>.</p>
-      </div>
-      <div class="ia-item">
-        <strong>Higgsfield</strong>
-        <p>Eu uso para gerar a minha <strong>Gêmea Digital</strong> (minhas fotos com IA) e <strong>postar sem precisar aparecer</strong>.</p>
-      </div>
-      <div class="ia-item">
-        <strong>Equipe Não-Humana™</strong>
-        <p>São <strong>meus funcionários não humanos</strong>, treinados por mim, que montam o post completo: ideia, gancho, carrossel, story, roteiro e avaliação — <strong>pronto pra publicar</strong>.</p>
-      </div>
-    </div>
+    <h2 class="h-serif">LOGO QUE VOCÊ ENTRAR NO ESTÚDIO INFINITO ⬇️</h2>
+    <p class="lead">✅ Você recebe acesso aos meus <strong>minicursos de no máximo 30 minutos</strong> pra dominar as IAs que eu uso — e <strong>criar como eu crio</strong> todo santo dia.</p>
+    <p class="lead">✅ Você já vai poder fazer seu post em <strong>menos de 24h</strong> seguindo este mapa:</p>
   </div>
 </section>
 
-<!-- ===== MAPA DO ESTÚDIO — CARROSSEL IG-LIKE (paradas) ===== -->
+<!-- ===== MAPA (Carrossel) ===== -->
 <section class="section-tight" id="mapa">
   <div class="container">
-    <h2 class="h-serif center">Mapa do Estúdio Infinito — do zero ao post publicado</h2>
-
+    <h2 class="h-serif center">🗺️ Mapa do Estúdio Infinito — mini curso + IA</h2>
     <div class="carousel" aria-label="Carrossel de aulas (formato Instagram)">
-      <div class="carousel-track" id="track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Aulas do Estúdio"><!-- slides via JS --></div>
+      <div class="carousel-track" id="track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Aulas do Estúdio"></div>
       <div class="pagers" id="pagers" aria-hidden="true"></div>
     </div>
+  </div>
+</section>
 
-    <div class="cta-row" style="margin-top:8px">
-      <a class="btn" id="mapBuy" href="#" rel="noopener">Quero seguir o mapa agora</a>
+<!-- ===== AQUI VOCÊ ESCOLHE (Roteiro/Carrossel/Stories) ===== -->
+<section class="section-tight" id="choices">
+  <div class="container">
+    <h2 class="h-serif">AQUI VOCÊ ESCOLHE SE QUER 👇🏻</h2>
+    <div class="choices-grid" style="margin-top:8px">
+      <div class="choice">
+        <h4>➡️ ROTEIRO DE VÍDEO</h4>
+        <p>Estruturas simples, começos que prendem e final com ação. A ENH monta sua base em minutos.</p>
+      </div>
+      <div class="choice">
+        <h4>➡️ CARROSSEL</h4>
+        <p>Primeiro slide que faz a pessoa parar, progressão lógica e CTA que transforma curiosidade em ação.</p>
+      </div>
+      <div class="choice">
+        <h4>➡️ STORIES</h4>
+        <p>Sequências curtas, com tensão + pergunta certa pra gerar resposta e manter a conversa viva.</p>
+      </div>
+    </div>
+
+    <h3 class="h-serif" style="margin-top:12px">AGORA QUE O TEXTO ESTÁ PRONTO, VOCÊ VAI ESCOLHER ENTRE:</h3>
+    <div class="choices-grid" style="margin-top:8px">
+      <div class="choice">
+        <h4>➡️ CRIAR SUA GÊMEA DIGITAL</h4>
+        <p>Com o <strong>Higgsfield</strong>, você posta sem precisar aparecer — coerência visual e produção rápida.</p>
+      </div>
+      <div class="choice">
+        <h4>➡️ CRIAR O SEU DESIGN COM O CHATGPT</h4>
+        <p>“Conversando” você resolve luz, enquadramento, tipografia e composição. Sem abrir o Canva.</p>
+      </div>
+    </div>
+
+    <p class="lead" style="margin-top:12px"><strong>E o melhor?</strong> Seguindo essa lógica, você gasta no máximo <strong>1h30 de minicurso</strong> e já entende o processo pra criar seu primeiro post <strong>no mesmo dia</strong>. Em menos de 24h, seu post está no ar — feito com IA, do seu jeito.</p>
+
+    <div class="cta-row">
+      <a class="btn" id="mapBuy" href="#">Entrar e ver o Estúdio por dentro →</a>
     </div>
   </div>
 </section>
@@ -391,7 +407,17 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   </div>
 </section>
 
-<!-- ===== STORIES — EQUIPE NÃO-HUMANA ===== -->
+<!-- ===== COMUNIDADE ===== -->
+<section class="section-tight" id="comunidade">
+  <div class="container">
+    <h2 class="h-serif">Comunidade Sobre-Humano 🫀</h2>
+    <p>Essa é a parte <strong>HUMANA</strong> do Estúdio: um espaço pra mostrar o seu post, receber feedback, pedir ajuda e trocar ideias com quem também está criando com IA todos os dias.</p>
+    <p>Ali dentro, ninguém cria sozinho. Você vê outras pessoas postando, testando, acertando — e isso te <strong>puxa pra continuar</strong>.</p>
+    <div class="cta-row"><a class="btn" id="comBuy" href="#">Quero entrar na Comunidade</a></div>
+  </div>
+</section>
+
+<!-- ===== ENH (perfis) ===== -->
 <section class="section-tight" id="equipe">
   <div class="container">
     <h2 class="h-serif center">Equipe Não-Humana™ — perfis</h2>
@@ -406,7 +432,11 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
     <h2 class="h-serif center">FAQ (com reforço da tese das 3 IAs)</h2>
     <div class="accordion" style="margin-top:10px">
       <details class="acc">
-        <summary>Consigo mesmo com pouco tempo?</summary>
+        <summary>Eu preciso assistir tudo antes de criar?</summary>
+        <div class="content"><p>Não. Os minicursos são rápidos e aplicáveis no mesmo dia. Você aprende fazendo.</p></div>
+      </details>
+      <details class="acc">
+        <summary>Consigo fazer mesmo com pouco tempo?</summary>
         <div class="content">
           <p>Consegue. Pensei tudo pra 20–40 min/dia. Se hoje só tiver 15, faz Gancho + Legenda e um carrossel curto — e publica.</p>
           <div class="faq-tip">Dica: use a <strong>Equipe Não-Humana</strong> para montar a base do post em 5 minutos.</div>
@@ -414,21 +444,23 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
       </details>
       <details class="acc">
         <summary>Preciso de computador ou app pago?</summary>
-        <div class="content">
-          <p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p>
-        </div>
+        <div class="content"><p>Não. Eu faço tudo no celular e te mostro como. As 3 IAs que uso têm versões gratuitas ou planos acessíveis.</p></div>
       </details>
       <details class="acc">
-        <summary>Não sou “do digital”. É pra mim?</summary>
-        <div class="content">
-          <p>É. Você vê eu fazendo, responde perguntas simples e as IAs fazem junto com você.</p>
-        </div>
+        <summary>Mas como assim publicar 1 post por dia só com o celular?</summary>
+        <div class="content"><p>Você vai seguir o Mapa (minicurso + IA), escolher formato e publicar. Sem fricção.</p></div>
       </details>
       <details class="acc">
-        <summary>Não quero aparecer em vídeo. E agora?</summary>
-        <div class="content">
-          <p>Use o <strong>Higgsfield</strong> pra criar sua Gêmea Digital. Dá pra crescer sem mostrar o rosto.</p>
-        </div>
+        <summary>Essas 3 IAs eu já tenho acesso?</summary>
+        <div class="content"><p>Sim. Você recebe o passo a passo — e alternativas gratuitas/ acessíveis quando existir.</p></div>
+      </details>
+      <details class="acc">
+        <summary>Esses mini-cursos são teóricos ou já saio aplicando?</summary>
+        <div class="content"><p>São 100% práticos. A ideia é assistir e publicar no mesmo dia.</p></div>
+      </details>
+      <details class="acc">
+        <summary>R$388 por ano é tudo incluso mesmo?</summary>
+        <div class="content"><p>Sim. Acesso ao Estúdio, ENH, Comunidade, Mapa e Recompensas.</p></div>
       </details>
       <details class="acc">
         <summary>Como funciona o “Post que Paga”?</summary>
@@ -439,29 +471,11 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
           <p>Perfil privado? Manda print/link no mural que eu conto manualmente.</p>
         </div>
       </details>
-      <details class="acc">
-        <summary>E se eu travar?</summary>
-        <div class="content">
-          <p>Me chama no chat, usa as análises e entra nas oficinas (2×/mês). A ideia é ninguém ficar parado.</p>
-        </div>
-      </details>
-      <details class="acc">
-        <summary>Quando sai meu primeiro post?</summary>
-        <div class="content">
-          <p>Em até 24h. Se não sair, eu devolvo 100%.</p>
-        </div>
-      </details>
-      <details class="acc">
-        <summary>Qual é o preço? Posso cancelar?</summary>
-        <div class="content">
-          <p>R$ 388/ano. Renovação anual automática. Pode cancelar quando quiser; o acesso fica até o fim do ciclo. Quem entra agora trava o preço de fundador.</p>
-        </div>
-      </details>
     </div>
   </div>
 </section>
 
-<!-- ===== OFERTA (VIBRANTE) ===== -->
+<!-- ===== OFERTA ===== -->
 <section class="section theme-9" id="sec-oferta">
   <div class="container">
     <h2 class="grid-title section-title-heroish">
@@ -470,53 +484,12 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
     <p class="section-sub">Um pacote prático, vivo e direto ao ponto — pensado para você criar <strong>reels, carrosséis e stories</strong> do zero, com IA, sem parecer IA.</p>
 
     <div class="oferta-grid">
-      <div class="oferta-card">
-        <div class="oferta-ico" aria-hidden="true">🤖</div>
-        <div class="oferta-body">
-          <strong>Equipe de Social Media Não Humana</strong>
-          <p>10 “funcionários” treinados por mim para ideias, ganchos, roteiros, carrosséis, legendas, stories, bio e branding.</p>
-        </div>
-      </div>
-
-      <div class="oferta-card">
-        <div class="oferta-ico" aria-hidden="true">🎥</div>
-        <div class="oferta-body">
-          <strong>Aulas express (conteúdo + IA)</strong>
-          <p>Aulas rápidas, atualizadas e aplicáveis no mesmo dia, com o que eu realmente uso e funciona.</p>
-        </div>
-      </div>
-
-      <div class="oferta-card">
-        <div class="oferta-ico" aria-hidden="true">🧵</div>
-        <div class="oferta-body">
-          <strong>Material de apoio inteligente</strong>
-          <p>Checklists e prompts prontos para acelerar sua execução (sem ficar perdida).</p>
-        </div>
-      </div>
-
-      <div class="oferta-card">
-        <div class="oferta-ico" aria-hidden="true">🧠</div>
-        <div class="oferta-body">
-          <strong>Segredos testados + curadoria</strong>
-          <p>Hacks, ganchos e estratégias validadas por mim (sem teoria solta).</p>
-        </div>
-      </div>
-
-      <div class="oferta-card">
-        <div class="oferta-ico" aria-hidden="true">👯‍♀️</div>
-        <div class="oferta-body">
-          <strong>Gêmea Digital (passo a passo)</strong>
-          <p>Guia prático para criar sua gêmea e usar em imagens, vídeos e carrosséis.</p>
-        </div>
-      </div>
-
-      <div class="oferta-card">
-        <div class="oferta-ico" aria-hidden="true">💬</div>
-        <div class="oferta-body">
-          <strong>Comunidade ativa</strong>
-          <p>Espaço para pedir ajuda, trocar feedbacks e acelerar com quem está no mesmo jogo.</p>
-        </div>
-      </div>
+      <div class="oferta-card"><div class="oferta-ico">🤖</div><div class="oferta-body"><strong>Equipe de Social Media Não Humana</strong><p>10 “funcionários” treinados por mim para ideias, ganchos, roteiros, carrosséis, legendas, stories, bio e branding.</p></div></div>
+      <div class="oferta-card"><div class="oferta-ico">🎥</div><div class="oferta-body"><strong>Aulas express (conteúdo + IA)</strong><p>Aulas rápidas, atualizadas e aplicáveis no mesmo dia, com o que eu realmente uso e funciona.</p></div></div>
+      <div class="oferta-card"><div class="oferta-ico">🧵</div><div class="oferta-body"><strong>Material de apoio inteligente</strong><p>Checklists e prompts prontos para acelerar sua execução (sem ficar perdida).</p></div></div>
+      <div class="oferta-card"><div class="oferta-ico">🧠</div><div class="oferta-body"><strong>Segredos testados + curadoria</strong><p>Hacks, ganchos e estratégias validadas por mim (sem teoria solta).</p></div></div>
+      <div class="oferta-card"><div class="oferta-ico">👯‍♀️</div><div class="oferta-body"><strong>Gêmea Digital (passo a passo)</strong><p>Guia prático para criar sua gêmea e usar em imagens, vídeos e carrosséis.</p></div></div>
+      <div class="oferta-card"><div class="oferta-ico">💬</div><div class="oferta-body"><strong>Comunidade ativa</strong><p>Espaço para pedir ajuda, trocar feedbacks e acelerar com quem está no mesmo jogo.</p></div></div>
     </div>
 
     <div id="sec-pronto" class="section" style="padding-top:14px">
@@ -537,16 +510,16 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
 </footer>
 
 <script>
-/* ========= URL ÚNICA DE CHECKOUT (edite aqui se quiser unificar) ========= */
+/* ========= URL ÚNICA DE CHECKOUT ========= */
 const CHECKOUT_URL = 'https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275';
 
-/* ========= Apontar todos os CTAs para o checkout ========= */
-['barBuy','heroBuy','mapBuy','rewBuy','faqBuy'].forEach(id=>{
+/* ========= Apontar todos os CTAs ========= */
+['barBuy','heroBuy','pitchBuy','snapBuy','mapBuy','comBuy'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.setAttribute('href', CHECKOUT_URL);
 });
 
-/* ========= SOCIAL PROOF (stories + modal de depoimento) ========= */
+/* ========= SOCIAL PROOF ========= */
 const proofData = [
   {nome:'Ana', img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=60&w=200', depo:'Saí do zero a 1 post/dia em 3 dias.'},
   {nome:'Rafa', img:'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=60&w=200', depo:'Usei a Gêmea Digital e vendi sem aparecer.'},
@@ -572,9 +545,7 @@ function makeProof(p){
           <strong style="color:var(--green)">Depoimento — ${p.nome}</strong>
           <button class="close" aria-label="Fechar">fechar ✕</button>
         </header>
-        <div style="padding-top:10px">
-          <p>${p.depo}</p>
-        </div>
+        <div style="padding-top:10px"><p>${p.depo}</p></div>
       </div>
     `;
     document.body.appendChild(dlg); dlg.showModal();
@@ -585,18 +556,20 @@ function makeProof(p){
 }
 proofData.forEach(p=> proofRail.appendChild(makeProof(p)));
 
-/* ========= MAPA (carrossel IG-like com as paradas) ========= */
+/* ========= AULAS (carrossel) ========= */
 const aulas = [
-  { titulo:'PRIMEIRA PARADA — Ideia + Direção', ia:'ChatGPT', detalhe:'Defina o tema do post, promessa e ângulo (em minutos).' },
-  { titulo:'SEGUNDA PARADA — Texto-base do Post', ia:'Equipe Não-Humana', detalhe:'Gancho + estrutura + legenda pronta para usar.' },
-  { titulo:'TERCEIRA PARADA — Ajustes Finais', ia:'ChatGPT', detalhe:'Refino do tom, cortes e CTA alinhado ao objetivo.' },
-  { titulo:'ESCOLHA — Roteiro de Vídeo', ia:'Larissa dos Roteiros (ENH)', detalhe:'Do começo que prende ao fechamento que vende.' },
-  { titulo:'ESCOLHA — Carrossel', ia:'Carlos dos Carrosséis (ENH)', detalhe:'Slide 1 irresistível até o CTA final.' },
-  { titulo:'ESCOLHA — Stories', ia:'José dos Stories (ENH)', detalhe:'Sequência curta: puxada • prova • pergunta.' },
-  { titulo:'VISUAL — Criar sua Gêmea Digital', ia:'Higgsfield', detalhe:'Poste sem aparecer usando sua versão digital.' },
-  { titulo:'VISUAL — Design via ChatGPT', ia:'ChatGPT', detalhe:'Layouts prontos via conversa (sem abrir o Canva).' }
+  { titulo:'Crie sua Gêmea Digital pelo Celular', ia:'Higgsfield', detalhe:'Poste sem aparecer.' },
+  { titulo:'Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)', ia:'ChatGPT', detalhe:'Criação direta pela conversa.' },
+  { titulo:'Estratégia de Público — Como Vender para as Pessoas Certas', ia:'Bia do Público (ENH)', detalhe:'Direção, mensagem, oferta.' },
+  { titulo:'Ideias que Nunca Acabam (mesmo falando do mesmo produto)', ia:'Maria das Ideias (ENH)', detalhe:'Mapa infinito de temas.' },
+  { titulo:'Domine os Primeiros 3 Segundos do Seu Post', ia:'João dos Ganchos (ENH)', detalhe:'Começos que fazem parar.' },
+  { titulo:'Carrosséis Inteligentes Criados com IA', ia:'Carlos dos Carrosséis (ENH)', detalhe:'Primeiro slide até CTA.' },
+  { titulo:'Como Criar Stories com IA que as Pessoas Realmente Querem Ver', ia:'José dos Stories (ENH)', detalhe:'Sequência, ritmo, pergunta.' },
+  { titulo:'Como Criar Roteiros com IA que as Pessoas Querem Ouvir', ia:'Larissa dos Roteiros (ENH)', detalhe:'Estrutura e tensão.' },
+  { titulo:'Como Crescer no TikTok em 2026', ia:'ChatGPT', detalhe:'Estratégias atualizadas.' },
+  { titulo:'Como Crescer no Instagram em 2026', ia:'ChatGPT', detalhe:'Série, consistência e loops.' },
+  { titulo:'Dominando o ChatGPT — Meus Hacks Secretos', ia:'ChatGPT', detalhe:'Prompts e atalhos práticos.' }
 ];
-
 const track = document.getElementById('track');
 const pagers = document.getElementById('pagers');
 
@@ -623,7 +596,7 @@ function pagerDot(i){
   return d;
 }
 function buildCarousel(){
-  aulas.forEach((a,i)=> track.appendChild(slideEl(a,i)));
+  aulas.forEach((a,i)=> { track.appendChild(slideEl(a,i)); });
   for(let i=0;i<aulas.length;i++){ pagers.appendChild(pagerDot(i)); }
   [...track.children].forEach((slide, si)=>{
     const local = slide.querySelector('.pagers');
@@ -638,9 +611,8 @@ function buildCarousel(){
 }
 function updatePagers(i){
   [...pagers.children].forEach((d,idx)=> d.classList.toggle('active', idx===i));
-  [...track.children].forEach((slide)=> {
-    const pts = slide.querySelectorAll('.pager-dot');
-    pts.forEach((p, idx)=> p.classList.toggle('active', idx===i));
+  [...track.children].forEach(slide=> {
+    slide.querySelectorAll('.pager-dot').forEach((p, idx)=> p.classList.toggle('active', idx===i));
   });
 }
 function scrollToIndex(i){
@@ -715,11 +687,11 @@ const progBar = document.getElementById('progBar');
 function yyyymmdd(d){ return d.toISOString().slice(0,10); }
 
 (function initCounter(){
-  let dias = parseInt(localStorage.getItem('ei_dias_postados')||'142',10); // valor inicial de demonstração
+  let dias = parseInt(localStorage.getItem('ei_dias_postados')||'142',10); // demonstração
   const last = localStorage.getItem('ei_last_day');
   const today = yyyymmdd(new Date());
   if(last !== today){
-    // Simula que “postou” hoje: em produção, você verificaria de fato
+    // simulação: em produção, substituir por verificação real
     dias = Math.min(TOTAL, dias + 1);
     localStorage.setItem('ei_last_day', today);
     localStorage.setItem('ei_dias_postados', String(dias));
@@ -737,7 +709,7 @@ function renderDias(dias){
 }
 
 /* ========= Suavização de entrada ========= */
-const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .oferta-grid');
+const faders = document.querySelectorAll('.reward-card, .stories-grid, .accordion, .oferta-grid, .info-cards, .choices-grid, .note');
 const ioFade = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
