@@ -226,6 +226,45 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   html{scroll-behavior:auto}
   .btn, .pager-dot{transition:none}
 }
+  /* ===== HERO COMPACTO (2 colunas como no print) ===== */
+.hero-compact .grid{
+  display:grid; gap:14px; align-items:start;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px){
+  .hero-compact .grid{ grid-template-columns: minmax(0, 640px) 360px; }
+}
+.hero-compact h1{ margin-bottom:.6rem }
+
+/* card de imagem do hero */
+.hero-media{
+  background:#fff; border:1px solid rgba(29,77,58,.14);
+  border-radius:12px; box-shadow:var(--shadow);
+  padding:10px; display:grid; gap:8px; width:100%; max-width:520px;
+}
+.hero-media .frame{
+  aspect-ratio: 4/3;                  /* ajuste livre: 1/1, 4/3, 16/9... */
+  background:linear-gradient(180deg,#fff,var(--beige));
+  border:1px dashed rgba(29,77,58,.25);
+  border-radius:10px; overflow:hidden;
+  display:grid; place-items:center;
+}
+.hero-media img{ width:100%; height:100%; object-fit:cover; display:block }
+
+/* box verde (snapshot) */
+.snapshot{
+  background:#E9F2EE;                 /* tom claro do verde */
+  border:1px solid rgba(29,77,58,.18);
+  border-radius:12px; padding:12px;
+}
+.snapshot h4{ margin:.2rem 0 .3rem 0; color:var(--green) }
+.snapshot .row{ display:grid; grid-template-columns: 1fr; gap:4px; padding:8px 10px; border-radius:8px }
+.snapshot .row + .row{ border-top:1px solid rgba(29,77,58,.12); padding-top:10px; margin-top:10px }
+.snapshot a{ color:var(--green); font-weight:700; text-decoration:underline }
+
+/* lista curtinha do texto */
+.hero-bullets{ margin:.2rem 0 .4rem 1.1rem }
+.hero-bullets li{ margin:.12rem 0 }
 </style>
 </head>
 <body>
@@ -243,32 +282,63 @@ section, .reward-card, .stories-grid, .accordion, .oferta-grid { content-visibil
   </div>
 </section>
 
-<!-- ===== HERO ===== -->
-<section class="section-tight hero" id="hero">
+<section class="section-tight hero hero-compact" id="hero">
   <div class="container">
-    <div class="stack">
-      <h1 class="h-serif">ESTÚDIO INFINITO™</h1>
-      <h3 class="h-serif">Entre no meu estúdio e publique 1 post por dia — só com o celular, como eu faço há mais de dois anos.</h3>
-      <p class="lead">Aqui, você cria como eu crio: <strong>com as 3 IAs que eu uso todos os dias</strong> — usando o próprio celular.</p>
-      <div class="badge">Selo de confiança: 1º post no ar em 24h — ou eu devolvo 100%.</div>
-      <div class="cta-row" style="margin-top:8px">
-        <a class="btn" id="heroBuy" href="#">Entrar e criar o seu primeiro post agora →</a>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="grid">
+      <!-- COLUNA ESQUERDA (texto + imagem + CTA) -->
+      <div>
+        <h1 class="h-serif">MEU ESTÚDIO DE CRIAÇÃO ESTÁ ABERTO PRA VOCÊ:</h1>
 
-<div class="sep-line" role="presentation"></div>
+        <p>Entre no meu estúdio e publique <strong>1 post por dia</strong> — só com o celular, como eu faço há mais de dois anos.</p>
 
-<!-- ===== PITCH (texto do Notion) ===== -->
-<section class="section-tight" id="pitch">
-  <div class="container">
-    <div class="pitch">
-      <p><strong>Você paga só o 1º ano.</strong> Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.</p>
-      <p class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></p>
-      <div class="cta-row">
-        <a class="btn" href="#" id="pitchBuy">Entrar e ver o Estúdio por dentro →</a>
+        <!-- SLOT DA IMAGEM (troque o src ou deixe vazio que vira “moldura”) -->
+        <div class="hero-media" aria-label="Imagem de destaque do estúdio">
+          <div class="frame">
+            <!-- coloque sua imagem aqui -->
+            <!-- <img src="URL-DA-SUA-IMAGEM.jpg" alt="Prévia do Estúdio Infinito"> -->
+            <small class="muted">slot da imagem (4:3). Troque pelo seu JPG/PNG.</small>
+          </div>
+          <small class="muted">Leve, rápido e simples — feito com IA + celular.</small>
+        </div>
+
+        <p>Aqui, você cria como eu crio:</p>
+        <ul class="hero-bullets">
+          <li><strong>as 3 IAs que eu uso todos os dias</strong></li>
+          <li>+ usando o próprio celular</li>
+        </ul>
+
+        <p><strong>Você paga só o 1º ano.</strong><br>
+        Se <strong>não parar de postar</strong>, <strong>seus posts pagam todas as renovações</strong>.<br>
+        <small class="muted"><em>(Post que Paga: cada post = +1 dia de desconto.)</em></small></p>
+
+        <p class="badge">Selo de confiança: 1º post no ar em 24h — ou eu devolvo 100%.</p>
+
+        <div class="cta-row" style="margin-top:8px">
+          <a class="btn" id="heroBuy" href="#">Entrar e criar o seu primeiro post agora →</a>
+        </div>
+
+        <p class="small" style="margin-top:8px">✅ O estúdio trabalha com você, pra que você finalmente possa trabalhar pra você.</p>
       </div>
+
+      <!-- COLUNA DIREITA (box verde “snapshot”) -->
+      <aside class="snapshot" aria-label="Resumo do Estúdio">
+        <div class="row">
+          <h4>Quanto custa?</h4>
+          <p><strong>R$388 por ano</strong></p>
+        </div>
+        <div class="row">
+          <h4>O que você recebe?</h4>
+          <p>Acesso completo ao Estúdio Infinito = Minicursos express (≤30min) + <strong>9 Funcionários Não Humanos</strong> + Mapa do Estúdio + Comunidade Sobre-Humano + Recompensas Infinitas.</p>
+        </div>
+        <div class="row">
+          <h4>Como comprar?</h4>
+          <p><a id="snapBuy" href="#">TOQUE AQUI PARA ENTRAR NO ESTÚDIO</a></p>
+        </div>
+        <div class="row">
+          <h4>Pra quem é?</h4>
+          <p>Pra quem quer <strong>leveza, clareza e resultado</strong> — usando IA como aliada, não inimiga.</p>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
