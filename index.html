@@ -105,13 +105,91 @@
     details.faq > summary{cursor:pointer;list-style:none;font-weight:650}
     details.faq > div{margin-top:8px}
 
+    /* ========= BÔNUS — cards “presente” ========= */
+    .gifts{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+    @media (min-width:640px){
+      .gifts{grid-template-columns:1fr 1fr}
+    }
+    .gift-card{
+      display:flex; gap:14px; align-items:flex-start;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background: #fff;
+      padding:14px;
+      box-shadow: var(--shadow);
+    }
+    .gift-icon{
+      flex:0 0 44px; height:44px; width:44px;
+      display:grid; place-items:center;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background: linear-gradient(180deg,#fff,#f7f7f7);
+      font-size:20px;
+    }
+    .gift-body h4{margin:2px 0 6px 0; font-size:16px}
+    .gift-meta{color:var(--muted); font-size:.92rem}
+    .gift-badge{
+      display:inline-block; font-size:.8rem; padding:3px 8px; border:1px solid var(--pink);
+      background:color-mix(in oklab, var(--pink) 20%, #fff);
+      border-radius:999px; margin-left:8px;
+    }
+
+    /* ========= CTA flutuante (estilo Notion: discreto, minimal) ========= */
+    .float-cta{
+      position:fixed; inset:auto 16px 16px auto;
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      z-index:999;
+    }
+    .float-cta .label{
+      font-weight:650;
+    }
+    .float-cta .btn{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid #dcdcdc;
+      border-radius:10px;
+      text-decoration:none;
+      color:#111;
+      font-weight:650;
+      background:#fff;
+      transition:background .15s ease,transform .02s ease;
+      white-space:nowrap;
+    }
+    .float-cta .btn:hover{background:#f7f7f7}
+    .float-cta .btn:active{transform:translateY(1px)}
+    .float-cta .min{background:transparent;border:none;cursor:pointer;color:var(--muted)}
+    .float-cta.hidden{transform:translateY(12px);opacity:.0;pointer-events:none;transition:opacity .15s ease, transform .15s ease}
+    .float-cta.show{opacity:1;transform:none;transition:opacity .2s ease, transform .2s ease}
+
     @media (max-width:520px){
       .page{margin:36px auto;padding:0 18px}
       h1{font-size:26px}
+      .float-cta{inset:auto 12px 12px 12px; justify-content:space-between}
+      .float-cta .label{display:none}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .float-cta, .cta{transition:none}
     }
   </style>
 </head>
 <body>
+  <!-- CTA FLUTUANTE (sempre visível; discreto) -->
+  <div class="float-cta show" id="floatCta" role="region" aria-label="Ativar Equipe Não-Humana">
+    <span class="label">🧠 Pronto pra publicar hoje?</span>
+    <a class="btn" id="floatCtaBtn" href="#">Ativar minha Equipe →</a>
+    <button class="min" id="floatCtaMin" aria-label="Minimizar CTA">✕</button>
+  </div>
+
   <main class="page" role="main">
 
     <!-- ========== HERO / HEADER ========== -->
@@ -120,6 +198,8 @@
       <p class="lead">
         O <strong>Estúdio Infinito</strong> é onde mora a <strong>Equipe Não-Humana</strong> — 10 funcionários não humanos que assumem cada parte do seu conteúdo e entregam posts prontos todos os dias.
       </p>
+      <p>Você só precisa conversar com eles pra pedir o que quer: ideias, frases de abertura (gancho), roteiros de reels, carrosséis, stories ou legendas.</p>
+      <p>Eles pensam, escrevem e <strong>avaliam o seu post</strong> — você monta e publica.</p>
 
       <ul class="checklist" style="margin-top:14px">
         <li>10 funcionários não humanos — cada um responsável por uma parte do seu post</li>
@@ -129,7 +209,7 @@
       </ul>
 
       <p style="margin-top:14px">
-        <a class="cta" href="#" aria-label="Ativar meus Funcionários Não-Humanos agora">➡️ <strong>Ativar meus Funcionários Não-Humanos agora →</strong></a>
+        <a class="cta" id="heroCta" href="#" aria-label="Ativar meus Funcionários Não-Humanos agora">➡️ <strong>Ativar meus Funcionários Não-Humanos agora →</strong></a>
       </p>
 
       <p class="muted" style="margin-top:6px">
@@ -293,24 +373,78 @@
 
     <hr />
 
-    <!-- ========== BÔNUS ========== -->
+    <!-- ========== BÔNUS (Cards “presente” para reforçar valor) ========== -->
     <section aria-labelledby="bonus">
       <h2 id="bonus">🎁 Bônus que você vai receber ao entrar no Estúdio</h2>
 
-      <h3>💛 BÔNUS #1 — Post que Paga™</h3>
-      <p>Cada post criado e publicado dentro do Estúdio te dá <strong>+1 dia de assinatura gratuita</strong> no próximo ano. Quanto mais você cria, menos você paga.</p>
+      <div class="gifts">
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">🎁</div>
+          <div class="gift-body">
+            <h4>💛 BÔNUS #1 — Post que Paga™ <span class="gift-badge">Presente</span></h4>
+            <p>Cada post criado e publicado dentro do Estúdio rende <strong>+1 dia de assinatura gratuita</strong> no próximo ano. Quanto mais você cria, menos você paga.</p>
+            <p class="gift-meta">“Seu conteúdo literalmente paga sua renovação.”</p>
+          </div>
+        </article>
 
-      <h3>🏆 BÔNUS #2 — Campeonato Infinito™</h3>
-      <p>Cada post publicado soma pontos e te coloca no ranking. Ganhe prêmios reais, reconhecimento e participe de lives comigo no Instagram mostrando seus resultados.</p>
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">🏆</div>
+          <div class="gift-body">
+            <h4>BÔNUS #2 — Campeonato Infinito™ <span class="gift-badge">Presente</span></h4>
+            <p>Publique, some pontos, suba no ranking e ganhe prêmios reais enviados pra sua casa. Apareça nas lives comigo mostrando seus resultados.</p>
+            <p class="gift-meta">Gamificação para acelerar consistência.</p>
+          </div>
+        </article>
 
-      <h3>💬 BÔNUS #3 — Comunidade Sobre-Humano™</h3>
-      <p>Você nunca cria sozinha. Área de <strong>feedbacks</strong> e <strong>chat de ajuda</strong> para suporte em tempo real.</p>
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">💬</div>
+          <div class="gift-body">
+            <h4>BÔNUS #3 — Comunidade Sobre-Humano™ <span class="gift-badge">Presente</span></h4>
+            <p>Feedbacks práticos e chat de ajuda em tempo real. Ninguém fica perdido; sempre tem alguém pra destravar seu post.</p>
+            <p class="gift-meta">A parte humana do Estúdio.</p>
+          </div>
+        </article>
 
-      <h3>🎨 BÔNUS #4 — MINICURSO: Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva) — 10 min ⏳</h3>
-      <h3>🧠 BÔNUS #5 — MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer — 20 min ⏳</h3>
-      <h3>🎥 BÔNUS #6 — MINICURSO: Como eu gravo 7 Reels em menos de 30 minutos — 10 min ⏳</h3>
-      <h3>⚡ BÔNUS #7 — Ressuscitando seu perfil em 15 dias com os funcionários não humanos — 14 min ⏳</h3>
-      <h3>🎥 BÔNUS #8 — MINICURSO: Como criar o seu próprio funcionário não humano — 20 min ⏳</h3>
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">🎨</div>
+          <div class="gift-body">
+            <h4>BÔNUS #4 — MINICURSO: Design com ChatGPT (sem abrir o Canva) — 10 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <p>Crie todos os seus designs conversando. Fluxo pronto, sem fricção.</p>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">🧠</div>
+          <div class="gift-body">
+            <h4>BÔNUS #5 — MINICURSO: Gêmea Digital no celular (fotos com IA) — 20 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <p>Fotos com IA sem aparecer. Passo a passo direto no celular.</p>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">🎥</div>
+          <div class="gift-body">
+            <h4>BÔNUS #6 — MINICURSO: Como gravo 7 Reels em &lt; 30 min — 10 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <p>Meu fluxo real de gravação enxuto, replicável no mesmo dia.</p>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">⚡</div>
+          <div class="gift-body">
+            <h4>BÔNUS #7 — Ressuscite seu perfil em 15 dias — 14 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <p>Plano de choque usando a Equipe Não-Humana para voltas rápidas.</p>
+          </div>
+        </article>
+
+        <article class="gift-card">
+          <div class="gift-icon" aria-hidden="true">🛠️</div>
+          <div class="gift-body">
+            <h4>BÔNUS #8 — MINICURSO: Crie seu próprio Funcionário Não-Humano — 20 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <p>Aprenda a clonar sua lógica e automatizar ainda mais o processo.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
     <hr />
@@ -332,7 +466,7 @@
 
       <h2>🧠 É o jeito mais leve, rápido e inteligente de criar conteúdo todos os dias.</h2>
       <p>Ative sua Equipe Não-Humana agora e veja seu primeiro post no ar <strong>ainda hoje</strong> 👇🏻</p>
-      <p><a class="cta" href="#" aria-label="Ativar minha Equipe Não-Humana agora">➡️ <strong>Ativar minha Equipe Não-Humana agora →</strong></a></p>
+      <p><a class="cta" id="finalCta" href="#" aria-label="Ativar minha Equipe Não-Humana agora">➡️ <strong>Ativar minha Equipe Não-Humana agora →</strong></a></p>
     </section>
   </main>
 
@@ -396,6 +530,49 @@
         dlg.showModal();
         closeBtn.focus();
       }
+    })();
+
+    // ===== CTA Flutuante (comportamento simples estilo Notion) =====
+    (function floatingCTA(){
+      const float = document.getElementById('floatCta');
+      const minBtn = document.getElementById('floatCtaMin');
+      const heroCta = document.getElementById('heroCta');
+      const finalCta = document.getElementById('finalCta');
+      const floatBtn = document.getElementById('floatCtaBtn');
+
+      // Sincroniza o link do CTA flutuante com o principal, se houver
+      const targetHref = heroCta?.getAttribute('href') || '#';
+      floatBtn.setAttribute('href', targetHref);
+
+      // Minimizar/fechar
+      minBtn.addEventListener('click', () => {
+        float.classList.add('hidden');
+        // Reaparece depois de 8s ao rolar novamente
+        setTimeout(()=> float.classList.remove('hidden'), 8000);
+      });
+
+      // Esconde o CTA quando o botão final estiver visível (evita “duas chamadas” ao mesmo tempo)
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.target.id === 'finalCta'){
+            if(entry.isIntersecting){ float.classList.add('hidden'); }
+            else{ float.classList.remove('hidden'); }
+          }
+        });
+      }, {threshold: 0.2});
+      if(finalCta) observer.observe(finalCta);
+
+      // Leve fade/slide com scroll (aparece quando passa do hero)
+      let lastY = window.scrollY;
+      function onScroll(){
+        const y = window.scrollY;
+        // Se passou 200px, mostra; antes disso, mantém discreto
+        if(y > 200){ float.classList.add('show'); float.classList.remove('hidden'); }
+        else{ float.classList.remove('show'); float.classList.add('hidden'); }
+        lastY = y;
+      }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
     })();
   </script>
 </body>
