@@ -30,6 +30,15 @@
       --gift-6:#EFFFF7; /* 7 Reels */
       --gift-7:#FFF0F3; /* Ressuscite perfil */
       --gift-8:#EAF8FF; /* Crie seu funcionário */
+
+      /* Cores para os dois minicursos (passo 2) */
+      --mini-a:#FFF7E8; /* tom quente suave */
+      --mini-b:#EEF4FF; /* tom frio suave */
+      --mini-border: #e9e9e9;
+
+      /* Callout verde suave */
+      --green-soft:#E9F4EF;
+      --green-text:#0E3C2E;
     }
 
     /* ========= Base ========= */
@@ -140,8 +149,14 @@
       grid-template-columns: 1fr; margin-top:10px;
     }
     .minicards{display:grid; grid-template-columns:1fr; gap:10px}
-    .minicard{border:1px solid var(--border); border-radius:12px; padding:12px; background:#fff}
+    .minicard{
+      border:1px solid var(--mini-border);
+      border-radius:12px; padding:12px; background:#fff
+    }
+    .minicard.a{background:var(--mini-a)}
+    .minicard.b{background:var(--mini-b)}
     .mini-aside{align-self:stretch}
+    .callout.success{background:var(--green-soft); border-color: color-mix(in oklab, var(--green) 20%, #fff); color:var(--green-text)}
     @media(min-width:760px){
       .minirow{grid-template-columns: 1.2fr .8fr}
       .minicards{grid-template-columns:1fr 1fr}
@@ -218,6 +233,17 @@
       100%{box-shadow:0 0 0 0 rgba(29,77,58,0)}
     }
 
+    /* ========= Destaque final em bloco separado ========= */
+    .final-highlight{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:14px;
+      padding:18px;
+      margin-top:12px;
+      margin-bottom:26px; /* mantém espaço antes do CTA flutuante */
+      box-shadow:var(--shadow);
+    }
+
     @media (max-width:520px){
       .page{margin:36px auto;padding:0 18px; padding-bottom:128px;}
       h1{font-size:22px}
@@ -247,7 +273,6 @@
       <div class="hero-media">
         <div class="frame">
           <picture>
-            <!-- substitua o srcset abaixo pelo seu arquivo .webp -->
             <source srcset="hero.webp" type="image/webp" />
             <img src="hero-1720x688.webp" alt="Prévia do Estúdio Infinito com a Equipe Não-Humana em ação" width="1720" height="688" loading="eager" />
           </picture>
@@ -257,8 +282,6 @@
       <p class="lead">
         O <strong>Estúdio Infinito</strong> é onde mora a <strong>Equipe Não-Humana</strong> — 10 funcionários não humanos que assumem cada parte do seu conteúdo e entregam posts prontos todos os dias.
       </p>
-      <p>Você só precisa conversar com eles pra pedir o que quer: ideias, frases de abertura (gancho), roteiros de reels, carrosséis, stories ou legendas.</p>
-      <p>Eles pensam, escrevem e <strong>avaliam o seu post</strong> — você monta e publica.</p>
 
       <ul class="checklist" style="margin-top:14px">
         <li>10 funcionários não humanos — cada um responsável por uma parte do seu post</li>
@@ -266,7 +289,6 @@
         <li>Entre no <strong>Campeonato Infinito</strong> — transforme cada criação em pontos, conquistas e prêmios reais junto da sua equipe não humana.</li>
         <li>Em menos de <strong>1 hora</strong>, veja seu primeiro post <strong>criado, avaliado e pronto pra publicar</strong>.</li>
       </ul>
-      <!-- removido o texto “Todos moram dentro...” conforme pedido -->
     </header>
 
     <hr />
@@ -295,14 +317,14 @@
 
       <h3>2️⃣ Você escolhe entre imagem ou vídeo.</h3>
 
-      <!-- Dois mini cursos lado a lado + “Tudo dentro do Estúdio” à direita -->
+      <!-- Dois mini cursos lado a lado coloridos + “Tudo dentro do Estúdio” à direita -->
       <div class="minirow">
         <div class="minicards" aria-label="Minicursos">
-          <div class="minicard"><strong>MINICURSO: Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)</strong> — 10 minutos ⏳</div>
-          <div class="minicard"><strong>MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer</strong> — 20 minutos ⏳</div>
+          <div class="minicard a"><strong>MINICURSO: Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)</strong> — 10 minutos ⏳</div>
+          <div class="minicard b"><strong>MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer</strong> — 20 minutos ⏳</div>
         </div>
         <div class="mini-aside">
-          <div class="callout"><strong>✅ Em menos de uma tarde</strong> seu post está no ar — rápido, leve, fácil e com seu estilo.</div>
+          <div class="callout success"><strong>✅ Em menos de uma tarde</strong> seu post está no ar — rápido, leve, fácil e com seu estilo.</div>
           <blockquote>
             Tudo dentro do Estúdio. Tudo com a minha Equipe Não-Humana e a partir de agora, também é a sua equipe.
           </blockquote>
@@ -314,7 +336,7 @@
 
     <!-- ========== FAQ ========== -->
     <section aria-labelledby="faq">
-      <h2 id="faq">PERGUNTAS QUE SEMPRE ME FAZEM</h2>
+      <h2 id="faq">💬 PERGUNTAS QUE SEMPRE ME FAZEM</h2>
 
       <details class="faq" open>
         <summary>1. “Eu nunca usei IA. Vou saber fazer?”</summary>
@@ -520,9 +542,11 @@
       <p><strong>Tudo em um único lugar 🤝🏻</strong><br/>
       Você conversa com a NOSSA equipe, cria e publica em menos de uma tarde — direto do celular.</p>
 
-      <!-- Mantém a frase em destaque e visível acima do CTA flutuante -->
-      <h2 style="margin-bottom:18px;">🧠 É o jeito mais leve, rápido e inteligente de criar conteúdo todos os dias.</h2>
-      <p style="margin-bottom:22px;">Ative sua Equipe Não-Humana agora e veja seu primeiro post no ar <strong>ainda hoje</strong> 👇🏻</p>
+      <!-- Bloco separado com destaque e preservando espaço do CTA flutuante -->
+      <div class="final-highlight">
+        <h2 style="margin-bottom:10px;">🧠 É o jeito mais leve, rápido e inteligente de criar conteúdo todos os dias.</h2>
+        <p style="margin:0;">Ative sua Equipe Não-Humana agora e veja seu primeiro post no ar <strong>ainda hoje</strong> 👇🏻</p>
+      </div>
     </section>
   </main>
 
@@ -597,9 +621,8 @@
     (function floatingCTA(){
       const floatBtn = document.getElementById('floatCtaBtn');
       // Se houver uma URL específica, substitua aqui:
-      const targetHref = '#'; 
+      const targetHref = '#';
       floatBtn.setAttribute('href', targetHref);
-      // Nada de fechar; o padding-bottom do main já previne sobreposição da última frase.
     })();
   </script>
 </body>
