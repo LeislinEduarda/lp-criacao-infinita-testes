@@ -5,45 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Estúdio Infinito — Lar da Equipe Não-Humana</title>
   <meta name="description" content="10 funcionários não humanos criados e treinados para colocar seu post no ar em 58 minutos. Aprenda criando, direto do celular, com mini-cursos e comunidade." />
-  <style>
-    /* Simplicidade + clareza + “cara” de Notion/Word */
-    :root{
-      --bg:#fff;
-      --text:#1a1a1a;
-      --muted:#666;
-      --border:#e7e7e7;
-      --surface:#fafafa;
-      --radius:10px;
-    }
-    html,body{background:var(--bg);color:var(--text);margin:0;padding:0}
-    body{font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans";}
-    .page{max-width:860px;margin:56px auto;padding:0 24px;}
-    h1,h2,h3{margin:0 0 12px;line-height:1.25;letter-spacing:-0.01em;font-weight:750}
-    h1{font-size:32px}
-    h2{font-size:22px;margin-top:28px}
-    h3{font-size:18px;margin-top:20px}
-    p{margin:10px 0}
-    hr{border:0;border-top:1px solid var(--border);margin:28px 0}
-    ul,ol{margin:10px 0 10px 22px}
-    li+li{margin-top:4px}
-    .muted{color:var(--muted)}
-    .checklist{list-style:none;padding-left:0;margin-left:0}
-    .checklist li{padding-left:28px;position:relative}
-    .checklist li::before{content:"✅";position:absolute;left:0;top:0}
-    .block{border:1px solid var(--border);border-radius:var(--radius);background:#fff;padding:16px}
-    .callout{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:14px 16px}
-    blockquote{margin:10px 0;padding:8px 12px;border-left:3px solid var(--border);color:var(--text);background:#fff}
-    .cta{display:inline-block;padding:12px 18px;border:1px solid #dcdcdc;border-radius:10px;text-decoration:none;color:#111;font-weight:650;background:#fff;transition:background .15s ease,transform .02s ease}
-    .cta:hover{background:#f7f7f7}
-    .cta:active{transform:translateY(1px)}
-    .lead{font-size:18px}
-    @media (max-width:520px){.page{margin:36px auto;padding:0 18px} h1{font-size:26px}}
-  </style>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <main class="page" role="main">
     <!-- HERO -->
-    <header style="margin-bottom:6px;">
+    <header class="hero">
       <h1>🧠 10 funcionários não humanos criados e treinados por mim pra colocar seu post no ar em 58 minutos</h1>
       <p class="lead">
         O <strong>Estúdio Infinito</strong> é onde mora a <strong>Equipe Não-Humana</strong> — 10 funcionários não humanos que assumem cada parte do seu conteúdo e entregam posts prontos todos os dias.
@@ -51,18 +18,18 @@
       <p>Você só precisa conversar com eles pra pedir o que quer: ideias, frases de abertura (gancho), roteiros de reels, carrosséis, stories ou legendas.</p>
       <p>Eles pensam, escrevem e <strong>avaliam o seu post</strong> — você monta e publica.</p>
 
-      <ul class="checklist" style="margin-top:14px">
+      <ul class="checklist mt-14">
         <li>10 funcionários não humanos — cada um responsável por uma parte do seu post</li>
         <li>Cada post criado com a <strong>equipe não humana</strong> paga <strong>+1 dia da sua assinatura</strong> no próximo ano (<em>Post que Paga</em>)</li>
         <li>Entre no <strong>Campeonato Infinito</strong> — transforme cada criação em pontos, conquistas e prêmios reais junto da sua equipe não humana.</li>
         <li>Em menos de <strong>1 hora</strong>, veja seu primeiro post <strong>criado, avaliado e pronto pra publicar</strong>.</li>
       </ul>
 
-      <p style="margin-top:14px">
+      <p class="mt-14">
         <a class="cta" href="#" aria-label="Ativar meus Funcionários Não-Humanos agora">➡️ <strong>Ativar meus Funcionários Não-Humanos agora →</strong></a>
       </p>
 
-      <p class="muted" style="margin-top:6px">
+      <p class="muted mt-6">
         🧠 <em>Todos moram dentro do Estúdio Infinito — você conversa com cada um e vê eles trabalharem em tempo real.</em>
       </p>
     </header>
@@ -99,91 +66,81 @@
     <section aria-labelledby="faq">
       <h2 id="faq">PERGUNTAS QUE SEMPRE ME FAZEM</h2>
 
-      <h3>1. “Eu nunca usei IA. Vou saber fazer?”</h3>
-      <blockquote>Vai.</blockquote>
-      <blockquote>Aqui, você só conversa com a equipe — sem nada técnico.</blockquote>
-      <blockquote>Os mini-cursos são curtos, práticos e feitos pra você aprender criando.</blockquote>
-      <blockquote>Em poucos minutos, você já vai estar vendo suas respostas virarem posts prontos.</blockquote>
+      <details class="faq"><summary>1. “Eu nunca usei IA. Vou saber fazer?”</summary>
+        <blockquote>Vai.</blockquote>
+        <blockquote>Aqui, você só conversa com a equipe — sem nada técnico.</blockquote>
+        <blockquote>Os mini-cursos são curtos, práticos e feitos pra você aprender criando.</blockquote>
+        <blockquote>Em poucos minutos, você já vai estar vendo suas respostas virarem posts prontos.</blockquote>
+      </details>
 
-      <hr />
+      <details class="faq"><summary>2. “Preciso de computador ou dá pra fazer pelo celular?”</summary>
+        <blockquote>Dá pra fazer tudo pelo celular.</blockquote>
+        <blockquote>O Estúdio foi feito pra quem quer criar leve, rápido e de qualquer lugar —</blockquote>
+        <blockquote>sem precisar baixar nada, editar ou ter equipamento nenhum.</blockquote>
+      </details>
 
-      <h3>2. “Preciso de computador ou dá pra fazer pelo celular?”</h3>
-      <blockquote>Dá pra fazer tudo pelo celular.</blockquote>
-      <blockquote>O Estúdio foi feito pra quem quer criar leve, rápido e de qualquer lugar —</blockquote>
-      <blockquote>sem precisar baixar nada, editar ou ter equipamento nenhum.</blockquote>
+      <details class="faq"><summary>3. “Eu tenho um nicho diferente. Vai funcionar pra mim?”</summary>
+        <blockquote>Vai sim.</blockquote>
+        <blockquote>A Equipe Não-Humana™ trabalha com qualquer área.</blockquote>
+        <blockquote>O que muda são as informações que você passa pra ela — o Estúdio te mostra exatamente como adaptar pro seu tipo de conteúdo.</blockquote>
+      </details>
 
-      <hr />
+      <details class="faq"><summary>4. “Como eu falo com os funcionários não humanos?”</summary>
+        <blockquote>É igual conversar comigo aqui.</blockquote>
+        <blockquote>Você escreve o que quer, e eles respondem com ideias, roteiros, carrosséis, stories ou legendas prontas pra usar.</blockquote>
+        <blockquote>Literalmente, você conversa — e eles entregam.</blockquote>
+      </details>
 
-      <h3>3. “Eu tenho um nicho diferente. Vai funcionar pra mim?”</h3>
-      <blockquote>Vai sim.</blockquote>
-      <blockquote>A Equipe Não-Humana™ trabalha com qualquer área.</blockquote>
-      <blockquote>O que muda são as informações que você passa pra ela — o Estúdio te mostra exatamente como adaptar pro seu tipo de conteúdo.</blockquote>
+      <details class="faq"><summary>5. “Esses mini-cursos são teóricos?”</summary>
+        <blockquote>Não.</blockquote>
+        <blockquote>Você não vai assistir pra entender — vai assistir pra fazer.</blockquote>
+        <blockquote>Cada mini-curso foi pensado pra colocar o post no ar ou melhorar o que você já publica.</blockquote>
+      </details>
 
-      <hr />
+      <details class="faq"><summary>6. “Eu preciso assistir tudo antes de criar?”</summary>
+        <blockquote>Não.</blockquote>
+        <blockquote>O Estúdio foi feito pra você criar enquanto aprende.</blockquote>
+        <blockquote>Assiste um mini-curso, aplica e posta.</blockquote>
+        <blockquote>A ideia é que seu primeiro post saia no mesmo dia — não daqui a um mês.</blockquote>
+      </details>
 
-      <h3>4. “Como eu falo com os funcionários não humanos?”</h3>
-      <blockquote>É igual conversar comigo aqui.</blockquote>
-      <blockquote>Você escreve o que quer, e eles respondem com ideias, roteiros, carrosséis, stories ou legendas prontas pra usar.</blockquote>
-      <blockquote>Literalmente, você conversa — e eles entregam.</blockquote>
+      <details class="faq"><summary>7. “Quanto tempo leva pra criar o primeiro post?”</summary>
+        <blockquote>Menos de uma hora.</blockquote>
+        <blockquote>Você aprende e cria ao mesmo tempo, seguindo o passo a passo dentro do Estúdio.</blockquote>
+        <blockquote>É rápido, leve e impossível de travar.</blockquote>
+      </details>
 
-      <hr />
+      <details class="faq"><summary>8. “Tem acompanhamento ou eu fico sozinha criando?”</summary>
+        <blockquote>Você nunca cria sozinha.</blockquote>
+        <blockquote>Dentro do Estúdio tem a <strong>Comunidade Sobre-Humano™</strong>.</blockquote>
+        <blockquote>Lá dentro, tem uma área só pra pedir <strong>feedbacks</strong>.</blockquote>
+        <blockquote>E também tem o <strong>chat da comunidade</strong>. É só mandar mensagem ali que algum aluno (ou eu mesmo) te ajuda na hora. Ninguém fica perdido — sempre tem alguém pronto pra te puxar e continuar criando.</blockquote>
+      </details>
 
-      <h3>5. “Esses mini-cursos são teóricos?”</h3>
-      <blockquote>Não.</blockquote>
-      <blockquote>Você não vai assistir pra entender — vai assistir pra fazer.</blockquote>
-      <blockquote>Cada mini-curso foi pensado pra colocar o post no ar ou melhorar o que você já publica.</blockquote>
+      <details class="faq"><summary>9. “Como funciona o Post que Paga?”</summary>
+        <blockquote>Cada post que você cria e publica dentro do Estúdio vale <strong>+1 dia de acesso gratuito</strong>.</blockquote>
+        <blockquote>Ou seja: quanto mais você cria, menos você paga.</blockquote>
+        <blockquote>Aqui, o conteúdo literalmente trabalha pra você.</blockquote>
+      </details>
 
-      <hr />
+      <details class="faq"><summary>10. “O Estúdio é uma assinatura mensal?”</summary>
+        <blockquote>Não.</blockquote>
+        <blockquote>Você paga <strong>uma vez por ano</strong> os 10 funcionários não humanos, os mini-cursos, a comunidade e as recompensas.</blockquote>
+        <blockquote>E cada post publicado ainda paga +1 dia da sua renovação pro próximo ano.</blockquote>
+      </details>
 
-      <h3>6. “Eu preciso assistir tudo antes de criar?”</h3>
-      <blockquote>Não.</blockquote>
-      <blockquote>O Estúdio foi feito pra você criar enquanto aprende.</blockquote>
-      <blockquote>Assiste um mini-curso, aplica e posta.</blockquote>
-      <blockquote>A ideia é que seu primeiro post saia no mesmo dia — não daqui a um mês.</blockquote>
+      <details class="faq"><summary>11. “R$388 por ano é tudo incluso mesmo?”</summary>
+        <blockquote>Sim. Esse valor é só do Estúdio do meu método, dos mini-cursos, da comunidade e da Equipe Não-Humana que te ajuda a criar.</blockquote>
+        <blockquote>As outras duas IAs que eu uso (ChatGPT e Higgsfield) têm planos próprios, mas o ChatGPT você pode usar na versão gratuita.</blockquote>
+        <blockquote>O Higgsfield, pra criar sua gêmea digital, tem um plano baratinho — mais barato que uma pizza 🍕</blockquote>
+      </details>
 
-      <hr />
-
-      <h3>7. “Quanto tempo leva pra criar o primeiro post?”</h3>
-      <blockquote>Menos de uma hora.</blockquote>
-      <blockquote>Você aprende e cria ao mesmo tempo, seguindo o passo a passo dentro do Estúdio.</blockquote>
-      <blockquote>É rápido, leve e impossível de travar.</blockquote>
-
-      <hr />
-
-      <h3>8. “Tem acompanhamento ou eu fico sozinha criando?”</h3>
-      <blockquote>Você nunca cria sozinha.</blockquote>
-      <blockquote>Dentro do Estúdio tem a <strong>Comunidade Sobre-Humano™</strong>.</blockquote>
-      <blockquote>Lá dentro, tem uma área só pra pedir <strong>feedbacks</strong>.</blockquote>
-      <blockquote>E também tem o <strong>chat da comunidade</strong>. É só mandar mensagem ali que algum aluno (ou eu mesmo) te ajuda na hora. Ninguém fica perdido — sempre tem alguém pronto pra te puxar e continuar criando.</blockquote>
-
-      <hr />
-
-      <h3>9. “Como funciona o Post que Paga?”</h3>
-      <blockquote>Cada post que você cria e publica dentro do Estúdio vale <strong>+1 dia de acesso gratuito</strong>.</blockquote>
-      <blockquote>Ou seja: quanto mais você cria, menos você paga.</blockquote>
-      <blockquote>Aqui, o conteúdo literalmente trabalha pra você.</blockquote>
-
-      <hr />
-
-      <h3>10. “O Estúdio é uma assinatura mensal?”</h3>
-      <blockquote>Não.</blockquote>
-      <blockquote>Você paga <strong>uma vez por ano</strong> os 10 funcionários não humanos, os mini-cursos, a comunidade e as recompensas.</blockquote>
-      <blockquote>E cada post publicado ainda paga +1 dia da sua renovação pro próximo ano.</blockquote>
-
-      <hr />
-
-      <h3>11. “R$388 por ano é tudo incluso mesmo?”</h3>
-      <blockquote>Sim. Esse valor é só do Estúdio do meu método, dos mini-cursos, da comunidade e da Equipe Não-Humana que te ajuda a criar.</blockquote>
-      <blockquote>As outras duas IAs que eu uso (ChatGPT e Higgsfield) têm planos próprios, mas o ChatGPT você pode usar na versão gratuita.</blockquote>
-      <blockquote>O Higgsfield, pra criar sua gêmea digital, tem um plano baratinho — mais barato que uma pizza 🍕</blockquote>
-
-      <hr />
-
-      <h3>12. “E se eu não gostar ou não conseguir criar?”</h3>
-      <blockquote>Sinceramente? É impossível não criar aqui dentro.</blockquote>
-      <blockquote>Você tem 10 funcionários não humanos prontos pra trabalhar por você, ganha +1 dia de assinatura por post publicado, pode conquistar prêmios reais no Campeonato Infinito™ e vê outras pessoas criando e viralizando com a Equipe Não-Humana™.</blockquote>
-      <blockquote>E se o seu post viralizar, você participa de uma live comigo no Instagram pra mostrar o resultado.</blockquote>
-      <blockquote>É o tipo de ambiente onde é literalmente mais fácil criar do que não criar.</blockquote>
+      <details class="faq"><summary>12. “E se eu não gostar ou não conseguir criar?”</summary>
+        <blockquote>Sinceramente? É impossível não criar aqui dentro.</blockquote>
+        <blockquote>Você tem 10 funcionários não humanos prontos pra trabalhar por você, ganha +1 dia de assinatura por post publicado, pode conquistar prêmios reais no Campeonato Infinito™ e vê outras pessoas criando e viralizando com a Equipe Não-Humana™.</blockquote>
+        <blockquote>E se o seu post viralizar, você participa de uma live comigo no Instagram pra mostrar o resultado.</blockquote>
+        <blockquote>É o tipo de ambiente onde é literalmente mais fácil criar do que não criar.</blockquote>
+      </details>
     </section>
 
     <hr />
@@ -249,5 +206,7 @@
       <p><a class="cta" href="#" aria-label="Ativar minha Equipe Não-Humana agora">➡️ <strong>Ativar minha Equipe Não-Humana agora →</strong></a></p>
     </section>
   </main>
+
+  <script src="./script.js"></script>
 </body>
 </html>
