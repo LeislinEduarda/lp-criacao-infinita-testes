@@ -20,27 +20,33 @@
       --wine:#7C1E28;
       --green:#1D4D3A;
       --pink:#F9C8D2;
-      --yellow:#FFE9A8;
-      --blue:#CFE8FF;
-      --lilac:#E7D6FF;
-      --mint:#D7F5EA;
-      --peach:#FFD8C2;
+
+      /* Acentos bônus */
+      --gift-1:#FDEDEB; /* Post que Paga */
+      --gift-2:#EDF7F1; /* Campeonato */
+      --gift-3:#EEF4FF; /* Comunidade */
+      --gift-4:#FFF7E8; /* Design c/ ChatGPT */
+      --gift-5:#F6F0FF; /* Gêmea Digital */
+      --gift-6:#EFFFF7; /* 7 Reels */
+      --gift-7:#FFF0F3; /* Ressuscite perfil */
+      --gift-8:#EAF8FF; /* Crie seu funcionário */
     }
 
     /* ========= Base ========= */
     html,body{background:var(--bg);color:var(--text);margin:0;padding:0}
     body{font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans";}
-    .page{max-width:860px;margin:56px auto;padding:0 24px;}
+    .page{max-width:860px;margin:56px auto;padding:0 24px; padding-bottom:120px;} /* espaço p/ CTA flutuante */
     h1,h2,h3{margin:0 0 12px;line-height:1.25;letter-spacing:-0.01em;font-weight:750}
-    h1{font-size:28px;text-transform:uppercase} /* menor e em CAPS, cara de Notion */
-    h2{font-size:20px;margin-top:28px;text-transform:uppercase}
-    h3{font-size:18px;margin-top:20px}
+    /* Título com cara de Notion: caps e menor que o hero (sem alterar o texto original) */
+    h1{text-transform:uppercase;font-size:28px}
+    h2{font-size:22px;margin-top:20px}
+    h3{font-size:18px;margin-top:16px}
     p{margin:10px 0}
-    hr{border:0;border-top:1px solid var(--border);margin:24px 0}
+    hr{border:0;border-top:1px solid var(--border);margin:20px 0} /* menos espaço entre seções */
     ul,ol{margin:10px 0 10px 22px}
     li+li{margin-top:4px}
     .muted{color:var(--muted)}
-    .lead{font-size:16px} /* hero no mesmo tamanho */
+    .lead{font-size:16px} /* hero todo no mesmo tamanho */
     .block{border:1px solid var(--border);border-radius:var(--radius);background:#fff;padding:16px}
     .callout{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:14px 16px}
     .checklist{list-style:none;padding-left:0;margin-left:0}
@@ -49,23 +55,29 @@
 
     /* ========= Container/section helpers ========= */
     .container{max-width: 860px; margin: 0 auto; padding: 0 24px;}
-    .section-tight{padding: 18px 0; background: var(--bg);} /* menos espaço vertical */
+    .section-tight{padding: 14px 0; background: var(--bg);} /* menos espaço p/ aproximar seções */
     .center{text-align:center}
     .small{font-size:.92rem}
     .h-serif{font-weight:750; letter-spacing:-.01em}
 
-    /* ========= HERO media ========= */
-    .hero-media{
-      position:relative;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;margin:14px 0 6px;
-      /* 1720 x 688 => 688/1720 = 0.4 => 40% */
-      padding-top:40%;
+    /* ========= HERO: slot de imagem 1720×688 (webp) ========= */
+    .hero-media{margin:14px 0 4px 0}
+    .hero-media picture, .hero-media img{
+      display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border);
     }
-    .hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    /* Mantém proporção aproximada 1720x688 */
+    .hero-media .frame{
+      position:relative; width:100%; padding-top:40%; /* ~688/1720 */
+      border-radius:14px; overflow:hidden; border:1px solid var(--border); background:#fafafa;
+    }
+    .hero-media .frame img{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    }
 
-    /* ========= STORIES — Equipe Não-Humana (grid) ========= */
+    /* ========= STORIES — Equipe Não-Humana (grid) + fotos redondas ========= */
     .stories-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+      grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
       gap:14px;
     }
     .story{
@@ -83,14 +95,12 @@
       border-color: color-mix(in oklab, var(--green) 24%, #fff);
     }
     .story:focus-within{outline:2px solid color-mix(in oklab, var(--wine) 36%, #fff); outline-offset:3px;}
-    .story .bubble,
-    .story .avatar{
-      width:70px; height:70px; border-radius:50%; margin-inline:auto;
+    .story .bubble{
+      width:84px; height:84px; border-radius:50%; margin-inline:auto; overflow:hidden;
       background:linear-gradient(135deg,#eee,#fff);
       box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green);
-      display:block;
     }
-    .story .avatar{object-fit:cover} /* suporta fotos reais */
+    .story .bubble img{width:100%; height:100%; object-fit:cover; display:block;}
     .story h5{margin:8px 0 2px 0; font-size:.98rem; color:var(--green)}
     .story small{color:var(--muted)}
     .story-btn{all:unset;display:block;width:100%;cursor:pointer}
@@ -112,33 +122,32 @@
     }
     .modal .close:focus{outline:2px solid var(--wine); outline-offset:2px}
 
-    /* ========= FAQ (details) ========= */
+    /* ========= FAQ (pergunta destacada, resposta escaneável) ========= */
     details.faq{border:1px solid var(--border);border-radius:12px;background:#fff;padding:10px 12px;margin:10px 0}
     details.faq[open]{background:#fcfcfc}
     details.faq > summary{
-      cursor:pointer;list-style:none;font-weight:800; /* mais destaque */
-      padding:6px 4px;border-left:4px solid var(--green);text-transform:uppercase;letter-spacing:.01em;
+      cursor:pointer;list-style:none;font-weight:800;letter-spacing:.001em;
+      padding:6px 0;
     }
     details.faq > div{margin-top:8px}
-    /* respostas escaneáveis */
-    details.faq > div p{margin:6px 0}
-    details.faq > div p strong{background:var(--surface);padding:0 4px;border-radius:6px}
-    details.faq > div p + p{border-left:2px dotted var(--border); padding-left:10px}
+    details.faq p{margin:6px 0}
+    details.faq p strong{font-weight:800}
+    details.faq div{display:grid; gap:6px}
 
-    /* ========= COMO FUNCIONA — listas em linha ========= */
-    .inline-two{
-      display:grid; gap:10px; grid-template-columns:1fr;
+    /* ========= COMO FUNCIONA — minicursos lado a lado + callout à direita ========= */
+    .minirow{
+      display:grid; gap:14px; align-items:start;
+      grid-template-columns: 1fr; margin-top:10px;
     }
-    @media (min-width:640px){
-      .inline-two{grid-template-columns:1fr 1fr}
+    .minicards{display:grid; grid-template-columns:1fr; gap:10px}
+    .minicard{border:1px solid var(--border); border-radius:12px; padding:12px; background:#fff}
+    .mini-aside{align-self:stretch}
+    @media(min-width:760px){
+      .minirow{grid-template-columns: 1.2fr .8fr}
+      .minicards{grid-template-columns:1fr 1fr}
     }
-    .blockquote-inline{
-      display:flex; align-items:flex-start; gap:10px; border:1px dashed var(--border);
-      border-radius:10px; padding:10px 12px; background:#fff;
-    }
-    .blockquote-inline::before{content:"💬"; flex:0 0 auto}
 
-    /* ========= BÔNUS — cards “doces/presentes” ========= */
+    /* ========= BÔNUS — cards “presente” com cores coerentes ========= */
     .gifts{
       display:grid;
       grid-template-columns:1fr;
@@ -154,13 +163,6 @@
       background: #fff;
       padding:14px;
       box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .gift-sugar{
-      position:absolute; inset:auto -20px -20px auto; width:120px; height:120px; border-radius:50%;
-      opacity:.12; filter:blur(2px);
-      pointer-events:none;
     }
     .gift-icon{
       flex:0 0 44px; height:44px; width:44px;
@@ -173,31 +175,30 @@
     .gift-body h4{margin:2px 0 6px 0; font-size:16px}
     .gift-meta{color:var(--muted); font-size:.92rem}
     .gift-badge{
-      display:inline-block; font-size:.8rem; padding:3px 8px; border:1px solid var(--pink);
-      background:color-mix(in oklab, var(--pink) 20%, #fff);
-      border-radius:999px; margin-left:8px;
+      display:inline-block; font-size:.8rem; padding:3px 8px; border:1px solid rgba(0,0,0,.08);
+      border-radius:999px; margin-left:8px; background:#fff;
     }
-    /* Paletas por “sabor” */
-    .gift-yellow .gift-sugar{background:var(--yellow)}
-    .gift-blue .gift-sugar{background:var(--blue)}
-    .gift-lilac .gift-sugar{background:var(--lilac)}
-    .gift-mint .gift-sugar{background:var(--mint)}
-    .gift-peach .gift-sugar{background:var(--peach)}
-    .gift-pink .gift-sugar{background:var(--pink)}
+    /* cores por bônus */
+    .gift-1{background:var(--gift-1)}
+    .gift-2{background:var(--gift-2)}
+    .gift-3{background:var(--gift-3)}
+    .gift-4{background:var(--gift-4)}
+    .gift-5{background:var(--gift-5)}
+    .gift-6{background:var(--gift-6)}
+    .gift-7{background:var(--gift-7)}
+    .gift-8{background:var(--gift-8)}
 
-    /* ========= CTA flutuante (verde + pulsar) ========= */
+    /* ========= CTA flutuante (único CTA) ========= */
     .float-cta{
       position:fixed; inset:auto 16px 16px auto;
-      display:flex; align-items:center; gap:10px;
-      padding:10px 14px;
+      display:flex; align-items:center; gap:12px;
+      padding:12px 14px;
       background:#fff;
       border:1px solid var(--border);
       border-radius:14px;
-      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      box-shadow:0 10px 30px rgba(0,0,0,.10);
       z-index:999;
-      opacity:0; transform:translateY(12px); transition:opacity .2s ease, transform .2s ease;
     }
-    .float-cta.show{opacity:1; transform:none}
     .float-cta .label{font-weight:650}
     .float-cta .btn{
       display:inline-block;
@@ -206,36 +207,34 @@
       border-radius:10px;
       text-decoration:none;
       color:#fff;
+      background: var(--green);
       font-weight:750;
-      background:var(--green);
       white-space:nowrap;
-      position:relative;
       animation:pulse 1.6s ease-in-out infinite;
     }
     @keyframes pulse{
-      0%,100%{box-shadow:0 0 0 0 rgba(29,77,58,.32)}
-      50%{box-shadow:0 0 0 8px rgba(29,77,58,.0)}
+      0%{box-shadow:0 0 0 0 rgba(29,77,58,.35)}
+      70%{box-shadow:0 0 0 10px rgba(29,77,58,0)}
+      100%{box-shadow:0 0 0 0 rgba(29,77,58,0)}
     }
 
-    /* evitar sobrepor conteúdo final */
-    .cta-spacer{height:96px}
-
     @media (max-width:520px){
-      .page{margin:36px auto;padding:0 18px}
+      .page{margin:36px auto;padding:0 18px; padding-bottom:128px;}
       h1{font-size:22px}
       .float-cta{inset:auto 12px 12px 12px; justify-content:space-between}
       .float-cta .label{display:none}
     }
+
     @media (prefers-reduced-motion: reduce){
-      .float-cta, .btn{transition:none; animation:none}
+      .float-cta .btn{animation:none}
     }
   </style>
 </head>
 <body>
-  <!-- CTA FLUTUANTE (único CTA) -->
+  <!-- CTA FLUTUANTE (único CTA; sem fechar; destaque em verde com pulsar) -->
   <div class="float-cta" id="floatCta" role="region" aria-label="Ativar Equipe Não-Humana">
     <span class="label">🧠 Pronto pra publicar hoje?</span>
-    <a class="btn" id="floatCtaBtn" href="#">Ativar minha Equipe Não-Humana agora →</a>
+    <a class="btn" id="floatCtaBtn" href="#">Ativar minha Equipe Não-Humana →</a>
   </div>
 
   <main class="page" role="main">
@@ -243,23 +242,31 @@
     <!-- ========== HERO / HEADER ========== -->
     <header style="margin-bottom:6px;">
       <h1>🧠 10 funcionários não humanos criados e treinados por mim pra colocar seu post no ar em 58 minutos</h1>
+
+      <!-- Slot de imagem 1720×688 (WEBP) -->
+      <div class="hero-media">
+        <div class="frame">
+          <picture>
+            <!-- substitua o srcset abaixo pelo seu arquivo .webp -->
+            <source srcset="hero-1720x688.webp" type="image/webp" />
+            <img src="hero-1720x688.webp" alt="Prévia do Estúdio Infinito com a Equipe Não-Humana em ação" width="1720" height="688" loading="eager" />
+          </picture>
+        </div>
+      </div>
+
       <p class="lead">
         O <strong>Estúdio Infinito</strong> é onde mora a <strong>Equipe Não-Humana</strong> — 10 funcionários não humanos que assumem cada parte do seu conteúdo e entregam posts prontos todos os dias.
       </p>
       <p>Você só precisa conversar com eles pra pedir o que quer: ideias, frases de abertura (gancho), roteiros de reels, carrosséis, stories ou legendas.</p>
       <p>Eles pensam, escrevem e <strong>avaliam o seu post</strong> — você monta e publica.</p>
 
-      <!-- SLOT DE IMAGEM DO HERO 1720x688 -->
-      <figure class="hero-media" aria-label="Imagem destaque do Estúdio Infinito">
-        <img id="heroImg" src="" alt="Espaço do Estúdio Infinito (adicione sua imagem 1720×688 aqui)" />
-      </figure>
-
-      <ul class="checklist" style="margin-top:8px">
+      <ul class="checklist" style="margin-top:14px">
         <li>10 funcionários não humanos — cada um responsável por uma parte do seu post</li>
         <li>Cada post criado com a <strong>equipe não humana</strong> paga <strong>+1 dia da sua assinatura</strong> no próximo ano (<em>Post que Paga</em>)</li>
         <li>Entre no <strong>Campeonato Infinito</strong> — transforme cada criação em pontos, conquistas e prêmios reais junto da sua equipe não humana.</li>
         <li>Em menos de <strong>1 hora</strong>, veja seu primeiro post <strong>criado, avaliado e pronto pra publicar</strong>.</li>
       </ul>
+      <!-- removido o texto “Todos moram dentro...” conforme pedido -->
     </header>
 
     <hr />
@@ -267,8 +274,8 @@
     <!-- ========== STORIES — Equipe Não-Humana (Perfis em cartões) ========== -->
     <section class="section-tight" id="equipe">
       <div class="container">
-        <h2 class="h-serif">Equipe Não-Humana™ — perfis</h2>
-        <p class="muted small">Toque em um perfil para ver o que cada “funcionário” entrega.</p>
+        <h2 class="h-serif center">Equipe Não-Humana™ — perfis</h2>
+        <p class="center muted small">Toque em um perfil para ver o que cada “funcionário” entrega.</p>
         <div class="stories-grid" id="storiesGrid" aria-live="polite"></div>
       </div>
     </section>
@@ -287,14 +294,19 @@
       <hr />
 
       <h3>2️⃣ Você escolhe entre imagem ou vídeo.</h3>
-      <p>Se escolher <strong>vídeo</strong>, você assiste ao minicurso onde eu mostro <strong>como eu gravo 7 reels em menos de 30 minutos</strong>, e depois é só gravar e publicar.</p>
-      <p>Se escolher <strong>imagem</strong>, você decide entre esses minicursos:</p>
-      <ul class="inline-two">
-        <li><strong>MINICURSO: Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)</strong> — 10 minutos ⏳</li>
-        <li><strong>MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer</strong> — 20 minutos ⏳</li>
-      </ul>
-      <div class="blockquote-inline">
-        Tudo dentro do Estúdio. Tudo com a minha Equipe Não-Humana e a partir de agora, também é a sua equipe.
+
+      <!-- Dois mini cursos lado a lado + “Tudo dentro do Estúdio” à direita -->
+      <div class="minirow">
+        <div class="minicards" aria-label="Minicursos">
+          <div class="minicard"><strong>MINICURSO: Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)</strong> — 10 minutos ⏳</div>
+          <div class="minicard"><strong>MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer</strong> — 20 minutos ⏳</div>
+        </div>
+        <div class="mini-aside">
+          <div class="callout"><strong>✅ Em menos de uma tarde</strong> seu post está no ar — rápido, leve, fácil e com seu estilo.</div>
+          <blockquote>
+            Tudo dentro do Estúdio. Tudo com a minha Equipe Não-Humana e a partir de agora, também é a sua equipe.
+          </blockquote>
+        </div>
       </div>
     </section>
 
@@ -417,14 +429,13 @@
 
     <hr />
 
-    <!-- ========== BÔNUS (Doces/Presentes) ========== -->
+    <!-- ========== BÔNUS (Cards “presente” com cores) ========== -->
     <section aria-labelledby="bonus">
       <h2 id="bonus">🎁 Bônus que você vai receber ao entrar no Estúdio</h2>
 
       <div class="gifts">
-        <article class="gift-card gift-yellow">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍬</div>
+        <article class="gift-card gift-1">
+          <div class="gift-icon" aria-hidden="true">🎁</div>
           <div class="gift-body">
             <h4>💛 BÔNUS #1 — Post que Paga™ <span class="gift-badge">Presente</span></h4>
             <p>Cada post criado e publicado dentro do Estúdio rende <strong>+1 dia de assinatura gratuita</strong> no próximo ano. Quanto mais você cria, menos você paga.</p>
@@ -432,67 +443,60 @@
           </div>
         </article>
 
-        <article class="gift-card gift-blue">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍭</div>
+        <article class="gift-card gift-2">
+          <div class="gift-icon" aria-hidden="true">🏆</div>
           <div class="gift-body">
-            <h4>🏆 BÔNUS #2 — Campeonato Infinito™ <span class="gift-badge">Presente</span></h4>
+            <h4>BÔNUS #2 — Campeonato Infinito™ <span class="gift-badge">Presente</span></h4>
             <p>Publique, some pontos, suba no ranking e ganhe prêmios reais enviados pra sua casa. Apareça nas lives comigo mostrando seus resultados.</p>
             <p class="gift-meta">Gamificação para acelerar consistência.</p>
           </div>
         </article>
 
-        <article class="gift-card gift-lilac">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍫</div>
+        <article class="gift-card gift-3">
+          <div class="gift-icon" aria-hidden="true">💬</div>
           <div class="gift-body">
-            <h4>💬 BÔNUS #3 — Comunidade Sobre-Humano™ <span class="gift-badge">Presente</span></h4>
+            <h4>BÔNUS #3 — Comunidade Sobre-Humano™ <span class="gift-badge">Presente</span></h4>
             <p>Feedbacks práticos e chat de ajuda em tempo real. Ninguém fica perdido; sempre tem alguém pra destravar seu post.</p>
             <p class="gift-meta">A parte humana do Estúdio.</p>
           </div>
         </article>
 
-        <article class="gift-card gift-mint">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍡</div>
+        <article class="gift-card gift-4">
+          <div class="gift-icon" aria-hidden="true">🎨</div>
           <div class="gift-body">
-            <h4>🎨 BÔNUS #4 — MINICURSO: Design com ChatGPT (sem abrir o Canva) — 10 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <h4>BÔNUS #4 — MINICURSO: Design com ChatGPT (sem abrir o Canva) — 10 min ⏳ <span class="gift-badge">Presente</span></h4>
             <p>Crie todos os seus designs conversando. Fluxo pronto, sem fricção.</p>
           </div>
         </article>
 
-        <article class="gift-card gift-peach">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍪</div>
+        <article class="gift-card gift-5">
+          <div class="gift-icon" aria-hidden="true">🧠</div>
           <div class="gift-body">
-            <h4>🧠 BÔNUS #5 — MINICURSO: Gêmea Digital no celular (fotos com IA) — 20 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <h4>BÔNUS #5 — MINICURSO: Gêmea Digital no celular (fotos com IA) — 20 min ⏳ <span class="gift-badge">Presente</span></h4>
             <p>Fotos com IA sem aparecer. Passo a passo direto no celular.</p>
           </div>
         </article>
 
-        <article class="gift-card gift-pink">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍩</div>
+        <article class="gift-card gift-6">
+          <div class="gift-icon" aria-hidden="true">🎥</div>
           <div class="gift-body">
-            <h4>🎥 BÔNUS #6 — MINICURSO: Como gravo 7 Reels em &lt; 30 min — 10 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <h4>BÔNUS #6 — MINICURSO: Como gravo 7 Reels em &lt; 30 min — 10 min ⏳ <span class="gift-badge">Presente</span></h4>
             <p>Meu fluxo real de gravação enxuto, replicável no mesmo dia.</p>
           </div>
         </article>
 
-        <article class="gift-card gift-blue">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍬</div>
+        <article class="gift-card gift-7">
+          <div class="gift-icon" aria-hidden="true">⚡</div>
           <div class="gift-body">
-            <h4>⚡ BÔNUS #7 — Ressuscite seu perfil em 15 dias — 14 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <h4>BÔNUS #7 — Ressuscite seu perfil em 15 dias — 14 min ⏳ <span class="gift-badge">Presente</span></h4>
             <p>Plano de choque usando a Equipe Não-Humana para voltas rápidas.</p>
           </div>
         </article>
 
-        <article class="gift-card gift-mint">
-          <div class="gift-sugar"></div>
-          <div class="gift-icon" aria-hidden="true">🍭</div>
+        <article class="gift-card gift-8">
+          <div class="gift-icon" aria-hidden="true">🛠️</div>
           <div class="gift-body">
-            <h4>🛠️ BÔNUS #8 — MINICURSO: Crie seu próprio Funcionário Não-Humano — 20 min ⏳ <span class="gift-badge">Presente</span></h4>
+            <h4>BÔNUS #8 — MINICURSO: Crie seu próprio Funcionário Não-Humano — 20 min ⏳ <span class="gift-badge">Presente</span></h4>
             <p>Aprenda a clonar sua lógica e automatizar ainda mais o processo.</p>
           </div>
         </article>
@@ -501,7 +505,7 @@
 
     <hr />
 
-    <!-- ========== RESUMO (sem CTA fixo para não conflitar) ========== -->
+    <!-- ========== RESUMO FINAL ========== -->
     <section aria-labelledby="resumo">
       <h2 id="resumo">🧶 Resumindo o que você leva ao entrar no Estúdio Infinito agora:</h2>
       <ul class="checklist">
@@ -516,25 +520,25 @@
       <p><strong>Tudo em um único lugar 🤝🏻</strong><br/>
       Você conversa com a NOSSA equipe, cria e publica em menos de uma tarde — direto do celular.</p>
 
-      <h2>🧠 É o jeito mais leve, rápido e inteligente de criar conteúdo todos os dias.</h2>
-      <p>Ative sua Equipe Não-Humana agora e veja seu primeiro post no ar <strong>ainda hoje</strong> 👇🏻</p>
-      <div class="cta-spacer" aria-hidden="true"></div> <!-- evita o CTA flutuante cobrir a frase acima -->
+      <!-- Mantém a frase em destaque e visível acima do CTA flutuante -->
+      <h2 style="margin-bottom:18px;">🧠 É o jeito mais leve, rápido e inteligente de criar conteúdo todos os dias.</h2>
+      <p style="margin-bottom:22px;">Ative sua Equipe Não-Humana agora e veja seu primeiro post no ar <strong>ainda hoje</strong> 👇🏻</p>
     </section>
   </main>
 
   <script>
     // ===== Lista dos “funcionários” =====
     const ENH = [
-      { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”' },
-      { nome:'Larissa dos Roteiros', func:'Roteiros práticos', exemplo:'Estrutura 3A: Atenção, Âncora, Ação.' },
-      { nome:'José dos Stories', func:'Sequências que prendem', exemplo:'3 stories: Puxada • Prova • Ponto final com pergunta.' },
-      { nome:'Carlos dos Carrosséis', func:'Carrosséis que convertem', exemplo:'Slide 1: pergunta que resolve. Slide 10: decisão.' },
-      { nome:'Bruno do Branding', func:'Tom e identidade', exemplo:'3 palavras-âncora + 2 proibições.' },
-      { nome:'Dudu da Bio', func:'Perfil que vende', exemplo:'Headline em 7 palavras + link com promessa.' },
-      { nome:'Laura das Legendas', func:'Texto que flui', exemplo:'Frase-gancho + quebra + convite.' },
-      { nome:'Bia do Público', func:'Leitura de audiência', exemplo:'Mapa de dores x desejos atualizado.' },
-      { nome:'Maria das Ideias', func:'Estoque infinito', exemplo:'5 fontes de ideias do mesmo produto.' },
-      { nome:'Leonardo da Viralização', func:'Ajustes de alcance', exemplo:'Tensão + contraste + repetição útil.' }
+      { nome:'João dos Ganchos', func:'Começos que fazem parar', exemplo:'“Você não precisa de mais ideias. Precisa disso aqui.”', foto:'enh-joao.webp' },
+      { nome:'Larissa dos Roteiros', func:'Roteiros práticos', exemplo:'Estrutura 3A: Atenção, Âncora, Ação.', foto:'enh-larissa.webp' },
+      { nome:'José dos Stories', func:'Sequências que prendem', exemplo:'3 stories: Puxada • Prova • Ponto final com pergunta.', foto:'enh-jose.webp' },
+      { nome:'Carlos dos Carrosséis', func:'Carrosséis que convertem', exemplo:'Slide 1: pergunta que resolve. Slide 10: decisão.', foto:'enh-carlos.webp' },
+      { nome:'Bruno do Branding', func:'Tom e identidade', exemplo:'3 palavras-âncora + 2 proibições.', foto:'enh-bruno.webp' },
+      { nome:'Dudu da Bio', func:'Perfil que vende', exemplo:'Headline em 7 palavras + link com promessa.', foto:'enh-dudu.webp' },
+      { nome:'Laura das Legendas', func:'Texto que flui', exemplo:'Frase-gancho + quebra + convite.', foto:'enh-laura.webp' },
+      { nome:'Bia do Público', func:'Leitura de audiência', exemplo:'Mapa de dores x desejos atualizado.', foto:'enh-bia.webp' },
+      { nome:'Maria das Ideias', func:'Estoque infinito', exemplo:'5 fontes de ideias do mesmo produto.', foto:'enh-maria.webp' },
+      { nome:'Leonardo da Viralização', func:'Ajustes de alcance', exemplo:'Tensão + contraste + repetição útil.', foto:'enh-leonardo.webp' }
     ];
 
     (function mountENH(){
@@ -548,8 +552,12 @@
         card.className='story';
         card.innerHTML = `
           <button class="story-btn" aria-label="Abrir perfil de ${p.nome}">
-            <!-- Se você tiver fotos, troque a DIV abaixo por: <img class="avatar" src="URL" alt="${p.nome}" /> -->
-            <div class="bubble" aria-hidden="true"></div>
+            <div class="bubble" aria-hidden="false">
+              <picture>
+                <source srcset="${p.foto}" type="image/webp" />
+                <img src="${p.foto}" alt="${p.nome}" loading="lazy" />
+              </picture>
+            </div>
             <h5>${p.nome}</h5>
             <small>${p.func}</small>
           </button>
@@ -585,20 +593,13 @@
       }
     })();
 
-    // ===== CTA Flutuante (único CTA, sem fechar, aparece após rolar) =====
+    // ===== CTA Flutuante: link sincronizado e sempre visível sem cobrir conteúdo final =====
     (function floatingCTA(){
-      const float = document.getElementById('floatCta');
-      const btn = document.getElementById('floatCtaBtn');
-
-      // Se precisar, sincronize com seu checkout:
-      // btn.href = "https://seu-checkout-aqui";
-
-      function onScroll(){
-        if(window.scrollY > 200){ float.classList.add('show'); }
-        else{ float.classList.remove('show'); }
-      }
-      window.addEventListener('scroll', onScroll, {passive:true});
-      onScroll();
+      const floatBtn = document.getElementById('floatCtaBtn');
+      // Se houver uma URL específica, substitua aqui:
+      const targetHref = '#'; 
+      floatBtn.setAttribute('href', targetHref);
+      // Nada de fechar; o padding-bottom do main já previne sobreposição da última frase.
     })();
   </script>
 </body>
