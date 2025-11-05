@@ -273,179 +273,93 @@
       .float-cta .btn{animation:none}
     }
     @media (max-width:360px){
-  main > header h1{ font-size:20px; }          /* antes: 22–28px */
-  main > header .hero-subtitle{ font-size:15px; } /* antes: 16px */
-}
-    /* Escala fluida: cabe em 1 linha sem estourar */
-main > header h1{
-  font-size: clamp(18px, 2.6vw, 28px); /* ↓ reduz em telas menores, sem passar de 28px */
-  letter-spacing: -0.02em;             /* aperta um pouco para caber melhor */
-}
+      main > header h1{ font-size:20px; }          /* antes: 22–28px */
+      main > header .hero-subtitle{ font-size:15px; } /* antes: 16px */
+    }
 
-main > header .hero-subtitle{
-  font-size: clamp(14px, 2.0vw, 16px); /* ↓ reduz em telas menores, sem passar de 16px */
-}
+    /* Escala fluida: cabe em 1 linha sem estourar (versão base) */
+    main > header h1{
+      font-size: clamp(18px, 2.6vw, 28px);
+      letter-spacing: -0.02em;
+    }
+
+    main > header .hero-subtitle{
+      font-size: clamp(14px, 2.0vw, 16px);
+    }
+
     @media (max-width:360px){
-  main > header h1{ font-size: clamp(16px, 5.5vw, 20px); }
-  main > header .hero-subtitle{ font-size: clamp(13px, 4.8vw, 15px); }
-}
+      main > header h1{ font-size: clamp(16px, 5.5vw, 20px); }
+      main > header .hero-subtitle{ font-size: clamp(13px, 4.8vw, 15px); }
+    }
+
     /* Subtítulo pode quebrar em 2+ linhas, evitando overflow */
-main > header .hero-subtitle{
-  white-space: normal;        /* libera a quebra de linha */
-  overflow-wrap: anywhere;    /* evita “vazar” em palavras longas */
-  word-break: normal;         /* mantém quebra natural */
-  display: block;             /* garante comportamento consistente */
-}
-    /* Browsers modernos: melhor distribuição das quebras */
-main > header .hero-subtitle{
-  text-wrap: balance;         /* suporta Chrome/Edge/Safari novos */
-}
+    main > header .hero-subtitle{
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      display: block;
+      text-wrap: balance;
+    }
 
-/* ====== AJUSTE SOLICITADO: preencher quase toda a largura + destaque no subtítulo ====== */
+    /* ====== AJUSTE: preencher quase toda a largura + destaque no subtítulo ====== */
+    .page{ container-type: inline-size; } /* habilita container queries */
 
-/* 1) Habilita container queries no container principal (tamanhos respondem à largura real da página) */
-.page{ container-type: inline-size; }
+    /* Título principal com container queries (não vaza) */
+    main > header h1{
+      font-size: clamp(20px, 6.4cqw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      margin-inline: auto;
+      display:inline-block;
+      text-wrap: balance;
+    }
 
-/* 2) Título: escala com a largura do container e ocupa “um pouco menos” da página */
-main > header h1{
-  font-size: clamp(22px, 7cqw, 42px); /* 7cqw ≈ 7% da largura do container */
-  line-height: 1.08;
-  letter-spacing: -0.018em;
-  white-space: nowrap;
-  display: block;
-  margin-inline: auto; /* centraliza o bloco do texto */
-}
+    /* em larguras confortáveis, tenta 1 linha */
+    @container (min-width: 520px){
+      main > header h1{ white-space: nowrap; }
+    }
 
-/* Mantém o gradiente anterior no título (se suportado) */
-@supports (-webkit-background-clip:text) or (background-clip:text){
-  main > header h1{
-    background: linear-gradient(90deg, var(--green) 0%, var(--wine) 60%, #1a1a1a 100%);
-    -webkit-background-clip: text;
-            background-clip: text;
-    -webkit-text-fill-color: transparent;
-            color: transparent;
-  }
-}
+    /* em telas menores, permite 2 linhas com quebra bonita */
+    @container (max-width: 519px){
+      main > header h1{
+        white-space: normal;
+        line-height: 1.12;
+        letter-spacing: -0.018em;
+      }
+    }
 
-/* 3) Subtítulo: maior, pode quebrar, e com “marker” sutil (não aumenta a altura do bloco) */
-main > header .hero-subtitle{
-  font-size: clamp(16px, 3cqw, 22px);
-  line-height: 1.25;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: normal;
-  text-wrap: balance;
-  margin-top: 6px;
-  color: var(--muted);
+    /* microajuste phones ultra-compactos */
+    @media (max-width: 360px){
+      main > header h1{
+        font-size: clamp(18px, 7.2vw, 22px);
+        letter-spacing: -0.015em;
+      }
+    }
 
-  /* “Marker” (sublinhado em bloco) usando gradiente no próprio background */
-  background-image: linear-gradient(180deg, transparent 62%, rgba(124,30,40,.14) 62%);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 2px; /* micro-respiro para a faixa não encostar nas letras descendentes */
-}
+    /* Centralização apenas do título e do subtítulo */
+    main > header{ text-align: initial; } /* volta padrão do site para o bloco inteiro */
+    main > header h1,
+    main > header .hero-subtitle{
+      text-align: center;      /* centraliza só esses dois */
+      margin-inline: auto;     /* garante centralização do bloco */
+      display: block;
+    }
 
-/* Telas muito pequenas: mantém legível e contido */
-@media (max-width:360px){
-  main > header h1{ font-size: clamp(18px, 9cqw, 24px); }
-  main > header .hero-subtitle{ font-size: clamp(14px, 5.2cqw, 16px); }
-}
-    /* ====== TÍTULO: SEM VAZAR, AJUSTE RESPONSIVO ====== */
+    /* Destaque sutil no subtítulo (sem aumentar o bloco) */
+    main > header .hero-subtitle{
+      background-image: linear-gradient(180deg, transparent 62%, rgba(124,30,40,.14) 62%);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      padding-bottom: 2px;
+      margin-top: 6px;
+    }
 
-/* escala fluida baseada no tamanho do container */
-main > header h1{
-  font-size: clamp(20px, 6.4cqw, 40px); /* menor que 7cqw → evita estouro */
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  overflow-wrap: anywhere;   /* permite quebrar em palavras longas se preciso */
-  word-break: normal;
-  margin-inline: auto;       /* mantém centralizado */
-}
-
-/* em larguras confortáveis, mantém 1 linha (sem estourar) */
-@container (min-width: 520px){
-  main > header h1{ white-space: nowrap; }
-}
-
-/* em telas menores, libera a quebra (2 linhas se necessário) */
-@container (max-width: 519px){
-  main > header h1{
-    white-space: normal;
-    text-wrap: balance;      /* quebra “bonita” em 2 linhas */
-    line-height: 1.12;
-    letter-spacing: -0.018em;
-  }
-}
-
-/* microajuste para telas muito pequenas */
-@media (max-width: 360px){
-  main > header h1{
-    font-size: clamp(18px, 7.2vw, 22px); /* garante caber mesmo em phones ultra-compactos */
-    letter-spacing: -0.015em;
-  }
-}
-    /* Centralização do título no hero */
-main > header{ 
-  text-align: center;        /* centraliza qualquer texto interno */
-}
-
-/* Título: central, com quebra “bonita” quando precisar */
-main > header h1{
-  display: inline-block;     /* permite centralizar o bloco do h1 */
-  text-wrap: balance;        /* distribui melhor as linhas quando quebrar */
-  margin-inline: auto;       /* garante centralização do bloco */
-}
-    /* Ajuste opcional de largura do bloco do h1 */
-@media (min-width: 520px){
-  main > header h1{ max-width: 22ch; } /* teste 20–24ch e escolha o melhor */
-}
-
-/* ===================== */
-/* OVERRIDES DO HERO — AUMENTAR LEAD E LISTA SEM ROMPER LAYOUT */
-/* ===================== */
-
-/* Lead mais encorpado, porém contido */
-main > header .lead{
-  font-size: clamp(16px, 2.2cqw, 19px);
-  line-height: 1.5;
-  max-width: 66ch;
-  margin-inline: auto;
-  text-wrap: balance;
-}
-
-/* Lista “hero-subtitle” (seu UL está com essa classe) */
-main > header ul.hero-subtitle{
-  font-size: clamp(15px, 2.0cqw, 18px);
-  line-height: 1.5;
-  max-width: 72ch;
-  margin: 10px auto 0;
-  padding-left: 1.1em;         /* recuo suave da bolinha */
-  list-style-position: outside;/* bullets do lado de fora */
-  text-wrap: pretty;           /* melhora quebras entre itens longos */
-}
-
-/* Se o subtítulo estiver como <p class="checklist"> (seu caso atual),
-   tratamos como subtítulo textual maior, sem bullets */
-main > header p.checklist{
-  font-size: clamp(16px, 2.4cqw, 20px);
-  line-height: 1.42;
-  max-width: 68ch;
-  margin: 6px auto 8px;
-  padding: 0;                  /* remove espaçamentos herdados da classe */
-  text-wrap: balance;
-  color: var(--muted);
-  background-image: linear-gradient(180deg, transparent 62%, rgba(124,30,40,.14) 62%);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 2px;
-}
-
-/* Microajustes mobile para tudo caber confortável */
-@media (max-width: 360px){
-  main > header .lead{ font-size: clamp(15px, 4.2vw, 17px); }
-  main > header ul.hero-subtitle{ font-size: clamp(14px, 3.9vw, 16px); }
-  main > header p.checklist{ font-size: clamp(15px, 4.5vw, 17px); }
-}
+    /* Largura visual do título para duas linhas harmônicas (opcional, mantido) */
+    @media (min-width: 520px){
+      main > header h1{ max-width: 22ch; }
+    }
   </style>
 </head>
 <body>
@@ -470,8 +384,9 @@ main > header p.checklist{
     <header style="margin-bottom:6px;">
       <!-- TÍTULO (apenas “🧠 10 funcionários não humanos”) -->
       <h1>🧠 10 funcionários não humanos</h1>
-      <!-- SUBTÍTULO (restante do texto movido para cá, sem alterar a copy) -->
-      <p class="checklist">criados e treinados por mim pra colocar seu post no ar em 58 minutos</p>
+
+      <!-- SUBTÍTULO (mantém a classe hero-subtitle do site) -->
+      <p class="hero-subtitle">criados e treinados por mim pra colocar seu post no ar em 58 minutos</p>
 
       <!-- Slot de imagem 1720×688 (WEBP) -->
       <div class="hero-media">
@@ -487,7 +402,8 @@ main > header p.checklist{
         O <strong>Estúdio Infinito</strong> é onde mora a <strong>Equipe Não-Humana</strong> — 10 funcionários não humanos que assumem cada parte do seu conteúdo.
       </p>
 
-      <ul class="hero-subtitle" style="margin-top:7px">
+      <!-- Lista volta ao padrão tipográfico do site -->
+      <ul class="checklist" style="margin-top:7px">
         <li>Entre no meu estúdio e publique 1 post por dia — só com o celular (<em>como eu faço há mais de dois anos.</em>)</li>
         <li>Cada post paga +1 dia da sua assinatura.</li>
         <li>E ainda vale prêmios no Campeonato Infinito.</li>
