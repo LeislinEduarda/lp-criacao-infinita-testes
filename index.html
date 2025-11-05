@@ -98,9 +98,6 @@
       color:var(--muted);
       font-size:16px;
     }
-    /* Forçar título e subtítulo do HERO a ficarem em uma linha */
-main > header h1{ white-space: nowrap; }
-main > header .hero-subtitle{ white-space: nowrap; }
 
     /* ========= STORIES — Equipe Não-Humana (grid) + fotos redondas ========= */
     .stories-grid{
@@ -352,6 +349,40 @@ main > header .hero-subtitle{
 @media (max-width:360px){
   main > header h1{ font-size: clamp(18px, 9cqw, 24px); }
   main > header .hero-subtitle{ font-size: clamp(14px, 5.2cqw, 16px); }
+}
+    /* ====== TÍTULO: SEM VAZAR, AJUSTE RESPONSIVO ====== */
+
+/* escala fluida baseada no tamanho do container */
+main > header h1{
+  font-size: clamp(20px, 6.4cqw, 40px); /* menor que 7cqw → evita estouro */
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;   /* permite quebrar em palavras longas se preciso */
+  word-break: normal;
+  margin-inline: auto;       /* mantém centralizado */
+}
+
+/* em larguras confortáveis, mantém 1 linha (sem estourar) */
+@container (min-width: 520px){
+  main > header h1{ white-space: nowrap; }
+}
+
+/* em telas menores, libera a quebra (2 linhas se necessário) */
+@container (max-width: 519px){
+  main > header h1{
+    white-space: normal;
+    text-wrap: balance;      /* quebra “bonita” em 2 linhas */
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+  }
+}
+
+/* microajuste para telas muito pequenas */
+@media (max-width: 360px){
+  main > header h1{
+    font-size: clamp(18px, 7.2vw, 22px); /* garante caber mesmo em phones ultra-compactos */
+    letter-spacing: -0.015em;
+  }
 }
   </style>
 </head>
