@@ -39,13 +39,6 @@
       /* Callout verde suave */
       --green-soft:#E9F4EF;
       --green-text:#0E3C2E;
-
-      /* Tamanho do logo do hero (topo) */
-      --heroLogo:144px;
-    }
-
-    @media (min-width:760px){
-      :root{ --heroLogo:192px; }
     }
 
     /* ========= Base ========= */
@@ -90,28 +83,20 @@
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
     }
 
-    /* ===== Logo do hero ===== */
-    /* Estilo de overlay só quando o logo estiver DENTRO da .hero-media (não é o caso agora) */
-    .hero-media .hero-logo{
-      position:absolute; inset:0; display:grid; place-items:center; pointer-events:none;
+    /* ========= HERO: LOGO CENTRAL (800x800 sem fundo) ========= */
+    .hero-logo{
+      display:grid; place-items:center;
+      margin-bottom:10px;
     }
-    /* Versão no topo (acima do título) */
-    .hero-logo--top{
-      display:grid;
-      place-items:center;
-      margin: 4px 0 8px;
-      pointer-events:none;
+    .hero-logo picture, .hero-logo img{
+      display:block; width:160px; height:auto;
     }
-    .hero-logo--top .round{
-      width:var(--heroLogo);
-      height:var(--heroLogo);
-      border-radius:50%;
-      overflow:hidden;
-      box-shadow:0 6px 20px rgba(0,0,0,.15), 0 0 0 4px rgba(255,255,255,.9);
-      background:#fff;
-    }
-    .hero-logo--top .round img{
-      width:100%; height:100%; object-fit:cover; display:block;
+
+    /* ========= Subtítulo do hero ========= */
+    .hero-subtitle{
+      margin-top:-4px;
+      color:var(--muted);
+      font-size:16px;
     }
 
     /* ========= STORIES — Equipe Não-Humana (grid) + fotos redondas ========= */
@@ -236,10 +221,7 @@
 
     /* ========= CTA flutuante (único CTA) ========= */
     .float-cta{
-      position:fixed;
-      left:50%;
-      transform:translateX(-50%);
-      bottom:16px;
+      position:fixed; inset:auto 16px 16px auto;
       display:flex; align-items:center; gap:12px;
       padding:12px 14px;
       background:#fff;
@@ -260,6 +242,7 @@
       font-weight:750;
       white-space:nowrap;
       animation:pulse 1.6s ease-in-out infinite;
+      text-align:center; /* mantém centralização do texto */
     }
     @keyframes pulse{
       0%{box-shadow:0 0 0 0 rgba(29,77,58,.35)}
@@ -281,8 +264,9 @@
     @media (max-width:520px){
       .page{margin:36px auto;padding:0 18px; padding-bottom:128px;}
       h1{font-size:22px}
-      .float-cta{left:12px; right:12px; transform:none; bottom:12px; justify-content:space-between}
+      .float-cta{inset:auto 12px 12px 12px; justify-content:space-between}
       .float-cta .label{display:none}
+      .hero-logo picture, .hero-logo img{width:132px}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -291,7 +275,7 @@
   </style>
 </head>
 <body>
-  <!-- CTA FLUTUANTE (único CTA; centralizado; destaque em verde com pulsar) -->
+  <!-- CTA FLUTUANTE (único CTA; sem fechar; destaque em verde com pulsar) -->
   <div class="float-cta" id="floatCta" role="region" aria-label="Ativar Equipe Não-Humana">
     <span class="label">🧠 Pronto pra publicar hoje?</span>
     <a class="btn" id="floatCtaBtn" href="#">Ativar minha Equipe Não-Humana →</a>
@@ -299,20 +283,21 @@
 
   <main class="page" role="main">
 
+    <!-- ========== LOGO CENTRAL (primeiro bloco do HTML dentro do main) ========== -->
+    <div class="hero-logo" aria-label="Logo do Estúdio Infinito">
+      <picture>
+        <!-- Substitua este caminho pelo seu arquivo real de logo sem fundo 800x800 -->
+        <source srcset="logo-800.webp" type="image/webp" />
+        <img src="logo-800.webp" alt="Logotipo Estúdio Infinito" width="800" height="800" />
+      </picture>
+    </div>
+
     <!-- ========== HERO / HEADER ========== -->
     <header style="margin-bottom:6px;">
-
-      <!-- LOGO REDONDO ACIMA DO TÍTULO (centralizado) -->
-      <div class="hero-logo hero-logo--top" aria-hidden="true">
-        <div class="round">
-          <picture>
-            <source srcset="logo-hero.webp" type="image/webp" />
-            <img src="logo-hero.webp" alt="" />
-          </picture>
-        </div>
-      </div>
-
-      <h1>🧠 10 funcionários não humanos criados e treinados por mim pra colocar seu post no ar em 58 minutos</h1>
+      <!-- TÍTULO (apenas “10 funcionários não humanos”) -->
+      <h1>🧠 10 funcionários não humanos</h1>
+      <!-- SUBTÍTULO (restante do texto movido para cá, sem alterar a copy) -->
+      <p class="hero-subtitle">criados e treinados por mim pra colocar seu post no ar em 58 minutos</p>
 
       <!-- Slot de imagem 1720×688 (WEBP) -->
       <div class="hero-media">
@@ -471,7 +456,7 @@
       </details>
 
       <details class="faq">
-        <summary>12. “E se eu não gostar ou não conseguir criar?”</summary>
+        <summary>12. “E se eu não não gostar ou não conseguir criar?”</summary>
         <div>
           <p>É um ambiente em que é literalmente mais fácil criar do que não criar. 10 funcionários prontos, +1 dia por post, prêmios do Campeonato Infinito™, exemplos reais da comunidade e chance de live comigo se viralizar.</p>
         </div>
