@@ -344,18 +344,19 @@ main > header h1{
   }
 }
 
-/* —— SUBTÍTULO: volta ao padrão (muted), centralizado, com quebra bonita —— */
 main > header .hero-subtitle{
-  margin-top: 6px;
+  font-family: inherit;     /* usa a mesma fonte global do site */
+  font-weight: 400;         /* mesmo peso padrão dos parágrafos */
+  letter-spacing: normal;   /* remove espaçamento visual diferente */
   color: var(--muted);
   font-size: clamp(16px, 3cqw, 20px);
   line-height: 1.28;
   text-align: center;
-  white-space: normal;      /* permite 2+ linhas quando necessário */
-  text-wrap: balance;       /* quebra equilibrada */
-  overflow-wrap: anywhere;  /* evita “vazar” em palavras longas */
+  white-space: normal;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
   word-break: normal;
-  background: none;         /* remove qualquer marker anterior */
+  background: none;
   padding-bottom: 0;
 }
   </style>
