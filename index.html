@@ -270,6 +270,31 @@
     @media (prefers-reduced-motion: reduce){
       .float-cta .btn{animation:none}
     }
+    /* ===== Hero: logo redondo centralizado ===== */
+.hero-logo{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  pointer-events:none; /* não interfere em cliques da imagem de fundo */
+}
+.hero-logo picture,
+.hero-logo img{
+  width:clamp(96px, 14vw, 200px);
+  height:clamp(96px, 14vw, 200px);
+  border-radius:50%;
+  display:block;
+  object-fit:cover;
+  /* leve destaque para “colar” no visual Notion */
+  box-shadow:0 2px 10px rgba(0,0,0,.08), 0 0 0 4px #fff, 0 0 0 6px var(--border);
+}
+    /* ===== Hero: subtítulo abaixo do h1 ===== */
+.hero-subtitle{
+  margin:6px 0 0 0;
+  font-size:16px;           /* mesmo corpo do hero para coerência */
+  color:var(--muted);       /* leve rebaixo visual, padrão Notion */
+  line-height:1.6;
+}
   </style>
 </head>
 <body>
@@ -282,8 +307,16 @@
   <main class="page" role="main">
 
     <!-- ========== HERO / HEADER ========== -->
+    <!-- LOGO REDONDO CENTRALIZADO NO HERO -->
+<div class="hero-logo" aria-hidden="true">
+  <picture>
+    <source srcset="logo-hero.webp" type="image/webp" />
+    <img src="logo-hero.webp" alt="" />
+  </picture>
+</div>
     <header style="margin-bottom:6px;">
-      <h1>🧠 10 funcionários não humanos criados e treinados por mim pra colocar seu post no ar em 58 minutos</h1>
+      <h1>🧠 10 funcionários não humanos</h1>
+<p class="hero-subtitle">Criados e treinados por mim pra colocar seu post no ar em 58 minutos</p>
 
       <!-- Slot de imagem 1720×688 (WEBP) -->
       <div class="hero-media">
@@ -300,7 +333,7 @@
       </p>
 
       <ul class="checklist" style="margin-top:7px">
-        <li>Entre no meu estúdio e publique 1 post por dia — só com o celular (<em>como eu faço há mais de dois anos.</em>)</li>
+        <li>Entre no meu estúdio e publique 1 post por dia só com o celular (<em>como eu faço há mais de dois anos.</em>)</li>
         <li>Cada post paga +1 dia da sua assinatura.</li>
         <li>E ainda vale prêmios no Campeonato Infinito.</li>
       </ul>
