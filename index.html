@@ -399,6 +399,53 @@ main > header h1{
 @media (min-width: 520px){
   main > header h1{ max-width: 22ch; } /* teste 20–24ch e escolha o melhor */
 }
+
+/* ===================== */
+/* OVERRIDES DO HERO — AUMENTAR LEAD E LISTA SEM ROMPER LAYOUT */
+/* ===================== */
+
+/* Lead mais encorpado, porém contido */
+main > header .lead{
+  font-size: clamp(16px, 2.2cqw, 19px);
+  line-height: 1.5;
+  max-width: 66ch;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+/* Lista “hero-subtitle” (seu UL está com essa classe) */
+main > header ul.hero-subtitle{
+  font-size: clamp(15px, 2.0cqw, 18px);
+  line-height: 1.5;
+  max-width: 72ch;
+  margin: 10px auto 0;
+  padding-left: 1.1em;         /* recuo suave da bolinha */
+  list-style-position: outside;/* bullets do lado de fora */
+  text-wrap: pretty;           /* melhora quebras entre itens longos */
+}
+
+/* Se o subtítulo estiver como <p class="checklist"> (seu caso atual),
+   tratamos como subtítulo textual maior, sem bullets */
+main > header p.checklist{
+  font-size: clamp(16px, 2.4cqw, 20px);
+  line-height: 1.42;
+  max-width: 68ch;
+  margin: 6px auto 8px;
+  padding: 0;                  /* remove espaçamentos herdados da classe */
+  text-wrap: balance;
+  color: var(--muted);
+  background-image: linear-gradient(180deg, transparent 62%, rgba(124,30,40,.14) 62%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+}
+
+/* Microajustes mobile para tudo caber confortável */
+@media (max-width: 360px){
+  main > header .lead{ font-size: clamp(15px, 4.2vw, 17px); }
+  main > header ul.hero-subtitle{ font-size: clamp(14px, 3.9vw, 16px); }
+  main > header p.checklist{ font-size: clamp(15px, 4.5vw, 17px); }
+}
   </style>
 </head>
 <body>
