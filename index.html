@@ -384,6 +384,21 @@ main > header h1{
     letter-spacing: -0.015em;
   }
 }
+    /* Centralização do título no hero */
+main > header{ 
+  text-align: center;        /* centraliza qualquer texto interno */
+}
+
+/* Título: central, com quebra “bonita” quando precisar */
+main > header h1{
+  display: inline-block;     /* permite centralizar o bloco do h1 */
+  text-wrap: balance;        /* distribui melhor as linhas quando quebrar */
+  margin-inline: auto;       /* garante centralização do bloco */
+}
+    /* Ajuste opcional de largura do bloco do h1 */
+@media (min-width: 520px){
+  main > header h1{ max-width: 22ch; } /* teste 20–24ch e escolha o melhor */
+}
   </style>
 </head>
 <body>
