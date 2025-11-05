@@ -403,16 +403,46 @@ main > header{
     .story small {
   display: none !important;
 }
-    /* Primeiro card dos minicursos */
-.minicards .minicard:first-child{
-  background:#FFF3F0;                 /* sugestão: quente, sutil */
-  border-color: rgba(124,30,40,.14);  /* harmoniza com --wine */
+/* ——— Vídeo (primeiro bloco) ——— */
+#minicursos1 .callout.success{
+  background: #EAF8FF;                 /* tom frio leve */
+  border-color: rgba(29,77,58,.18);     /* levemente esverdeado do seu tema */
+  color: var(--text);
 }
 
-/* Último card dos minicursos */
-.minicards .minicard:last-child{
-  background:#EAF8FF;                 /* sugestão: frio, leve */
-  border-color: rgba(29,77,58,.14);   /* harmoniza com --green */
+/* ——— Minicursos de imagem: primeiro e último ——— */
+.minicards .minicard2{
+  background: #FFF3F0;                 /* quente, conversa com o vinho (#7C1E28) */
+  border: 1px solid rgba(124,30,40,.16);
+  border-radius: 12px;
+  padding: 12px;
+}
+.minicards .minicard3{
+  background: #EAF8FF;                 /* frio, conversa com o verde (#1D4D3A) */
+  border: 1px solid rgba(29,77,58,.16);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+/* ——— Callouts laterais (últimos blocos) ——— */
+#minicursos4{
+  background: var(--green-soft);        /* já no seu token */
+  border-color: color-mix(in oklab, var(--green) 20%, #fff);
+  color: var(--green-text);
+}
+#minicursos5{
+  background: #FFF7E8;                  /* tom quente suave extra */
+  border: 1px solid rgba(124,30,40,.12);
+  color: var(--text);
+}
+
+/* Harmonização responsiva: garante leitura e espaçamento */
+.minicards .minicard2,
+.minicards .minicard3{
+  box-shadow: 0 2px 8px rgba(0,0,0,.03);
+}
+@media (min-width: 760px){
+  .minicards{ grid-template-columns: 1fr 1fr; gap: 10px; }
 }
   </style>
 </head>
@@ -485,33 +515,39 @@ main > header{
       <hr />
 
       <h3>2️⃣ Você escolhe entre imagem ou vídeo.</h3>
+
+<p>Se escolher <strong>vídeo</strong>, você assiste ao:</p>
+<div class="mini-aside" id="minicursos1">
+  <div class="callout success">
+    <strong>MINICURSO: como eu gravo 7 reels em menos de 30 minutos</strong>, e depois é só gravar e publicar.
+  </div>
+</div>
+
+<p>Se escolher <strong>imagem</strong>, você decide entre esses minicursos:</p>
+
+<div class="minirow">
+  <div class="minicards" aria-label="Minicursos">
+    <div class="minicard2">
+      <strong>MINICURSO: Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)</strong> — 10 minutos ⏳
+    </div>
+    <div class="minicard3">
+      <strong>MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer</strong> — 20 minutos ⏳
+    </div>
+  </div>
+
+  <div class="mini-aside">
+    <div class="callout success" id="minicursos4">
+      <strong>✅ Em menos de uma tarde</strong> seu post está no ar — rápido, leve, fácil e com seu estilo.
+    </div>
+  </div>
+</div>
+
+<div class="mini-aside">
+  <div class="callout success" id="minicursos5">
+    <strong>Tudo dentro do Estúdio.</strong> Tudo com a minha Equipe Não-Humana e, a partir de agora, também é a sua equipe.
+  </div>
+</div>
       
-      <!-- Inserção dos parágrafos solicitados -->
-      <p>Se escolher <strong>vídeo</strong>, você assiste ao: <strong></p>
-      <div class="mini-aside"id="minicursos1">
-          <div class="callout success"><strong>MINICURSO: como eu gravo  7 reels em menos de 30 minutos</strong>, e depois é só gravar e publicar.</div>
-        </div>
-
-      <p>Se escolher <strong>imagem</strong>, você assiste decide entre esses minicursos:</p>
-
-
-      <!-- Dois mini cursos lado a lado coloridos + “Tudo dentro do Estúdio” à direita -->
-      <div class="minirow">
-        <div class="minicards" aria-label="Minicursos">
-          <div class="minicard2"><strong>MINICURSO: Crie Todos os Seus Designs Conversando com o ChatGPT (sem abrir o Canva)</strong> — 10 minutos ⏳</div>
-          <div class="minicard3"><strong>MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer</strong> — 20 minutos ⏳</div>
-        </div>
-        <div class="mini-aside">
-          <div class="callout success" id="minicursos4"><strong>✅ Em menos de uma tarde</strong> seu post está no ar — rápido, leve, fácil e com seu estilo.</div>
-        </div>
-        </div>
-        <div class="mini-aside">
-        <div class="callout success" id="minicursos5"><strong>Tudo dentro do Estúdio. Tudo com a minha Equipe Não-Humana e a partir de agora, também é a sua equipe.</strong></div>
-      </div>
-    </section>
-
-    <hr />
-
     <!-- ========== FAQ ========== -->
     <section aria-labelledby="faq">
       <h2 id="faq">💬 PERGUNTAS QUE SEMPRE ME FAZEM</h2>
