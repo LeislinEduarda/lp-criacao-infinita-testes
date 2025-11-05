@@ -40,12 +40,12 @@
       --green-soft:#E9F4EF;
       --green-text:#0E3C2E;
 
-      /* Tamanho do logo redondo do hero (acima do título) */
-      --heroLogo: 144px;
+      /* Tamanho do logo do hero (topo) */
+      --heroLogo:144px;
     }
 
     @media (min-width:760px){
-      :root{ --heroLogo: 192px; }
+      :root{ --heroLogo:192px; }
     }
 
     /* ========= Base ========= */
@@ -91,15 +91,15 @@
     }
 
     /* ===== Logo do hero ===== */
-    /* Caso volte a usar overlay dentro da imagem (não usado agora, mas pronto): */
+    /* Estilo de overlay só quando o logo estiver DENTRO da .hero-media (não é o caso agora) */
     .hero-media .hero-logo{
       position:absolute; inset:0; display:grid; place-items:center; pointer-events:none;
     }
-    /* Versão no topo, acima do título (centralizado) */
+    /* Versão no topo (acima do título) */
     .hero-logo--top{
       display:grid;
       place-items:center;
-      margin: 4px 0 8px; /* espaço pequeno ao redor do logo */
+      margin: 4px 0 8px;
       pointer-events:none;
     }
     .hero-logo--top .round{
@@ -236,7 +236,10 @@
 
     /* ========= CTA flutuante (único CTA) ========= */
     .float-cta{
-      position:fixed; inset:auto 16px 16px auto;
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:16px;
       display:flex; align-items:center; gap:12px;
       padding:12px 14px;
       background:#fff;
@@ -278,7 +281,7 @@
     @media (max-width:520px){
       .page{margin:36px auto;padding:0 18px; padding-bottom:128px;}
       h1{font-size:22px}
-      .float-cta{inset:auto 12px 12px 12px; justify-content:space-between}
+      .float-cta{left:12px; right:12px; transform:none; bottom:12px; justify-content:space-between}
       .float-cta .label{display:none}
     }
 
@@ -288,7 +291,7 @@
   </style>
 </head>
 <body>
-  <!-- CTA FLUTUANTE (único CTA; sem fechar; destaque em verde com pulsar) -->
+  <!-- CTA FLUTUANTE (único CTA; centralizado; destaque em verde com pulsar) -->
   <div class="float-cta" id="floatCta" role="region" aria-label="Ativar Equipe Não-Humana">
     <span class="label">🧠 Pronto pra publicar hoje?</span>
     <a class="btn" id="floatCtaBtn" href="#">Ativar minha Equipe Não-Humana →</a>
@@ -298,7 +301,8 @@
 
     <!-- ========== HERO / HEADER ========== -->
     <header style="margin-bottom:6px;">
-      <!-- LOGO redondo acima do título -->
+
+      <!-- LOGO REDONDO ACIMA DO TÍTULO (centralizado) -->
       <div class="hero-logo hero-logo--top" aria-hidden="true">
         <div class="round">
           <picture>
