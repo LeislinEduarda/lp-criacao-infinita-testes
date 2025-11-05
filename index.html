@@ -295,7 +295,7 @@ main > header .hero-subtitle{
     /* Subtítulo pode quebrar em 2+ linhas, evitando overflow */
 main > header .hero-subtitle{
   white-space: normal;        /* libera a quebra de linha */
-  overflow-wrap: anywhere;    /* evita “vazar” */
+  overflow-wrap: anywhere;    /* evita “vazar” em palavras longas */
   word-break: normal;         /* mantém quebra natural */
   display: block;             /* garante comportamento consistente */
 }
@@ -304,17 +304,22 @@ main > header .hero-subtitle{
   text-wrap: balance;         /* suporta Chrome/Edge/Safari novos */
 }
 
-/* ===== HERO — refinamento de impacto sem aumentar o bloco ===== */
+/* ====== AJUSTE SOLICITADO: preencher quase toda a largura + destaque no subtítulo ====== */
+
+/* 1) Habilita container queries no container principal (tamanhos respondem à largura real da página) */
+.page{ container-type: inline-size; }
+
+/* 2) Título: escala com a largura do container e ocupa “um pouco menos” da página */
 main > header h1{
-  /* Tamanho maior, mas controlado por clamp */
-  font-size: clamp(22px, 3.0vw, 34px);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  white-space: nowrap; /* mantém em 1 linha */
-  color: var(--text);  /* fallback sólido */
+  font-size: clamp(22px, 7cqw, 42px); /* 7cqw ≈ 7% da largura do container */
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  white-space: nowrap;
+  display: block;
+  margin-inline: auto; /* centraliza o bloco do texto */
 }
 
-/* Gradiente sutil no título (funciona nos navegadores modernos) */
+/* Mantém o gradiente anterior no título (se suportado) */
 @supports (-webkit-background-clip:text) or (background-clip:text){
   main > header h1{
     background: linear-gradient(90deg, var(--green) 0%, var(--wine) 60%, #1a1a1a 100%);
@@ -325,45 +330,28 @@ main > header h1{
   }
 }
 
+/* 3) Subtítulo: maior, pode quebrar, e com “marker” sutil (não aumenta a altura do bloco) */
 main > header .hero-subtitle{
-  /* Maior, com liberdade para quebrar linha */
-  font-size: clamp(16px, 2.2vw, 20px);
-  line-height: 1.3;
-  white-space: normal;        /* pode quebrar */
-  overflow-wrap: anywhere;    /* evita “vazar” */
+  font-size: clamp(16px, 3cqw, 22px);
+  line-height: 1.25;
+  white-space: normal;
+  overflow-wrap: anywhere;
   word-break: normal;
-  text-wrap: balance;         /* distribui melhor as quebras */
+  text-wrap: balance;
   margin-top: 6px;
   color: var(--muted);
-}
 
-/* Telas muito pequenas: pequenos limites para garantir que tudo caiba */
-@media (max-width:360px){
-  main > header h1{ font-size: clamp(18px, 5.2vw, 22px); }
-  main > header .hero-subtitle{ font-size: clamp(14px, 4.6vw, 16px); }
-}
-
-/* ===== NOVO AJUSTE PEDIDO — preencher quase toda a largura + destaque no subtítulo ===== */
-main > header h1{
-  /* ocupa 'quase' toda a largura do container, sem estourar */
-  font-size: clamp(24px, 3.2vw, 38px);
-  letter-spacing: -0.022em;
-  margin-inline: auto;
-  max-width: 96%;     /* respiro lateral: ~4% */
-  text-align: center; /* harmoniza alinhamento com o container */
-}
-
-main > header .hero-subtitle{
-  /* leve incremento + destaque sem aumentar a altura visual */
-  font-size: clamp(17px, 2.3vw, 21px);
-  line-height: 1.28;
-  position: relative;
-  display: inline;        /* evita criar bloco alto */
-  background-image: linear-gradient(90deg, var(--wine), var(--green));
+  /* “Marker” (sublinhado em bloco) usando gradiente no próprio background */
+  background-image: linear-gradient(180deg, transparent 62%, rgba(124,30,40,.14) 62%);
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-size: 100% 0.11em;  /* espessura do “sublinhado” */
-  background-position: 0 95%;    /* posição próxima à base do texto */
-  padding-bottom: 1px;           /* micro respiro para não colar no texto */
+  padding-bottom: 2px; /* micro-respiro para a faixa não encostar nas letras descendentes */
+}
+
+/* Telas muito pequenas: mantém legível e contido */
+@media (max-width:360px){
+  main > header h1{ font-size: clamp(18px, 9cqw, 24px); }
+  main > header .hero-subtitle{ font-size: clamp(14px, 5.2cqw, 16px); }
 }
   </style>
 </head>
@@ -387,7 +375,7 @@ main > header .hero-subtitle{
 
     <!-- ========== HERO / HEADER ========== -->
     <header style="margin-bottom:6px;">
-      <!-- TÍTULO (apenas “10 funcionários não humanos”) -->
+      <!-- TÍTULO (apenas “🧠 10 funcionários não humanos”) -->
       <h1>🧠 10 funcionários não humanos</h1>
       <!-- SUBTÍTULO (restante do texto movido para cá, sem alterar a copy) -->
       <p class="hero-subtitle">criados e treinados por mim pra colocar seu post no ar em 58 minutos</p>
