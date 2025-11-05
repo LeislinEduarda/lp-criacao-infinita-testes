@@ -300,66 +300,64 @@
       display: block;
       text-wrap: balance;
     }
+/* —— CONTAINER QUERIES ATIVADAS —— */
+.page{ container-type: inline-size; }
 
-    /* ====== AJUSTE: preencher quase toda a largura + destaque no subtítulo ====== */
-    .page{ container-type: inline-size; } /* habilita container queries */
+/* —— TÍTULO (H1): gradiente do logo + sem estourar —— */
+main > header h1{
+  /* escala fluida baseada na largura do container */
+  font-size: clamp(22px, 6.2cqw, 40px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin-inline: auto;
+  display: block;
+  text-align: center;
+  text-wrap: balance;    /* quebra “bonita” se precisar */
+  overflow-wrap: anywhere;
+  white-space: nowrap;   /* tenta manter 1 linha em telas confortáveis */
+  max-width: none;
+}
+/* gradiente que simula o logo */
+@supports (-webkit-background-clip:text) or (background-clip:text){
+  main > header h1{
+    background: linear-gradient(90deg, var(--wine) 0%, var(--green) 65%, #1a1a1a 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+  }
+}
+/* em larguras menores, libera 2 linhas sem vazar */
+@container (max-width: 520px){
+  main > header h1{
+    white-space: normal;
+    max-width: 22ch;     /* controla a largura para duas linhas harmônicas */
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+  }
+}
+/* microajuste para phones ultra compactos */
+@media (max-width: 360px){
+  main > header h1{
+    font-size: clamp(18px, 7.2vw, 22px);
+    letter-spacing: -0.015em;
+  }
+}
 
-    /* Título principal com container queries (não vaza) */
-    main > header h1{
-      font-size: clamp(20px, 6.4cqw, 40px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      overflow-wrap: anywhere;
-      word-break: normal;
-      margin-inline: auto;
-      display:inline-block;
-      text-wrap: balance;
-    }
-
-    /* em larguras confortáveis, tenta 1 linha */
-    @container (min-width: 520px){
-      main > header h1{ white-space: nowrap; }
-    }
-
-    /* em telas menores, permite 2 linhas com quebra bonita */
-    @container (max-width: 519px){
-      main > header h1{
-        white-space: normal;
-        line-height: 1.12;
-        letter-spacing: -0.018em;
-      }
-    }
-
-    /* microajuste phones ultra-compactos */
-    @media (max-width: 360px){
-      main > header h1{
-        font-size: clamp(18px, 7.2vw, 22px);
-        letter-spacing: -0.015em;
-      }
-    }
-
-    /* Centralização apenas do título e do subtítulo */
-    main > header{ text-align: initial; } /* volta padrão do site para o bloco inteiro */
-    main > header h1,
-    main > header .hero-subtitle{
-      text-align: center;      /* centraliza só esses dois */
-      margin-inline: auto;     /* garante centralização do bloco */
-      display: block;
-    }
-
-    /* Destaque sutil no subtítulo (sem aumentar o bloco) */
-    main > header .hero-subtitle{
-      background-image: linear-gradient(180deg, transparent 62%, rgba(124,30,40,.14) 62%);
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      padding-bottom: 2px;
-      margin-top: 6px;
-    }
-
-    /* Largura visual do título para duas linhas harmônicas (opcional, mantido) */
-    @media (min-width: 520px){
-      main > header h1{ max-width: 22ch; }
-    }
+/* —— SUBTÍTULO: volta ao padrão (muted), centralizado, com quebra bonita —— */
+main > header .hero-subtitle{
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: clamp(16px, 3cqw, 20px);
+  line-height: 1.28;
+  text-align: center;
+  white-space: normal;      /* permite 2+ linhas quando necessário */
+  text-wrap: balance;       /* quebra equilibrada */
+  overflow-wrap: anywhere;  /* evita “vazar” em palavras longas */
+  word-break: normal;
+  background: none;         /* remove qualquer marker anterior */
+  padding-bottom: 0;
+}
   </style>
 </head>
 <body>
