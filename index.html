@@ -288,6 +288,10 @@ main > header h1{
 main > header .hero-subtitle{
   font-size: clamp(14px, 2.0vw, 16px); /* ↓ reduz em telas menores, sem passar de 16px */
 }
+    @media (max-width:360px){
+  main > header h1{ font-size: clamp(16px, 5.5vw, 20px); }
+  main > header .hero-subtitle{ font-size: clamp(13px, 4.8vw, 15px); }
+}
   </style>
 </head>
 <body>
