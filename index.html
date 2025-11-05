@@ -70,18 +70,24 @@
     .h-serif{font-weight:750; letter-spacing:-.01em}
 
     /* ========= HERO: slot de imagem 1720×688 (webp) ========= */
-    .hero-media{margin:14px 0 4px 0}
-    .hero-media picture, .hero-media img{
-      display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--border);
-    }
-    /* Mantém proporção aproximada 1720x688 */
-    .hero-media .frame{
-      position:relative; width:100%; padding-top:40%; /* ~688/1720 */
-      border-radius:14px; overflow:hidden; border:1px solid var(--border); background:#fafafa;
-    }
-    .hero-media .frame img{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    }
+.hero-media .frame {
+  position:relative;
+  width:100%;
+  padding-top:40%; /* mantém proporção 1720×688 */
+  border-radius:14px;
+  overflow:hidden;
+  border:none;          /* remove o quadrado */
+  background:transparent; /* sem fundo */
+}
+
+.hero-media picture, 
+.hero-media img {
+  display:block;
+  width:100%;
+  height:auto;
+  border:none;          /* sem contorno na imagem */
+  border-radius:0;      /* imagem cobre o frame inteiro */
+}
 
     /* ========= HERO: LOGO CENTRAL (800x800 sem fundo) ========= */
     .hero-logo{
