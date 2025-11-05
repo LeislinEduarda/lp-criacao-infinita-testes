@@ -71,22 +71,27 @@
 
     /* ========= HERO: slot de imagem 1720×688 (webp) ========= */
 .hero-media .frame {
-  position:relative;
-  width:100%;
-  padding-top:40%; /* mantém proporção 1720×688 */
-  border-radius:14px;
-  overflow:hidden;
-  border:none;          /* remove o quadrado */
-  background:transparent; /* sem fundo */
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0; /* remove o espaço reservado */
+  margin: 16px 0; /* espaço leve antes e depois da imagem */
 }
 
 .hero-media picture, 
 .hero-media img {
-  display:block;
-  width:100%;
-  height:auto;
-  border:none;          /* sem contorno na imagem */
-  border-radius:0;      /* imagem cobre o frame inteiro */
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;
+  border-radius: 14px;
+  object-fit: cover;
 }
 
     /* ========= HERO: LOGO CENTRAL (800x800 sem fundo) ========= */
