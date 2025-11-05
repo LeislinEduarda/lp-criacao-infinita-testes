@@ -140,7 +140,7 @@
     }
     details.faq > div{margin-top:8px}
     details.faq p{margin:6px 0}
-    details.faq p strong{font-weight:800}
+    details.faq p{font-weight:800}
     details.faq div{display:grid; gap:6px}
 
     /* ========= COMO FUNCIONA — minicursos lado a lado + callout à direita ========= */
@@ -254,6 +254,25 @@
     @media (prefers-reduced-motion: reduce){
       .float-cta .btn{animation:none}
     }
+    /* empurra o título da seção equipe para baixo */
+#equipe .h-serif { margin-top: 28px; } /* ajuste fino: aumente/diminua este valor */
+    /* Título em duas linhas: linha 1 = rótulo BÔNUS; linha 2 = nome do bônus */
+.gift-head{
+  line-height:1.2;
+  margin:2px 0 6px 0;
+  font-size:16px;
+}
+.gift-badge-line{
+  display:block;
+  font-weight:700;            /* “BÔNUS #X” sozinho na linha */
+  margin-bottom:4px;
+}
+.gift-title{
+  display:block;              /* nome do bônus em linha própria */
+  font-weight:650;
+}
+.float-cta{ justify-content:center; text-align:center; }
+.float-cta .btn{ margin:0 auto; }
   </style>
 </head>
 <body>
@@ -448,7 +467,11 @@
     </section>
 
     <hr />
-
+<h4 class="gift-head">
+  <span class="gift-badge-line">💛 BÔNUS #1</span>
+  <span class="gift-title">Post que Paga™</span>
+  <span class="gift-badge">Presente</span>
+</h4>
     <!-- ========== BÔNUS (Cards “presente” com cores) ========== -->
     <section aria-labelledby="bonus">
       <h2 id="bonus">🎁 Bônus que você vai receber ao entrar no Estúdio</h2>
@@ -457,11 +480,11 @@
         <article class="gift-card gift-1">
           <div class="gift-icon" aria-hidden="true">🎁</div>
           <div class="gift-body">
-            <h4>💛 BÔNUS #1: Post que Paga<span class="gift-badge">Dinheiro de Volta</span></h4>
-            <p>Cada post criado e publicado dentro do Estúdio rende <strong>+1 dia de assinatura gratuita</strong> no próximo ano. Quanto mais você cria, menos você paga.</p>
-            <p class="gift-meta">Seu conteúdo literalmente paga sua renovação.</p>
-          </div>
-        </article>
+            <h4 class="gift-head">
+  <span class="gift-badge-line">💛 BÔNUS #1</span>
+  <span class="gift-title">Post que Paga™</span>
+  <span class="gift-badge">Presente</span>
+</h4>
 
         <article class="gift-card gift-2">
           <div class="gift-icon" aria-hidden="true">🏆</div>
