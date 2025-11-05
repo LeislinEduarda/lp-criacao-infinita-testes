@@ -295,7 +295,7 @@ main > header .hero-subtitle{
     /* Subtítulo pode quebrar em 2+ linhas, evitando overflow */
 main > header .hero-subtitle{
   white-space: normal;        /* libera a quebra de linha */
-  overflow-wrap: anywhere;    /* evita “vazar” em palavras longas */
+  overflow-wrap: anywhere;    /* evita “vazar” */
   word-break: normal;         /* mantém quebra natural */
   display: block;             /* garante comportamento consistente */
 }
@@ -342,6 +342,29 @@ main > header .hero-subtitle{
   main > header h1{ font-size: clamp(18px, 5.2vw, 22px); }
   main > header .hero-subtitle{ font-size: clamp(14px, 4.6vw, 16px); }
 }
+
+/* ===== NOVO AJUSTE PEDIDO — preencher quase toda a largura + destaque no subtítulo ===== */
+main > header h1{
+  /* ocupa 'quase' toda a largura do container, sem estourar */
+  font-size: clamp(24px, 3.2vw, 38px);
+  letter-spacing: -0.022em;
+  margin-inline: auto;
+  max-width: 96%;     /* respiro lateral: ~4% */
+  text-align: center; /* harmoniza alinhamento com o container */
+}
+
+main > header .hero-subtitle{
+  /* leve incremento + destaque sem aumentar a altura visual */
+  font-size: clamp(17px, 2.3vw, 21px);
+  line-height: 1.28;
+  position: relative;
+  display: inline;        /* evita criar bloco alto */
+  background-image: linear-gradient(90deg, var(--wine), var(--green));
+  background-repeat: no-repeat;
+  background-size: 100% 0.11em;  /* espessura do “sublinhado” */
+  background-position: 0 95%;    /* posição próxima à base do texto */
+  padding-bottom: 1px;           /* micro respiro para não colar no texto */
+}
   </style>
 </head>
 <body>
@@ -364,7 +387,7 @@ main > header .hero-subtitle{
 
     <!-- ========== HERO / HEADER ========== -->
     <header style="margin-bottom:6px;">
-      <!-- TÍTULO (apenas “🧠 10 funcionários não humanos”) -->
+      <!-- TÍTULO (apenas “10 funcionários não humanos”) -->
       <h1>🧠 10 funcionários não humanos</h1>
       <!-- SUBTÍTULO (restante do texto movido para cá, sem alterar a copy) -->
       <p class="hero-subtitle">criados e treinados por mim pra colocar seu post no ar em 58 minutos</p>
