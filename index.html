@@ -292,6 +292,17 @@ main > header .hero-subtitle{
   main > header h1{ font-size: clamp(16px, 5.5vw, 20px); }
   main > header .hero-subtitle{ font-size: clamp(13px, 4.8vw, 15px); }
 }
+    /* Subtítulo pode quebrar em 2+ linhas, evitando overflow */
+main > header .hero-subtitle{
+  white-space: normal;        /* libera a quebra de linha */
+  overflow-wrap: anywhere;    /* evita “vazar” em palavras longas */
+  word-break: normal;         /* mantém quebra natural */
+  display: block;             /* garante comportamento consistente */
+}
+    /* Browsers modernos: melhor distribuição das quebras */
+main > header .hero-subtitle{
+  text-wrap: balance;         /* suporta Chrome/Edge/Safari novos */
+}
   </style>
 </head>
 <body>
