@@ -345,10 +345,10 @@ main > header h1{
 }
 
 main > header .hero-subtitle{
-  font-family: inherit;     /* usa a mesma fonte global do site */
-  font-weight: 400;         /* mesmo peso padrão dos parágrafos */
-  letter-spacing: normal;   /* remove espaçamento visual diferente */
-  color: var(--muted);
+  font-family: inherit;     /* mantém a mesma tipografia do site */
+  font-weight: 400;         /* mesmo peso dos textos normais */
+  letter-spacing: normal;
+  color: var(--text);       /* ← muda para a cor principal dos textos */
   font-size: clamp(16px, 3cqw, 20px);
   line-height: 1.28;
   text-align: center;
