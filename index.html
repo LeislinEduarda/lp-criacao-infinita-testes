@@ -140,7 +140,8 @@
     }
     details.faq > div{margin-top:8px}
     details.faq p{margin:6px 0}
-    details.faq p{font-weight:800}
+    /* ↓ Remove o negrito nas respostas do FAQ sem tocar na copy */
+    details.faq > div p strong{font-weight:400}
     details.faq div{display:grid; gap:6px}
 
     /* ========= COMO FUNCIONA — minicursos lado a lado + callout à direita ========= */
@@ -203,9 +204,12 @@
     .gift-7{background:var(--gift-7)}
     .gift-8{background:var(--gift-8)}
 
-    /* ========= CTA flutuante (único CTA) ========= */
+    /* ========= CTA flutuante (único CTA) — CENTRALIZADO ========= */
     .float-cta{
-      position:fixed; inset:auto 16px 16px auto;
+      position:fixed;
+      left:50%;
+      bottom:16px;
+      transform:translateX(-50%);
       display:flex; align-items:center; gap:12px;
       padding:12px 14px;
       background:#fff;
@@ -226,6 +230,7 @@
       font-weight:750;
       white-space:nowrap;
       animation:pulse 1.6s ease-in-out infinite;
+      text-align:center; /* garante centralização do texto no botão */
     }
     @keyframes pulse{
       0%{box-shadow:0 0 0 0 rgba(29,77,58,.35)}
@@ -244,39 +249,31 @@
       box-shadow:var(--shadow);
     }
 
+    /* Afasta o título da seção Equipe Não-Humana do topo da seção (mais para baixo) */
+    #equipe h2{ margin-top:28px; }
+
     @media (max-width:520px){
       .page{margin:36px auto;padding:0 18px; padding-bottom:128px;}
       h1{font-size:22px}
-      .float-cta{inset:auto 12px 12px 12px; justify-content:space-between}
+      .float-cta{
+        left:50%;
+        right:auto;
+        bottom:12px;
+        transform:translateX(-50%);
+        justify-content:space-between;
+        max-width:calc(100% - 24px);
+        width:fit-content;
+      }
       .float-cta .label{display:none}
     }
 
     @media (prefers-reduced-motion: reduce){
       .float-cta .btn{animation:none}
     }
-    /* empurra o título da seção equipe para baixo */
-#equipe .h-serif { margin-top: 28px; } /* ajuste fino: aumente/diminua este valor */
-    /* Título em duas linhas: linha 1 = rótulo BÔNUS; linha 2 = nome do bônus */
-.gift-head{
-  line-height:1.2;
-  margin:2px 0 6px 0;
-  font-size:16px;
-}
-.gift-badge-line{
-  display:block;
-  font-weight:700;            /* “BÔNUS #X” sozinho na linha */
-  margin-bottom:4px;
-}
-.gift-title{
-  display:block;              /* nome do bônus em linha própria */
-  font-weight:650;
-}
-.float-cta{ justify-content:center; text-align:center; }
-.float-cta .btn{ margin:0 auto; }
   </style>
 </head>
 <body>
-  <!-- CTA FLUTUANTE (único CTA; sem fechar; destaque em verde com pulsar) -->
+  <!-- CTA FLUTUANTE (único CTA; sem fechar; destaque em verde com pulsar, centralizado) -->
   <div class="float-cta" id="floatCta" role="region" aria-label="Ativar Equipe Não-Humana">
     <span class="label">🧠 Pronto pra publicar hoje?</span>
     <a class="btn" id="floatCtaBtn" href="#">Ativar minha Equipe Não-Humana →</a>
@@ -336,6 +333,11 @@
 
       <h3>2️⃣ Você escolhe entre imagem ou vídeo.</h3>
 
+      <!-- Inserção dos parágrafos solicitados -->
+      <p>Se escolher <strong>vídeo</strong>, você assiste ao minicurso onde eu mostro <strong>como eu gravo  7 reels em menos de 30 minutos</strong>, e depois é só gravar e publicar.</p>
+
+      <p>Se escolher <strong>imagem</strong>, você assiste decide entre esses minicursos:</p>
+
       <!-- Dois mini cursos lado a lado coloridos + “Tudo dentro do Estúdio” à direita -->
       <div class="minirow">
         <div class="minicards" aria-label="Minicursos">
@@ -345,7 +347,7 @@
         <div class="mini-aside">
           <div class="callout success"><strong>✅ Em menos de uma tarde</strong> seu post está no ar — rápido, leve, fácil e com seu estilo.</div>
         </div>
-        <div class="callout success"><strong>Tudo dentro do Estúdio. Tudo com a minha Equipe Não-Humana e a partir de agora, também é a sua equipe.</div>
+        <div class="callout success"><strong>Tudo dentro do Estúdio. Tudo com a minha Equipe Não-Humana e a partir de agora, também é a sua equipe.</strong></div>
       </div>
     </section>
 
@@ -467,11 +469,7 @@
     </section>
 
     <hr />
-<h4 class="gift-head">
-  <span class="gift-badge-line">💛 BÔNUS #1</span>
-  <span class="gift-title">Post que Paga™</span>
-  <span class="gift-badge">Presente</span>
-</h4>
+
     <!-- ========== BÔNUS (Cards “presente” com cores) ========== -->
     <section aria-labelledby="bonus">
       <h2 id="bonus">🎁 Bônus que você vai receber ao entrar no Estúdio</h2>
@@ -480,11 +478,11 @@
         <article class="gift-card gift-1">
           <div class="gift-icon" aria-hidden="true">🎁</div>
           <div class="gift-body">
-            <h4 class="gift-head">
-  <span class="gift-badge-line">💛 BÔNUS #1</span>
-  <span class="gift-title">Post que Paga™</span>
-  <span class="gift-badge">Presente</span>
-</h4>
+            <h4>💛 BÔNUS #1: Post que Paga<span class="gift-badge">Dinheiro de Volta</span></h4>
+            <p>Cada post criado e publicado dentro do Estúdio rende <strong>+1 dia de assinatura gratuita</strong> no próximo ano. Quanto mais você cria, menos você paga.</p>
+            <p class="gift-meta">Seu conteúdo literalmente paga sua renovação.</p>
+          </div>
+        </article>
 
         <article class="gift-card gift-2">
           <div class="gift-icon" aria-hidden="true">🏆</div>
@@ -569,7 +567,7 @@
         <p style="margin:0;">Ative sua Equipe Não-Humana agora e veja seu primeiro post no ar <strong>ainda hoje</strong> 👇🏻</p>
       </div>
     </section>
-</main>
+  </main>
 
   <script>
     // ===== Lista dos “funcionários” =====
@@ -638,7 +636,7 @@
       }
     })();
 
-    // ===== CTA Flutuante: link sincronizado e sempre visível sem cobrir conteúdo final =====
+    // ===== CTA Flutuante: link sincronizado e sempre visível (centralizado) =====
     (function floatingCTA(){
       const floatBtn = document.getElementById('floatCtaBtn');
       // Se houver uma URL específica, substitua aqui:
