@@ -379,9 +379,26 @@ main > header .hero-subtitle{
   background: none;
   padding-bottom: 0;
 }
-    /* Empurra a seção da equipe mais pra baixo */
-#equipe {
-  margin-top: 160px; /* ajuste o valor até sumir do primeiro viewport */
+/* Respiro do hero: some do primeiro viewport sem gerar vão ao rolar */
+main > header{
+  padding-bottom: clamp(48px, 12vh, 180px);
+}
+    /* Em telefones com altura menor, reduza o respiro */
+@media (max-height: 740px){
+  main > header{ padding-bottom: clamp(32px, 8vh, 96px); }
+}
+
+/* A seção dos funcionários começa “justinha” */
+.section-tight{ padding-top: 8px; }
+
+/* (Opcional) Fade sutil na transição do hero → seção */
+#equipe{ position: relative; }
+#equipe::before{
+  content:"";
+  position:absolute;
+  top:-24px; left:0; right:0; height:24px;
+  background: linear-gradient(to bottom, var(--bg), rgba(255,255,255,0));
+  pointer-events:none;
 }
   </style>
 </head>
