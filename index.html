@@ -526,6 +526,60 @@ main > header{
   .gift-card{ padding:16px; }
   .gift-icon{ width:52px; height:52px; font-size:22px; }
 }
+    /* ===== SELos (gift-badge) — chip premium ===== */
+.gift-body h4{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;  /* título + selo alinhados */
+  margin:2px 0 6px 0; font-size:16px;
+}
+
+.gift-badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:5px 10px;
+  font-size:.8rem; font-weight:600; line-height:1;
+  color:#222;                                  /* cor base do texto */
+  background:rgba(255,255,255,.78);            /* “vidro” leve */
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:999px;                         /* pill */
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 1px 4px rgba(0,0,0,.04);
+  backdrop-filter:saturate(130%) blur(4px);    /* frosted */
+  -webkit-backdrop-filter:saturate(130%) blur(4px);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+
+/* micro-interação */
+.gift-badge:hover,
+.gift-badge:focus-visible{
+  transform:translateY(-1px);
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+/* ——— Cor de ênfase por cartão (mantém coerência cromática) ——— */
+.gift-1 .gift-badge{ color: var(--wine); }     /* Post que Paga */
+.gift-2 .gift-badge{ color: var(--green); }    /* Campeonato Infinito */
+.gift-3 .gift-badge{ color: #3E4E9A; }         /* Comunidade (azul suave) */
+.gift-4 .gift-badge{ color: #B26A00; }         /* Design (âmbar) */
+.gift-5 .gift-badge{ color: #6B3EA8; }         /* Gêmea Digital (lilás) */
+.gift-6 .gift-badge{ color: #0E6F5C; }         /* Reels (verde teal) */
+.gift-7 .gift-badge{ color: #7C1E28; }         /* Ressuscitar (wine) */
+.gift-8 .gift-badge{ color: #1D4D3A; }         /* Funcionário (green) */
+
+/* ——— Ícones automáticos nos selos (sem mudar HTML) ——— */
+.gift-1 .gift-badge::before{ content:"💰"; }
+.gift-2 .gift-badge::before{ content:"🏆"; }
+.gift-3 .gift-badge::before{ content:"💬"; }
+.gift-4 .gift-badge::before{ content:"🎨"; }
+.gift-5 .gift-badge::before{ content:"🧠"; }
+.gift-6 .gift-badge::before{ content:"🎥"; }
+.gift-7 .gift-badge::before{ content:"⚡"; }
+.gift-8 .gift-badge::before{ content:"🛠️"; }
+
+/* Acento sutil: leve halo do fundo do cartão para integrar o selo */
+.gift-card .gift-badge{
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.6) inset,
+    0 0 0 1px rgba(0,0,0,.04),
+    0 6px 18px color-mix(in oklab, currentColor 8%, transparent);
+}
   </style>
 </head>
 <body>
