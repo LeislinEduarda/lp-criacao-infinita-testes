@@ -526,8 +526,11 @@ main > header{
 .gift-6{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-6) 92%, #fff) 0%, var(--gift-6) 100%); }
 .gift-7{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-7) 92%, #fff) 0%, var(--gift-7) 100%); }
 .gift-8{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-8) 92%, #fff) 0%, var(--gift-8) 100%); }
-.gift-9{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-8) 92%, #fff) 0%, var(--gift-8) 100%); }
-
+/* gift-9 corrigido para usar o novo token roxo pastel */
+    .gift-9{
+      background: linear-gradient(180deg,
+        color-mix(in oklab, var(--gift-9) 92%, #fff) 0%,
+        var(--gift-9) 100%);
 
 /* respiro extra quando o grid quebra para 1 coluna */
 @media (max-width:640px){
@@ -570,7 +573,7 @@ main > header{
 .gift-6 .gift-badge{ color: #0E6F5C; }         /* Reels (verde teal) */
 .gift-7 .gift-badge{ color: #7C1E28; }         /* Ressuscitar (wine) */
 .gift-8 .gift-badge{ color: #1D4D3A; }         /* Funcionário (green) */
-.gift-8 .gift-badge{ color: #7A4D9F; }         /* live (roxo) */
+.gift-9 .gift-badge{ color: var(--purple); }         /* live (roxo) */
 
 /* ——— Ícones automáticos nos selos (sem mudar HTML) ——— */
 .gift-1 .gift-badge::before{ content:"💰"; }
@@ -582,6 +585,11 @@ main > header{
 .gift-7 .gift-badge::before{ content:"⚡"; }
 .gift-8 .gift-badge::before{ content:"🛠️"; }
 .gift-9 .gift-badge::before{ content:"🎤"; }
+
+/* Ícone do card #9 com leve gradiente roxo */
+    .gift-9 .gift-icon{
+      background: linear-gradient(180deg, #F8F1FD 0%, #EDE0F7 100%);
+      color: var(--purple-dark);
 
 /* Acento sutil: leve halo do fundo do cartão para integrar o selo */
 .gift-card .gift-badge{
@@ -884,9 +892,9 @@ main > header{
         </article>
 
         <article class="gift-card gift-9">
-          <div class="gift-icon" aria-hidden="true">🛠️</div>
+          <div class="gift-icon" aria-hidden="true">🎤</div>
           <div class="gift-body">
-            <h4>BÔNUS #9:  Live Estúdio Aberto <span class="gift-badge">Impagável</span></h4>
+            <h4>BÔNUS #9: Live Estúdio Aberto <span class="gift-badge">Impagável</span></h4>
             <p>Se você viralizar, vem comigo pra uma live no meu perfil pra mostrar como chegou lá.</p>
           </div>
         </article>
