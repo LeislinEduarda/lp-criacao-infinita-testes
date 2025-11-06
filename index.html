@@ -576,60 +576,57 @@ main > header .lead{
 main > header .lead p{
   margin: 6px 0;            /* ritmo mais “apertado” para o hero */
 }
-/* ——— CTA FLUTUANTE: força visibilidade e centralização ——— */
-#floatCta.float-cta{
-  position: fixed !important;
-  z-index: 2147483647 !important;   /* acima de qualquer coisa */
-  left: 50% !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: 16px !important;
-  transform: translateX(-50%) !important;
-  width: min(720px, 92vw) !important;
-  padding: 12px !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 0 !important;
-  background: transparent !important;  /* deixa só o botão visível */
-  border: none !important;
-  box-shadow: none !important;
+    /* CTA flutuante central, largo e responsivo */
+.float-cta{
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  right: auto;
+  top: auto;
+  width: min(760px, 92vw);
+  padding: 0;                 /* o botão já tem padding */
+  background: transparent;    /* sem caixinha por trás */
+  border: none;               /* removemos a borda do container */
+  box-shadow: none;           /* sombra só no botão */
+  z-index: 9999;
 }
 
-/* some com o label e mantém só o botão */
-#floatCta .label{ display: none !important; }
-
-/* botão ocupando toda a largura, grande e legível */
-#floatCta .btn{
-  display: block !important;
-  width: 100% !important;
-  text-align: center !important;
-  font-size: clamp(16px, 3.2cqw, 24px) !important;
-  line-height: 1.15 !important;
-  padding: clamp(12px, 1.8cqw, 18px) clamp(16px, 2.2cqw, 22px) !important;
-  border-radius: 12px !important;
-  white-space: normal !important;     /* permite quebra */
-  border: 1px solid var(--green) !important;
-  background: var(--green) !important;
-  color: #fff !important;
-  text-decoration: none !important;
-  font-weight: 750 !important;
-  animation: pulse 1.6s ease-in-out infinite !important;
+/* Botão ocupa toda a largura, centralizado e “grande com limite” */
+.float-cta .btn{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: 750;
+  text-decoration: none;
+  color: #fff;
+  background: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 12px;
+  padding: clamp(12px, 1.8cqw, 18px) clamp(16px, 2.2cqw, 24px);
+  font-size: clamp(16px, 3.2cqw, 24px);
+  line-height: 1.15;
+  white-space: normal;        /* pode quebrar em 2 linhas se precisar */
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+  animation: pulse 1.6s ease-in-out infinite;
 }
 
-/* ajuste fino para telas muito pequenas */
+/* Se existir .label em algum lugar, garanta que não apareça aqui */
+.float-cta .label{ display:none !important; }
+
+/* Em telas muito estreitas, pequeno ajuste no tamanho da fonte */
 @media (max-width: 360px){
-  #floatCta .btn{
-    font-size: clamp(16px, 4.6vw, 20px) !important;
+  .float-cta .btn{
+    font-size: clamp(16px, 4.8vw, 20px);
   }
 }
   </style>
 </head>
 <body>
-  <!-- CTA FLUTUANTE (único CTA; sem fechar; destaque em verde com pulsar) -->
-  <div class="float-cta" id="floatCta" role="region" aria-label="Ativar Equipe Não-Humana">
-    <span class="label">Ativar minha Equipe Não Humana</span>
-  </div>
+  <!-- CTA FLUTUANTE -->
+<div class="float-cta" id="floatCta" role="region" aria-label="Ativar Equipe Não-Humana">
+  <a class="btn" id="floatCtaBtn" href="#">Ativar minha Equipe Não Humana</a>
+</div>
 
   <main class="page" role="main">
 
@@ -725,6 +722,7 @@ main > header .lead p{
     <strong>Tudo dentro do Estúdio.</strong> Tudo com a minha Equipe Não Humana e, a partir de agora, também é a sua equipe.
   </div>
 </div>
+</section>
       
     <!-- ========== FAQ ========== -->
     <section aria-labelledby="faq">
@@ -1014,13 +1012,14 @@ const ENH = [
       }
     })();
 
-    // ===== CTA Flutuante: link sincronizado e sempre visível =====
-    (function floatingCTA(){
-      const floatBtn = document.getElementById('floatCtaBtn');
-      // Se houver uma URL específica, substitua aqui:
-      const targetHref = '#';
-      floatBtn.setAttribute('href', targetHref);
-    })();
-  </script>
+   <script>
+  // ===== CTA Flutuante: link sincronizado e com guarda =====
+  (function floatingCTA(){
+    const floatBtn = document.getElementById('floatCtaBtn');
+    if(!floatBtn) return; // evita erro se o elemento não existir
+    const targetHref = '#'; // coloque seu link real aqui
+    floatBtn.setAttribute('href', targetHref);
+  })();
+</script>
 </body>
 </html>
