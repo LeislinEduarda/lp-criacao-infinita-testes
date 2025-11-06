@@ -558,6 +558,58 @@ main > header{
     0 0 0 1px rgba(0,0,0,.04),
     0 6px 18px color-mix(in oklab, currentColor 8%, transparent);
 }
+    /* Centraliza todos os títulos de seção (h2) dentro de <main>… */
+main section > h2{
+  text-align: center;
+}
+
+/* …exceto o h2 da seção da equipe (mantém como já está) */
+#equipe > .container > h2{
+  text-align: center; /* redundante apenas pra garantir */
+}
+    /* Centraliza apenas o texto do hero (bloco .lead logo abaixo do título/subtítulo) */
+main > header .lead{
+  text-align: center;
+  max-width: 56ch;          /* largura confortável para leitura */
+  margin-inline: auto;      /* centraliza o bloco */
+}
+main > header .lead p{
+  margin: 6px 0;            /* ritmo mais “apertado” para o hero */
+}
+    /* Esconde o rótulo textual do CTA (fica só o botão) */
+.float-cta .label{ display: none !important; }
+
+/* Centraliza o container do CTA no rodapé e amplia largura responsiva */
+.float-cta{
+  position: fixed;
+  left: 50%;
+  right: auto;
+  bottom: 16px;
+  top: auto;
+  transform: translateX(-50%);
+  width: min(760px, 92vw);   /* grande, mas com limite */
+  justify-content: center;   /* alinha o botão ao centro */
+  padding: 12px;             /* respiro ao redor */
+}
+
+/* Botão ocupa toda a largura e cresce a tipografia de forma segura */
+.float-cta .btn{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(16px, 3.2cqw, 24px); /* cresce sem estourar */
+  line-height: 1.15;
+  padding: clamp(12px, 1.8cqw, 18px) clamp(16px, 2.2cqw, 22px);
+  border-radius: 12px;
+  white-space: normal;        /* permite quebra se necessário */
+}
+
+/* Em telas muito pequenas, reduz o “salto” do efeito */
+@media (max-width: 360px){
+  .float-cta .btn{
+    font-size: clamp(16px, 4.6vw, 20px);
+  }
+}
   </style>
 </head>
 <body>
@@ -871,7 +923,7 @@ main > header{
         <li><strong>Garantia do primeiro post</strong>: 24h ou devolução 100%.</li>
         <li><strong>Post que Paga</strong> cada post criado com a Equipe Não Humana paga +1 dia da sua assinatura.</li>
         <li><strong>Campeonato Infinito</strong> prêmios reais e lives comigo.</li>
-        <li><strong>Comunidade Sobre-Humano</strong> feedback, ajuda e criação conjunta.</li>
+        <li><strong>Comunidade Sobre Humano</strong> feedback, ajuda e criação conjunta.</li>
         <li><strong>Bônus de criação</strong>  Gêmea Digital, Design com ChatGPT, Reels, Ressuscitar Perfil e Criar seu próprio funcionário não humano.</li>
       </ul>
     
