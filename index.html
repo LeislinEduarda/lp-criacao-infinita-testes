@@ -576,38 +576,51 @@ main > header .lead{
 main > header .lead p{
   margin: 6px 0;            /* ritmo mais “apertado” para o hero */
 }
-    /* Esconde o rótulo textual do CTA (fica só o botão) */
-.float-cta .label{ display: none !important; }
-
-/* Centraliza o container do CTA no rodapé e amplia largura responsiva */
-.float-cta{
-  position: fixed;
-  left: 50%;
-  right: auto;
-  bottom: 16px;
-  top: auto;
-  transform: translateX(-50%);
-  width: min(760px, 92vw);   /* grande, mas com limite */
-  justify-content: center;   /* alinha o botão ao centro */
-  padding: 12px;             /* respiro ao redor */
+/* ——— CTA FLUTUANTE: força visibilidade e centralização ——— */
+#floatCta.float-cta{
+  position: fixed !important;
+  z-index: 2147483647 !important;   /* acima de qualquer coisa */
+  left: 50% !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: 16px !important;
+  transform: translateX(-50%) !important;
+  width: min(720px, 92vw) !important;
+  padding: 12px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0 !important;
+  background: transparent !important;  /* deixa só o botão visível */
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Botão ocupa toda a largura e cresce a tipografia de forma segura */
-.float-cta .btn{
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: clamp(16px, 3.2cqw, 24px); /* cresce sem estourar */
-  line-height: 1.15;
-  padding: clamp(12px, 1.8cqw, 18px) clamp(16px, 2.2cqw, 22px);
-  border-radius: 12px;
-  white-space: normal;        /* permite quebra se necessário */
+/* some com o label e mantém só o botão */
+#floatCta .label{ display: none !important; }
+
+/* botão ocupando toda a largura, grande e legível */
+#floatCta .btn{
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  font-size: clamp(16px, 3.2cqw, 24px) !important;
+  line-height: 1.15 !important;
+  padding: clamp(12px, 1.8cqw, 18px) clamp(16px, 2.2cqw, 22px) !important;
+  border-radius: 12px !important;
+  white-space: normal !important;     /* permite quebra */
+  border: 1px solid var(--green) !important;
+  background: var(--green) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 750 !important;
+  animation: pulse 1.6s ease-in-out infinite !important;
 }
 
-/* Em telas muito pequenas, reduz o “salto” do efeito */
+/* ajuste fino para telas muito pequenas */
 @media (max-width: 360px){
-  .float-cta .btn{
-    font-size: clamp(16px, 4.6vw, 20px);
+  #floatCta .btn{
+    font-size: clamp(16px, 4.6vw, 20px) !important;
   }
 }
   </style>
@@ -670,7 +683,7 @@ main > header .lead p{
 
     <!-- ========== COMO FUNCIONA ========== -->
     <section aria-labelledby="como-funciona">
-      <h2 id="como-funciona">⚙️ Como Funciona</h2>
+      <h2 id="como-funciona">⚙️ COMO FUNCIONA</h2>
 
       <h3>1️⃣ Você entra no Estúdio e começa a criar junto.</h3>
       <p>Assim que entra, você assiste aos <strong>mini cursos rápidos</strong> que te mostram <strong>como usar cada Funcionário Não Humano</strong>.</p>
@@ -715,7 +728,7 @@ main > header .lead p{
       
     <!-- ========== FAQ ========== -->
     <section aria-labelledby="faq">
-      <h2 id="faq">💬 PERGUNTAS QUE SEMPRE ME FAZEM</h2>
+      <h2 id="faq">💬 PERGUNTAS QUE ME FAZEM</h2>
 
       <details class="faq" open>
         <summary>1. “Eu nunca usei IA. Vou saber fazer?”</summary>
@@ -818,7 +831,7 @@ main > header .lead p{
 
     <!-- ========== O QUE RECEBE ========== -->
     <section aria-labelledby="recebe">
-      <h2 id="recebe">📦 O que você recebe ao entrar no Estúdio</h2>
+      <h2 id="recebe">📦 O QUE O ESTÚDIO TE ENTREGA</h2>
       <div class="block">
         <ul class="checklist">
           <li><strong>10 Funcionários Não Humanos</strong> cada um responsável por uma parte do seu conteúdo. Você conversa com eles pra gerar ideias, ganchos, roteiros, carrosséis, stories, legendas e até avaliar o que você criou.</li>
@@ -916,7 +929,7 @@ main > header .lead p{
 
     <!-- ========== RESUMO FINAL ========== -->
     <section aria-labelledby="resumo">
-      <h2 id="resumo">🧶 Resumindo o que você leva ao entrar no Estúdio Infinito agora:</h2>
+      <h2 id="resumo">🧶 RESUMINDO O ESTÚDIO INFINITO:</h2>
       <ul class="checklist">
         <li><strong>10 Funcionários Não Humanos criados e treinados por mim</strong>: post pronto em minutos sem começar do zero.</li>
         <li><strong>Mini cursos rápidos</strong>: aprender criando (sem teoria, sem enrolação).</li>
