@@ -598,6 +598,72 @@ main > header{
     0 0 0 1px rgba(0,0,0,.04),
     0 6px 18px color-mix(in oklab, currentColor 8%, transparent);
 }
+/* ===== correção: gift-9 com chave de fechamento ===== */
+.gift-9{
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--gift-9) 92%, #fff) 0%,
+    var(--gift-9) 100%);
+}
+
+/* ===== correção: gift-9 .gift-icon com chave de fechamento ===== */
+.gift-9 .gift-icon{
+  background: linear-gradient(180deg, #F8F1FD 0%, #EDE0F7 100%);
+  color: var(--purple-dark);
+}
+
+/* ===== versão PREMIUM dos selos — mantenha depois da versão simples ===== */
+.gift-body h4{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  margin:2px 0 6px 0; font-size:16px;
+}
+.gifts .gift-badge{ /* ↑ um pouco mais específico pra garantir override */
+  display:inline-flex; align-items:center; gap:6px;
+  padding:5px 10px;
+  font-size:.8rem; font-weight:600; line-height:1;
+  color:#222;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:999px;
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 1px 4px rgba(0,0,0,.04);
+  backdrop-filter:saturate(130%) blur(4px);
+  -webkit-backdrop-filter:saturate(130%) blur(4px);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.gifts .gift-badge:hover,
+.gifts .gift-badge:focus-visible{
+  transform:translateY(-1px);
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+/* cores dos selos por cartão */
+.gift-1 .gift-badge{ color: var(--wine); }
+.gift-2 .gift-badge{ color: var(--green); }
+.gift-3 .gift-badge{ color: #3E4E9A; }
+.gift-4 .gift-badge{ color: #B26A00; }
+.gift-5 .gift-badge{ color: #6B3EA8; }
+.gift-6 .gift-badge{ color: #0E6F5C; }
+.gift-7 .gift-badge{ color: #7C1E28; }
+.gift-8 .gift-badge{ color: #1D4D3A; }
+.gift-9 .gift-badge{ color: var(--purple); }
+
+/* ícones automáticos */
+.gift-1 .gift-badge::before{ content:"💰"; }
+.gift-2 .gift-badge::before{ content:"🏆"; }
+.gift-3 .gift-badge::before{ content:"💬"; }
+.gift-4 .gift-badge::before{ content:"🎨"; }
+.gift-5 .gift-badge::before{ content:"🧠"; }
+.gift-6 .gift-badge::before{ content:"🎥"; }
+.gift-7 .gift-badge::before{ content:"⚡"; }
+.gift-8 .gift-badge::before{ content:"🛠️"; }
+.gift-9 .gift-badge::before{ content:"🎤"; }
+
+/* halo sutil integrado ao cartão */
+.gift-card .gift-badge{
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.6) inset,
+    0 0 0 1px rgba(0,0,0,.04),
+    0 6px 18px color-mix(in oklab, currentColor 8%, transparent);
+}
   </style>
 </head>
 <body>
