@@ -501,17 +501,23 @@ main > header{
 }
 
 .gift-badge{
-  display:inline-flex; align-items:center; gap:6px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
   padding:5px 10px;
-  font-size:.8rem; font-weight:600; line-height:1;
-  color:#222;                                  /* cor base do texto */
-  background:rgba(255,255,255,.78);            /* “vidro” leve */
+  font-size:.8rem;
+  font-weight:600;
+  color:#222;
+  background:rgba(255,255,255,.7);
   border:1px solid rgba(0,0,0,.08);
-  border-radius:999px;                         /* pill */
-  box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 1px 4px rgba(0,0,0,.04);
-  backdrop-filter:saturate(130%) blur(4px);    /* frosted */
-  -webkit-backdrop-filter:saturate(130%) blur(4px);
-  transition:transform .15s ease, box-shadow .15s ease;
+  border-radius:999px;
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset;
+  backdrop-filter:saturate(130%) blur(4px);
+}
+ .gift-badge:hover{
+  transform:translateY(-1px);
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  transition:.15s ease;
 }
 
 /* micro-interação */
