@@ -457,6 +457,75 @@ main > header{
   display: block;
   margin-bottom: 18px; /* respiro visual entre título e primeiro details */
 }
+    /* === BÔNUS — refinamento visual (aplicar depois dos estilos atuais) === */
+.gifts{ gap:18px; }
+
+.gift-card{
+  padding:18px 18px;
+  gap:16px;
+  border:1px solid color-mix(in oklab, var(--border) 90%, #000);
+  border-radius:14px;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+  transition:transform .12s ease, box-shadow .15s ease, border-color .15s ease;
+  backdrop-filter: saturate(105%);
+}
+.gift-card:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 28px rgba(0,0,0,.08);
+  border-color:color-mix(in oklab, var(--border) 70%, #000);
+}
+
+/* ícone mais legível e “macio” */
+.gift-icon{
+  width:56px; height:56px;
+  border:none;
+  border-radius:12px;
+  background: linear-gradient(180deg,#fff 0%, #f7f7f7 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.06),
+    0 4px 10px rgba(0,0,0,.06);
+  font-size:24px;
+}
+
+/* título + selo com hierarquia mais clara */
+.gift-body h4{
+  display:flex; align-items:center; gap:10px;
+  margin:2px 0 8px 0;
+  font-size:17px; line-height:1.25; letter-spacing:-.01em;
+  font-weight:750;
+}
+
+/* selo (badge) com leitura melhor */
+.gift-badge{
+  padding:4px 10px;
+  font-size:.78rem;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:999px;
+  background:#fff;
+  font-weight:650;
+  transform:translateY(-1px);
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+}
+
+/* parágrafos e meta */
+.gift-body p{ margin:8px 0; }
+.gift-meta{ color: color-mix(in oklab, var(--muted) 88%, #000); }
+
+/* fundos por bônus — mesmos tons, agora com gradiente suave */
+.gift-1{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-1) 92%, #fff) 0%, var(--gift-1) 100%); }
+.gift-2{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-2) 92%, #fff) 0%, var(--gift-2) 100%); }
+.gift-3{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-3) 92%, #fff) 0%, var(--gift-3) 100%); }
+.gift-4{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-4) 92%, #fff) 0%, var(--gift-4) 100%); }
+.gift-5{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-5) 92%, #fff) 0%, var(--gift-5) 100%); }
+.gift-6{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-6) 92%, #fff) 0%, var(--gift-6) 100%); }
+.gift-7{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-7) 92%, #fff) 0%, var(--gift-7) 100%); }
+.gift-8{ background: linear-gradient(180deg, color-mix(in oklab, var(--gift-8) 92%, #fff) 0%, var(--gift-8) 100%); }
+
+/* respiro extra quando o grid quebra para 1 coluna */
+@media (max-width:640px){
+  .gift-card{ padding:16px; }
+  .gift-icon{ width:52px; height:52px; font-size:22px; }
+}
   </style>
 </head>
 <body>
@@ -671,7 +740,7 @@ main > header{
         <ul class="checklist">
           <li><strong>10 Funcionários Não Humanos</strong> cada um responsável por uma parte do seu conteúdo. Você conversa com eles pra gerar ideias, ganchos, roteiros, carrosséis, stories, legendas e até avaliar o que você criou.</li>
           <li><strong>Mini Cursos rápidos (menos de 30 minutos)</strong> pra dominar o básico e aplicar na hora. Você aprende criando sem enrolação, sem teoria.</li>
-          <li><strong>Garantia do Primeiro Post</strong> — seu primeiro post vai pro ar em até 24h ou eu devolvo 100%.</li>
+          <li><strong>Garantia do Primeiro Post</strong> seu primeiro post vai pro ar em até 24h ou eu devolvo 100%.</li>
         </ul>
       </div>
     </section>
