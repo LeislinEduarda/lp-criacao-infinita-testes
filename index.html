@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Estúdio Infinito — Lar da Equipe Não-Humana</title>
   <meta name="description" content="10 funcionários não humanos criados e treinados para colocar seu post no ar em 58 minutos. Aprenda criando, direto do celular, com mini-cursos e comunidade." />
-  <meta name="theme-color" content="#1D4D3A">
-  <!-- Preload das imagens críticas -->
+
+  <!-- 3) PRELOAD CRÍTICOS + THEME COLOR -->
   <link rel="preload" as="image" href="hero-1720x688.webp" fetchpriority="high">
   <link rel="preload" as="image" href="logohero.webp">
+  <meta name="theme-color" content="#1D4D3A">
+
   <style>
     /* ========= Tokens / Paleta ========= */
     :root{
@@ -43,8 +45,8 @@
 
     /* ========= Base ========= */
     html,body{background:var(--bg);color:var(--text);margin:0;padding:0}
-    body{font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans"}
-    .page{max-width:860px;margin:6px auto;padding:0 24px; padding-bottom:120px}
+    body{font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans";}
+    .page{max-width:860px;margin:6px auto;padding:0 24px; padding-bottom:120px;} /* espaço p/ CTA flutuante */
     h1,h2,h3{margin:0 0 12px;line-height:1.25;letter-spacing:-0.01em;font-weight:750}
     h1{text-transform:uppercase;font-size:28px}
     h2{font-size:22px;margin-top:20px}
@@ -61,152 +63,315 @@
     .checklist li{padding-left:28px;position:relative;margin:6px 0}
     .checklist li::before{content:"✅";position:absolute;left:0;top:0}
 
-    /* ========= Container/section helpers ========= */
-    .container{max-width: 860px; margin: 0 auto; padding: 0 24px}
-    .section-tight{padding: 14px 0; background: var(--bg)}
+    /* Container/section helpers */
+    .container{max-width: 860px; margin: 0 auto; padding: 0 24px;}
+    .section-tight{padding: 14px 0; background: var(--bg);}
     .center{text-align:center}
     .small{font-size:.92rem}
     .h-serif{font-weight:750; letter-spacing:-.01em}
 
     /* ========= HERO ========= */
-    .hero-media .frame {position: relative;width: 100%;border-radius: 14px;overflow: hidden;border: none;background: transparent;display: flex;justify-content: center;align-items: center;padding-top: 0;margin: 16px 0}
-    .hero-media picture, .hero-media img {width: 100%;height: auto;display: block;border: none;border-radius: 14px;object-fit: cover}
+    .hero-media .frame {
+      position: relative;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: none;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0;
+      margin: 16px 0;
+    }
+    .hero-media picture, 
+    .hero-media img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: none;
+      border-radius: 14px;
+      object-fit: cover;
+    }
 
-    /* ========= HERO: LOGO ========= */
-    .hero-logo{display:grid; place-items:center;margin-bottom:-16px}
-    .hero-logo picture, .hero-logo img{display:block; width:160px; height:auto; background:none; border:none; box-shadow:none}
+    /* LOGO */
+    .hero-logo{ display:grid; place-items:center; margin-bottom:-16px; }
+    .hero-logo picture, .hero-logo img{ display:block; width:160px; height:auto; background:none; border:none; box-shadow:none; }
 
-    /* ========= Subtítulo do hero ========= */
-    .hero-subtitle{margin-top:-4px;color:var(--muted);font-size:16px}
+    /* Subtítulo do hero */
+    .hero-subtitle{ margin-top:-4px; color:var(--muted); font-size:16px; }
 
-    /* ========= STORIES ========= */
-    .stories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
-    .story{background:#fff;border:1px solid color-mix(in oklab, var(--green) 14%, #fff);border-radius:14px;padding:14px;text-align:center;box-shadow:var(--shadow);transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease}
-    .story:hover{transform: translateY(-1px);box-shadow: 0 6px 24px rgba(0,0,0,.06);border-color: color-mix(in oklab, var(--green) 24%, #fff)}
-    .story:focus-within{outline:2px solid color-mix(in oklab, var(--wine) 36%, #fff); outline-offset:3px}
-    .story .bubble{width:84px; height:84px; border-radius:50%; margin-inline:auto; overflow:hidden;background:linear-gradient(135deg,#eee,#fff);box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green)}
-    .story .bubble img{width:100%; height:100%; object-fit:cover; display:block}
+    /* STORIES — Equipe Não-Humana */
+    .stories-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+      gap:14px;
+    }
+    .story{
+      background:#fff;
+      border:1px solid color-mix(in oklab, var(--green) 14%, #fff);
+      border-radius:14px;
+      padding:14px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .story:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(0,0,0,.06);
+      border-color: color-mix(in oklab, var(--green) 24%, #fff);
+    }
+    .story:focus-within{outline:2px solid color-mix(in oklab, var(--wine) 36%, #fff); outline-offset:3px;}
+    .story .bubble{
+      width:84px; height:84px; border-radius:50%; margin-inline:auto; overflow:hidden;
+      background:linear-gradient(135deg,#eee,#fff);
+      box-shadow:0 0 0 3px var(--wine), 0 0 0 6px var(--green);
+    }
+    .story .bubble img{width:100%; height:100%; object-fit:cover; display:block;}
     .story h5{margin:12px 0 2px 0; font-size:.98rem; color:var(--green)}
     .story small{color:var(--muted)}
     .story-btn{all:unset;display:block;width:100%;cursor:pointer}
 
-    /* ========= Modal ========= */
-    dialog{border:none; border-radius:14px; padding:0;width:min(92vw,680px); box-shadow:0 30px 80px rgba(0,0,0,.25)}
+    /* Modal */
+    dialog{ border:none; border-radius:14px; padding:0; width:min(92vw,680px); box-shadow:0 30px 80px rgba(0,0,0,.25); }
     dialog::backdrop{background:rgba(0,0,0,.35)}
     .modal{padding:18px; background:#fff; border-radius:14px}
-    .modal header{display:flex; justify-content:space-between; align-items:center; gap:12px;border-bottom:1px solid var(--pink); padding-bottom:8px}
-    .modal .close{background:transparent; border:1px solid transparent; color:var(--wine);font-weight:700; cursor:pointer; border-radius:10px; padding:6px 10px}
+    .modal header{ display:flex; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid var(--pink); padding-bottom:8px }
+    .modal .close{ background:transparent; border:1px solid transparent; color:var(--wine); font-weight:700; cursor:pointer; border-radius:10px; padding:6px 10px; }
     .modal .close:focus{outline:2px solid var(--wine); outline-offset:2px}
 
-    /* ========= FAQ ========= */
+    /* FAQ (consolidado) */
+    #faq { display:block; margin-top:48px; margin-bottom:18px; }
     details.faq{border:1px solid var(--border);border-radius:12px;background:#fff;padding:10px 12px;margin:10px 0}
     details.faq[open]{background:#fcfcfc}
-    details.faq > summary{cursor:pointer;list-style:none;font-weight:800;letter-spacing:.001em;padding:6px 0}
+    details.faq > summary{ cursor:pointer;list-style:none;font-weight:800;letter-spacing:.001em; padding:6px 0; }
     details.faq > div{margin-top:8px}
     details.faq p{margin:6px 0}
     details.faq p strong{font-weight:800}
     details.faq div{display:grid; gap:6px}
 
-    /* ========= COMO FUNCIONA ========= */
-    .minirow{display:grid; gap:14px; align-items:start;grid-template-columns: 1fr; margin-top:10px}
+    /* COMO FUNCIONA — layout */
+    .minirow{ display:grid; gap:14px; align-items:start; grid-template-columns: 1fr; margin-top:10px; }
     .minicards{display:grid; grid-template-columns:1fr; gap:10px}
     .mini-aside{align-self:stretch}
     .callout.success{background:var(--green-soft); border-color: color-mix(in oklab, var(--green) 20%, #fff); color:var(--green-text)}
-    @media(min-width:760px){.minirow{grid-template-columns: 1.2fr .8fr}.minicards{grid-template-columns:1fr 1fr}}
+    @media(min-width:760px){
+      .minirow{grid-template-columns: 1.2fr .8fr}
+      .minicards{grid-template-columns:1fr 1fr}
+    }
 
-    /* ========= BÔNUS ========= */
-    .gifts{display:grid;grid-template-columns:1fr;gap:18px}
-    @media (min-width:640px){.gifts{grid-template-columns:1fr 1fr}}
-    .gift-card{display:flex; gap:16px; align-items:flex-start;border:1px solid color-mix(in oklab, var(--border) 90%, #000);border-radius:14px;background:#fff;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.06);transition:transform .12s ease, box-shadow .15s ease, border-color .15s ease; backdrop-filter:saturate(105%)}
-    .gift-card:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.08);border-color:color-mix(in oklab, var(--border) 70%, #000)}
-    .gift-icon{width:56px; height:56px;border:none;border-radius:12px;background: linear-gradient(180deg,#fff 0%, #f7f7f7 100%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),0 4px 10px rgba(0,0,0,.06);font-size:24px;display:grid;place-items:center}
-    .gift-body h4{display:flex; align-items:center; gap:8px; flex-wrap:wrap;margin:2px 0 6px 0; font-size:16px}
+    /* BÔNUS */
+    .gifts{ display:grid; grid-template-columns:1fr; gap:18px; }
+    @media (min-width:640px){ .gifts{grid-template-columns:1fr 1fr} }
+    .gift-card{
+      display:flex; gap:16px; align-items:flex-start;
+      border:1px solid color-mix(in oklab, var(--border) 90%, #000);
+      border-radius:14px; background:#fff;
+      padding:18px; box-shadow:0 4px 18px rgba(0,0,0,.06);
+      transition:transform .12s ease, box-shadow .15s ease, border-color .15s ease;
+      backdrop-filter: saturate(105%);
+    }
+    .gift-card:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.08); border-color:color-mix(in oklab, var(--border) 70%, #000); }
+    .gift-icon{
+      flex:0 0 56px; height:56px; width:56px; display:grid; place-items:center;
+      border:none; border-radius:12px; background: linear-gradient(180deg,#fff 0%, #f7f7f7 100%);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.06), 0 4px 10px rgba(0,0,0,.06);
+      font-size:24px;
+    }
+    .gift-body h4{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:2px 0 6px 0; font-size:16px }
     .gift-meta{color:var(--muted); font-size:.92rem}
-    .gift-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;font-size:.8rem;font-weight:600;color:#222;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.08);border-radius:999px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 0 0 1px rgba(0,0,0,.04),0 6px 18px color-mix(in oklab, currentColor 8%, transparent)}
-    .gift-1{background:var(--gift-1)}.gift-2{background:var(--gift-2)}.gift-3{background:var(--gift-3)}.gift-4{background:var(--gift-4)}.gift-5{background:var(--gift-5)}.gift-6{background:var(--gift-6)}.gift-7{background:var(--gift-7)}.gift-8{background:var(--gift-8)}.gift-9{background:var(--gift-9)}
-    .gift-1 .gift-badge{ color: var(--wine)}
-    .gift-2 .gift-badge{ color: var(--green)}
-    .gift-3 .gift-badge{ color: #3E4E9A}
-    .gift-4 .gift-badge{ color: #B26A00}
-    .gift-5 .gift-badge{ color: #6B3EA8}
-    .gift-6 .gift-badge{ color: #0E6F5C}
-    .gift-7 .gift-badge{ color: #7C1E28}
-    .gift-8 .gift-badge{ color: #1D4D3A}
-    .gift-9 .gift-badge{ color: #C8A2C8}
-    .gift-1 .gift-badge::before{ content:"💰"}
-    .gift-2 .gift-badge::before{ content:"🏆"}
-    .gift-3 .gift-badge::before{ content:"💬"}
-    .gift-4 .gift-badge::before{ content:"🎨"}
-    .gift-5 .gift-badge::before{ content:"🧠"}
-    .gift-6 .gift-badge::before{ content:"🎥"}
-    .gift-7 .gift-badge::before{ content:"⚡"}
-    .gift-8 .gift-badge::before{ content:"🛠️"}
-    .gift-9 .gift-badge::before{ content:"🎙️"}
+    .gift-badge{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:5px 10px; font-size:.8rem; font-weight:600; color:#222;
+      background:rgba(255,255,255,.7); border:1px solid rgba(0,0,0,.08);
+      border-radius:999px; box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 0 0 1px rgba(0,0,0,.04), 0 6px 18px color-mix(in oklab, currentColor 8%, transparent);
+    }
+    .gift-1 .gift-badge{ color: var(--wine); }
+    .gift-2 .gift-badge{ color: var(--green); }
+    .gift-3 .gift-badge{ color: #3E4E9A; }
+    .gift-4 .gift-badge{ color: #B26A00; }
+    .gift-5 .gift-badge{ color: #6B3EA8; }
+    .gift-6 .gift-badge{ color: #0E6F5C; }
+    .gift-7 .gift-badge{ color: #7C1E28; }
+    .gift-8 .gift-badge{ color: #1D4D3A; }
+    .gift-9 .gift-badge{ color: #C8A2C8; }
+    .gift-1 .gift-badge::before{ content:"💰"; }
+    .gift-2 .gift-badge::before{ content:"🏆"; }
+    .gift-3 .gift-badge::before{ content:"💬"; }
+    .gift-4 .gift-badge::before{ content:"🎨"; }
+    .gift-5 .gift-badge::before{ content:"🧠"; }
+    .gift-6 .gift-badge::before{ content:"🎥"; }
+    .gift-7 .gift-badge::before{ content:"⚡"; }
+    .gift-8 .gift-badge::before{ content:"🛠️"; }
+    .gift-9 .gift-badge::before{ content:"🎙️"; }
 
-    /* ========= Títulos centrados nas seções ========= */
-    main section > h2{text-align:center}
-    #equipe > .container > h2{text-align:center}
+    /* Centraliza títulos de seção */
+    main section > h2{ text-align:center; }
+    #equipe > .container > h2{ text-align:center; }
 
-    /* ========= Texto do hero central ========= */
-    main > header .lead{text-align:center;max-width:56ch;margin-inline:auto}
-    main > header .lead p{margin:6px 0}
+    /* Centraliza o texto do hero (lead) */
+    main > header .lead{ text-align:center; max-width:56ch; margin-inline:auto; }
+    main > header .lead p{ margin:6px 0; }
 
-    /* ========= CTA flutuante central, largo e responsivo ========= */
-    .float-cta{position: fixed;left: 50%;bottom: 16px;transform: translateX(-50%);right: auto;top: auto;width: min(760px, 92vw);padding: 0;background: transparent;border: none;box-shadow: none;z-index: 9999}
-    .float-cta .btn{display: block;width: 100%;text-align: center;font-weight: 750;text-decoration: none;color: #fff;background: var(--green);border: 1px solid var(--green);border-radius: 12px;padding: clamp(12px, 1.8cqw, 18px) clamp(16px, 2.2cqw, 24px);font-size: clamp(16px, 3.2cqw, 24px);line-height: 1.15;white-space: normal;box-shadow: 0 10px 30px rgba(0,0,0,.10);animation: pulse 1.6s ease-in-out infinite}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(29,77,58,.35)}70%{box-shadow:0 0 0 10px rgba(29,77,58,0)}100%{box-shadow:0 0 0 0 rgba(29,77,58,0)}}
+    /* ========= CTA flutuante central, único ========= */
+    .float-cta{
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      right: auto;
+      top: auto;
+      width: min(760px, 92vw);
+      padding: 0;                 /* o botão já tem padding */
+      background: transparent;    /* sem caixinha por trás */
+      border: none;               /* sem borda no contêiner */
+      box-shadow: none;           /* sombra só no botão */
+      z-index: 9999;
+    }
+    .float-cta .btn{
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-weight: 750;
+      text-decoration: none;
+      color: #fff;
+      background: var(--green);
+      border: 1px solid var(--green);
+      border-radius: 12px;
+      padding: clamp(12px, 1.8cqw, 18px) clamp(16px, 2.2cqw, 24px);
+      font-size: clamp(16px, 3.2cqw, 24px);
+      line-height: 1.15;
+      white-space: normal;        /* pode quebrar em 2 linhas se precisar */
+      box-shadow: 0 10px 30px rgba(0,0,0,.10);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(29,77,58,.35)}
+      70%{box-shadow:0 0 0 10px rgba(29,77,58,0)}
+      100%{box-shadow:0 0 0 0 rgba(29,77,58,0)}
+    }
 
-    /* ========= Destaque final ========= */
-    .final-highlight{border:1px solid var(--border);background:#fff;border-radius:14px;padding:18px;margin-top:12px;margin-bottom:26px;box-shadow:var(--shadow)}
+    /* Destaque final */
+    .final-highlight{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:14px;
+      padding:18px;
+      margin-top:12px;
+      margin-bottom:26px;
+      box-shadow:var(--shadow);
+    }
 
-    /* ========= Responsivo ========= */
-    @media (max-width:520px){.page{margin:10px auto;padding:0 18px; padding-bottom:128px}h1{font-size:22px}.hero-logo picture, .hero-logo img{width:132px}}
-    @media (prefers-reduced-motion: reduce){.float-cta .btn{animation:none}}
-
-    /* —— CONTAINER QUERIES —— */
-    .page{ container-type: inline-size }
-
-    /* —— H1 com gradiente + escala —— */
-    main > header h1{font-size: clamp(22px, 6.2cqw, 40px);line-height: 1.06;letter-spacing: -0.02em;margin-inline: auto;display: block;text-align: center;text-wrap: balance;overflow-wrap: anywhere;white-space: nowrap;max-width: none}
+    /* Container queries + ajustes do hero */
+    .page{ container-type: inline-size; }
+    main > header h1{
+      font-size: clamp(22px, 6.2cqw, 40px);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      margin-inline: auto;
+      display: block;
+      text-align: center;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+      white-space: nowrap;
+      max-width: none;
+    }
     @supports (-webkit-background-clip:text) or (background-clip:text){
-      main > header h1{background: linear-gradient(90deg, var(--wine) 0%, var(--green) 65%, #1a1a1a 100%);-webkit-background-clip: text;background-clip: text;-webkit-text-fill-color: transparent;color: transparent}
+      main > header h1{
+        background: linear-gradient(90deg, var(--wine) 0%, var(--green) 65%, #1a1a1a 100%);
+        -webkit-background-clip: text;
+                background-clip: text;
+        -webkit-text-fill-color: transparent;
+                color: transparent;
+      }
     }
     @container (max-width: 520px){
-      main > header h1{white-space: normal;max-width: 22ch;line-height: 1.12;letter-spacing: -0.018em}
+      main > header h1{
+        white-space: normal;
+        max-width: 22ch;
+        line-height: 1.12;
+        letter-spacing: -0.018em;
+      }
+    }
+    @media (max-width: 360px){
+      main > header h1{
+        font-size: clamp(18px, 7.2vw, 22px);
+        letter-spacing: -0.015em;
+      }
+    }
+    main > header .hero-subtitle{
+      font-family: inherit;
+      font-weight: 400;
+      letter-spacing: normal;
+      color: var(--text);
+      font-size: clamp(16px, 3cqw, 20px);
+      line-height: 1.28;
+      text-align: center;
+      white-space: normal;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      background: none;
+      padding-bottom: 0;
+    }
+    main > header{ padding-bottom: clamp(40px, 6vh, 60px); }
+    @media (max-height: 740px){
+      main > header{ padding-bottom: clamp(32px, 8vh, 96px); }
     }
 
-    main > header .hero-subtitle{font-family: inherit;font-weight: 400;letter-spacing: normal;color: var(--text);font-size: clamp(16px, 3cqw, 20px);line-height: 1.28;text-align: center;white-space: normal;text-wrap: balance;overflow-wrap: anywhere;word-break: normal;background: none;padding-bottom: 0}
+    /* Fade sutil hero → seção */
+    #equipe{ position: relative; }
+    #equipe::before{
+      content:"";
+      position:absolute; top:-24px; left:0; right:0; height:24px;
+      background: linear-gradient(to bottom, var(--bg), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+    .story small { display: none !important; }
 
-    main > header{padding-bottom: clamp(40px, 6vh, 60px)}
-    @media (max-height: 740px){main > header{ padding-bottom: clamp(32px, 8vh, 96px) }}
+    /* Minicursos (cores específicas já usadas) */
+    #minicursos1 .callout.success{ background:#EAF8FF; border-color:rgba(29,77,58,.18); color:var(--text); }
+    .minicards .minicard2{
+      background:#FFF3F0;
+      border:1px solid rgba(124,30,40,.16);
+      border-radius:12px; padding:12px;
+    }
+    .minicards .minicard3{
+      background:#EAF8FF;
+      border:1px solid rgba(29,77,58,.16);
+      border-radius:12px; padding:12px;
+    }
+    #minicursos4{ background:var(--green-soft); border-color: color-mix(in oklab, var(--green) 20%, #fff); color:var(--green-text); margin-bottom:11px; }
+    #minicursos5{ background:#FFF7E8; border:1px solid rgba(124,30,40,.12); color:var(--text); }
 
-    /* A seção dos funcionários começa “justinha” */
-    .section-tight{ padding-top: 8px }
+    /* 2) & 4) PERFORMANCE VISUAL — content-visibility */
+    section, .gifts, .stories-grid { content-visibility: auto; contain-intrinsic-size: 1px 1000px; }
 
-    /* Fade sutil na transição do hero → seção */
-    #equipe{ position: relative }
-    #equipe::before{content:"";position:absolute;top:-24px; left:0; right:0; height:24px;background: linear-gradient(to bottom, var(--bg), rgba(255,255,255,0));pointer-events:none}
-
-    .story small {display: none !important}
-
-    /* Minicursos – cartões visuais */
-    .minicards .minicard2{background:#FFF3F0;border: 1px solid rgba(124,30,40,.16);border-radius: 12px;padding: 12px}
-    .minicards .minicard3{background:#EAF8FF;border: 1px solid rgba(29,77,58,.16);border-radius: 12px;padding: 12px}
-
-    /* Espaços do FAQ */
-    #faq { display:block; margin-top:48px; margin-bottom:18px }
-
-    /* Performance – pintar sob demanda */
-    section, .gifts, .stories-grid { content-visibility: auto; contain-intrinsic-size: 1px 1000px }
+    @media (max-width:520px){
+      .page{margin:10px auto;padding:0 18px; padding-bottom:128px;}
+      h1{font-size:22px}
+      .hero-logo picture, .hero-logo img{width:132px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .float-cta .btn{animation:none}
+    }
   </style>
 </head>
 <body>
   <!-- CTA FLUTUANTE -->
   <div class="float-cta" role="region" aria-label="Ativar Equipe Não-Humana">
-    <a class="btn" id="floatCtaBtn" href="https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275" aria-label="Ativar minha Equipe Não Humana">Ativar minha Equipe Não Humana</a>
+    <a
+      class="btn"
+      id="floatCtaBtn"
+      href="https://payfast.greenn.com.br/84555/offer/2xGrf9?ch_id=16275"
+      aria-label="Ativar minha Equipe Não Humana"
+    >
+      Ativar minha Equipe Não Humana
+    </a>
   </div>
 
   <main class="page" role="main">
+
     <!-- LOGO -->
     <div class="hero-logo" aria-label="Logo do Estúdio Infinito">
       <picture>
@@ -219,14 +384,16 @@
     <header style="margin-bottom:6px;">
       <h1>🧠 10 funcionários não humanos</h1>
       <p class="hero-subtitle"><strong>criados</strong> e <strong>treinados</strong> por mim pra colocar seu post no ar em <strong>58 minutos</strong></p>
+
       <div class="hero-media">
         <div class="frame">
           <picture>
-            <source srcset="hero-1720x688.webp" type="image/webp" />
-            <img src="hero-1720x688.webp" alt="Prévia do Estúdio Infinito com a Equipe Não-Humana em ação" width="1720" height="688" loading="eager" fetchpriority="high" decoding="async" />
+            <source srcset="herosemfundo.webp" type="image/webp" />
+            <img src="hero-1720x688.webp" alt="Prévia do Estúdio Infinito com a Equipe Não-Humana em ação" width="1720" height="688" loading="eager" decoding="async" fetchpriority="high" />
           </picture>
         </div>
       </div>
+
       <div class="lead">
         <p>Eu não pago equipe, nem tenho tempo.</p>
         <p>Mas há dois anos eu posto todo dia só com o celular e minha <strong>Equipe Não Humana.</strong></p>
@@ -236,7 +403,7 @@
 
     <hr />
 
-    <!-- EQUIPE -->
+    <!-- STORIES — Equipe Não-Humana -->
     <section class="section-tight" id="equipe">
       <div class="container">
         <h2 class="h-serif center">CONHEÇA A SUA EQUIPE NÃO HUMANA</h2>
@@ -250,6 +417,7 @@
     <!-- COMO FUNCIONA -->
     <section aria-labelledby="como-funciona">
       <h2 id="como-funciona">⚙️ COMO FUNCIONA</h2>
+
       <h3>1️⃣ Você entra no Estúdio e começa a criar junto.</h3>
       <p>Assim que entra, você assiste aos <strong>minicursos rápidos</strong> que te mostram <strong>como usar cada Funcionário Não Humano</strong>.</p>
       <p>Enquanto vê as aulas, você já conversa com eles e cria seus próprios conteúdos em tempo real.</p>
@@ -258,6 +426,7 @@
       <hr />
 
       <h3>2️⃣ Você escolhe entre imagem ou vídeo.</h3>
+
       <p>Se escolher <strong>vídeo</strong>, você assiste ao:</p>
       <div class="mini-aside" id="minicursos1">
         <div class="callout success">
@@ -266,6 +435,7 @@
       </div>
 
       <p>Se escolher <strong>imagem</strong>, você decide entre esses minicursos:</p>
+
       <div class="minirow">
         <div class="minicards" aria-label="Minicursos">
           <div class="minicard2">
@@ -275,12 +445,14 @@
             <strong>MINICURSO: Crie Sua Gêmea Digital pelo celular (fotos com IA) e Poste Sem Aparecer</strong> — 20 minutos ⏳
           </div>
         </div>
+
         <div class="mini-aside">
           <div class="callout success" id="minicursos4">
             <strong>✅ Em menos de uma tarde</strong> seu post está no ar — rápido, leve, fácil e com seu estilo.
           </div>
         </div>
       </div>
+
       <div class="mini-aside">
         <div class="callout success" id="minicursos5">
           <strong>Tudo dentro do Estúdio.</strong> Tudo com a minha Equipe Não Humana e, a partir de agora, também é a sua equipe.
@@ -291,6 +463,7 @@
     <!-- FAQ -->
     <section aria-labelledby="faq">
       <h2 id="faq">💬 PERGUNTAS QUE ME FAZEM</h2>
+
       <details class="faq" open>
         <summary>1. “Eu nunca usei IA. Vou saber fazer?”</summary>
         <div>
@@ -300,6 +473,7 @@
           <p>Em poucos minutos, você já vai estar vendo suas respostas virarem posts prontos.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>2. “Preciso de computador ou dá pra fazer pelo celular?”</summary>
         <div>
@@ -307,6 +481,7 @@
           <p>O Estúdio foi feito pra quem quer criar leve, rápido e de qualquer lugar.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>3. “Eu tenho um nicho diferente. Vai funcionar pra mim?”</summary>
         <div>
@@ -315,6 +490,7 @@
           <p>O que muda são as informações que você passa pra ela. O Estúdio te mostra exatamente como adaptar pro seu tipo de conteúdo.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>4. “Como eu falo com os funcionários não humanos?”</summary>
         <div>
@@ -323,13 +499,15 @@
           <p>Literalmente, você conversa e eles entregam.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>5. “Esses minicursos são teóricos?”</summary>
         <div>
-          <p><strong>Não.</strong> Você não vai assistir pra entender. Vai assistir pra fazer.</p>
+          <p><strong>Não.</strong> Você não vai assistir pra entender.  Vai assistir pra fazer.</p>
           <p>Cada minicurso foi pensado pra colocar o post no ar ou melhorar o que você já publica.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>6. “Eu preciso assistir tudo antes de criar?”</summary>
         <div>
@@ -337,6 +515,7 @@
           <p>Assiste um minicurso, aplica e posta. A ideia é que seu primeiro post saia no mesmo dia, não daqui a um mês.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>7. “Quanto tempo leva pra criar o primeiro post?”</summary>
         <div>
@@ -344,6 +523,7 @@
           <p>É rápido, leve e impossível de travar.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>8. “Tem acompanhamento ou eu fico sozinha criando?”</summary>
         <div>
@@ -351,24 +531,28 @@
           <p>Dentro do Estúdio tem a <strong>Comunidade Sobre Humano</strong>, com área de <strong>feedbacks</strong> e <strong>chat de ajuda</strong> em tempo real.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>9. “Como funciona o Post que Paga?”</summary>
         <div>
           <p>Cada post que você cria com a Equipe Não Humana e publica vale <strong>+1 dia de acesso na próxima renovação</strong>. Quanto mais você cria, menos você paga. Aqui, o conteúdo literalmente trabalha pra você.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>10. “O Estúdio é uma assinatura mensal?”</summary>
         <div>
           <p><strong>Não.</strong> Você paga <strong>uma vez por ano</strong> e recebe os 10 funcionários, os minicursos, a comunidade e as recompensas. Cada post publicado ainda paga +1 dia da sua renovação pro próximo ano.</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>11. “R$388 por ano é tudo incluso mesmo?”</summary>
         <div>
           <p><strong>Sim.</strong> Esse valor cobre Estúdio, minicursos, comunidade e Equipe Não Humana. ChatGPT pode ser usado grátis; Higgsfield tem plano barato (tipo <em>pizza</em> 🍕).</p>
         </div>
       </details>
+
       <details class="faq">
         <summary>12. “E se eu não não gostar ou não conseguir criar?”</summary>
         <div>
@@ -396,6 +580,7 @@
     <!-- BÔNUS -->
     <section aria-labelledby="bonus">
       <h2 id="bonus">🎁 BÔNUS QUE VOCÊ RECEBE IMEDIATAMENTE:</h2>
+
       <div class="gifts">
         <article class="gift-card gift-1">
           <div class="gift-icon" aria-hidden="true">🎁</div>
@@ -405,6 +590,7 @@
             <p class="gift-meta">Seu conteúdo literalmente paga sua renovação.</p>
           </div>
         </article>
+
         <article class="gift-card gift-2">
           <div class="gift-icon" aria-hidden="true">🏆</div>
           <div class="gift-body">
@@ -413,6 +599,7 @@
             <p class="gift-meta">Gamificação para acelerar consistência.</p>
           </div>
         </article>
+
         <article class="gift-card gift-3">
           <div class="gift-icon" aria-hidden="true">💬</div>
           <div class="gift-body">
@@ -421,6 +608,7 @@
             <p class="gift-meta">A parte humana do Estúdio.</p>
           </div>
         </article>
+
         <article class="gift-card gift-4">
           <div class="gift-icon" aria-hidden="true">🎨</div>
           <div class="gift-body">
@@ -428,6 +616,7 @@
             <p>Crie todos os seus designs conversando em 10min ⏳</p>
           </div>
         </article>
+
         <article class="gift-card gift-5">
           <div class="gift-icon" aria-hidden="true">🧠</div>
           <div class="gift-body">
@@ -435,6 +624,7 @@
             <p>Fotos com IA sem aparecer. Passo a passo direto no celular. Pronto em 20 min ⏳</p>
           </div>
         </article>
+
         <article class="gift-card gift-6">
           <div class="gift-icon" aria-hidden="true">🎥</div>
           <div class="gift-body">
@@ -442,6 +632,7 @@
             <p>Meu fluxo real de gravação enxuto, replicável no mesmo dia.</p>
           </div>
         </article>
+
         <article class="gift-card gift-7">
           <div class="gift-icon" aria-hidden="true">⚡</div>
           <div class="gift-body">
@@ -449,6 +640,7 @@
             <p>Plano de recuperação de perfis na UTI usando a Equipe Não Humana.</p>
           </div>
         </article>
+
         <article class="gift-card gift-8">
           <div class="gift-icon" aria-hidden="true">🛠️</div>
           <div class="gift-body">
@@ -456,6 +648,7 @@
             <p>Aprenda a clonar seu conhecimento em um GPT que trabalha pra você em 20 minutos.</p>
           </div>
         </article>
+
         <article class="gift-card gift-9">
           <div class="gift-icon" aria-hidden="true">🎙️</div>
           <div class="gift-body">
@@ -478,8 +671,9 @@
         <li><strong>Post que Paga</strong> cada post criado com a Equipe Não Humana paga +1 dia da sua assinatura.</li>
         <li><strong>Campeonato Infinito</strong> prêmios reais e lives comigo.</li>
         <li><strong>Comunidade Sobre Humano</strong> feedback, ajuda e criação conjunta.</li>
-        <li><strong>Bônus de criação</strong> Gêmea Digital, Design com ChatGPT, Reels, Ressuscitar Perfil e Criar seu próprio funcionário não humano.</li>
+        <li><strong>Bônus de criação</strong>  Gêmea Digital, Design com ChatGPT, Reels, Ressuscitar Perfil e Criar seu próprio funcionário não humano.</li>
       </ul>
+
       <div class="final-highlight">
         <h2 style="margin-bottom:10px;">🧠 É o jeito mais leve, rápido e inteligente de criar conteúdo todos os dias.</h2>
       </div>
@@ -487,23 +681,24 @@
   </main>
 
   <script>
-    // ===== Lista dos “funcionários” =====
+    // Lista dos “funcionários”
     const ENH = [
-      { nome:'João dos Ganchos',        func:'Primeiras frases que fazem a pessoa parar.',                     foto:'7.webp'  },
-      { nome:'Bia do Público',          func:'Descobre exatamente onde dói no seu público.',                  foto:'10.webp' },
-      { nome:'Leonardo da Viralização', func:'Avalia seu post sem dó com nota de 0 a 10 para viralizar.',     foto:'1.webp'  },
-      { nome:'Laura das Legendas',      func:'Escreve legendas que fazem o seguidor ler até o fim.',          foto:'5.webp'  },
-      { nome:'Bruno do Branding',       func:'Um posicionamento que gruda na mente das pessoas.',             foto:'2.webp'  },
-      { nome:'José dos Stories',        func:'Transforma seus stories em sequências que vendem.',             foto:'9.webp'  },
-      { nome:'Larissa dos Roteiros',    func:'Escreve roteiros de vídeo que retêm atenção.',                  foto:'6.webp'  },
-      { nome:'Maria das Ideias',        func:'Ideias que você nunca pensaria.',                               foto:'3.webp'  },
-      { nome:'Carlos dos Carrosséis',   func:'Cria carrosséis prontos pra deslizar até o último slide.',      foto:'8.webp'  },
-      { nome:'Dudu da Bio',             func:'Ajusta sua bio pra atrair os seguidores certos.',               foto:'4.webp'  }
+      { nome:'João dos Ganchos',        func:'Primeiras frases que fazem a pessoa parar.',                                      foto:'7.webp'  },
+      { nome:'Bia do Público',          func:'Descobre exatamente onde dói no seu público.',                                   foto:'10.webp' },
+      { nome:'Leonardo da Viralização', func:'Avalia seu post sem dó com uma nota de 0 a 10 para viralizar sem limite.',       foto:'1.webp'  },
+      { nome:'Laura das Legendas',      func:'Escreve legendas que fazem o seguidor ler até o fim.',                           foto:'5.webp'  },
+      { nome:'Bruno do Branding',       func:'Um posicionamento que gruda na mente das pessoas.',                               foto:'2.webp'  },
+      { nome:'José dos Stories',        func:'Transforma seus stories em sequências que vendem.',                               foto:'9.webp'  },
+      { nome:'Larissa dos Roteiros',    func:'Escreve roteiros de vídeo que retêm atenção.',                                    foto:'6.webp'  },
+      { nome:'Maria das Ideias',        func:'Ideias que você nunca pensaria.',                                                 foto:'3.webp'  },
+      { nome:'Carlos dos Carrosséis',   func:'Cria carrosséis prontos pra deslizar até o último slide.',                        foto:'8.webp'  },
+      { nome:'Dudu da Bio',             func:'Ajusta sua bio pra atrair os seguidores certos.',                                 foto:'4.webp'  }
     ];
 
-    function mountENH(){
+    (function mountENH(){
       const grid = document.getElementById('storiesGrid');
       if(!grid) return;
+
       grid.innerHTML = '';
 
       ENH.forEach(p=>{
@@ -519,19 +714,22 @@
             </div>
             <h5>${p.nome}</h5>
             <small>${p.func}</small>
-          </button>`;
-        const btn = card.querySelector('.story-btn');
-        btn.addEventListener('click', ()=> openENHModal(p));
+          </button>
+        `;
 
-        // Evita CLS: fixa dimensões
+        // 2) FIX CLS: garantir width/height na imagem dos stories
         const imgEl = card.querySelector('img');
-        if (imgEl) { imgEl.setAttribute('width','84'); imgEl.setAttribute('height','84'); }
+        if (imgEl) {
+          imgEl.setAttribute('width','84');
+          imgEl.setAttribute('height','84');
+        }
 
+        card.querySelector('.story-btn').addEventListener('click', ()=> openENHModal(p));
         grid.appendChild(card);
       });
 
       function openENHModal(p){
-        if (document.querySelector('dialog[open]')) return; // evita múltiplos abertos
+        if (document.querySelector('dialog[open]')) return; /* evita 2 abertos */
         const dlg = document.createElement('dialog');
         dlg.setAttribute('aria-label', `Perfil de ${p.nome}`);
         dlg.innerHTML = `
@@ -543,7 +741,8 @@
             <div style="padding-top:10px">
               <p><strong>Função:</strong> ${p.func}</p>
             </div>
-          </div>`;
+          </div>
+        `;
         document.body.appendChild(dlg);
         const closeBtn = dlg.querySelector('.close');
         closeBtn.addEventListener('click', ()=> dlg.close());
@@ -552,9 +751,9 @@
         dlg.showModal();
         closeBtn.focus();
       }
-    }
+    })();
 
-    document.addEventListener('DOMContentLoaded', mountENH);
+    /* 6) JS: removido o IIFE que sobrescrevia o href do CTA (já está no HTML) */
   </script>
 </body>
 </html>
