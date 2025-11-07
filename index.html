@@ -1019,13 +1019,19 @@ const ENH = [
       }
     })();
 
-    // ===== CTA Flutuante: link sincronizado e com guarda =====
-  (function floatingCTA(){
-    const floatBtn = document.getElementById('floatCtaBtn');
-    if(!floatBtn) return; // evita erro se o elemento não existir
-    const targetHref = '#'; // coloque seu link real aqui
-    floatBtn.setAttribute('href', targetHref);
-  })();
+   // ===== CTA Flutuante: link sincronizado e funcional =====
+(function floatingCTA(){
+  const floatBtn = document.getElementById('floatCtaBtn');
+  if(!floatBtn) return; // evita erro se o botão ainda não existir
+
+  // 🔗 Coloque aqui o link real do seu checkout
+  const targetHref = 'https://checkout.conteudoinfinito.com'; 
+
+  // Define o link e abre em nova aba
+  floatBtn.setAttribute('href', targetHref);
+  floatBtn.setAttribute('target', '_blank');
+  floatBtn.setAttribute('rel', 'noopener noreferrer');
+})();
 </script>
 </body>
 </html>
