@@ -1,25 +1,34 @@
 {
-  "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/gemini-teste/(.*)", "destination": "/$1" }
+  ],
   "headers": [
     {
-      "source": "/.*\\.(?:css|js)$",
+      "source": "/(.*)\\.(webp|webm|png|jpg|jpeg|svg|gif)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|woff2|woff|ttf|otf|eot|mp4|webm)$",
+      "source": "/(.*)\\.(css|js)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/",
+      "source": "/index.html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        { "key": "Cache-Control", "value": "no-cache" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     }
   ]
 }
+
