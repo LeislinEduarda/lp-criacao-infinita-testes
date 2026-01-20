@@ -43,7 +43,7 @@
     /* BLOCO FOTO + TEXTO */
     .hero {
       display: grid;
-      grid-template-columns: 420px 1fr; /* FOTO 5x maior */
+      grid-template-columns: 420px 1fr;
       gap: 48px;
       margin-top: 28px;
       align-items: flex-start;
@@ -62,7 +62,6 @@
       line-height: 1.6;
       color: rgba(255,255,255,.85);
       max-width: 720px;
-      white-space: pre-line;
     }
 
     /* BLOCOS DE TEXTO ABAIXO */
@@ -72,7 +71,6 @@
       line-height: 1.6;
       color: rgba(255,255,255,.8);
       max-width: 1000px;
-      white-space: pre-line;
     }
 
     /* RODAPÉ */
@@ -88,7 +86,6 @@
       margin: 0 0 10px;
       color: rgba(255,255,255,.75);
       line-height: 1.5;
-      white-space: pre-line;
     }
 
     .legal-links {
@@ -103,6 +100,12 @@
 
     .legal-links a:hover {
       text-decoration: underline;
+    }
+
+    /* PLACEHOLDER VISUAL */
+    .placeholder {
+      opacity: 0.6;
+      font-style: italic;
     }
 
     @media (max-width: 900px) {
@@ -137,25 +140,31 @@
     <section class="hero">
       <img class="photo" src="" alt="Foto institucional">
 
-      <div class="hero-text">
-        <!-- TEXTO AO LADO DA FOTO -->
+      <div class="hero-text placeholder">
+        TEXTO AO LADO DA FOTO  
+        (descrição principal, apresentação ou explicação curta)
       </div>
     </section>
 
     <!-- BLOCO DE TEXTO 1 -->
-    <section class="text-block">
-      <!-- TEXTO ABAIXO – BLOCO 1 -->
+    <section class="text-block placeholder">
+      BLOCO DE TEXTO 1  
+      (texto institucional abaixo da imagem e descrição)
     </section>
 
     <!-- BLOCO DE TEXTO 2 -->
-    <section class="text-block">
-      <!-- TEXTO ABAIXO – BLOCO 2 -->
+    <section class="text-block placeholder">
+      BLOCO DE TEXTO 2  
+      (segundo texto institucional, complementar ao primeiro)
     </section>
 
     <!-- RODAPÉ -->
     <section class="footer">
       <div>
-        <p><!-- Texto institucional / aviso legal --></p>
+        <p class="placeholder">
+          TEXTO DO RODAPÉ – COLUNA ESQUERDA  
+          (aviso institucional, descrição legal ou observações)
+        </p>
 
         <div class="legal-links">
           <a href="/politicadeprivacidade/">Política de Privacidade</a> |
@@ -164,11 +173,11 @@
       </div>
 
       <div>
-        <p><!-- Razão social / nome legal --></p>
-        <p><!-- CNPJ --></p>
-        <p><!-- Endereço --></p>
-        <p><!-- Cidade / País --></p>
-        <p><!-- Email de contato --></p>
+        <p class="placeholder">RAZÃO SOCIAL</p>
+        <p class="placeholder">CNPJ</p>
+        <p class="placeholder">ENDEREÇO</p>
+        <p class="placeholder">CIDADE / PAÍS</p>
+        <p class="placeholder">EMAIL DE CONTATO</p>
       </div>
     </section>
 
