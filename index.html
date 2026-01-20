@@ -1,93 +1,101 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nome do Projeto</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nome da Empresa</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background-color: #0b0b0b;
-      color: #ffffff;
+      background: #000;
+      color: #fff;
     }
 
     .container {
-      max-width: 1000px;
+      width: 100%;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 0 24px;
     }
 
-    /* TOPO */
-    header {
+    /* 1. BARRA SUPERIOR */
+    .top-bar {
+      border-bottom: 1px solid #333;
+      padding: 28px 0;
       text-align: center;
-      border-bottom: 1px solid #2a2a2a;
-      padding-bottom: 24px;
     }
 
-    header h1 {
+    .top-bar h1 {
       margin: 0;
       font-size: 32px;
+      letter-spacing: 2px;
       font-weight: normal;
-      letter-spacing: 1px;
     }
 
-    /* BLOCO FOTO + DESCRIÇÃO */
+    /* 2. BLOCO FOTO + TEXTO */
     .profile {
       display: flex;
-      gap: 32px;
-      align-items: center;
-      margin-top: 56px;
+      gap: 28px;
+      margin-top: 40px;
+      align-items: flex-start;
     }
 
     .profile img {
-      width: 160px;
-      height: 160px;
+      width: 150px;
+      height: 180px;
       object-fit: cover;
-      border-radius: 4px;
       background: #222;
     }
 
-    .profile .description {
-      max-width: 700px;
-      color: #d0d0d0;
-      line-height: 1.6;
-    }
-
-    /* BLOCOS DE TEXTO */
-    .text-block {
-      margin-top: 48px;
-      color: #cfcfcf;
-      line-height: 1.6;
-    }
-
-    /* RODAPÉ */
-    footer {
-      margin-top: 72px;
-      border-top: 1px solid #2a2a2a;
-      padding-top: 24px;
+    .profile-text {
       font-size: 14px;
-      color: #b5b5b5;
+      line-height: 1.5;
+      color: #e0e0e0;
+      max-width: 720px;
     }
 
-    footer p {
-      margin: 6px 0;
+    /* 3 + 4. BLOCOS LEGAIS */
+    .legal {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #bdbdbd;
     }
 
-    footer a {
-      color: #b5b5b5;
+    .legal-left {
+      flex: 2;
+    }
+
+    .legal-right {
+      flex: 1;
+    }
+
+    /* 5. LINKS FINAIS */
+    .legal-links {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .legal-links a {
+      color: #bdbdbd;
       text-decoration: none;
     }
 
-    footer a:hover {
+    .legal-links a:hover {
       text-decoration: underline;
     }
 
     @media (max-width: 768px) {
       .profile {
         flex-direction: column;
-        text-align: center;
+      }
+
+      .legal {
+        flex-direction: column;
       }
     }
   </style>
@@ -95,51 +103,45 @@
 
 <body>
 
-  <!-- TOPO -->
-  <header>
+  <!-- 1. BARRA SUPERIOR -->
+  <div class="top-bar">
     <div class="container">
-      <h1>Nome do Projeto ou Empresa</h1>
+      <h1>NOME DA EMPRESA OU PROJETO</h1>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <div class="container">
+  <div class="container">
 
-      <!-- FOTO + DESCRIÇÃO -->
-      <section class="profile">
-        <img src="" alt="Foto institucional" />
-        <div class="description">
-          <!-- Descrição ao lado da foto -->
-        </div>
-      </section>
+    <!-- 2. FOTO + DESCRIÇÃO -->
+    <div class="profile">
+      <img src="" alt="Foto institucional">
+      <div class="profile-text">
+        <!-- TEXTO DESCRITIVO PRINCIPAL -->
+      </div>
+    </div>
 
-      <!-- BLOCO DE TEXTO 1 -->
-      <section class="text-block">
-        <!-- Texto institucional 1 -->
-      </section>
+    <!-- 3 + 4. TEXTO LEGAL -->
+    <div class="legal">
 
-      <!-- BLOCO DE TEXTO 2 -->
-      <section class="text-block">
-        <!-- Texto institucional 2 -->
-      </section>
+      <!-- BLOCO ESQUERDA -->
+      <div class="legal-left">
+        <!-- TEXTO LEGAL / INSTITUCIONAL -->
+      </div>
+
+      <!-- BLOCO DIREITA -->
+      <div class="legal-right">
+        <!-- DADOS DA EMPRESA -->
+      </div>
 
     </div>
-  </main>
 
-  <!-- RODAPÉ -->
-  <footer>
-    <div class="container">
-      <p><!-- Nome legal do projeto ou empresa --></p>
-      <p><!-- CNPJ (se houver) --></p>
-      <p><!-- Endereço ou cidade/país --></p>
-      <p><!-- Email de contato --></p>
-
-      <p>
-        <a href="/termosdeuso/">Termos de Uso</a> •
-        <a href="/politicadeprivacidade/">Política de Privacidade</a>
-      </p>
+    <!-- 5. LINKS -->
+    <div class="legal-links">
+      <a href="/politicadeprivacidade/">Política de Privacidade</a> |
+      <a href="/termosdeuso/">Termos de Uso</a>
     </div>
-  </footer>
+
+  </div>
 
 </body>
 </html>
