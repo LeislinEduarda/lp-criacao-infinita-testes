@@ -4,50 +4,69 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nome do Projeto</title>
-  <meta name="description" content="Página institucional para verificação." />
 
   <style>
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background-color: #0e0e0e;
+      background-color: #0b0b0b;
       color: #ffffff;
     }
 
     .container {
-      max-width: 960px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 40px 24px;
     }
 
+    /* TOPO */
     header {
+      text-align: center;
       border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 24px;
     }
 
     header h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 32px;
       font-weight: normal;
+      letter-spacing: 1px;
     }
 
-    main section {
+    /* BLOCO FOTO + DESCRIÇÃO */
+    .profile {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      margin-top: 56px;
+    }
+
+    .profile img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #222;
+    }
+
+    .profile .description {
+      max-width: 700px;
+      color: #d0d0d0;
+      line-height: 1.6;
+    }
+
+    /* BLOCOS DE TEXTO */
+    .text-block {
       margin-top: 48px;
-    }
-
-    main h2 {
-      font-size: 20px;
-      font-weight: normal;
-      margin-bottom: 12px;
-    }
-
-    main p {
       color: #cfcfcf;
       line-height: 1.6;
     }
 
+    /* RODAPÉ */
     footer {
-      margin-top: 64px;
+      margin-top: 72px;
       border-top: 1px solid #2a2a2a;
+      padding-top: 24px;
       font-size: 14px;
       color: #b5b5b5;
     }
@@ -64,45 +83,44 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      .profile {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- TOPO -->
   <header>
     <div class="container">
-      <!-- Nome do projeto / empresa -->
       <h1>Nome do Projeto ou Empresa</h1>
     </div>
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <div class="container">
 
-      <!-- BLOCO 1: APRESENTAÇÃO -->
-      <section>
-        <h2>Apresentação</h2>
-        <p>
-          <!-- Texto institucional de apresentação -->
-        </p>
+      <!-- FOTO + DESCRIÇÃO -->
+      <section class="profile">
+        <img src="" alt="Foto institucional" />
+        <div class="description">
+          <!-- Descrição ao lado da foto -->
+        </div>
       </section>
 
-      <!-- BLOCO 2: SOBRE ESTE SITE -->
-      <section>
-        <h2>Sobre este site</h2>
-        <p>
-          <!-- Descrição institucional do propósito do site -->
-        </p>
+      <!-- BLOCO DE TEXTO 1 -->
+      <section class="text-block">
+        <!-- Texto institucional 1 -->
       </section>
 
-      <!-- BLOCO 3: CONTATO -->
-      <section>
-        <h2>Contato</h2>
-        <p>
-          <!-- Informações de contato -->
-        </p>
+      <!-- BLOCO DE TEXTO 2 -->
+      <section class="text-block">
+        <!-- Texto institucional 2 -->
       </section>
 
     </div>
@@ -111,7 +129,7 @@
   <!-- RODAPÉ -->
   <footer>
     <div class="container">
-      <p><!-- Nome legal da empresa ou projeto --></p>
+      <p><!-- Nome legal do projeto ou empresa --></p>
       <p><!-- CNPJ (se houver) --></p>
       <p><!-- Endereço ou cidade/país --></p>
       <p><!-- Email de contato --></p>
