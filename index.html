@@ -1,87 +1,103 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nome da Empresa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NOME DA EMPRESA</title>
 
   <style>
     body {
       margin: 0;
+      background: #0b0b0b;
+      color: #ffffff;
       font-family: Arial, Helvetica, sans-serif;
-      background: #000;
-      color: #fff;
     }
 
-    .container {
-      width: 100%;
-      max-width: 1100px;
+    .wrap {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 36px 24px 28px;
     }
 
-    /* 1. BARRA SUPERIOR */
-    .top-bar {
-      border-bottom: 1px solid #333;
-      padding: 28px 0;
+    /* TOPO */
+    .title-box {
+      border: 2px solid rgba(255,255,255,.35);
+      padding: 18px;
       text-align: center;
     }
 
-    .top-bar h1 {
+    .title-box h1 {
       margin: 0;
-      font-size: 32px;
+      font-size: 56px;
       letter-spacing: 2px;
-      font-weight: normal;
+      font-weight: 800;
+      text-transform: uppercase;
     }
 
-    /* 2. BLOCO FOTO + TEXTO */
-    .profile {
-      display: flex;
-      gap: 28px;
-      margin-top: 40px;
+    .rule {
+      height: 1px;
+      background: rgba(255,255,255,.35);
+      margin: 18px 0;
+    }
+
+    /* BLOCO FOTO + TEXTO */
+    .hero {
+      display: grid;
+      grid-template-columns: 420px 1fr; /* FOTO 5x maior */
+      gap: 48px;
+      margin-top: 28px;
       align-items: flex-start;
     }
 
-    .profile img {
-      width: 150px;
-      height: 180px;
+    .photo {
+      width: 100%;
+      height: 420px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.35);
       object-fit: cover;
-      background: #222;
     }
 
-    .profile-text {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #e0e0e0;
+    .hero-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.85);
       max-width: 720px;
+      white-space: pre-line;
     }
 
-    /* 3 + 4. BLOCOS LEGAIS */
-    .legal {
-      display: flex;
+    /* BLOCOS DE TEXTO ABAIXO */
+    .text-block {
+      margin-top: 42px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.8);
+      max-width: 1000px;
+      white-space: pre-line;
+    }
+
+    /* RODAPÉ */
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 40px;
-      margin-top: 40px;
-      font-size: 12px;
+      margin-top: 56px;
+      font-size: 14px;
+    }
+
+    .footer p {
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.75);
       line-height: 1.5;
-      color: #bdbdbd;
+      white-space: pre-line;
     }
 
-    .legal-left {
-      flex: 2;
-    }
-
-    .legal-right {
-      flex: 1;
-    }
-
-    /* 5. LINKS FINAIS */
     .legal-links {
-      margin-top: 12px;
-      font-size: 12px;
+      margin-top: 10px;
+      font-size: 13px;
     }
 
     .legal-links a {
-      color: #bdbdbd;
+      color: #c06a73;
       text-decoration: none;
     }
 
@@ -89,59 +105,73 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
-      .profile {
-        flex-direction: column;
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
       }
 
-      .legal {
-        flex-direction: column;
+      .photo {
+        height: 320px;
+      }
+
+      .footer {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
 
-  <!-- 1. BARRA SUPERIOR -->
-  <div class="top-bar">
-    <div class="container">
-      <h1>NOME DA EMPRESA OU PROJETO</h1>
+    <!-- NOME -->
+    <div class="title-box">
+      <h1>NOME DA EMPRESA / PROJETO</h1>
     </div>
+
+    <!-- LINHAS -->
+    <div class="rule"></div>
+    <div class="rule"></div>
+
+    <!-- FOTO + TEXTO AO LADO -->
+    <section class="hero">
+      <img class="photo" src="" alt="Foto institucional">
+
+      <div class="hero-text">
+        <!-- TEXTO AO LADO DA FOTO -->
+      </div>
+    </section>
+
+    <!-- BLOCO DE TEXTO 1 -->
+    <section class="text-block">
+      <!-- TEXTO ABAIXO – BLOCO 1 -->
+    </section>
+
+    <!-- BLOCO DE TEXTO 2 -->
+    <section class="text-block">
+      <!-- TEXTO ABAIXO – BLOCO 2 -->
+    </section>
+
+    <!-- RODAPÉ -->
+    <section class="footer">
+      <div>
+        <p><!-- Texto institucional / aviso legal --></p>
+
+        <div class="legal-links">
+          <a href="/politicadeprivacidade/">Política de Privacidade</a> |
+          <a href="/termosdeuso/">Termo de Uso</a>
+        </div>
+      </div>
+
+      <div>
+        <p><!-- Razão social / nome legal --></p>
+        <p><!-- CNPJ --></p>
+        <p><!-- Endereço --></p>
+        <p><!-- Cidade / País --></p>
+        <p><!-- Email de contato --></p>
+      </div>
+    </section>
+
   </div>
-
-  <div class="container">
-
-    <!-- 2. FOTO + DESCRIÇÃO -->
-    <div class="profile">
-      <img src="" alt="Foto institucional">
-      <div class="profile-text">
-        <!-- TEXTO DESCRITIVO PRINCIPAL -->
-      </div>
-    </div>
-
-    <!-- 3 + 4. TEXTO LEGAL -->
-    <div class="legal">
-
-      <!-- BLOCO ESQUERDA -->
-      <div class="legal-left">
-        <!-- TEXTO LEGAL / INSTITUCIONAL -->
-      </div>
-
-      <!-- BLOCO DIREITA -->
-      <div class="legal-right">
-        <!-- DADOS DA EMPRESA -->
-      </div>
-
-    </div>
-
-    <!-- 5. LINKS -->
-    <div class="legal-links">
-      <a href="/politicadeprivacidade/">Política de Privacidade</a> |
-      <a href="/termosdeuso/">Termos de Uso</a>
-    </div>
-
-  </div>
-
 </body>
 </html>
